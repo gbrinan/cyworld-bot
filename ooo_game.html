@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>OOO 게임 (틱택토)</title>
+<style>
+  body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f4f4f4;
+    margin-top: 40px;
+  }
+  h1 { margin-bottom: 10px; }
+  #status { margin-bottom: 15px; font-size: 18px; }
+  #board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+  }
+  .cell {
+    background: white;
+    border: 2px solid #333;
+    font-size: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .cell:hover { background: #eee; }
+  #reset {
+    margin-top: 20px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+  <h1>OOO 게임</h1>
+  <div id="status">O의 차례입니다</div>
+  <div id="board"></div>
+  <button id="reset">다시 시작</button>
+
+  <script>
+    const boardEl = document.getElementById('board');
+    const statusEl = document.getElementById('status');
+    const resetBtn = document.getElementById('reset');
+
+    let cells = Array(9).fill('');
+    let currentPlayer = 'O';
+    let gameOver = false;
+
+    const WIN_LINES = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+    ];
+
+    function render() {
+      boardEl.innerHTML = '';
+      cells.forEach((val, idx) => {
+        const cellDiv = document.createElement('div');
+        cellDiv.className = 'cell';
+        cellDiv.textContent = val;
+        cellDiv.addEventListener('click', () => handleClick(idx));
+        boardEl.appendChild(cellDiv);
+      });
+    }
+
+    function handleClick(idx) {
+      if (gameOver || cells[idx] !== '') return;
+      cells[idx] = currentPlayer;
+      const winner = checkWinner();
+      if (winner) {
+        statusEl.textContent = `${winner} 승리!`;
+        gameOver = true;
+      } else if (cells.every(c => c !== '')) {
+        statusEl.textContent = '무승부입니다';
+        gameOver = true;
+      } else {
+        currentPlayer = currentPlayer === 'O' ? 'X' : 'O';
+        statusEl.textContent = `${currentPlayer}의 차례입니다`;
+      }
+      render();
+    }
+
+    function checkWinner() {
+      for (const [a, b, c] of WIN_LINES) {
+        if (cells[a] && cells[a] === cells[b] && cells[b] === cells[c]) {
+          return cells[a];
+        }
+      }
+      return null;
+    }
+
+    resetBtn.addEventListener('click', () => {
+      cells = Array(9).fill('');
+      currentPlayer = 'O';
+      gameOver = false;
+      statusEl.textContent = 'O의 차례입니다';
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>

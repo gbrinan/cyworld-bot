@@ -74,12 +74,12 @@
     </div>
   </header>
 
-  <!-- 1. 핵심 지표 6개 (ROE·부채비율을 ★ 강조) -->
+  <!-- 1. 핵심 지표 6개 (여신 영업: 부채비율·ROE 순으로 ★ 강조) -->
   <section class="kpis">
     <div class="kpi"><div class="l">현재가 ({{조회시각}})</div><div class="v">{{현재가}}</div><div class="d up">{{전일 대비}}</div></div>
     <div class="kpi"><div class="l">시가총액</div><div class="v">{{시가총액}}</div><div class="d">{{시장·업종}}</div></div>
-    <div class="kpi key"><div class="l">ROE</div><div class="v">{{ROE}}</div><div class="d">{{돈 버는 힘 한 줄}}</div></div>
     <div class="kpi key"><div class="l">부채비율</div><div class="v">{{부채비율}}</div><div class="d">{{자금 사정 한 줄}}</div></div>
+    <div class="kpi key"><div class="l">ROE</div><div class="v">{{ROE}}</div><div class="d">{{상환 재원 한 줄}}</div></div>
     <div class="kpi"><div class="l">최근 2개월 주가</div><div class="v">{{등락률}}</div><div class="d">{{시작→끝}}</div></div>
     <div class="kpi"><div class="l">PER / PBR</div><div class="v">{{PER}} / {{PBR}}</div><div class="d">{{해석 한 줄}}</div></div>
   </section>
@@ -88,9 +88,9 @@
   <section class="topics">
     <h2>미팅 체크포인트 제안</h2>
     <ol>
-      <li>{{질문 1 — 최근 실적 변화. 숫자에서 출발}}
+      <li>{{질문 1 — 자금 사정·조달 계획. 부채비율에서 출발}}
         <span class="ask">{{우리가 도울 수 있는 지점}}</span></li>
-      <li>{{질문 2 — 자금 사정·조달 계획. 부채비율에서 출발}}
+      <li>{{질문 2 — 최근 실적 변화. 상환 재원 관점}}
         <span class="ask">{{우리가 도울 수 있는 지점}}</span></li>
       <li>{{질문 3 — 최근 공시·뉴스에서 나온 이벤트}}
         <span class="ask">{{우리가 도울 수 있는 지점}}</span></li>
@@ -149,8 +149,8 @@
       <h2>재무상태 ({{기준일}}, 연결)</h2>
       <table>
         <tr><th>구분</th><th>금액</th><th>구분</th><th>값</th></tr>
-        <tr><td>자산총계</td><td class="num">{{값}}</td><td>ROE ★</td><td class="num">{{값}}</td></tr>
-        <tr><td>부채총계</td><td class="num">{{값}}</td><td>부채비율 ★</td><td class="num">{{값}}</td></tr>
+        <tr><td>자산총계</td><td class="num">{{값}}</td><td>부채비율 ★</td><td class="num">{{값}}</td></tr>
+        <tr><td>부채총계</td><td class="num">{{값}}</td><td>ROE ★</td><td class="num">{{값}}</td></tr>
         <tr><td>자본총계</td><td class="num">{{값}}</td><td>전기말 대비 자산증가율</td><td class="num">{{값}}</td></tr>
       </table>
       <div class="src">(출처: OpenDART)</div>

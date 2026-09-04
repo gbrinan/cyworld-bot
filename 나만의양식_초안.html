@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{기업명}} 1페이지 브리핑</title>
+<style>
+  :root { --teal:#00857f; --teal-dark:#006b66; --ink:#22303a; --line:#e0e8e8; --panel:#f5f8f8;
+          --mint:#eef7f6; --mint-line:#c9e3e0; --up:#1a7f4b; --down:#c0392b; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif; color:var(--ink); background:#fff;
+         max-width:920px; margin:0 auto; padding:34px 30px; line-height:1.6; font-size:16px; }
+  header { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; border-bottom:2px solid var(--teal); padding-bottom:14px; }
+  h1 { font-size:1.75rem; color:var(--teal-dark); line-height:1.25; }
+  .sub { color:#6a7b7b; font-size:.92rem; margin-top:5px; }
+  .tag { background:var(--teal); color:#fff; font-size:.76rem; font-weight:700; padding:4px 10px; border-radius:4px; white-space:nowrap; }
+  .meta { text-align:right; color:#6a7b7b; font-size:.87rem; }
+
+  .kpis { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin:20px 0; }
+  .kpi { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:11px 13px; }
+  .kpi.key { border:1.5px solid var(--teal); background:var(--mint); }
+  .kpi .l { color:#6a7b7b; font-size:.79rem; }
+  .kpi.key .l::after { content:" ★"; color:var(--teal); font-size:.72rem; }
+  .kpi .v { color:var(--teal-dark); font-weight:800; font-size:1.18rem; margin:3px 0; }
+  .kpi .d { color:#6a7b7b; font-size:.79rem; }
+  .up { color:var(--up); } .down { color:var(--down); }
+
+  h2 { font-size:1.08rem; color:var(--teal-dark); border-left:4px solid var(--teal); padding-left:10px; margin:20px 0 9px; }
+  table { width:100%; border-collapse:collapse; font-size:.95rem; }
+  th, td { border-bottom:1px solid var(--line); padding:8px 6px; text-align:left; }
+  th { color:#6a7b7b; font-weight:600; background:var(--panel); }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  ul { padding-left:16px; font-size:.95rem; }
+  li { margin-bottom:6px; }
+  .date { color:#8a9797; font-size:.85rem; margin-right:6px; }
+  .src { color:#8a9797; font-size:.8rem; }
+
+  /* 1. 미팅 체크포인트 — 최상단, 영업 미팅의 주재료 */
+  .topics { background:var(--mint); border:1px solid var(--mint-line); border-radius:8px; padding:14px 18px; margin-bottom:20px; }
+  .topics h2 { margin-top:0; }
+  .topics ol { padding-left:18px; font-size:.95rem; }
+  .topics ol > li { margin-bottom:9px; }
+  .topics .ask { display:block; color:#5c6d6d; font-size:.88rem; margin-top:2px; }
+  .topics .ask::before { content:"→ "; color:var(--teal); font-weight:700; }
+
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .chart { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:13px 15px; margin:20px 0; }
+  .chart .t { font-weight:700; color:var(--teal-dark); font-size:.98rem; display:flex; justify-content:space-between; }
+  .chart .t span { color:#6a7b7b; font-weight:400; font-size:.83rem; }
+
+  /* 9. 거래 관계 메모 — 미팅 중/후 손으로 채우는 칸 */
+  .memo { border:1px dashed var(--teal); border-radius:8px; padding:13px 16px; margin-top:20px; background:#fbfdfd; }
+  .memo h2 { margin-top:0; border-left-color:var(--teal); }
+  .memo .row { border-bottom:1px dotted var(--line); padding:9px 0; font-size:.93rem; }
+  .memo .row:last-child { border-bottom:none; }
+  .memo .k { color:#6a7b7b; display:inline-block; min-width:150px; font-size:.88rem; }
+  .memo .blank { color:#c3cfcf; }
+
+  footer { margin-top:24px; padding-top:11px; border-top:1px solid var(--line); color:#8a9797; font-size:.8rem; }
+  @media print { body { padding:0; font-size:15px; } .kpis { grid-template-columns:repeat(6,1fr); } }
+  @media (max-width:640px) { .kpis { grid-template-columns:repeat(2,1fr); } .grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>{{기업명}} <small style="font-size:.6em;color:#6a7b7b">({{영문명}})</small></h1>
+      <div class="sub">{{시장}} {{종목코드}} · {{업종}} · 대표 {{대표자}} · 설립 {{설립}} · 본사 {{본사}}</div>
+    </div>
+    <div class="meta">
+      <div class="tag">1-PAGE BRIEFING</div>
+      <div style="margin-top:6px">{{용도: 예) 미팅 참고자료}}</div>
+      <div>작성일 {{작성일}} · 자료: OpenDART, 한국 주식 정보, 네이버 검색</div>
+    </div>
+  </header>
+
+  <!-- 1. 핵심 지표 6개 (ROE·부채비율을 ★ 강조) -->
+  <section class="kpis">
+    <div class="kpi"><div class="l">현재가 ({{조회시각}})</div><div class="v">{{현재가}}</div><div class="d up">{{전일 대비}}</div></div>
+    <div class="kpi"><div class="l">시가총액</div><div class="v">{{시가총액}}</div><div class="d">{{시장·업종}}</div></div>
+    <div class="kpi key"><div class="l">ROE</div><div class="v">{{ROE}}</div><div class="d">{{돈 버는 힘 한 줄}}</div></div>
+    <div class="kpi key"><div class="l">부채비율</div><div class="v">{{부채비율}}</div><div class="d">{{자금 사정 한 줄}}</div></div>
+    <div class="kpi"><div class="l">최근 2개월 주가</div><div class="v">{{등락률}}</div><div class="d">{{시작→끝}}</div></div>
+    <div class="kpi"><div class="l">PER / PBR</div><div class="v">{{PER}} / {{PBR}}</div><div class="d">{{해석 한 줄}}</div></div>
+  </section>
+
+  <!-- 2. 미팅 체크포인트 — 최상단으로 이동. 관심·제안 톤, 확인할 것 + 도울 지점 -->
+  <section class="topics">
+    <h2>미팅 체크포인트 제안</h2>
+    <ol>
+      <li>{{질문 1 — 최근 실적 변화. 숫자에서 출발}}
+        <span class="ask">{{우리가 도울 수 있는 지점}}</span></li>
+      <li>{{질문 2 — 자금 사정·조달 계획. 부채비율에서 출발}}
+        <span class="ask">{{우리가 도울 수 있는 지점}}</span></li>
+      <li>{{질문 3 — 최근 공시·뉴스에서 나온 이벤트}}
+        <span class="ask">{{우리가 도울 수 있는 지점}}</span></li>
+      <li>{{질문 4 — 신규 투자·사업 확장 계획}}
+        <span class="ask">{{우리가 도울 수 있는 지점}}</span></li>
+      <li>{{질문 5 — 규제·업황 리스크}}
+        <span class="ask">{{우리가 도울 수 있는 지점}}</span></li>
+    </ol>
+  </section>
+
+  <!-- 3~4. 뉴스와 공시를 나란히 — 미팅에서 바로 꺼낼 화제 -->
+  <div class="grid">
+    <div>
+      <h2>최근 뉴스 · 이슈 ({{기준일}})</h2>
+      <ul>
+        <li><span class="date">{{날짜}}</span>{{뉴스 1 — 제목과 한 줄 의미}}</li>
+        <li><span class="date">{{날짜}}</span>{{뉴스 2}}</li>
+        <li><span class="date">{{날짜}}</span>{{뉴스 3}}</li>
+        <li><span class="date">{{날짜}}</span>{{뉴스 4}}</li>
+      </ul>
+      <div class="src">(출처: 네이버 검색)</div>
+    </div>
+    <div>
+      <h2>최근 공시 (DART)</h2>
+      <ul>
+        <li><span class="date">{{날짜}}</span>{{공시 1}}</li>
+        <li><span class="date">{{날짜}}</span>{{공시 2}}</li>
+        <li><span class="date">{{날짜}}</span>{{공시 3}}</li>
+        <li><span class="date">{{날짜}}</span>{{공시 4}}</li>
+      </ul>
+      <div class="src">(출처: OpenDART)</div>
+    </div>
+  </div>
+
+  <!-- 5. 주가 추이 (52주 최고/최저를 이곳으로 이동) -->
+  <section class="chart">
+    <div class="t">일별 종가 추이 ({{기간}}) <span>기간 최고 {{기간 최고}} · 최저 {{기간 최저}} · 52주 {{52주 최고}} / {{52주 최저}}</span></div>
+    <div>{{종가 추이 — 표 또는 간단한 SVG 선그래프. 도구로 받은 일별 종가만 사용}}</div>
+  </section>
+
+  <!-- 6~8. 실적 / 재무상태 / 주요 주주 -->
+  <div class="grid">
+    <div>
+      <h2>최근 실적 — 연결기준 ({{보고서 기준: 예) 2026년 반기, 접수일}})</h2>
+      <table>
+        <tr><th>구분</th><th>{{당기}}</th><th>{{전년 동기}}</th><th>증감률</th></tr>
+        <tr><td>{{항목 1: 예) 순이자이익}}</td><td class="num">{{값}}</td><td class="num">{{값}}</td><td class="num up">{{+x.x%}}</td></tr>
+        <tr><td>{{항목 2}}</td><td class="num">{{값}}</td><td class="num">{{값}}</td><td class="num">{{증감}}</td></tr>
+        <tr><td>{{항목 3}}</td><td class="num">{{값}}</td><td class="num">{{값}}</td><td class="num">{{증감}}</td></tr>
+        <tr><td>{{항목 4}}</td><td class="num">{{값}}</td><td class="num">{{값}}</td><td class="num">{{증감}}</td></tr>
+      </table>
+      <div class="src">(출처: OpenDART)</div>
+    </div>
+
+    <div>
+      <h2>재무상태 ({{기준일}}, 연결)</h2>
+      <table>
+        <tr><th>구분</th><th>금액</th><th>구분</th><th>값</th></tr>
+        <tr><td>자산총계</td><td class="num">{{값}}</td><td>ROE ★</td><td class="num">{{값}}</td></tr>
+        <tr><td>부채총계</td><td class="num">{{값}}</td><td>부채비율 ★</td><td class="num">{{값}}</td></tr>
+        <tr><td>자본총계</td><td class="num">{{값}}</td><td>전기말 대비 자산증가율</td><td class="num">{{값}}</td></tr>
+      </table>
+      <div class="src">(출처: OpenDART)</div>
+
+      <h2>주요 주주 현황 ({{기준일}})</h2>
+      <table>
+        <tr><td>{{최대주주}} (최대주주)</td><td class="num">{{지분율}}</td></tr>
+        <tr><td>{{주주 2 또는 변동 사항}}</td><td class="num">{{값}}</td></tr>
+        <tr><td>{{지배구조 특징 — 예) 분산 소유, 전문경영인 체제}}</td><td class="num">{{-}}</td></tr>
+      </table>
+      <div class="src">(출처: OpenDART)</div>
+    </div>
+  </div>
+
+  <!-- 9. 거래 관계 메모 — 신규 추가. 미팅 전후 직접 채우는 칸 -->
+  <section class="memo">
+    <h2>거래 관계 메모 <span style="font-weight:400;font-size:.82rem;color:#8a9797">(직접 작성)</span></h2>
+    <div class="row"><span class="k">현재 거래 현황</span><span class="blank">________________________________________</span></div>
+    <div class="row"><span class="k">담당·의사결정 라인</span><span class="blank">________________________________________</span></div>
+    <div class="row"><span class="k">제안 가능한 상품</span><span class="blank">________________________________________</span></div>
+    <div class="row"><span class="k">다음 액션 / 기한</span><span class="blank">________________________________________</span></div>
+  </section>
+
+  <footer>자료 출처: OpenDART({{접수 문서}}) · 한국 주식 정보({{조회 시각}} 기준) · 네이버 검색({{조회일}}). 도구로 조회하지 못한 값은 "조회 불가"로 표기했습니다. 투자 판단의 근거로 사용하지 마세요.</footer>
+</body>
+</html>

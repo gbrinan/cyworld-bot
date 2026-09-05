@@ -7,12 +7,29 @@
 ```
 docs/samsung-ax/
 ├─ README.md                  (이 파일)
+├─ slides_outline.md          슬라이드 42장 설계서
+├─ instructor_guide.md        강사용 진행 가이드 (큐시트·되묻기·보조강사 운영)
+├─ workbook.md                참가자 실습 워크북 (빈칸형)
+├─ faq.md                     예상 Q&A
 ├─ tools/make_dummy_data.py   더미 데이터 생성기
 └─ context_pack/
    ├─ common/                 방법론·지시문 템플릿 — 팀이 바뀌어도 그대로
    ├─ team_b2b/               B2B팀 컨텍스트 데이터 팩
    └─ team_partner/           B2B유통전략팀 컨텍스트 데이터 팩
 ```
+
+## 사내강사 인계 패키지 대응
+
+8/6 메일에서 요청한 자료와 이 폴더의 대응 관계입니다.
+
+| 요청 자료 | 이 폴더의 파일 |
+|---|---|
+| 강의 Material | `slides_outline.md` (슬라이드 제작 후 교체) |
+| 스크립트 | `instructor_guide.md` 2·3장 큐시트 + 슬라이드 노트 |
+| 예상 Q&A | `faq.md` |
+| 참가자 자료 | `workbook.md` |
+| 실습 데이터 | `context_pack/team_*/` |
+| 결과물 정리표 | `context_pack/team_*/manifest.md` |
 
 핵심 원칙은 **컨텍스트를 데이터로 분리**하는 것입니다.
 
@@ -77,10 +94,11 @@ python3 docs/samsung-ax/tools/make_dummy_data.py
 | common 방법론·지시문 템플릿 | 완료 (v1) |
 | 팀별 팩 v1 (9/4 메일 프로필 기반) | 완료 |
 | 더미 데이터 + 테스트 케이스 + 정답 인계 파일 | 완료 |
+| 슬라이드 설계서 (42장) | 완료 |
+| 강사 가이드·워크북·예상 Q&A | 완료 (v1) |
 | 컬럼 헤더 확정 | **대기** — 사전과제 「필요 엑셀 컬럼 헤더 구상」과 9/8 전달 자료 반영해 v1.1 |
 | 시나리오 확정 | **대기** — 9/7(또는 9/10~11) 사전 모임 결과 반영 |
-| 슬라이드 | 미착수 |
-| 강사 가이드·워크북 | 미착수 |
+| 슬라이드 실물 제작 | 미착수 — 설계서 확정 후 |
 | 도구 리허설 (Gems 불가, Instant/Flash) | 미착수 — 9/12 예정 |
 
 ## 주의

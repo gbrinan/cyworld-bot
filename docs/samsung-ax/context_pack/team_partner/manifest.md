@@ -36,10 +36,15 @@ team_partner/
 │  ├─ data/  product_catalog.csv · service_terms.md
 │  └─ handoff/  proposal_draft.md            ← ② 정답 예시
 └─ agent04_analysis/
-   ├─ data/  partner_sales.csv · online_price_psi.csv · monthly_summary.csv · report_template.md
+   ├─ data/  partner_sales.csv · partner_sales_소계.csv · online_price_psi.csv · monthly_summary.csv · report_template.md
    ├─ test_cases/  monthly_summary_경계.csv · partner_sales_실패.csv
    └─ handoff/  report_draft.md              ← ③ 정답 예시
+paste/                          모든 CSV의 마크다운 표 버전 (업로드 불가 시)
 ```
+
+**웹 환경 대비** — 사내 환경은 포털에서 ChatGPT·Gemini를 불러 쓰는 방식입니다.
+`partner_sales_소계.csv`는 코드 실행이 안 될 때 씁니다. 등급별·품목군별·파트너별 세 축의 합계가 모두 433,460천원으로 상세와 일치합니다.
+`paste/`는 파일 업로드가 막혔을 때 복사해 붙여넣는 마크다운 표입니다.
 
 ## 의도적으로 심어둔 데이터 함정
 

@@ -9,6 +9,7 @@
 """
 
 import csv
+import glob
 import os
 import random
 from datetime import date, timedelta
@@ -329,7 +330,89 @@ def build_partner():
       demand_fail)
 
 
+def build_subtotals():
+    """코드 실행이 안 되는 웹 환경용 소계본.
+
+    LLM이 66행을 직접 더하면 산술 오류가 납니다. 소계는 행이 적어
+    사람도 AI도 검산할 수 있고, 표지와의 정합성 대조는 그대로 성립합니다.
+    """
+    import collections
+
+    def rd(rel):
+        path = os.path.normpath(os.path.join(ROOT, rel))
+        with open(path, encoding="utf-8-sig") as f:
+            return list(csv.DictReader(f))
+
+    # --- B2B: 단계별 / 경로별 / 품목군별 소계 ---
+    pl = rd("team_b2b/agent04_analysis/data/lead_bo_pipeline.csv")
+    rows = []
+    for key, label in [("단계", "단계별"), ("담당경로", "경로별"), ("품목군", "품목군별")]:
+        cnt, amt, wgt = (collections.Counter(), collections.defaultdict(int),
+                         collections.defaultdict(float))
+        for r in pl:
+            v, a = r[key], int(r["예상규모(백만원)"])
+            cnt[v] += 1
+            amt[v] += a
+            wgt[v] += a * int(r["확률(%)"]) / 100
+        for v in sorted(amt, key=lambda x: -amt[x]):
+            rows.append([label, v, cnt[v], amt[v], round(wgt[v], 1)])
+    w("team_b2b/agent04_analysis/data/lead_bo_pipeline_소계.csv",
+      ["구분", "항목", "건수", "예상규모합계(백만원)", "가중금액(백만원)"], rows)
+
+    # --- Partner: 등급별 / 품목군별 / 파트너별 소계 (당월) ---
+    ps = [r for r in rd("team_partner/agent04_analysis/data/partner_sales.csv")
+          if r["기준월"] == BASE_MONTH]
+    rows = []
+    for key, label in [("등급", "등급별"), ("품목군", "품목군별"), ("파트너명", "파트너별")]:
+        agg = collections.defaultdict(lambda: [0, 0, 0])
+        for r in ps:
+            a = agg[r[key]]
+            a[0] += int(r["매출(천원)"])
+            a[1] += int(r["구독건수"])
+            a[2] += int(r["해지건수"])
+        for v in sorted(agg, key=lambda x: -agg[x][0]):
+            rows.append([label, v] + agg[v])
+    w("team_partner/agent04_analysis/data/partner_sales_소계.csv",
+      ["구분", "항목", "매출합계(천원)", "구독건수합계", "해지건수합계"], rows)
+
+    # --- 검산: 소계 합이 상세 합과 일치하는지 ---
+    det = sum(int(r["예상규모(백만원)"]) for r in pl)
+    sub = rd("team_b2b/agent04_analysis/data/lead_bo_pipeline_소계.csv")
+    for label in ["단계별", "경로별", "품목군별"]:
+        s = sum(int(r["예상규모합계(백만원)"]) for r in sub if r["구분"] == label)
+        assert s == det, f"B2B {label} 소계 {s} != 상세 {det}"
+    det = sum(int(r["매출(천원)"]) for r in ps)
+    sub = rd("team_partner/agent04_analysis/data/partner_sales_소계.csv")
+    for label in ["등급별", "품목군별", "파트너별"]:
+        s = sum(int(r["매출합계(천원)"]) for r in sub if r["구분"] == label)
+        assert s == det, f"Partner {label} 소계 {s} != 상세 {det}"
+    print("소계 검산 통과 — 세 축의 소계 합이 상세 합계와 일치합니다.")
+
+
+def build_paste_versions():
+    """업로드가 막힌 경우를 대비한 붙여넣기용 마크다운 표."""
+    for src in sorted(glob.glob(os.path.join(ROOT, "**", "*.csv"), recursive=True)):
+        rows = list(csv.reader(open(src, encoding="utf-8-sig")))
+        rel = os.path.relpath(src, ROOT)
+        team = rel.split(os.sep)[0]
+        dst = os.path.normpath(os.path.join(
+            ROOT, team, "paste", os.path.basename(src).replace(".csv", ".md")))
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        with open(dst, "w", encoding="utf-8") as f:
+            f.write(f"# {os.path.basename(src)}\n\n")
+            f.write("> 파일 업로드가 안 될 때 이 표를 통째로 복사해 채팅창에 붙여넣습니다.\n")
+            f.write("> 붙여넣기 전에 \"아래는 첨부 자료다\"라고 한 줄 적어 주세요.\n\n")
+            f.write("| " + " | ".join(rows[0]) + " |\n")
+            f.write("|" + "---|" * len(rows[0]) + "\n")
+            for r in rows[1:]:
+                f.write("| " + " | ".join(r) + " |\n")
+        print(f"{dst}")
+
+
 if __name__ == "__main__":
+
     build_b2b()
     build_partner()
+    build_subtotals()
+    build_paste_versions()
     print("\n모든 값은 가상입니다. 실제 고객사·파트너·실적과 무관합니다.")

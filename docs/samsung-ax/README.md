@@ -7,7 +7,9 @@
 ```
 docs/samsung-ax/
 ├─ README.md                  (이 파일)
-├─ slides_outline.md          슬라이드 44장 설계서
+├─ agent_structure_v2.md      Agent 4개 확정 구조 (9/7 삼성 시나리오 반영)
+├─ reuse_from_eugene.md       유진투자증권 과정에서 가져온 것 / 안 가져온 것
+├─ slides_outline.md          슬라이드 53장 설계서
 ├─ instructor_guide.md        강사용 진행 가이드 (큐시트·되묻기·보조강사 운영)
 ├─ workbook.md                참가자 실습 워크북 (빈칸형)
 ├─ faq.md                     예상 Q&A
@@ -46,7 +48,8 @@ Agent를 팀마다 따로 만들지 않고, 같은 지시문에 다른 팩을 �
 | 파일 | 용도 |
 |---|---|
 | `web_environment.md` | **웹 접속 환경 전제.** 결과 저장법, 업로드 불가 시 대응, 코드 실행 불가 시 소계본, 지시문 보관 |
-| `skills_and_mcp.md` | **Skill과 MCP.** 오늘 만든 지시문이 곧 Agent Skill이라는 연결, 이 환경에서 되는 것과 안 되는 것 |
+| `skills_and_mcp.md` | **Skill과 MCP.** SKILL.md 해부(name·description·본문), 워크플로우 5패턴, 이 환경에서 되는 것과 안 되는 것 |
+| `fit_check.md` | **적합성 체크.** CANNOT 7항목, 업무 유형 A~D, 좋은 과제 3원칙, As-Is→To-Be. 사전과제 필터링과 워크북 전환 칸에 사용 |
 | `methodology.md` | IPO 명세, 지시문 7블록, 테스트 3종, 사람 승인. 모든 모듈 공통 |
 | `instruction_templates/agent02_sensing.md` | ② 시장·고객 분석 Agent 지시문 (`{{ }}`만 교체) |
 | `instruction_templates/agent03_action.md` | ③ 제안자료 작성 Agent 지시문 |

@@ -168,6 +168,13 @@ AI 활용 역량 편차가 크고 기초 단계 비중이 절반을 넘습니다
 
 ---
 
+## 첨부 전 게이트
+
+**v2 팩 완성 전에는 `context_pack/`·`handoff/`·`slides_outline.md`를 첨부하지 않습니다.**
+현재 이 세 가지는 v1(Agent 3개·SAC/HVAC/DMFP) 기준이라, 섞어 넣으면 다른 과정의 슬라이드가 나옵니다.
+v2 팩 완성 여부와 부족한 항목은 `handoff_review.md`에서 확인합니다.
+지금 첨부해도 되는 것: `agent_structure_v2.md`, `context_pack/common/methodology.md`.
+
 ## 첨부 권장 파일
 
 | 파일 | 역할 |

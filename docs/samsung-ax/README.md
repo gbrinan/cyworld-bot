@@ -11,16 +11,35 @@ docs/samsung-ax/
 ├─ reuse_from_eugene.md       유진투자증권 과정에서 가져온 것 / 안 가져온 것
 ├─ claude_design_handoff.md   Claude Design 복붙 프롬프트 (슬라이드 제작용)
 ├─ handoff_review.md          핸드오프 검토 — 사내강사 운영 가능성, P0~P2 부족 항목, 작업 순서
+├─ module_spec.md             **모듈 방식 제안** — 요구조건서 1장 → 7단계 빌드 → CHECK 12항목. v2 팩은 이 구조로 제작
 ├─ slides_outline.md          슬라이드 53장 설계서
 ├─ instructor_guide.md        강사용 진행 가이드 (큐시트·되묻기·보조강사 운영)
 ├─ workbook.md                참가자 실습 워크북 (빈칸형)
 ├─ faq.md                     예상 Q&A
 ├─ rehearsal_checklist.md     환경 리허설 점검표 + 삼성 확인 요청 사항
-├─ tools/make_dummy_data.py   더미 데이터 생성기
+├─ tools/make_dummy_data.py   더미 데이터 생성기 (v1)
+├─ tools/check_module.py      모듈 완성 판정 — 자동 8항목
 └─ context_pack/
    ├─ common/                 방법론·지시문 템플릿 — 팀이 바뀌어도 그대로
-   ├─ team_b2b/               B2B팀 컨텍스트 데이터 팩
-   └─ team_partner/           B2B유통전략팀 컨텍스트 데이터 팩
+   ├─ modules/                **v2 Agent 모듈 4개** (D·C·A·B) + _template. 각 모듈 = 요구조건서·데이터·프롬프트·테스트·정답·시연로그
+   ├─ team_b2b/               (v1) B2B팀 데이터 팩 — modules/ 완성 후 삭제
+   └─ team_partner/           (v1) B2B유통전략팀 데이터 팩 — modules/ 완성 후 삭제
+```
+
+## 모듈 구조 (v2)
+
+Agent 하나 = 폴더 하나. `00_requirement.md`(삼성 양식을 옮긴 요구조건서)가 원본이고 나머지는 파생물입니다. 자세한 것은 [`module_spec.md`](module_spec.md).
+
+```
+modules/D_analysis/
+├─ 00_requirement.md   요구조건서 (헤더·출력 절·planted 신호·테스트 정의)
+├─ module.md           모듈 카드 1장 = 슬라이드 [팀별] 9장
+├─ 01_data/  02_prompt/  03_tests/  04_answer/  05_demo_log.md  06_paste/
+└─ CHECK.md            12항목 통과 = 김승진 프로 공유 가능
+```
+
+```bash
+python3 docs/samsung-ax/tools/check_module.py --all    # 자동 8항목
 ```
 
 ## 사내강사 인계 패키지 대응
@@ -126,6 +145,8 @@ python3 docs/samsung-ax/tools/make_dummy_data.py
 | 시나리오 확정 | **대기** — 9/7(또는 9/10~11) 사전 모임 결과 반영 |
 | Claude Design 핸드오프 | 완료 — **첨부 게이트 있음**: v2 팩 완성 전 v1 자료 첨부 금지 |
 | 핸드오프 검토 | 완료 — `handoff_review.md`. **P0 3건(v1/v2 불일치·완성 프롬프트·HTML 절차) 해결 전 실습 운영 불가** |
+| 모듈 방식 제안 | 완료 — `module_spec.md` + `_template/` + 요구조건서 4장 + `check_module.py`. **구조 확정 후 D부터 빌드** |
+| v2 모듈 빌드 (D→C→A→B) | 미착수 — 요구조건서만 있음. `check_module.py --all` 현재 2/9 |
 | 슬라이드 실물 제작 | 미착수 — Claude Design에서 시안 생성 후 |
 | 도구 리허설 (Gems 불가, Instant/Flash) | 미착수 — 9/12 예정 |
 

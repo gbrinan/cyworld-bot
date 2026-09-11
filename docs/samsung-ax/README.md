@@ -46,6 +46,7 @@ Agent를 팀마다 따로 만들지 않고, 같은 지시문에 다른 팩을 �
 | 파일 | 용도 |
 |---|---|
 | `web_environment.md` | **웹 접속 환경 전제.** 결과 저장법, 업로드 불가 시 대응, 코드 실행 불가 시 소계본, 지시문 보관 |
+| `skills_and_mcp.md` | **Skill과 MCP.** 오늘 만든 지시문이 곧 Agent Skill이라는 연결, 이 환경에서 되는 것과 안 되는 것 |
 | `methodology.md` | IPO 명세, 지시문 7블록, 테스트 3종, 사람 승인. 모든 모듈 공통 |
 | `instruction_templates/agent02_sensing.md` | ② 시장·고객 분석 Agent 지시문 (`{{ }}`만 교체) |
 | `instruction_templates/agent03_action.md` | ③ 제안자료 작성 Agent 지시문 |
@@ -111,7 +112,8 @@ python3 docs/samsung-ax/tools/make_dummy_data.py
 | common 방법론·지시문 템플릿 | 완료 (v1) |
 | 팀별 팩 v1 (9/4 메일 프로필 기반) | 완료 |
 | 더미 데이터 + 테스트 케이스 + 정답 인계 파일 | 완료 |
-| 슬라이드 설계서 (44장) | 완료 |
+| 슬라이드 설계서 (47장) | 완료 |
+| Skill·MCP 내용 | 완료 — **Skills 사용 가능 여부는 확인 필요** |
 | 강사 가이드·워크북·예상 Q&A | 완료 (v1) |
 | 웹 환경 대비 (paste·소계본·저장 절차) | 완료 |
 | 환경 리허설 점검표 | 완료 — **실행은 삼성 계정 필요** |

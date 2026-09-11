@@ -9,6 +9,7 @@ docs/samsung-ax/
 ├─ README.md                  (이 파일)
 ├─ agent_structure_v2.md      Agent 4개 확정 구조 (9/7 삼성 시나리오 반영)
 ├─ reuse_from_eugene.md       유진투자증권 과정에서 가져온 것 / 안 가져온 것
+├─ claude_design_handoff.md   Claude Design 복붙 프롬프트 (슬라이드 제작용)
 ├─ slides_outline.md          슬라이드 53장 설계서
 ├─ instructor_guide.md        강사용 진행 가이드 (큐시트·되묻기·보조강사 운영)
 ├─ workbook.md                참가자 실습 워크북 (빈칸형)
@@ -122,7 +123,8 @@ python3 docs/samsung-ax/tools/make_dummy_data.py
 | 환경 리허설 점검표 | 완료 — **실행은 삼성 계정 필요** |
 | 컬럼 헤더 확정 | **대기** — 사전과제 「필요 엑셀 컬럼 헤더 구상」과 9/8 전달 자료 반영해 v1.1 |
 | 시나리오 확정 | **대기** — 9/7(또는 9/10~11) 사전 모임 결과 반영 |
-| 슬라이드 실물 제작 | 미착수 — 설계서 확정 후 |
+| Claude Design 핸드오프 | 완료 — `claude_design_handoff.md` 복붙 프롬프트 |
+| 슬라이드 실물 제작 | 미착수 — Claude Design에서 시안 생성 후 |
 | 도구 리허설 (Gems 불가, Instant/Flash) | 미착수 — 9/12 예정 |
 
 ## 주의

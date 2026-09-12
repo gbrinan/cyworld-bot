@@ -3,9 +3,27 @@ module: C_proposal
 name: drafting-display-proposals-from-requirements
 source: 삼성 양식 2 「제안자료 작성」 (2026-09-07 pptx)
 team: common
+agent_count: 1          # 에이전트 1개 · 2시간 1모듈. 안에 단계가 셋
 tool:
-  primary: ChatGPT 프로젝트 (Instant) + 파일 2개 업로드
-  backup: Gemini 에이전트 (Flash) + 파일 업로드
+  primary: ChatGPT 에이전트 (Instant) + 파일 업로드
+  backup: Gemini Enterprise 에이전트 + 파일 업로드
+skill:
+  name: drafting-display-proposals-from-requirements
+  scope: "화면 복사 정제 규칙 · 요구조건 6항목 추출 · 모델 선정 규칙 · 비교표 양식 · 확정 가격 금지 · 검수 기준"
+  agent_side: "가격가이드 파일 · 우리 팀 취급 라인업 · 고객 요구조건 메일"
+steps:
+  - id: 0
+    label: 수집 정제
+    prompt: prompt_0_정제.md
+    do: "웹 화면에서 복사한 텍스트를 4열로 정제한다"
+  - id: 1
+    label: 스펙 추출·요구조건 분석
+    prompt: prompt_1_추출.md
+    do: "가격가이드와 크롤 표에서 스펙을 뽑고 고객 요구조건을 표로 정리한다"
+  - id: 2
+    label: 제안 3안
+    prompt: prompt_2_제안.md
+    do: "조건에 맞는 3안을 골라 상호 비교·시장가 비교 HTML로 출력한다"
 inputs:
   - file: tv_price_guide.csv
     format: csv

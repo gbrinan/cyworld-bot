@@ -7,7 +7,7 @@
 ```
 docs/samsung-ax/
 ├─ README.md                  (이 파일)
-├─ agent_structure_v2.md      Agent 구조 (9/7 삼성 시나리오 + 9/12 A·B 재설계). A·B는 각 3개 에이전트
+├─ agent_structure_v2.md      Agent 구조 (9/7 삼성 시나리오 + 9/12 재설계). 에이전트 4개 · 모듈당 1개 · 2시간
 ├─ reuse_from_eugene.md       유진투자증권 과정에서 가져온 것 / 안 가져온 것
 ├─ claude_design_handoff.md   Claude Design 복붙 프롬프트 (슬라이드 제작용)
 ├─ handoff_review.md          핸드오프 검토 — 사내강사 운영 가능성, P0~P2 부족 항목, 작업 순서
@@ -114,15 +114,19 @@ Agent를 팀마다 따로 만들지 않고, 같은 지시문에 다른 팩을 �
 **네 가지가 모두 막혀도 과정은 진행됩니다.** 붙여넣기와 복사만 되면 세 Agent를 다 만들 수 있습니다.
 실제 가능 여부는 [`rehearsal_checklist.md`](rehearsal_checklist.md)로 확인합니다.
 
-## Agent 체인
+## 에이전트 4개 · 모듈당 하나 · 2시간씩
 
 ```
-② Sensing  → customer_profile.md / segment_profile.md
-③ Action   → proposal_draft.md
-④ Analysis → report_draft.md
+A  Sensing (직판, 상장 건설사)    2h   단계 3  →  dashboard_A.html
+B  Sensing (경로, 작은 시설)      2h   단계 3  →  report_B.md → Word
+C  제안자료 작성                  2h   단계 3  →  proposal_C.html
+D  데이터 분석                    2h   단계 1  →  recommend_D.html
 ```
 
-각 모듈의 출력을 파일로 저장해 다음 모듈에 올립니다. 도구가 달라도(Gemini → Gemini → GPT) 파일로 이어집니다.
+**한 모듈이 2시간이고 그 안에서 에이전트 하나를 끝까지 만듭니다.** 단계가 셋이어도 에이전트는 하나입니다. 단계 사이에 🔒(사람만)이 없기 때문입니다.
+본 과정 6시간은 셋(A 또는 B → C → D), 양성과정 2일은 넷 전부입니다.
+
+각 모듈의 출력은 파일로 저장해 다음 모듈에 올릴 수 있습니다. 도구가 달라도 파일로 이어집니다.
 
 ## 더미 데이터 다시 만들기
 
@@ -148,10 +152,10 @@ python3 docs/samsung-ax/tools/make_dummy_data.py
 | 환경 리허설 점검표 | 완료 — **실행은 삼성 계정 필요** |
 | 컬럼 헤더 확정 | **대기** — 사전과제 「필요 엑셀 컬럼 헤더 구상」과 9/8 전달 자료 반영해 v1.1 |
 | 시나리오 확정 | **대기** — 9/7(또는 9/10~11) 사전 모임 결과 반영 |
-| Claude Design 핸드오프 | **v3 완료** — 모듈 구조 + 일 분해 + A·B 재설계 반영 67장. 게이트가 모듈 단위로 바뀌어 **D 구간부터 제작 가능** |
+| Claude Design 핸드오프 | **v3 완료** — 모듈 구조 + 일 보는 법 + 에이전트 4개 구조 반영 72장. 게이트가 모듈 단위로 바뀌어 **D 구간부터 제작 가능** |
 | 핸드오프 검토 | 완료 — `handoff_review.md`. **P0 3건(v1/v2 불일치·완성 프롬프트·HTML 절차) 해결 전 실습 운영 불가** |
 | 모듈 방식 제안 | 완료 — `module_spec.md` + `_template/` + 요구조건서 4장 + `check_module.py`. **구조 확정 후 D부터 빌드** |
-| v2 모듈 빌드 (D→C→A→B) | **D 완료 (자동 9/9, 수동 #10~12는 도구 실행 대기)** · C 요구조건서 · **A·B 요구조건서 9/12 전면 재설계** (각 3 에이전트) |
+| v2 모듈 빌드 (D→C→A→B) | **D 완료 (자동 9/9, 수동 #10~12는 도구 실행 대기)** · A·B·C는 요구조건서만 (9/12 재설계, 각 에이전트 1개) |
 | 슬라이드 실물 제작 | 미착수 — Claude Design에서 시안 생성 후 |
 | 도구 리허설 (Gems 불가, Instant/Flash) | 미착수 — 9/12 예정 |
 

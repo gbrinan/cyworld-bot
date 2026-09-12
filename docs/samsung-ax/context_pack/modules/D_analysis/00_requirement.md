@@ -3,9 +3,19 @@ module: D_analysis
 name: recommending-products-by-vertical
 source: 삼성 양식 3 「데이터 분석」 (2026-09-07 pptx)
 team: common
+agent_count: 1          # 에이전트 1개 · 2시간 1모듈. 단계도 하나 (가장 단순해 먼저 배운다)
 tool:
   primary: ChatGPT 에이전트 (Instant) + 파일 업로드
-  backup: Gemini 에이전트 (Flash) + 파일 업로드
+  backup: Gemini Enterprise 에이전트 (Flash) + 파일 업로드
+skill:
+  name: recommending-products-by-vertical
+  scope: "데이터 점검 절차 · 버티컬 분석 순서 · TOP3 선정 규칙 · HTML 4절 양식 · 확정가 금지 · 검수 기준"
+  agent_side: "우리 팀 실적 파일 · 우리 팀 버티컬 명칭 · 대화 시작 예시"
+steps:
+  - id: 1
+    label: 추천 보고서
+    prompt: prompt_1.md
+    do: "점검 → 버티컬 분석 → TOP3 → 근거를 한 번에 낸다"
 inputs:
   - file: sales_history.csv
     format: csv

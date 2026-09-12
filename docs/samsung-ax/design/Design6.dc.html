@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">일을 보는 법</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">설계 6단계</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 14px; color: #6b6660;">지시문은 여섯 번째에 옵니다</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 28px;">
+    <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px;">
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 18px 16px; background: #ffffff; border-top: 3px solid #1c3f94;">
+        <div style="font-size: 12px; color: #9a958d; font-weight: 600;">01</div>
+        <div style="font-size: 17px; font-weight: 600; line-height: 1.35;">As-Is<br>프로세스</div>
+        <div style="font-size: 12px; color: #6b6660; line-height: 1.5;">단계 · 누가 · 시간 · 막히는 곳</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 18px 16px; background: #ffffff; border-top: 3px solid #1c3f94;">
+        <div style="font-size: 12px; color: #9a958d; font-weight: 600;">02</div>
+        <div style="font-size: 17px; font-weight: 600; line-height: 1.35;">단계별<br>IPO</div>
+        <div style="font-size: 12px; color: #6b6660; line-height: 1.5;">받는 것 · 하는 일 · 내놓는 것</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 18px 16px; background: #ffffff; border-top: 3px solid #1c3f94;">
+        <div style="font-size: 12px; color: #9a958d; font-weight: 600;">03</div>
+        <div style="font-size: 17px; font-weight: 600; line-height: 1.35;">꼬리표</div>
+        <div style="font-size: 12px; color: #6b6660; line-height: 1.5;">사람만 · 초안 · 반복 · 밖에서</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 18px 16px; background: #ffffff; border-top: 3px solid #1c3f94;">
+        <div style="font-size: 12px; color: #9a958d; font-weight: 600;">04</div>
+        <div style="font-size: 17px; font-weight: 600; line-height: 1.35;">묶기</div>
+        <div style="font-size: 12px; color: #6b6660; line-height: 1.5;">에이전트 개수가 정해집니다</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 18px 16px; background: #ffffff; border-top: 3px solid #9a6408;">
+        <div style="font-size: 12px; color: #9a958d; font-weight: 600;">05</div>
+        <div style="font-size: 17px; font-weight: 600; line-height: 1.35;">에이전트<br>/ 스킬</div>
+        <div style="font-size: 12px; color: #6b6660; line-height: 1.5;">무엇을 떼고 무엇을 둘지</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; padding: 18px 16px; background: #ffffff; border-top: 3px solid #9a6408;">
+        <div style="font-size: 12px; color: #9a958d; font-weight: 600;">06</div>
+        <div style="font-size: 17px; font-weight: 600; line-height: 1.35;">7블록<br>SKILL.md</div>
+        <div style="font-size: 12px; color: #6b6660; line-height: 1.5;">옮겨 적는 일만 남습니다</div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: #ffffff; border-left: 4px solid #1c3f94;">
+      <div style="font-size: 19px; font-weight: 600; line-height: 1.5;">에이전트를 못 만드는 이유는 프롬프트를 못 써서가 아닙니다.</div>
+      <div style="font-size: 16px; color: #6b6660; line-height: 1.5;">지금 일이 어떻게 흘러가는지 적어 본 적이 없어서입니다.</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px;">
+    <span>모든 데이터는 가상입니다</span><span>W · 02</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

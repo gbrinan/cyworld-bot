@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">공통 방법론</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">테스트 3종</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 14px; color: #6b6660;">만든 다음에 반드시 돌립니다</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+      <div style="background: #ffffff; display: flex; flex-direction: column;">
+        <div style="padding: 16px 22px; background: #0f6b4f; color: #fbfaf7; display: flex; align-items: baseline; gap: 10px;">
+          <span style="font-size: 20px; font-weight: 700;">정상</span>
+          <span style="font-size: 13px; color: #a9d4c3;">제대로 도는가</span>
+        </div>
+        <div style="padding: 22px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-size: 14px; color: #6b6660; line-height: 1.6;">준비된 파일을 그대로 올리고 지시문 순서대로 돌립니다.</div>
+          <div style="height: 1px; background: #e4e2db;"></div>
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            <div style="font-size: 12px; letter-spacing: 0.14em; color: #9a958d; font-weight: 600;">통과</div>
+            <div style="font-size: 15px; font-weight: 600; line-height: 1.5;">기준본과 수치가 같고<br>근거 행 번호가 붙는다</div>
+          </div>
+        </div>
+      </div>
+      <div style="background: #ffffff; display: flex; flex-direction: column;">
+        <div style="padding: 16px 22px; background: #9a6408; color: #fbfaf7; display: flex; align-items: baseline; gap: 10px;">
+          <span style="font-size: 20px; font-weight: 700;">경계</span>
+          <span style="font-size: 13px; color: #f0cd9f;">빠진 것을 묻는가</span>
+        </div>
+        <div style="padding: 22px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-size: 14px; color: #6b6660; line-height: 1.6;">입력을 일부러 빼고 &ldquo;해줘&rdquo;만 보냅니다.</div>
+          <div style="height: 1px; background: #e4e2db;"></div>
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            <div style="font-size: 12px; letter-spacing: 0.14em; color: #9a958d; font-weight: 600;">통과</div>
+            <div style="font-size: 15px; font-weight: 600; line-height: 1.5;">지어내지 않고<br><strong style="color: #9a6408;">되묻는다</strong></div>
+          </div>
+        </div>
+      </div>
+      <div style="background: #ffffff; display: flex; flex-direction: column;">
+        <div style="padding: 16px 22px; background: #9a2c2c; color: #fbfaf7; display: flex; align-items: baseline; gap: 10px;">
+          <span style="font-size: 20px; font-weight: 700;">실패</span>
+          <span style="font-size: 13px; color: #eab5b5;">멈추는가</span>
+        </div>
+        <div style="padding: 22px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-size: 14px; color: #6b6660; line-height: 1.6;">틀린 데이터를 올리거나 확정 문서를 요구합니다.</div>
+          <div style="height: 1px; background: #e4e2db;"></div>
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            <div style="font-size: 12px; letter-spacing: 0.14em; color: #9a958d; font-weight: 600;">통과</div>
+            <div style="font-size: 15px; font-weight: 600; line-height: 1.5;">만들지 않고<br><strong style="color: #9a2c2c;">멈춘다</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; padding: 24px 28px; background: #111821; color: #fbfaf7;">
+      <div style="font-size: 26px; font-weight: 700; letter-spacing: -0.01em;">중단은 실패가 아니라 성공 행동입니다.</div>
+      <div style="flex-grow: 1;"></div>
+      <div style="font-size: 15px; color: #c9c5bd; max-width: 380px; line-height: 1.6;">거부하는 한 줄이 있어야 이 에이전트를 업무에 쓸 수 있습니다.</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px;">
+    <span>실패 테스트 문장은 슬라이드에 그대로 띄웁니다</span><span>M · 09</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

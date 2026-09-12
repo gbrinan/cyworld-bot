@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">일을 보는 법 · 05</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">에이전트와 스킬 나누기</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 14px; color: #6b6660;">기준은 하나입니다 — 누가 해도 같은가</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 22px;">
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px;">
+      <div style="background: #ffffff; padding: 26px 26px 24px; display: flex; flex-direction: column; gap: 16px; border-top: 3px solid #0f6b4f;">
+        <div style="display: flex; align-items: baseline; gap: 12px;">
+          <div style="font-size: 22px; font-weight: 700;">스킬로 뗀다</div>
+          <div style="font-size: 14px; color: #0f6b4f; font-weight: 500;">누가 해도 같은 것</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <div style="display: flex; gap: 12px; font-size: 15px;"><span style="color: #0f6b4f; font-weight: 700;">·</span><span>작업 순서 <span style="color: #9a958d;">(④ 처리 순서)</span></span></div>
+          <div style="display: flex; gap: 12px; font-size: 15px;"><span style="color: #0f6b4f; font-weight: 700;">·</span><span>출력 양식 <span style="color: #9a958d;">(⑤ 출력 형식)</span></span></div>
+          <div style="display: flex; gap: 12px; font-size: 15px;"><span style="color: #0f6b4f; font-weight: 700;">·</span><span>금지 사항 <span style="color: #9a958d;">(⑥ 중단·보안)</span></span></div>
+          <div style="display: flex; gap: 12px; font-size: 15px;"><span style="color: #0f6b4f; font-weight: 700;">·</span><span>검수 기준 <span style="color: #9a958d;">(⑦ 성공 기준)</span></span></div>
+          <div style="display: flex; gap: 12px; font-size: 15px;"><span style="color: #0f6b4f; font-weight: 700;">·</span><span>입출력 예시 <span style="color: #9a958d;">— 정답 1건</span></span></div>
+        </div>
+      </div>
+      <div style="background: #ffffff; padding: 26px 26px 24px; display: flex; flex-direction: column; gap: 16px; border-top: 3px solid #1c3f94;">
+        <div style="display: flex; align-items: baseline; gap: 12px;">
+          <div style="font-size: 22px; font-weight: 700;">에이전트에 둔다</div>
+          <div style="font-size: 14px; color: #1c3f94; font-weight: 500;">우리 팀 것</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <div style="display: flex; gap: 12px; font-size: 15px;"><span style="color: #1c3f94; font-weight: 700;">·</span><span>참조 파일 <span style="color: #9a958d;">— 우리 팀 실적·카탈로그·목록</span></span></div>
+          <div style="display: flex; gap: 12px; font-size: 15px;"><span style="color: #1c3f94; font-weight: 700;">·</span><span>우리 팀이 쓰는 용어·분류 명칭</span></div>
+          <div style="display: flex; gap: 12px; font-size: 15px;"><span style="color: #1c3f94; font-weight: 700;">·</span><span>대화 시작 예시</span></div>
+          <div style="display: flex; gap: 12px; font-size: 15px;"><span style="color: #1c3f94; font-weight: 700;">·</span><span>실행 주기 <span style="color: #9a958d;">(예약)</span></span></div>
+          <div style="display: flex; gap: 12px; font-size: 15px;"><span style="color: #1c3f94; font-weight: 700;">·</span><span>담당 수요처·권역</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; gap: 18px; align-items: stretch;">
+      <div style="flex-grow: 1; padding: 20px 24px; background: #eef0ea; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-size: 12px; letter-spacing: 0.16em; color: #6b6660; font-weight: 600;">나누는 세 가지 질문</div>
+        <div style="display: flex; gap: 26px; font-size: 15px;">
+          <span>다른 사람이 해도 똑같이 하는가 <strong style="color: #0f6b4f;">→ 스킬</strong></span>
+          <span>다른 업무에서도 쓰는가 <strong style="color: #0f6b4f;">→ 스킬</strong></span>
+          <span>내 팀 데이터에만 맞는가 <strong style="color: #1c3f94;">→ 에이전트</strong></span>
+        </div>
+      </div>
+      <div style="width: 330px; padding: 20px 24px; background: #111821; color: #fbfaf7; display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 17px; font-weight: 600; line-height: 1.5;">담당이 바뀌면 파일만 바꿉니다.</div>
+        <div style="font-size: 14px; color: #c9c5bd; line-height: 1.55;">인수인계가 파일 한 개가 됩니다.</div>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px;">
+    <span>매번 달라지는 것은 지침에 넣지 않습니다</span><span>W · 08</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

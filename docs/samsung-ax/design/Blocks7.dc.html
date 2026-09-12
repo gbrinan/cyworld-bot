@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">공통 방법론</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">지시문 7블록</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 14px; color: #6b6660;">IPO 분해표가 그대로 여기로 옵니다</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; gap: 28px; align-items: center;">
+    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 7px;">
+      <div style="display: flex; gap: 14px; align-items: flex-start; padding: 13px 18px; background: #ffffff; border-left: 3px solid #1c3f94;">
+        <div style="font-size: 15px; font-weight: 700; color: #1c3f94; width: 20px;">①</div>
+        <div style="width: 92px; font-size: 15px; font-weight: 600;">역할</div>
+        <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">묶음이 하는 일을 한 문장으로</div>
+      </div>
+      <div style="display: flex; gap: 14px; align-items: flex-start; padding: 13px 18px; background: #ffffff; border-left: 3px solid #1c3f94;">
+        <div style="font-size: 15px; font-weight: 700; color: #1c3f94; width: 20px;">②</div>
+        <div style="width: 92px; font-size: 15px; font-weight: 600;">업무 범위</div>
+        <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">하는 일 / <strong style="color: #111821; font-weight: 600;">하지 않는 일</strong> — 묶음에 안 들어간 단계</div>
+      </div>
+      <div style="display: flex; gap: 14px; align-items: flex-start; padding: 13px 18px; background: #ffffff; border-left: 3px solid #1c3f94;">
+        <div style="font-size: 15px; font-weight: 700; color: #1c3f94; width: 20px;">③</div>
+        <div style="width: 92px; font-size: 15px; font-weight: 600;">입력 검사</div>
+        <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">묶음 첫 단계의 <strong style="color: #111821; font-weight: 600;">I</strong> — 없으면 묻고 멈춘다</div>
+      </div>
+      <div style="display: flex; gap: 14px; align-items: flex-start; padding: 13px 18px; background: #ffffff; border-left: 3px solid #1c3f94;">
+        <div style="font-size: 15px; font-weight: 700; color: #1c3f94; width: 20px;">④</div>
+        <div style="width: 92px; font-size: 15px; font-weight: 600;">처리 순서</div>
+        <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">묶음 안 단계들의 <strong style="color: #111821; font-weight: 600;">P</strong>, 순서 그대로</div>
+      </div>
+      <div style="display: flex; gap: 14px; align-items: flex-start; padding: 13px 18px; background: #ffffff; border-left: 3px solid #1c3f94;">
+        <div style="font-size: 15px; font-weight: 700; color: #1c3f94; width: 20px;">⑤</div>
+        <div style="width: 92px; font-size: 15px; font-weight: 600;">출력 형식</div>
+        <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">묶음 마지막 단계의 <strong style="color: #111821; font-weight: 600;">O</strong> — 절 순서까지</div>
+      </div>
+      <div style="display: flex; gap: 14px; align-items: flex-start; padding: 13px 18px; background: #ffffff; border-left: 3px solid #9a2c2c;">
+        <div style="font-size: 15px; font-weight: 700; color: #9a2c2c; width: 20px;">⑥</div>
+        <div style="width: 92px; font-size: 15px; font-weight: 600;">중단·보안</div>
+        <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">묶음 바로 뒤의 <strong style="color: #9a2c2c; font-weight: 600;">사람만</strong> 단계</div>
+      </div>
+      <div style="display: flex; gap: 14px; align-items: flex-start; padding: 13px 18px; background: #ffffff; border-left: 3px solid #9a2c2c;">
+        <div style="font-size: 15px; font-weight: 700; color: #9a2c2c; width: 20px;">⑦</div>
+        <div style="width: 92px; font-size: 15px; font-weight: 600;">성공 기준</div>
+        <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">검수 체크리스트 + 사람 승인. <strong style="color: #9a2c2c; font-weight: 600;">금지는 여기에 한 번 더</strong></div>
+      </div>
+    </div>
+    <div style="width: 300px; display: flex; flex-direction: column; gap: 14px; padding: 24px 22px; background: #eef0ea; align-self: stretch; justify-content: center;">
+      <div style="font-size: 12px; letter-spacing: 0.16em; color: #6b6660; font-weight: 600;">어디서 오나</div>
+      <div style="font-size: 17px; font-weight: 600; line-height: 1.55;">일곱 블록 중 다섯은 IPO 분해표에서 그대로 옮겨 적습니다.</div>
+      <div style="font-size: 14px; color: #6b6660; line-height: 1.6;">②의 &ldquo;하지 않는 일&rdquo;은 지어내는 것이 아닙니다. 이 묶음에 <strong style="color: #111821; font-weight: 600;">안 들어간 단계</strong>가 그대로 들어갑니다.</div>
+      <div style="height: 1px; background: #d9d7d0;"></div>
+      <div style="font-size: 14px; color: #6b6660; line-height: 1.6;">⑥과 ⑦에 <strong style="color: #9a2c2c; font-weight: 600;">같은 금지를 두 번</strong> 씁니다. 한 곳에만 적힌 금지는 압박이 들어오면 밀립니다.</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px;">
+    <span>모든 데이터는 가상입니다</span><span>M · 07</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

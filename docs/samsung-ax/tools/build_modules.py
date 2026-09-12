@@ -162,6 +162,19 @@ def build_D():
         "# 분석 대상 수요처\n\n| 수요처명 | 버티컬 | 프로젝트/용도 |\n|---|---|---|\n"
         "| 해솔호텔 제주 | 호텔 | 신축 (객실 120실 + 로비, 2027년 3월 개관 예정) |\n\n"
         "- 참고: 같은 체인의 해솔호텔 부산이 과거 구매 이력에 있습니다.\n- 모든 정보는 가상입니다.\n")
+    # 코드 실행이 안 되는 환경용: 대상 버티컬(호텔) 모델별 집계.
+    # 사람이 미리 집계해 주는 것이 실제 업무의 순서이기도 하다.
+    agg = {}
+    for i, r in enumerate(rows, start=2):
+        if r[1] != "호텔":
+            continue
+        m = r[4]
+        a = agg.setdefault(m, [r[3], 0, 0, 0, set(), []])
+        a[1] += 1; a[2] += r[6]; a[3] += r[7]; a[4].add(r[2]); a[5].append(str(i))
+    hdr2 = headers_of(req, "sales_history_호텔모델별.csv")
+    write_csv(os.path.join(MODULES, mod, "01_data", "sales_history_호텔모델별.csv"), hdr2,
+              [[m, v[0], v[1], v[2], v[3], len(v[4]), " ".join(v[5])]
+               for m, v in sorted(agg.items(), key=lambda x: -x[1][3])])
     write_subtotals(mod, req)
     write_paste(mod, req)
     print(f"{mod}: sales_history 52행, 소계본, 실패 파일, target_account, paste 생성")

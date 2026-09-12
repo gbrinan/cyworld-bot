@@ -11,6 +11,10 @@ inputs:
     format: csv
     headers: [판매일자, 버티컬, 수요처, 제품군, 모델명, 공급가, 판매수량, 판매금액, 프로젝트/용도, 지역]
     rows: 52
+  - file: sales_history_호텔모델별.csv
+    format: csv
+    headers: [모델명, 제품군, 건수, 판매수량, 판매금액, 수요처수, 근거행]
+    rows: 10
   - file: target_account.md
     format: md
     headers: [수요처명, 버티컬, 프로젝트/용도]
@@ -37,7 +41,7 @@ tests:
 subtotals:
   source: sales_history.csv
   sum: 판매금액
-  axes: [버티컬, 제품군, 지역]
+  axes: [버티컬, 제품군, 지역, 모델명]
 chain:
   in: [opportunity_list.csv]
   out: [recommended_models.csv]
@@ -71,4 +75,5 @@ HTML — ① 대상 수요처 분석 ② 버티컬별 판매 Insight ③ 추천 
 - 제품군 값: 사이니지 / 호텔TV / 대형디스플레이 / 키오스크 / 액세서리.
 - 지역 값: 서울 / 경기 / 부산·경남 / 대구·경북 / 광주·전라 / 제주.
 - 기간: 2025-01 ~ 2026-08. 52행 중 호텔 22행, 나머지 4개 버티컬 30행(노이즈). 붙여넣기 버전이 6KB 이내가 되는 최대 행 수.
-- 코드 실행 불가 시 `sales_history_소계.csv` 사용 (버티컬·제품군·지역 세 축).
+- 코드 실행 불가 시 `sales_history_소계.csv`(버티컬·제품군·지역·모델명 네 축) + `sales_history_호텔모델별.csv`를 함께 사용.
+  소계본만으로는 모델별 TOP 3를 낼 수 없어서 대상 버티컬 집계본을 따로 둔다. 사람이 미리 집계해 넘기는 것이 실제 업무 순서이기도 하다.

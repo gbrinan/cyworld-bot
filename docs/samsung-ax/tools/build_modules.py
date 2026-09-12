@@ -466,8 +466,73 @@ def build_B():
     print(f"{mod}: 뉴스 30건(해운대 18·타권역 12), 상권 18행, 파트너 4곳, 시장조사 8행, 실패 파일, 소계본, paste 생성")
 
 
+
+# ---------- E_supplier (템플릿 검증용 예제) ----------
+# 공급사명·단가·이력은 전부 가상이다.
+SUPPLIERS = ["대광상사", "성진물산", "동진테크", "신우산업", "제일전자", "한백금속"]
+# 요청 품목: 알루미늄 프로파일. (규격, 단가, 최소주문수량, 납기일수, 결제조건, 견적일)
+PROFILE = {
+    "대광상사":  ("6063-T5 2.0mm", 9800, 1000, 25, "현금 30일", "2026-09-01"),
+    "성진물산":  ("6063-T5 2.0mm", 10400, 500, 15, "현금 30일", "2026-09-03"),
+    "동진테크":  ("6063-T5 2.2mm", 9950, 3000, 18, "현금 60일", "2026-09-02"),
+    "신우산업":  ("6063-T5 1.8mm", 9600, 1000, 12, "현금 30일", "2026-09-04"),
+    "제일전자":  ("6063-T5 2.0mm", 10100, 1000, 20, "현금 30일", "2026-05-15"),
+    "한백금속":  ("6063-T5 2.0mm", 11200, 500, 10, "현금 30일", "2026-09-05"),
+}
+# 노이즈 3품목
+OTHERS = [
+    ("스테인리스 볼트 M8", "STS304 M8x30", 320, 5000, 12, "현금 30일"),
+    ("실리콘 개스킷", "두께 3mm 내열 200도", 1450, 2000, 14, "현금 30일"),
+    ("전원 케이블 3C", "3C x 2.5SQ", 2800, 1000, 16, "현금 60일"),
+]
+HISTORY = {"대광상사": (71, 3, 36), "성진물산": (96, 0, 48), "동진테크": (88, 1, 24),
+           "신우산업": (93, 2, 12), "제일전자": (82, 1, 60), "한백금속": (97, 0, 18)}
+
+
+def build_E():
+    mod = "E_supplier"
+    req = req_of(mod)
+    rnd = random.Random(SEED)
+    rows = []
+    for s in SUPPLIERS:
+        spec, price, moq, lead, pay, qdate = PROFILE[s]
+        rows.append([s, "알루미늄 프로파일", spec, price, moq, lead, pay, qdate])
+    for item, spec, base, moq, lead, pay in OTHERS:
+        for s in SUPPLIERS:
+            rows.append([s, item, spec, base + rnd.randrange(-40, 60, 10), moq,
+                         lead + rnd.randint(-2, 4), pay,
+                         f"2026-09-0{rnd.randint(1, 5)}"])
+    assert len(rows) == 24, len(rows)
+    write_csv(os.path.join(MODULES, mod, "01_data", "quotes.csv"), headers_of(req, "quotes.csv"), rows)
+    write_csv(os.path.join(MODULES, mod, "01_data", "supplier_history.csv"),
+              headers_of(req, "supplier_history.csv"),
+              [[s, f"{HISTORY[s][0]}%", HISTORY[s][1], HISTORY[s][2]] for s in SUPPLIERS])
+    open(os.path.join(MODULES, mod, "01_data", "purchase_request.md"), "w", encoding="utf-8").write(
+        """# 구매 요청서 — 2026-09-12
+
+| 항목 | 내용 |
+|---|---|
+| 품목 | 알루미늄 프로파일 |
+| 필요수량 | **2,000개** |
+| 희망납기일수 | **20일 이내** |
+| 예산 | **24,000,000원** |
+| 필수규격 | 6063-T5, **두께 2.0mm 이상** |
+
+- 견적 유효기간은 사내 기준 **90일**입니다. 오늘(2026-09-12) 기준 2026-06-14 이전 견적은 재견적을 받습니다.
+- 모든 값은 가상입니다.
+""")
+    # 경계 테스트용: 필수규격 줄 삭제
+    src = open(os.path.join(MODULES, mod, "01_data", "purchase_request.md"), encoding="utf-8").read()
+    open(os.path.join(MODULES, mod, "03_tests", "purchase_request_경계.md"), "w", encoding="utf-8").write(
+        "\n".join(l for l in src.split("\n") if "필수규격" not in l))
+    write_subtotals(mod, req)
+    write_paste(mod, req)
+    print(f"{mod}: 견적 24행(요청 품목 6 · 노이즈 18), 이력 6곳, 구매 요청, 경계 파일, 소계본, paste 생성")
+
+
 BUILDERS = {"D_analysis": build_D, "C_proposal": build_C,
-            "A_sensing_b2b": build_A, "B_sensing_partner": build_B}
+            "A_sensing_b2b": build_A, "B_sensing_partner": build_B,
+            "E_supplier": build_E}
 
 
 def main():

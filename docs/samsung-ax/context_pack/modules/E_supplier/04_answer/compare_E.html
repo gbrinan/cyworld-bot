@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>견적 비교 — 알루미늄 프로파일 2,000개</title>
+<style>body{font-family:'Malgun Gothic',Apple SD Gothic Neo,sans-serif;max-width:980px;margin:24px auto;padding:0 16px;color:#1f2937;line-height:1.55}
+h1{font-size:1.5rem;border-bottom:2px solid #1f2937;padding-bottom:6px}h2{font-size:1.15rem;margin-top:28px;border-left:4px solid #2563eb;padding-left:8px}
+table{border-collapse:collapse;margin:8px 0;font-size:.92rem}th,td{border:1px solid #d1d5db;padding:4px 8px}th{background:#f3f4f6}
+.ok{color:#047857;font-weight:600}.no{color:#b91c1c;font-weight:600}.na{color:#6b7280}.note{background:#fef3c7;padding:8px 12px;border-radius:6px;font-size:.9rem}
+.meta{color:#6b7280;font-size:.9rem}.best{background:#eff6ff}</style></head><body>
+<p class="note"><b>기대 정답 (기준본)</b> — 데이터에서 직접 계산한 검수 기준입니다. 공급사명·단가·이력은 전부 가상입니다.</p>
+<h1>견적 비교 — 알루미늄 프로파일 2,000개</h1>
+<p class="meta">요청일 2026-09-12 · 자료: quotes.csv 24건 중 요청 품목 <b>6건</b> · supplier_history.csv 6곳 · 견적 유효기간 90일 (요청서 기준)</p>
+<h2>0. 데이터 점검</h2><ul>
+<li>필수 컬럼 8개: <span class="ok">이상 없음</span> · 결측 0 · 같은 공급사·같은 품목 중복 견적 0건</li>
+<li>요청 품목이 아닌 견적 <b>18건</b> 제외 (스테인리스 볼트·실리콘 개스킷·전원 케이블)</li>
+<li>비교 대상 <b>6곳</b> → 결격 판정 후 <b>3곳</b></li></ul>
+<h2>1. 구매 요청 요약</h2><table><tr><th>항목</th><th>내용</th></tr>
+<tr><td>품목</td><td>알루미늄 프로파일</td></tr>
+<tr><td>필요수량</td><td>2,000개</td></tr>
+<tr><td>희망납기일수</td><td>20일 이내</td></tr>
+<tr><td>예산</td><td>24,000,000원</td></tr>
+<tr><td>필수규격</td><td>6063-T5, 두께 2.0mm 이상</td></tr>
+</table>
+<h2>2. 결격 공급사</h2><table><tr><th>공급사</th><th>행</th><th>사유</th><th>걸린 값 vs 기준</th><th>단가</th></tr>
+<tr><td>동진테크</td><td>4</td><td><span class="no">최소주문수량 초과</span></td><td>최소 3,000개 &gt; 필요 2,000개</td><td>9,950</td></tr>
+<tr><td>신우산업</td><td>5</td><td><span class="no">필수규격 미달</span></td><td>두께 1.8mm &lt; 기준 2.0mm</td><td>9,600</td></tr>
+<tr><td>제일전자</td><td>6</td><td><span class="na">견적 유효기간 경과</span></td><td>견적일 2026-05-15, 120일 경과 &gt; 기준 90일</td><td>10,100</td></tr>
+</table>
+<p class="no"><b>최저 단가인 신우산업이 결격입니다.</b> 단가 9,600원으로 가장 싸지만 두께가 1.8mm로 필수규격 2.0mm에 미달합니다. 규격을 못 맞추면 가격은 의미가 없습니다.</p>
+<p class="na"><b>제일전자는 결격이 아니라 재견적 필요입니다.</b> 견적일이 120일 지나 사내 기준 90일을 넘겼습니다. 재견적을 받으면 다시 비교에 넣습니다.</p>
+<h2>3. 공급사 비교</h2><table><tr><th>공급사</th><th>행</th><th>단가</th><th>총액</th><th>예산 대비</th><th>납기</th><th>희망 20일</th><th>납기준수율</th><th>품질이슈</th><th>거래기간</th><th>결제조건</th></tr>
+<tr><td>대광상사</td><td>2</td><td>9,800</td><td>19,600,000</td><td>81.7%</td><td>25일</td><td><span class="no">희망 미달</span></td><td>71%</td><td>3건</td><td>36개월</td><td>현금 30일</td></tr>
+<tr><td>성진물산</td><td>3</td><td>10,400</td><td>20,800,000</td><td>86.7%</td><td>15일</td><td><span class="ok">충족</span></td><td>96%</td><td>0건</td><td>48개월</td><td>현금 30일</td></tr>
+<tr><td>한백금속</td><td>7</td><td>11,200</td><td>22,400,000</td><td>93.3%</td><td>10일</td><td><span class="ok">충족</span></td><td>97%</td><td>0건</td><td>18개월</td><td>현금 30일</td></tr>
+</table><p class="meta">결제조건은 표시만 하고 순위에 반영하지 않았습니다. 회사 기준이 정해지면 넣습니다.</p>
+<h2>4. 추천과 근거</h2><table><tr><th>순위</th><th>공급사</th><th>총액</th><th>예산 대비</th><th>납기</th><th>근거</th></tr>
+<tr><td><b>1</b></td><td><b>성진물산</b></td><td><b>20,800,000</b></td><td>86.7%</td><td>15일</td><td>희망납기 20일 충족 (3행). 충족하는 두 곳 중 총액이 낮다. 납기준수율 96% · 품질이슈 0건 · 거래 48개월</td></tr>
+<tr><td>2</td><td>한백금속</td><td>22,400,000</td><td>93.3%</td><td>10일</td><td>희망납기 충족 (7행). 납기가 5일 빠르고 준수율 97%로 더 높지만 총액이 1,600,000원 비싸다. 예산의 6.7%</td></tr>
+</table>
+<p><b>왜 최저가가 1순위가 아닌가</b> — 발주 가능한 곳 중 최저 단가는 <b>대광상사 19,600,000원</b>(2행)입니다. 성진물산보다 1,200,000원 쌉니다. 세 가지 때문에 1순위로 두지 않았습니다.</p><ol>
+<li>납기 25일로 <b>희망 20일을 5일 넘깁니다.</b> 결격은 아니지만 일정이 밀립니다.</li>
+<li>납기준수율 <b>71%</b>로 여섯 곳 중 가장 낮습니다. 25일도 지켜질지 불확실합니다.</li>
+<li>품질이슈 <b>3건</b>으로 가장 많습니다.</li></ol>
+<p>1위와 2위의 차이는 1,600,000원으로 예산의 6.7%입니다. 10% 이내라 납기준수율로 가릅니다. 96%와 97%는 사실상 같아 총액이 낮은 성진물산을 1순위로 뒀습니다. <b>납기가 급하면 한백금속이 낫습니다.</b></p>
+<h2>5. 확인 필요 사항</h2><ol>
+<li>단가 협상 — 이 비교는 견적가 기준입니다. 인하 여지는 구매 담당자가 확인합니다</li>
+<li><b>제일전자 재견적</b> — 유효기간이 지났습니다. 받아 보면 순위가 바뀔 수 있습니다 (직전 견적 10,100원)</li>
+<li>대광상사 납기 25일 — 협의로 단축 가능한지 확인하면 최저가를 살릴 수 있습니다</li>
+<li>동진테크 최소주문 3,000개 — 다음 발주와 묶으면 쓸 수 있는지</li>
+<li>결제조건 — 현금 60일 조건을 순위에 넣을지 사내 기준 확인 필요</li>
+<li>발주 수량 2,000개가 확정인지. 500개 단위 조정이 가능하면 비교가 달라집니다</li>
+</ol><p class="note">이 비교는 <b>초안</b>입니다. 단가 협상과 발주는 구매 담당자와 결재선이 합니다. 발주 확정서가 아닙니다.</p></body></html>

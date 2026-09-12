@@ -180,7 +180,71 @@ def build_D():
     print(f"{mod}: sales_history 52행, 소계본, 실패 파일, target_account, paste 생성")
 
 
-BUILDERS = {"D_analysis": build_D}
+
+# ---------- C_proposal ----------
+# 가격가이드 12모델. 가상 라인업 (MX 회의실 / BX 사이니지 / HX 호텔TV / KX 키오스크).
+GUIDE = [
+    ("MX-98P", "대형디스플레이", 98, "4K", 500, "무선화면공유·HDMI 3", "벽걸이", 7900000, 1),
+    ("MX-85P", "대형디스플레이", 85, "4K", 500, "무선화면공유·HDMI 3", "벽걸이", 4200000, 1),
+    ("MX-75P", "대형디스플레이", 75, "4K", 500, "무선화면공유·HDMI 3", "벽걸이", 2950000, 1),
+    ("MX-65P", "대형디스플레이", 65, "4K", 500, "무선화면공유·HDMI 3", "벽걸이", 1880000, 1),
+    ("BX-65S", "사이니지", 65, "4K", 400, "HDMI 2", "벽걸이/스탠드", 1480000, 2),
+    ("BX-55S", "사이니지", 55, "4K", 400, "HDMI 2", "벽걸이/스탠드", 1050000, 2),
+    ("BX-43S", "사이니지", 43, "FHD", 350, "HDMI 2", "벽걸이", 780000, 2),
+    ("HX-55T", "호텔TV", 55, "4K", 300, "호텔모드", "벽걸이/스탠드", 610000, 10),
+    ("HX-50T", "호텔TV", 50, "4K", 300, "호텔모드", "벽걸이/스탠드", 520000, 10),
+    ("HX-43T", "호텔TV", 43, "FHD", 300, "호텔모드", "벽걸이/스탠드", 420000, 10),
+    ("KX-55K", "키오스크", 55, "4K", 500, "터치·스탠드형", "스탠드", 2600000, 1),
+    ("KX-43K", "키오스크", 43, "FHD", 450, "터치·스탠드형", "스탠드", 1950000, 1),
+]
+# 네이버 크롤 더미. 경쟁사 엘리온(EL)·노바뷰(NV)는 가상. 가격만 낮고 밝기가 요구에 미달한다.
+CRAWL = [
+    ("마켓원", "MX-85P", 4536000, "85인치 4K 밝기 500nit 무선화면공유 HDMI 3포트 벽걸이"),
+    ("비즈샵", "MX-65P", 1955000, "65인치 4K 밝기 500nit 무선화면공유 HDMI 3포트"),
+    ("오피스몰", "MX-75P", 3120000, "75인치 4K 밝기 500nit 무선화면공유"),
+    ("마켓원", "BX-65S", 1420000, "65인치 4K 밝기 400nit HDMI 2포트"),
+    ("비즈샵", "BX-55S", 1010000, "55인치 4K 밝기 400nit HDMI 2포트"),
+    ("오피스몰", "KX-55K", 2780000, "55인치 4K 터치 스탠드형"),
+    ("마켓원", "EL-8500", 3780000, "85인치 4K 밝기 350nit 화면공유 동글 별매"),
+    ("오피스몰", "EL-6500", 1590000, "65인치 4K 밝기 350nit HDMI 2포트"),
+    ("비즈샵", "NV-8600", 3650000, "86인치 4K 밝기 350nit HDMI 2포트"),
+    ("마켓원", "NV-6500", 1520000, "65인치 4K 밝기 350nit"),
+]
+
+
+def build_C():
+    mod = "C_proposal"
+    req = req_of(mod)
+    hdr = headers_of(req, "tv_price_guide.csv")
+    write_csv(os.path.join(MODULES, mod, "01_data", "tv_price_guide.csv"), hdr,
+              [[m, g, f"{s}인치", r, f"{b}nit", fn, ins, p, q] for m, g, s, r, b, fn, ins, p, q in GUIDE])
+    write_csv(os.path.join(MODULES, mod, "01_data", "naver_crawl.csv"),
+              headers_of(req, "naver_crawl.csv"), [list(r) for r in CRAWL])
+    open(os.path.join(MODULES, mod, "01_data", "customer_request.md"), "w", encoding="utf-8").write(
+        """# 고객 요구조건 — 한빛에스앤디 신규 사무공간 (가상)
+
+| 항목 | 내용 |
+|---|---|
+| 화면크기 | 대회의실 80~90인치 / 소회의실 60~70인치 |
+| 사용목적 | 회의실 화면 공유·발표. 상시 표출 아님 |
+| 주요기능 | **무선 화면공유 필수**, HDMI 3포트 이상 |
+| 설치환경 | 창측 회의실이라 주간 조도 높음. **밝기 500nit 이상**. 벽걸이 |
+| 수량 | 회의실 6개 — 대회의실 2 · 소회의실 4 |
+| 예산 | **2,000만원** (설치비 별도) |
+
+- 납품 희망: 2026년 11월
+- 모든 정보는 가상입니다.
+""")
+    # 경계 테스트용: 예산 줄 삭제
+    src = open(os.path.join(MODULES, mod, "01_data", "customer_request.md"), encoding="utf-8").read()
+    open(os.path.join(MODULES, mod, "03_tests", "customer_request_경계.md"), "w", encoding="utf-8").write(
+        "\n".join(l for l in src.split("\n") if "예산" not in l))
+    write_subtotals(mod, req)
+    write_paste(mod, req)
+    print(f"{mod}: 가격가이드 12모델, 크롤 10건, 요구조건, 경계 파일, 소계본, paste 생성")
+
+
+BUILDERS = {"D_analysis": build_D, "C_proposal": build_C}
 
 
 def main():

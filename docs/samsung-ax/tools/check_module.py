@@ -21,9 +21,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MODULES = os.path.normpath(os.path.join(HERE, "..", "context_pack", "modules"))
 
 REQUIRED_FIELDS = ["module", "name", "source", "team", "tool", "inputs", "outputs",
-                   "process", "planted", "tests", "forbidden"]
+                   "process", "planted", "tests", "forbidden", "agent_count", "skill", "steps"]
 TEST_FILES = ["test_normal.md", "test_boundary.md", "test_failure.md"]
 DEMO_SECTIONS = ["올린 파일", "붙여넣은 프롬프트", "첫 응답에서 확인할 것", "안 나오면 되묻는 문장"]
+SKILL_SECTIONS = ["역할·목표", "출력 형식", "금지 사항", "검토 기준", "작업 단계"]
+NAME_RE = re.compile(r"^[a-z][a-z0-9]*(-[a-z0-9]+)+$")
 PASTE_LIMIT = 6 * 1024
 PHONE = re.compile(r"01[016789]-?\d{3,4}-?\d{4}")
 EMAIL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+")
@@ -200,6 +202,44 @@ def check(mod_id):
             if EMAIL.search(txt) and "example" not in EMAIL.search(txt).group(0):
                 hits.append(f"{rel}: 이메일 패턴")
     add(9, not hits, "금지 문자열 " + ("없음" if not hits else "; ".join(hits[:8])))
+
+    # 10. SKILL.md
+    spath = os.path.join(mod_dir, "07_skill", "SKILL.md")
+    if not os.path.exists(spath):
+        add(10, False, "07_skill/SKILL.md 없음")
+    else:
+        txt = open(spath, encoding="utf-8").read()
+        m = re.match(r"^---\n(.*?)\n---\n", txt, re.S)
+        probs = []
+        if not m:
+            probs.append("frontmatter 없음")
+        else:
+            try:
+                fm = yaml.safe_load(m.group(1)) or {}
+            except yaml.YAMLError as e:
+                fm, _ = {}, probs.append(f"frontmatter YAML 오류: {e}")
+            nm = str(fm.get("name", ""))
+            if not NAME_RE.match(nm):
+                probs.append(f"name '{nm}' 이 소문자-하이픈 규칙에 안 맞음")
+            elif nm != str(req.get("skill", {}).get("name", nm)):
+                probs.append(f"name '{nm}' 이 요구조건서 skill.name 과 다름")
+            desc = str(fm.get("description", ""))
+            if len(desc) < 40:
+                probs.append("description 이 40자 미만 (무엇을 하고 언제 쓰는지 3인칭으로)")
+        miss = [s for s in SKILL_SECTIONS if s not in txt]
+        if miss:
+            probs.append("본문 절 누락: " + ", ".join(miss))
+        ans = [o["file"] for o in req.get("outputs", [])]
+        if not any(a in txt for a in ans):
+            probs.append("입출력 예시에 정답 파일(" + " / ".join(ans) + ")이 인용되지 않음")
+        add(10, not probs, "SKILL.md " + ("이상 없음" if not probs else "; ".join(probs)))
+
+    # 11. 단계별 프롬프트가 steps 수와 맞는가
+    step_files = [s.get("prompt") for s in req.get("steps", []) if s.get("prompt")]
+    miss = [f for f in step_files if not os.path.exists(os.path.join(pdir, f))]
+    add(11, not miss and len(step_files) == len(req.get("steps", [])),
+        f"단계 {len(req.get('steps', []))}개 / 프롬프트 파일 " +
+        ("모두 있음" if not miss else "누락: " + ", ".join(miss)))
     return results
 
 
@@ -218,7 +258,7 @@ def main():
             print(f"  [{'o' if passed else 'x'}] #{no} {msg}")
         if not ok:
             exit_code = 1
-    print("\n#10~12 는 수동 — CHECK.md 에서 확인자·날짜를 적습니다.")
+    print("\n#12~14 는 수동 — CHECK.md 에서 확인자·날짜를 적습니다.")
     sys.exit(exit_code)
 
 

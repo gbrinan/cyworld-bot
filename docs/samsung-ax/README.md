@@ -7,7 +7,7 @@
 ```
 docs/samsung-ax/
 ├─ README.md                  (이 파일)
-├─ agent_structure_v2.md      Agent 4개 확정 구조 (9/7 삼성 시나리오 반영)
+├─ agent_structure_v2.md      Agent 구조 (9/7 삼성 시나리오 + 9/12 A·B 재설계). A·B는 각 3개 에이전트
 ├─ reuse_from_eugene.md       유진투자증권 과정에서 가져온 것 / 안 가져온 것
 ├─ claude_design_handoff.md   Claude Design 복붙 프롬프트 (슬라이드 제작용)
 ├─ handoff_review.md          핸드오프 검토 — 사내강사 운영 가능성, P0~P2 부족 항목, 작업 순서
@@ -147,10 +147,10 @@ python3 docs/samsung-ax/tools/make_dummy_data.py
 | 환경 리허설 점검표 | 완료 — **실행은 삼성 계정 필요** |
 | 컬럼 헤더 확정 | **대기** — 사전과제 「필요 엑셀 컬럼 헤더 구상」과 9/8 전달 자료 반영해 v1.1 |
 | 시나리오 확정 | **대기** — 9/7(또는 9/10~11) 사전 모임 결과 반영 |
-| Claude Design 핸드오프 | **v3 완료** — 모듈 구조 + 일 분해 반영 65장. 게이트가 모듈 단위로 바뀌어 **D 구간부터 제작 가능** |
+| Claude Design 핸드오프 | **v3 완료** — 모듈 구조 + 일 분해 + A·B 재설계 반영 67장. 게이트가 모듈 단위로 바뀌어 **D 구간부터 제작 가능** |
 | 핸드오프 검토 | 완료 — `handoff_review.md`. **P0 3건(v1/v2 불일치·완성 프롬프트·HTML 절차) 해결 전 실습 운영 불가** |
 | 모듈 방식 제안 | 완료 — `module_spec.md` + `_template/` + 요구조건서 4장 + `check_module.py`. **구조 확정 후 D부터 빌드** |
-| v2 모듈 빌드 (D→C→A→B) | **D 완료 (자동 9/9, 수동 #10~12는 도구 실행 대기)** · C·A·B 요구조건서만 |
+| v2 모듈 빌드 (D→C→A→B) | **D 완료 (자동 9/9, 수동 #10~12는 도구 실행 대기)** · C 요구조건서 · **A·B 요구조건서 9/12 전면 재설계** (각 3 에이전트) |
 | 슬라이드 실물 제작 | 미착수 — Claude Design에서 시안 생성 후 |
 | 도구 리허설 (Gems 불가, Instant/Flash) | 미착수 — 9/12 예정 |
 

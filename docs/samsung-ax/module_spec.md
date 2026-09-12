@@ -163,17 +163,19 @@ D_analysis        ──▶ recommended_models.csv ─┴──▶ C_proposal (�
 | | D 데이터 분석 | C 제안자료 | A Sensing (B2B팀) | B Sensing (유통전략팀) |
 |---|---|---|---|---|
 | 삼성 양식 | 3 | 2 | 1-1 | 1-2 |
+| 케이스 | 버티컬 추천 | 요구조건 제안 | **상장 건설사 개척** | **권역 작은 시설** |
+| 에이전트 수 | 1 | 1 | **3** (수집·프로파일·분석) | **3** (키워드·추출·보고서) |
 | team | common | common | b2b | partner |
-| 입력 1 | `sales_history.csv` 10열 (삼성 헤더) 52행 | `tv_price_guide.csv` 12모델 | `rss_feed.csv` `[품목][헤드라인][원본url][키워드]` 40행 | `naver_news_dummy.json` API 응답 형식 30건 |
-| 입력 2 | `target_account.md` `[수요처명][버티컬][프로젝트/용도]` | `naver_crawl.csv` `[수요처명][모델명][온라인가격][제품spec.]` | `target_accounts.csv` 6개 수요처 | `district_info.csv` 상권정보 + `partner_info.csv` |
+| 입력 1 | `sales_history.csv` 10열 (삼성 헤더) 52행 | `tv_price_guide.csv` 12모델 | `rss_feed.csv` `[품목][헤드라인][원본url][키워드]` 30행 | `naver_news_dummy.json` API 응답 형식 30건 |
+| 입력 2 | `target_account.md` `[수요처명][버티컬][프로젝트/용도]` | `naver_crawl.csv` `[수요처명][모델명][온라인가격][제품spec.]` | `target_builders.csv` 상장 건설사 6곳 + `rss_sources.md` 검색어 | `district_info.csv` 상권정보 7열 + `partner_info.csv` (시공가능규모 포함) |
 | 입력 3 | — | `customer_request.md` 화면크기·용도·기능·환경·수량·예산 | — | — |
-| 출력 | `recommend_D.html` 4절 | `proposal_C.html` 3제품 비교+시장가 | `dashboard_A.html` 5절 | `report_B.md` → Word 붙여넣기 5절 |
-| 프롬프트 | 1개 | **3개** (⓪화면 복사 정제 ①스펙 추출 ②제안) | 1개 | **3개** (①키워드 ②API 연동 ③양식 출력) |
-| planted | 호텔: HX-55T+스탠드 반복 / 오피스: MX-85P / 병원: BX-43S 대기실 | 요구조건에 정확히 맞는 모델 2 + 근접 1 / 경쟁사 2 가격만 낮고 밝기 미달 | 한빛호텔앤리조트 3개 호텔 신규 오픈 / 가온의료재단 신관 / 노이즈 28행 | 부산 해운대 권역: 호텔 리뉴얼 2 + 교육시설 신축 1 / 파트너 2사 |
-| 경계 | 버티컬 없이 "추천해줘" → 질문 | 예산 없음 → 질문 | 기준일 없음 → 질문 | 권역 미지정 → 질문 |
+| 출력 | `recommend_D.html` 4절 | `proposal_C.html` 3제품 비교+시장가 | `customer_profile.md` + `dashboard_A.html` 5절 | `search_keywords.md` + `opportunity_list.csv` + `report_B.md` → Word 5절 |
+| 프롬프트 | 1개 | **3개** (⓪화면 복사 정제 ①스펙 추출 ②제안) | **3개** (①정기 수집 ②대화형 프로파일 ③기회 분석) | **3개** (①키워드 ②추출 ③보고서) |
+| planted | 호텔: HX-55T+스탠드 반복 / 오피스: MX-85P / 병원: BX-43S 대기실 | 요구조건에 정확히 맞는 모델 2 + 근접 1 / 경쟁사 2 가격만 낮고 밝기 미달 | 한울종합건설 준공 2027-03 → **접근 시점이 지금**, 최우선 / 대성건설 2028-06 → 2027-12 / 서진이엔씨 실적 악화 → 보류 | 호텔 리뉴얼 2 + 사립고 1 = 기회 / 카페·의원·학원 6건은 **추세로만** / 파트너 매칭은 시공가능규모까지 |
+| 경계 | 버티컬 없이 "추천해줘" → 질문 | 예산 없음 → 질문 | A-2에 아무것도 안 주고 "프로파일 만들어줘" → 회사명부터 질문 | 권역 미지정 → 질문 |
 | 실패 | 판매금액≠공급가×수량 3행 → 중단 | "확정 견적서" → 거부 | 담당자 실명·연락처 → 가명화 요청 | 파트너 계약단가 포함 → 업로드 금지 안내 |
 | 소계본 축 | 버티컬·제품군·지역 | 제품군·인치 | 품목·키워드 | 시설유형·단계 |
-| confirm | 버티컬 표준 명칭 | TV 가격가이드 실제 컬럼, HTML 확장프로그램 | Skills 실습 가능 여부 | Word 산출 형태 |
+| confirm | 버티컬 표준 명칭 | TV 가격가이드 실제 컬럼, HTML 확장프로그램 | **[예약] 기능·스킬 저장 가능 여부**, 구글 뉴스 RSS 접속 | Word 산출 형태, 네이버 RSS 접속, **규모 하한선** |
 
 ---
 

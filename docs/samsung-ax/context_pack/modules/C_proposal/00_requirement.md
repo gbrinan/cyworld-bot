@@ -28,7 +28,7 @@ inputs:
   - file: tv_price_guide.csv
     format: csv
     headers: [모델명, 제품군, 화면크기, 해상도, 밝기, 주요기능, 설치방식, 가이드공급가, 최소수량]
-    rows: 12
+    rows: 13
   - file: naver_crawl.csv
     format: csv
     headers: [수요처명, 모델명, 온라인가격, 제품spec.]

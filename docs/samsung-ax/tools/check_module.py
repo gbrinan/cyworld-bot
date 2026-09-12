@@ -248,7 +248,9 @@ def main():
     if not args:
         print(__doc__)
         sys.exit(2)
-    ids = sorted(d for d in os.listdir(MODULES) if not d.startswith("_")) if args == ["--all"] else args
+    ids = (sorted(d for d in os.listdir(MODULES)
+                  if not d.startswith("_") and os.path.isdir(os.path.join(MODULES, d)))
+           if args == ["--all"] else args)
     exit_code = 0
     for mod in ids:
         res = check(mod)

@@ -22,9 +22,9 @@ docs/samsung-ax/
 ├─ tools/check_module.py      모듈 완성 판정 — 자동 8항목
 └─ context_pack/
    ├─ common/                 방법론·지시문 템플릿 — 팀이 바뀌어도 그대로
-   ├─ modules/                **v2 Agent 모듈 4개** (D·C·A·B) + _template. 각 모듈 = 요구조건서·데이터·프롬프트·테스트·정답·시연로그
-   ├─ team_b2b/               (v1) B2B팀 데이터 팩 — modules/ 완성 후 삭제
-   └─ team_partner/           (v1) B2B유통전략팀 데이터 팩 — modules/ 완성 후 삭제
+   ├─ modules/                **에이전트 모듈 4개** (A·B·C·D) + _template. 네 모듈 모두 자동 11/11 통과
+   ├─ team_b2b/               (v1·폐기) DEPRECATED.md 참고
+   └─ team_partner/           (v1·폐기) DEPRECATED.md 참고
 ```
 
 ## 모듈 구조 (v2)
@@ -33,14 +33,16 @@ Agent 하나 = 폴더 하나. `00_requirement.md`(삼성 양식을 옮긴 요구
 
 ```
 modules/D_analysis/
-├─ 00_requirement.md   요구조건서 (헤더·출력 절·planted 신호·테스트 정의)
-├─ module.md           모듈 카드 1장 = 슬라이드 [팀별] 9장
+├─ 00_requirement.md   요구조건서 (헤더·단계·스킬 분리·planted 신호·테스트 정의)
+├─ module.md           모듈 카드 1장 (9절) = 슬라이드 본문 정본
 ├─ 01_data/  02_prompt/  03_tests/  04_answer/  05_demo_log.md  06_paste/
-└─ CHECK.md            12항목 통과 = 김승진 프로 공유 가능
+├─ 07_skill/SKILL.md   스킬 형식 (name·description·5섹션·입출력 예시)
+└─ CHECK.md            14항목 통과 = 공유 가능
 ```
 
 ```bash
-python3 docs/samsung-ax/tools/check_module.py --all    # 자동 8항목
+python3 docs/samsung-ax/tools/build_modules.py --all   # 데이터·소계본·paste 생성
+python3 docs/samsung-ax/tools/check_module.py --all    # 자동 11항목
 ```
 
 ## 사내강사 인계 패키지 대응
@@ -145,17 +147,19 @@ python3 docs/samsung-ax/tools/make_dummy_data.py
 | common 방법론·지시문 템플릿 | 완료 (v1) |
 | 팀별 팩 v1 (9/4 메일 프로필 기반) | 완료 |
 | 더미 데이터 + 테스트 케이스 + 정답 인계 파일 | 완료 |
-| 슬라이드 설계서 (47장) | 완료 |
+| 슬라이드 설계서 | **v2 72장 완료** — `slides_outline.md` |
 | Skill·MCP 내용 | 완료 — **Skills 사용 가능 여부는 확인 필요** |
 | 강사 가이드·워크북·예상 Q&A | 완료 (v1) |
 | 웹 환경 대비 (paste·소계본·저장 절차) | 완료 |
 | 환경 리허설 점검표 | 완료 — **실행은 삼성 계정 필요** |
-| 컬럼 헤더 확정 | **대기** — 사전과제 「필요 엑셀 컬럼 헤더 구상」과 9/8 전달 자료 반영해 v1.1 |
-| 시나리오 확정 | **대기** — 9/7(또는 9/10~11) 사전 모임 결과 반영 |
-| Claude Design 핸드오프 | **v3 완료** — 모듈 구조 + 일 보는 법 + 에이전트 4개 구조 반영 72장. 게이트가 모듈 단위로 바뀌어 **D 구간부터 제작 가능** |
+| 컬럼 헤더 확정 | 삼성 9/7 양식 헤더를 그대로 사용 중. 실제 파일을 받으면 요구조건서의 `headers`만 교체 |
+| 시나리오 확정 | 완료 — 9/7 양식 + 9/12 A·B 케이스 확정 |
+| Claude Design 핸드오프 | **v3 완료** — 72장. **첨부 게이트 전면 해제. 전 구간 제작 가능** |
 | 핸드오프 검토 | 완료 — `handoff_review.md`. **P0 3건(v1/v2 불일치·완성 프롬프트·HTML 절차) 해결 전 실습 운영 불가** |
 | 모듈 방식 제안 | 완료 — `module_spec.md` + `_template/` + 요구조건서 4장 + `check_module.py`. **구조 확정 후 D부터 빌드** |
-| v2 모듈 빌드 (D→C→A→B) | **D 완료 (자동 9/9, 수동 #10~12는 도구 실행 대기)** · A·B·C는 요구조건서만 (9/12 재설계, 각 에이전트 1개) |
+| **모듈 빌드 A·B·C·D** | **네 모듈 모두 완료 — 자동 11/11 통과.** 수동 3항목(정답 재현·도구 양쪽 실행·동료 테스트)은 도구 계정 필요 |
+| SKILL.md | **4개 작성 완료** — 각 모듈 `07_skill/` |
+| v1 팩 (`team_*/`) | 폐기 표시 완료 (`DEPRECATED.md`). **삭제는 확인 후** |
 | 슬라이드 실물 제작 | 미착수 — Claude Design에서 시안 생성 후 |
 | 도구 리허설 (Gems 불가, Instant/Flash) | 미착수 — 9/12 예정 |
 

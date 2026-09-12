@@ -224,8 +224,8 @@ D_analysis        ──▶ recommended_models.csv ─┴──▶ C_proposal (�
 
 `team_b2b/` `team_partner/`(SAC·HVAC·DMFP, 3 Agent)는 이 구조로 대체됩니다.
 
-1. `modules/` 네 모듈이 CHECK 통과할 때까지 v1 폴더는 그대로 둠 (참고용).
-2. 네 모듈 완성 후 `team_*/`를 삭제하고, `make_dummy_data.py`의 `build_b2b()` `build_partner()`도 제거.
+1. **2026-09-12 네 모듈 모두 자동 11/11 통과.** v1 폴더에 `DEPRECATED.md`를 넣어 쓰지 않음을 표시했습니다.
+2. 삭제는 **확인 후** 합니다. `team_*/`와 `make_dummy_data.py`의 `build_b2b()` `build_partner()`가 대상입니다.
 3. `common/instruction_templates/`(`{{ }}` 템플릿)는 **"내 업무로 전환" 전용**으로 남김. 실습에서는 모듈의 완성 프롬프트만 씀.
 4. `claude_design_handoff.md`의 첨부 게이트는 "네 모듈 CHECK 통과"로 조건을 바꿈.
 

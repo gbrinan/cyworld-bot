@@ -74,7 +74,8 @@ Agent를 팀마다 따로 만들지 않고, 같은 지시문에 다른 팩을 �
 | `data_capture.md` | **화면 데이터를 표로 가져오기.** 크롤링 없이 텍스트 복사·화면 캡처·PlayMCP 세 경로 비교, 정제 프롬프트, C 모듈 운영 방식 |
 | `skills_and_mcp.md` | **Skill과 MCP.** SKILL.md 해부(name·description·본문), 워크플로우 5패턴, 이 환경에서 되는 것과 안 되는 것 |
 | `fit_check.md` | **적합성 체크.** CANNOT 7항목, 업무 유형 A~D, 좋은 과제 3원칙, As-Is→To-Be. 사전과제 필터링과 워크북 전환 칸에 사용 |
-| `task_decomposition.md` | **일을 쪼개는 법. 이 과정의 첫 시간.** 동사로 쪼개기 → 꼬리표 4종 → 묶기 → 7블록 번역. C·D 분해표 실물 |
+| `task_decomposition.md` | **일을 보는 법. 이 과정의 첫 시간.** As-Is 프로세스 → 단계별 IPO → 꼬리표 4종 → 묶기. C·D 실물 예제 |
+| `agent_and_skill_split.md` | **에이전트와 스킬로 나누기.** 무엇을 스킬로 떼고 무엇을 에이전트에 둘지, ChatGPT·Gemini 대응, 만드는 순서 7단계 |
 | `methodology.md` | IPO 명세, 지시문 7블록, 테스트 3종, 사람 승인. 모든 모듈 공통 |
 | `instruction_templates/agent02_sensing.md` | ② 시장·고객 분석 Agent 지시문 (`{{ }}`만 교체) |
 | `instruction_templates/agent03_action.md` | ③ 제안자료 작성 Agent 지시문 |

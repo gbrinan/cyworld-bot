@@ -74,6 +74,7 @@ Agent를 팀마다 따로 만들지 않고, 같은 지시문에 다른 팩을 �
 | `data_capture.md` | **화면 데이터를 표로 가져오기.** 크롤링 없이 텍스트 복사·화면 캡처·PlayMCP 세 경로 비교, 정제 프롬프트, C 모듈 운영 방식 |
 | `skills_and_mcp.md` | **Skill과 MCP.** SKILL.md 해부(name·description·본문), 워크플로우 5패턴, 이 환경에서 되는 것과 안 되는 것 |
 | `fit_check.md` | **적합성 체크.** CANNOT 7항목, 업무 유형 A~D, 좋은 과제 3원칙, As-Is→To-Be. 사전과제 필터링과 워크북 전환 칸에 사용 |
+| `task_decomposition.md` | **일을 쪼개는 법. 이 과정의 첫 시간.** 동사로 쪼개기 → 꼬리표 4종 → 묶기 → 7블록 번역. C·D 분해표 실물 |
 | `methodology.md` | IPO 명세, 지시문 7블록, 테스트 3종, 사람 승인. 모든 모듈 공통 |
 | `instruction_templates/agent02_sensing.md` | ② 시장·고객 분석 Agent 지시문 (`{{ }}`만 교체) |
 | `instruction_templates/agent03_action.md` | ③ 제안자료 작성 Agent 지시문 |
@@ -146,7 +147,7 @@ python3 docs/samsung-ax/tools/make_dummy_data.py
 | 환경 리허설 점검표 | 완료 — **실행은 삼성 계정 필요** |
 | 컬럼 헤더 확정 | **대기** — 사전과제 「필요 엑셀 컬럼 헤더 구상」과 9/8 전달 자료 반영해 v1.1 |
 | 시나리오 확정 | **대기** — 9/7(또는 9/10~11) 사전 모임 결과 반영 |
-| Claude Design 핸드오프 | **v3 완료** — 모듈 구조 반영 58장. 게이트가 모듈 단위로 바뀌어 **D 구간부터 제작 가능** |
+| Claude Design 핸드오프 | **v3 완료** — 모듈 구조 + 일 분해 반영 65장. 게이트가 모듈 단위로 바뀌어 **D 구간부터 제작 가능** |
 | 핸드오프 검토 | 완료 — `handoff_review.md`. **P0 3건(v1/v2 불일치·완성 프롬프트·HTML 절차) 해결 전 실습 운영 불가** |
 | 모듈 방식 제안 | 완료 — `module_spec.md` + `_template/` + 요구조건서 4장 + `check_module.py`. **구조 확정 후 D부터 빌드** |
 | v2 모듈 빌드 (D→C→A→B) | **D 완료 (자동 9/9, 수동 #10~12는 도구 실행 대기)** · C·A·B 요구조건서만 |

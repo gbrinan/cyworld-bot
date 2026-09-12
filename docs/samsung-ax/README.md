@@ -71,6 +71,7 @@ Agent를 팀마다 따로 만들지 않고, 같은 지시문에 다른 팩을 �
 |---|---|
 | `web_environment.md` | **웹 접속 환경 전제.** 결과 저장법, **HTML 여는 법·Word 만드는 법**, 업로드 불가 시 대응, 코드 실행 불가 시 소계본+집계본, 지시문 보관 |
 | `tool_paths.md` | **도구 클릭 경로.** ChatGPT·Gemini 에이전트 만들기, 막혔을 때 대안 3단, 강사용 시작 5분 |
+| `data_capture.md` | **화면 데이터를 표로 가져오기.** 크롤링 없이 텍스트 복사·화면 캡처·PlayMCP 세 경로 비교, 정제 프롬프트, C 모듈 운영 방식 |
 | `skills_and_mcp.md` | **Skill과 MCP.** SKILL.md 해부(name·description·본문), 워크플로우 5패턴, 이 환경에서 되는 것과 안 되는 것 |
 | `fit_check.md` | **적합성 체크.** CANNOT 7항목, 업무 유형 A~D, 좋은 과제 3원칙, As-Is→To-Be. 사전과제 필터링과 워크북 전환 칸에 사용 |
 | `methodology.md` | IPO 명세, 지시문 7블록, 테스트 3종, 사람 승인. 모든 모듈 공통 |

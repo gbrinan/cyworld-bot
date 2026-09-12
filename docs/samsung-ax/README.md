@@ -11,6 +11,7 @@ docs/samsung-ax/
 ├─ reuse_from_eugene.md       유진투자증권 과정에서 가져온 것 / 안 가져온 것
 ├─ claude_design_handoff.md   Claude Design 복붙 프롬프트 (슬라이드 제작용)
 ├─ handoff_review.md          핸드오프 검토 — 사내강사 운영 가능성, P0~P2 부족 항목, 작업 순서
+├─ validation_log.md          **블라인드 검증 기록** — 회차별 결함과 수정, 얻은 규칙 5가지
 ├─ module_spec.md             **모듈 방식 제안** — 요구조건서 1장 → 7단계 빌드 → CHECK 12항목. v2 팩은 이 구조로 제작
 ├─ slides_outline.md          슬라이드 53장 설계서
 ├─ instructor_guide.md        강사용 진행 가이드 (큐시트·되묻기·보조강사 운영)

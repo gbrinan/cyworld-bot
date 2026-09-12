@@ -18,6 +18,7 @@ docs/samsung-ax/
 ├─ faq.md                     예상 Q&A
 ├─ rehearsal_checklist.md     환경 리허설 점검표 + 삼성 확인 요청 사항
 ├─ tools/make_dummy_data.py   더미 데이터 생성기 (v1)
+├─ tools/build_modules.py     v2 모듈 데이터 빌더 (요구조건서 헤더 → 데이터·소계본·paste)
 ├─ tools/check_module.py      모듈 완성 판정 — 자동 8항목
 └─ context_pack/
    ├─ common/                 방법론·지시문 템플릿 — 팀이 바뀌어도 그대로
@@ -146,7 +147,7 @@ python3 docs/samsung-ax/tools/make_dummy_data.py
 | Claude Design 핸드오프 | 완료 — **첨부 게이트 있음**: v2 팩 완성 전 v1 자료 첨부 금지 |
 | 핸드오프 검토 | 완료 — `handoff_review.md`. **P0 3건(v1/v2 불일치·완성 프롬프트·HTML 절차) 해결 전 실습 운영 불가** |
 | 모듈 방식 제안 | 완료 — `module_spec.md` + `_template/` + 요구조건서 4장 + `check_module.py`. **구조 확정 후 D부터 빌드** |
-| v2 모듈 빌드 (D→C→A→B) | 미착수 — 요구조건서만 있음. `check_module.py --all` 현재 2/9 |
+| v2 모듈 빌드 (D→C→A→B) | **D 완료 (자동 9/9, 수동 #10~12는 도구 실행 대기)** · C·A·B 요구조건서만 |
 | 슬라이드 실물 제작 | 미착수 — Claude Design에서 시안 생성 후 |
 | 도구 리허설 (Gems 불가, Instant/Flash) | 미착수 — 9/12 예정 |
 

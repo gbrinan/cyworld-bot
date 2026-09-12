@@ -164,7 +164,7 @@ D_analysis        ──▶ recommended_models.csv ─┴──▶ C_proposal (�
 |---|---|---|---|---|
 | 삼성 양식 | 3 | 2 | 1-1 | 1-2 |
 | team | common | common | b2b | partner |
-| 입력 1 | `sales_history.csv` 10열 (삼성 헤더) 60행 | `tv_price_guide.csv` 12모델 | `rss_feed.csv` `[품목][헤드라인][원본url][키워드]` 40행 | `naver_news_dummy.json` API 응답 형식 30건 |
+| 입력 1 | `sales_history.csv` 10열 (삼성 헤더) 52행 | `tv_price_guide.csv` 12모델 | `rss_feed.csv` `[품목][헤드라인][원본url][키워드]` 40행 | `naver_news_dummy.json` API 응답 형식 30건 |
 | 입력 2 | `target_account.md` `[수요처명][버티컬][프로젝트/용도]` | `naver_crawl.csv` `[수요처명][모델명][온라인가격][제품spec.]` | `target_accounts.csv` 6개 수요처 | `district_info.csv` 상권정보 + `partner_info.csv` |
 | 입력 3 | — | `customer_request.md` 화면크기·용도·기능·환경·수량·예산 | — | — |
 | 출력 | `recommend_D.html` 4절 | `proposal_C.html` 3제품 비교+시장가 | `dashboard_A.html` 5절 | `report_B.md` → Word 붙여넣기 5절 |

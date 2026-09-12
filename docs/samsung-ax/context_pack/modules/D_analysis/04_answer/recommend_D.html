@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>제품 추천 보고서 — 해솔호텔 제주 (호텔)</title>
+<style>body{font-family:'Malgun Gothic',Apple SD Gothic Neo,sans-serif;max-width:960px;margin:24px auto;padding:0 16px;color:#1f2937;line-height:1.55}
+h1{font-size:1.5rem;border-bottom:2px solid #1f2937;padding-bottom:6px}h2{font-size:1.15rem;margin-top:28px;border-left:4px solid #2563eb;padding-left:8px}
+table{border-collapse:collapse;margin:8px 0;font-size:.92rem}th,td{border:1px solid #d1d5db;padding:4px 8px;text-align:left}th{background:#f3f4f6}td.n,th.n{text-align:right}
+.ok{color:#047857;font-weight:600}.note{background:#fef3c7;padding:8px 12px;border-radius:6px;font-size:.9rem}.tag{display:inline-block;background:#e0e7ff;border-radius:4px;padding:0 6px;font-size:.85rem}
+.meta{color:#6b7280;font-size:.9rem}</style></head><body>
+<p class="note"><b>기대 정답 (기준본)</b> — 데이터에서 직접 계산해 만든 검수 기준입니다. 참가자·강사가 도구에서 받은 결과와 대조합니다. 수치가 다르면 도구 쪽이 틀린 것입니다. 모든 값은 가상입니다.</p>
+<h1>제품 추천 보고서 — 해솔호텔 제주 (호텔)</h1>
+<p class="meta">작성일 2026-09-12 · 자료: sales_history.csv 52행 · 기준 기간 2025-01-05 ~ 2026-07-16 · target_account.md</p>
+<h2>0. 데이터 점검</h2><ul>
+<li>필수 컬럼 10개: <span class="ok">이상 없음</span> (판매일자·버티컬·수요처·제품군·모델명·공급가·판매수량·판매금액·프로젝트/용도·지역)</li>
+<li>결측·중복 행: 없음 · 날짜 형식 YYYY-MM-DD 일관</li>
+<li>공급가 × 판매수량 = 판매금액 검산: <span class="ok">52행 모두 일치 (불일치 0건)</span></li>
+<li>버티컬 값: 상업시설·호텔·병원·오피스·교육시설 5종만 존재</li><li>전체 판매금액 합계: <b>570,258,000원</b> = 버티컬별 소계의 합</li></ul>
+<table><tr><th>버티컬</th><th>건수</th><th>판매수량</th><th>판매금액(원)</th><th>비율</th></tr><tr><td>호텔</td><td>22</td><td>1103</td><td>390,290,000</td><td>68.4%</td></tr><tr><td>상업시설</td><td>8</td><td>39</td><td>70,800,000</td><td>12.4%</td></tr><tr><td>교육시설</td><td>8</td><td>29</td><td>51,620,000</td><td>9.1%</td></tr><tr><td>오피스</td><td>8</td><td>13</td><td>30,728,000</td><td>5.4%</td></tr><tr><td>병원</td><td>6</td><td>19</td><td>26,820,000</td><td>4.7%</td></tr><tr><td>합계</td><td>52</td><td>1203</td><td>570,258,000</td><td>100%</td></tr></table>
+<h2>1. 대상 수요처 분석</h2>
+<table><tr><th>수요처명</th><th>버티컬</th><th>프로젝트/용도</th></tr><tr><td>해솔호텔 제주</td><td>호텔</td><td>신축 (객실 120실 + 로비, 2027년 3월 개관 예정)</td></tr></table>
+<p>같은 체인 <b>해솔호텔 부산</b>의 과거 구매 이력이 있습니다.</p><table><tr><th>행</th><th>판매일자</th><th>모델명</th><th>제품군</th><th>수량</th><th>판매금액(원)</th><th>용도</th></tr><tr><td>6</td><td>2025-03-13</td><td>HX-55T</td><td>호텔TV</td><td>96</td><td>58,560,000</td><td>객실 TV 교체</td></tr><tr><td>7</td><td>2025-03-22</td><td>ST-H1</td><td>액세서리</td><td>96</td><td>4,320,000</td><td>객실 TV 스탠드</td></tr><tr><td>8</td><td>2025-04-08</td><td>BX-65S</td><td>사이니지</td><td>2</td><td>2,960,000</td><td>로비 안내 사이니지</td></tr><tr><td>18</td><td>2025-07-22</td><td>KX-55K</td><td>키오스크</td><td>1</td><td>2,600,000</td><td>셀프 체크인</td></tr><tr><td>42</td><td>2026-04-21</td><td>BX-43S</td><td>사이니지</td><td>2</td><td>1,560,000</td><td>엘리베이터 홀</td></tr></table>
+<p>→ 객실 TV(HX-55T) + 스탠드(ST-H1) 동수 구매 후 로비 사이니지(BX-65S)를 다음 달에 추가한 순서. 신축 프로젝트는 이 셋을 한 번에 제안할 수 있습니다.</p>
+<h2>2. 버티컬별 판매 Insight</h2>
+<p>호텔 버티컬 판매금액 <b>390,290,000원</b>, 전체의 <b>68.4%</b> (22건, 5개 수요처). 계산: 호텔 행 22개의 판매금액 합.</p>
+<table><tr><th>모델명</th><th>제품군</th><th>건수</th><th>판매수량</th><th>판매금액(원)</th><th>수요처 수</th><th>근거 행</th></tr><tr><td>HX-55T</td><td>호텔TV</td><td>5</td><td>464</td><td>283,040,000</td><td>5</td><td>6, 22, 25, 30, 47</td></tr><tr><td>HX-50T</td><td>호텔TV</td><td>2</td><td>80</td><td>41,600,000</td><td>2</td><td>3, 29</td></tr><tr><td>ST-H1</td><td>액세서리</td><td>5</td><td>464</td><td>20,880,000</td><td>5</td><td>7, 23, 31, 48, 53</td></tr><tr><td>HX-43T</td><td>호텔TV</td><td>1</td><td>40</td><td>16,800,000</td><td>1</td><td>11</td></tr><tr><td>BX-65S</td><td>사이니지</td><td>3</td><td>8</td><td>11,840,000</td><td>3</td><td>8, 24, 32</td></tr><tr><td>KX-55K</td><td>키오스크</td><td>2</td><td>3</td><td>7,800,000</td><td>2</td><td>18, 43</td></tr><tr><td>MX-85P</td><td>대형디스플레이</td><td>1</td><td>1</td><td>4,200,000</td><td>1</td><td>19</td></tr><tr><td>BX-43S</td><td>사이니지</td><td>1</td><td>2</td><td>1,560,000</td><td>1</td><td>42</td></tr><tr><td>WM-1</td><td>액세서리</td><td>1</td><td>40</td><td>1,520,000</td><td>1</td><td>27</td></tr><tr><td>BX-55S</td><td>사이니지</td><td>1</td><td>1</td><td>1,050,000</td><td>1</td><td>14</td></tr></table>
+<p><b>반복 구매 패턴</b></p><ol>
+<li><span class="tag">조합</span> HX-55T 구매 5건 <b>모두</b> ST-H1이 <b>같은 수량</b>으로 동반됨. 그중 4건은 같은 달 (6·7행, 22·23행, 30·31행, 47·48행). 나머지 1건(25행 → 53행)은 8개월 뒤.</li>
+<li><span class="tag">반복</span> BX-65S가 3개 수요처(해솔호텔 부산·라온스테이 서울·푸른바다호텔 제주)에서 모두 <b>로비 안내 사이니지</b> 용도, 객실 TV 구매 다음 달 (8·24·32행).</li>
+<li><span class="tag">단발</span> KX-55K(셀프 체크인 2건), MX-85P(연회장 1건), BX-43S·BX-55S(각 1건)는 반복이 약함.</li></ol>
+<table><tr><th>프로젝트/용도</th><th>사용 모델</th></tr><tr><td>객실 TV 교체</td><td>HX-50T, HX-55T</td></tr><tr><td>객실 TV 스탠드</td><td>ST-H1</td></tr><tr><td>로비 안내 사이니지</td><td>BX-65S</td></tr><tr><td>직원 숙소</td><td>HX-43T</td></tr><tr><td>연회장 안내</td><td>BX-55S</td></tr><tr><td>셀프 체크인</td><td>KX-55K</td></tr><tr><td>연회장</td><td>MX-85P</td></tr><tr><td>스위트 객실</td><td>HX-55T</td></tr><tr><td>객실 TV 벽걸이</td><td>WM-1</td></tr><tr><td>별관 객실</td><td>HX-50T</td></tr><tr><td>엘리베이터 홀</td><td>BX-43S</td></tr></table>
+<h2>3. 추천 제품 TOP 3</h2><table><tr><th>순위</th><th>모델명</th><th>제품군</th><th>추천 용도</th><th>근거 (행 번호 + 수치)</th><th>근거 강도</th></tr>
+<tr><td>1</td><td>HX-55T</td><td>호텔TV</td><td>객실 120실</td><td>호텔 5개 수요처 464대 283,040,000원 (6·22·25·30·47행). 호텔 판매금액의 72.5%. 같은 체인 해솔호텔 부산도 96대 구매(6행)</td><td>강함 (5개 수요처)</td></tr>
+<tr><td>2</td><td>ST-H1</td><td>액세서리</td><td>객실 TV 스탠드 (HX-55T와 동수)</td><td>HX-55T 구매 5건 전부 동반, 464대 (7·23·31·48·53행). 단독 판매 없음 → 세트 제안</td><td>강함 (5개 수요처)</td></tr>
+<tr><td>3</td><td>BX-65S</td><td>사이니지</td><td>로비 안내</td><td>호텔 3개 수요처 8대 11,840,000원, 전부 로비 용도 (8·24·32행). 객실 TV 구매 다음 달 추가 구매 패턴</td><td>보통 (3개 수요처)</td></tr>
+</table><p><b>제외한 후보</b> — HX-50T(2개 수요처 80대)는 HX-55T보다 반복이 적고 최근 구매(2026-01)가 별관 20대뿐. KX-55K·MX-85P는 대상 프로젝트/용도(객실 + 로비)에 없음.</p>
+<h2>4. 영업 제안 Point</h2><ol>
+<li>객실 120실 기준 <b>HX-55T 120대 + ST-H1 120대</b> 세트 제안. 과거 5건 모두 동수 구매 (근거 2·3행 참조).</li>
+<li>로비 <b>BX-65S 2~4대</b> 동시 제안. 기존 3개 호텔은 객실 TV 다음 달에 추가 발주 — 신축이므로 처음부터 묶어 제안하면 발주가 한 번으로 줄어듦.</li>
+<li>같은 체인 해솔호텔 부산(2025-03)의 구성을 "검증된 구성"으로 인용. 셀프 체크인 KX-55K는 부산점이 2025-07에 추가 구매(15행)했으므로 옵션으로 언급.</li></ol>
+<p class="note"><b>확인 필요 사항 (사람이 확정)</b> — 제안 가격·할인(공급가는 과거 참고값), 납기(2027-03 개관 역산), 55인치 객실 적합성(객실 면적 확인), 로비 수량(도면 확인). 이 보고서는 초안입니다.</p>
+</body></html>

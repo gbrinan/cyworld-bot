@@ -18,7 +18,8 @@ docs/samsung-ax/
 ├─ faq.md                     예상 Q&A
 ├─ rehearsal_checklist.md     환경 리허설 점검표 + 삼성 확인 요청 사항
 ├─ tools/make_dummy_data.py   더미 데이터 생성기 (v1)
-├─ tools/build_modules.py     v2 모듈 데이터 빌더 (요구조건서 헤더 → 데이터·소계본·paste)
+├─ tools/new_module.py        새 모듈 폴더 만들기 (_template 복사)
+├─ tools/build_modules.py     모듈 데이터 빌더 (요구조건서 헤더 → 데이터·소계본·paste)
 ├─ tools/check_module.py      모듈 완성 판정 — 자동 8항목
 └─ context_pack/
    ├─ common/                 방법론·지시문 템플릿 — 팀이 바뀌어도 그대로
@@ -41,9 +42,12 @@ modules/D_analysis/
 ```
 
 ```bash
-python3 docs/samsung-ax/tools/build_modules.py --all   # 데이터·소계본·paste 생성
-python3 docs/samsung-ax/tools/check_module.py --all    # 자동 11항목
+python3 docs/samsung-ax/tools/new_module.py E_x doing-something   # 새 모듈 만들기
+python3 docs/samsung-ax/tools/build_modules.py --all              # 데이터·소계본·paste 생성
+python3 docs/samsung-ax/tools/check_module.py --all               # 자동 11항목
 ```
+
+다른 고객사·다른 차수에 이 구조를 쓰는 법은 [`context_pack/modules/TEMPLATE.md`](context_pack/modules/TEMPLATE.md).
 
 ## 사내강사 인계 패키지 대응
 

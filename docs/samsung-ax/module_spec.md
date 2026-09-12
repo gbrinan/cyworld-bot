@@ -231,6 +231,21 @@ D_analysis        ──▶ recommended_models.csv ─┴──▶ C_proposal (�
 
 ---
 
+## 9-1. 다른 고객사에 다시 쓰기
+
+이 구조는 삼성 과정 전용이 아닙니다. **방법론은 그대로 두고 모듈만 새로 만듭니다.**
+
+```bash
+python3 docs/samsung-ax/tools/new_module.py E_forecast forecasting-demand-by-region
+```
+
+`_template/`이 복사되고 이름이 채워집니다. 채우는 순서·데이터 설계 규칙·블라인드 검증은
+[`context_pack/modules/TEMPLATE.md`](context_pack/modules/TEMPLATE.md)에 있습니다.
+
+**공통층을 고치고 싶어지면 멈춰서 다시 봅니다.** 대개는 모듈에 넣어야 할 것이 공통층으로 새어 나온 경우입니다.
+
+---
+
 ## 10. 제작 순서와 일정
 
 | 날짜 | 모듈 | 김승진 프로 공유 |

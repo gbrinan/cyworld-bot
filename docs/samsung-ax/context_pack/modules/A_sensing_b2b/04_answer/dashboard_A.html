@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>수요처 영업기회 대시보드</title>
+<style>body{font-family:'Malgun Gothic',Apple SD Gothic Neo,sans-serif;max-width:1000px;margin:24px auto;padding:0 16px;color:#1f2937;line-height:1.55}
+h1{font-size:1.5rem;border-bottom:2px solid #1f2937;padding-bottom:6px}h2{font-size:1.15rem;margin-top:28px;border-left:4px solid #2563eb;padding-left:8px}
+h3{font-size:1rem;margin:14px 0 4px}table{border-collapse:collapse;margin:8px 0;font-size:.92rem}th,td{border:1px solid #d1d5db;padding:4px 8px}th{background:#f3f4f6}
+.card{border:1px solid #d1d5db;border-radius:8px;padding:12px 16px;margin:10px 0}.p1{border-left:5px solid #b91c1c}.p2{border-left:5px solid #2563eb}.hold{border-left:5px solid #9ca3af;background:#f9fafb}
+.now{color:#b91c1c;font-weight:700}.note{background:#fef3c7;padding:8px 12px;border-radius:6px;font-size:.9rem}.meta{color:#6b7280;font-size:.9rem}</style></head><body>
+<p class="note"><b>기대 정답 (기준본)</b> — 데이터에서 직접 계산한 검수 기준입니다. 회사명·기사·일정은 전부 가상입니다.</p>
+<h1>수요처 영업기회 대시보드 — 기준일 2026-09-01</h1>
+<p class="meta">자료: rss_feed.csv 30건 · target_builders.csv 6곳 · customer_profile.md</p>
+<h2>0. 수집 요약</h2><ul>
+<li>원본 <b>30건</b> → 같은 헤드라인 합침 <b>3건</b> 제외 → <b>27건</b></li>
+<li>담당 수요처 관련 <b>9건</b> · 업계 일반·타 품목 <b>18건</b> (대시보드에는 추세 참고로만)</li></ul>
+<table><tr><th>수요처</th><th>기사 수</th><th>근거 행</th></tr><tr><td>대성건설</td><td>4</td><td>2·3·4·5</td></tr><tr><td>한울종합건설</td><td>3</td><td>6·7·8</td></tr><tr><td>서진이엔씨</td><td>2</td><td>9·10</td></tr><tr><td>기타(업계 일반)</td><td>18</td><td>11~28</td></tr></table>
+<h2>1. Customer Profile</h2><p>1순위 한울종합건설은 단계 2에서 작성했습니다 → <code>04_answer/customer_profile.md</code>. <b>빈 항목 4개</b>(나머지 호텔 위치·객실 배분·구매 결정 주체·기존 납품사)는 채우지 않고 남겼습니다.</p><p>대성건설·서진이엔씨는 <b>미작성</b>입니다.</p>
+<h2>2. Key Signal</h2>
+<div class="card p1"><h3>한울종합건설 (코스닥 · 호텔·상업시설 · 신규)</h3><ul><li>지방 호텔 <b>2곳 리뉴얼 착공</b> (6행)</li><li>강릉 호텔 <b>2027년 3월 재개관</b> (7행)</li><li>객실 <b>300실 규모 확정</b> (8행)</li></ul></div>
+<div class="card p2"><h3>대성건설 (코스피 · 물류·오피스 · 신규)</h3><ul><li>물류복합 <b>1.2조 수주</b> (2행)</li><li>오피스동 <b>2028년 6월 준공</b> 목표 (3행)</li><li><b>유형자산취득 결정 공시</b> — 자가 시설 투자 (4행)</li><li>스마트오피스 설계 착수 (5행)</li></ul></div>
+<div class="card hold"><h3>서진이엔씨 (코스피 · 토목·플랜트 · 기존)</h3><ul><li>수주잔고 3년래 최저 (9행)</li><li>상반기 영업손실 확대 (10행)</li></ul><p><b>기회 아님 → 보류.</b> 신규 현장 신호가 없고 실적이 악화 중입니다. 기존 거래 유지에 집중하고 신규 제안은 보류합니다.</p></div>
+<h2>3. Needs</h2><table><tr><th>수요처</th><th>신호</th><th>옮긴 구매 수요</th></tr>
+<tr><td>한울종합건설</td><td>호텔 2곳 리뉴얼 · 객실 300실</td><td>객실 TV 300대급 · 로비 안내 사이니지 · 셀프 체크인 검토</td></tr>
+<tr><td>대성건설</td><td>물류복합 + 오피스동 · 자가 시설 투자</td><td>회의실 대형 디스플레이 · 로비 사이니지 · 물류동 안내 표시</td></tr>
+<tr><td>서진이엔씨</td><td>실적 악화</td><td>없음 (보류)</td></tr></table>
+<p class="meta">수요는 <b>가설</b>입니다. 기사에 제품 언급은 없습니다. 규모·수량은 접촉 후 확인해야 합니다.</p>
+<h2>4. Sales Opportunity</h2><table><tr><th>순위</th><th>수요처</th><th>현장</th><th>준공·재개관</th><th>접근 시점 (준공 −6개월)</th><th>기준일 대비</th><th>판정</th></tr>
+<tr><td>1</td><td>한울종합건설</td><td>강릉 호텔 리뉴얼</td><td>2027-03</td><td><b>2026-09</b></td><td><span class="now">지금</span></td><td>최우선</td></tr>
+<tr><td>2</td><td>한울종합건설</td><td>나머지 호텔 1곳</td><td>시점 미상</td><td>—</td><td>—</td><td>시기 확인 필요</td></tr>
+<tr><td>3</td><td>대성건설</td><td>오피스동</td><td>2028-06</td><td>2027-12</td><td>15개월 뒤</td><td>관계 구축 단계</td></tr>
+<tr><td>—</td><td>서진이엔씨</td><td>—</td><td>—</td><td>—</td><td>—</td><td><b>보류</b></td></tr></table>
+<p><b>규모가 큰 쪽이 1순위가 아닙니다.</b> 대성건설 수주가 1.2조로 훨씬 크지만 사양 확정이 15개월 뒤입니다. 지금 가면 이릅니다.</p>
+<h2>5. Recommended Action</h2><h3>1순위 — 한울종합건설 강릉 호텔 (접근 시점: 지금)</h3>
+<table><tr><th>시나리오</th><th>조건</th><th>누구에게</th><th>언제</th><th>무엇을</th></tr>
+<tr><td>A. 발주가 예정대로</td><td>2027-03 재개관 유지</td><td>한울종합건설 구매·공무 담당</td><td>2026년 9월 안</td><td>호텔TV 라인업 + 유사 호텔 납품 사례 (D 모듈 결과 활용)</td></tr>
+<tr><td>B. 발주가 늦어짐</td><td>재개관이 6개월 이상 밀림</td><td>같은 담당</td><td>2027년 1분기 재접촉</td><td>리뉴얼 단계별 분할 납품안</td></tr>
+<tr><td>C. 시공사를 거침</td><td>구매 주체가 시공사</td><td>시공 담당 협력사</td><td>2026년 9~10월</td><td>시공사용 사양서·설치 조건 자료</td></tr></table>
+<p><b>세 갈래 모두의 첫 행동은 같습니다 — 접점 확보.</b> Customer Profile의 접점이 "없음"이고 구매 결정 주체도 미확인입니다. 팀장에게 한울종합건설 접점을 먼저 묻습니다.</p>
+<h3>3순위 — 대성건설 (접근 시점: 2027-12)</h3><ul><li>지금은 제안이 아니라 <b>관계 구축</b>입니다. 스마트오피스 설계 착수 단계라 사양 논의가 이릅니다.</li><li>2027년 상반기에 설계사·시공사가 정해지면 그때 재수집합니다. 검색어에 "대성건설 시공사 선정"을 추가합니다.</li></ul>
+<p class="note">이 대시보드는 <b>가설 목록</b>입니다. 접근 시점은 준공에서 6개월을 뺀 교육용 기준이고, 실제 사양 확정 시기는 현장마다 다릅니다. 접촉 여부와 방법은 담당자가 판단합니다.</p></body></html>

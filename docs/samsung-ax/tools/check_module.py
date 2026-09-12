@@ -234,6 +234,28 @@ def check(mod_id):
             probs.append("입출력 예시에 정답 파일(" + " / ".join(ans) + ")이 인용되지 않음")
         add(10, not probs, "SKILL.md " + ("이상 없음" if not probs else "; ".join(probs)))
 
+    # 12. 정답을 다시 만들면 스킬·테스트가 낡는다. 인용된 금액이 정답에 있는지 대조한다.
+    MONEY = re.compile(r"\d{1,3}(?:,\d{3})+")
+    ans_txt = ""
+    for o in req.get("outputs", []):
+        ap = os.path.join(adir, o["file"])
+        if os.path.exists(ap):
+            ans_txt += open(ap, encoding="utf-8").read()
+    stale = []
+    if ans_txt:
+        ans_nums = set(MONEY.findall(ans_txt))
+        for rel in [os.path.join("07_skill", "SKILL.md"),
+                    os.path.join("03_tests", "test_normal.md"),
+                    os.path.join("05_demo_log.md"),
+                    os.path.join("module.md")]:
+            fp = os.path.join(mod_dir, rel)
+            if not os.path.exists(fp):
+                continue
+            for n in set(MONEY.findall(open(fp, encoding="utf-8").read())) - ans_nums:
+                stale.append(f"{rel}: {n}")
+    add(12, not stale, "인용 금액이 정답에 " + ("모두 있음" if not stale
+        else "없음 — 정답을 다시 만든 뒤 갱신 필요: " + "; ".join(sorted(stale)[:6])))
+
     # 11. 단계별 프롬프트가 steps 수와 맞는가
     step_files = [s.get("prompt") for s in req.get("steps", []) if s.get("prompt")]
     miss = [f for f in step_files if not os.path.exists(os.path.join(pdir, f))]
@@ -260,7 +282,7 @@ def main():
             print(f"  [{'o' if passed else 'x'}] #{no} {msg}")
         if not ok:
             exit_code = 1
-    print("\n#12~14 는 수동 — CHECK.md 에서 확인자·날짜를 적습니다.")
+    print("\n#13~15 는 수동 — CHECK.md 에서 확인자·날짜를 적습니다.")
     sys.exit(exit_code)
 
 

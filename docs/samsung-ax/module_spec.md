@@ -125,11 +125,15 @@ context_pack/modules/<모듈ID>/
 | 7 | `06_paste/` 파일이 입력 파일마다 있고 각 6KB 이하 | 자동 |
 | 8 | 소계본 축별 합계 == 상세 합계 | 자동 |
 | 9 | `forbidden[]` 문자열·전화번호·이메일 패턴이 모듈에 없다 (`test_failure` 제외) | 자동 |
-| 10 | 정답에 `planted[]` 신호가 근거로 나타난다 | **수동** |
-| 11 | 주 도구·대체 도구 양쪽에서 정상 테스트 통과 (날짜·모델 기록) | **수동** |
-| 12 | 처음 보는 사람이 `module.md`만 읽고 실습 1을 시작할 수 있다 (동료 1명 테스트) | **수동** |
+| 10 | `07_skill/SKILL.md`의 name·description·5절·입출력 예시가 규칙에 맞는다 | 자동 |
+| 11 | 선언한 단계 수만큼 프롬프트 파일이 있다 | 자동 |
+| 12 | **스킬·테스트·시연로그·모듈카드가 인용한 금액이 정답과 일치한다** | 자동 |
+| 13 | 정답에 `planted[]` 신호가 근거로 나타난다 | **수동** |
+| 14 | 주 도구·대체 도구 양쪽에서 정상 테스트 통과 (날짜·모델 기록) | **수동** |
+| 15 | 처음 보는 사람이 `module.md`만 읽고 실습 1을 시작할 수 있다 (동료 1명 테스트) | **수동** |
 
-자동 8항목은 `tools/check_module.py`가 검사합니다. 김승진 프로에게 보내기 전 통과가 조건입니다.
+자동 12항목은 `tools/check_module.py`가 검사합니다. 공유 전 통과가 조건입니다.
+**12번은 정답을 다시 만들었을 때 파생 문서가 낡는 것을 잡습니다.** 실제로 정답을 두 번 재생성한 뒤 낡은 값이 여섯 군데 남아 있었습니다.
 
 ---
 
@@ -167,7 +171,7 @@ D_analysis        ──▶ recommended_models.csv ─┴──▶ C_proposal (�
 | 에이전트 수 | **1** | **1** | **1** | **1** |
 | 단계 수 | 1 | 3 (정제·추출·제안) | 3 (수집·프로파일·분석) | 3 (키워드·추출·보고서) |
 | team | common | common | b2b | partner |
-| 입력 1 | `sales_history.csv` 10열 (삼성 헤더) 52행 | `tv_price_guide.csv` 12모델 | `rss_feed.csv` `[품목][헤드라인][원본url][키워드]` 30행 | `naver_news_dummy.json` API 응답 형식 30건 |
+| 입력 1 | `sales_history.csv` 10열 (삼성 헤더) 52행 | `tv_price_guide.csv` 13모델 | `rss_feed.csv` `[품목][헤드라인][원본url][키워드]` 30행 | `naver_news_dummy.json` API 응답 형식 30건 |
 | 입력 2 | `target_account.md` `[수요처명][버티컬][프로젝트/용도]` | `naver_crawl.csv` `[수요처명][모델명][온라인가격][제품spec.]` | `target_builders.csv` 상장 건설사 6곳 + `rss_sources.md` 검색어 | `district_info.csv` 상권정보 7열 + `partner_info.csv` (시공가능규모 포함) |
 | 입력 3 | — | `customer_request.md` 화면크기·용도·기능·환경·수량·예산 | — | — |
 | 출력 | `recommend_D.html` 4절 | `proposal_C.html` 3제품 비교+시장가 | `customer_profile.md` + `dashboard_A.html` 5절 | `search_keywords.md` + `opportunity_list.csv` + `report_B.md` → Word 5절 |

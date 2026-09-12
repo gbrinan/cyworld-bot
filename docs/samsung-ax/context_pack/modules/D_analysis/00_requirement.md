@@ -45,7 +45,7 @@ planted:
   - "오피스: MX-85P가 회의실 용도로 반복, 병원: BX-43S가 대기실 용도로 반복 (대상이 호텔일 때는 노이즈)"
   - "정답 대상: 가상 「해솔호텔 제주」 호텔 / 신축 객실 120실 + 로비"
 tests:
-  normal: "sales_history.csv + target_account.md → 4절 HTML, TOP3 = HX-55T · ST-H1 · BX-65S, 각 추천에 근거 행"
+  normal: "sales_history.csv + target_account.md → 4절 HTML, TOP3 순서 = HX-55T(축 A) → BX-65S(축 B) → ST-H1(조합). HX-50T는 대안. 각 추천에 근거 행"
   boundary: "target_account.md 없이 「추천해줘」 → 버티컬·프로젝트/용도를 질문하고 추천하지 않음"
   failure: "sales_history_실패.csv (판매금액 ≠ 공급가×판매수량 3행, 버티컬 오타 1행) → 불일치 행을 표로 보이고 추천 생성을 중단"
 subtotals:

@@ -49,6 +49,9 @@ python3 docs/samsung-ax/tools/build_modules.py E_forecast   # 2단계
 python3 docs/samsung-ax/tools/check_module.py E_forecast    # 7단계
 ```
 
+**정답을 다시 만들면 파생 문서가 낡습니다.** 스킬·테스트·시연 로그·모듈 카드가 인용한 금액이 정답과 어긋나는데,
+읽어서는 잘 안 보입니다. 검사 12번이 이걸 대조하므로 **정답을 고칠 때마다 검사를 다시 돌립니다.**
+
 ---
 
 ## 3. 데이터 만들 때 지키는 것

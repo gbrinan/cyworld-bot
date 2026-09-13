@@ -5,6 +5,16 @@ import html, os, sys
 
 OUT = os.path.join(os.path.dirname(__file__), "..")
 
+
+CORE_SLIDES = ['DeckD1', 'DeckD10', 'DeckD3', 'DeckD5', 'DeckM4', 'DeckO2', 'DeckO4', 'DeckO5', 'DeckW7', 'DeckZ2', 'HandsD1']
+SECTION_OF = {'DeckD2': '§1', 'DeckD3': '§2', 'DeckD4': '§3', 'DeckD6': '§4', 'DeckD7': '§3', 'DeckD8': '§3', 'DeckD10': '§7', 'DeckD12': '§9', 'DeckA2': '§1', 'DeckA3': '§6', 'DeckA4': '§3', 'DeckA5': '§4', 'DeckA6': '§4', 'DeckA7': '§6', 'DeckA8': '§5', 'DeckA12': '§9', 'DeckB2': '§1', 'DeckB3': '§6', 'DeckB4': '§3', 'DeckB5': '§4', 'DeckB6': '§4', 'DeckB7': '§6', 'DeckB8': '§5', 'DeckB12': '§9', 'DeckC2': '§1', 'DeckC3': '§2', 'DeckC4': '§3', 'DeckC5': '§5', 'DeckC6': '§5', 'DeckC7': '§6', 'DeckC8': '§4', 'DeckC10': '§8', 'HandsD1': '§7', 'HandsD2': '§7·8', 'HandsA1': '§7', 'HandsA2': '§7', 'HandsA3': '§7·8', 'HandsB1': '§7', 'HandsB2': '§7', 'HandsB3': '§7·8', 'HandsC1': '§7', 'HandsC2': '§7·8'}
+def footer_tag(name, page):
+    parts = []
+    if name not in CORE_SLIDES: parts.append('<span style="color: #c9c5bd;">90분 제외</span>')
+    if name in SECTION_OF: parts.append('<span style="color: #9a958d;">module.md ' + SECTION_OF[name] + '</span>')
+    parts.append(page)
+    return " &nbsp;·&nbsp; ".join(parts)
+
 HEAD = """<!doctype html>
 <html>
 <head>
@@ -104,7 +114,7 @@ def build(s):
   </div>
 
   <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
-    <span>모든 데이터는 가상입니다</span><span>{s["page"]}</span>
+    <span>모든 데이터는 가상입니다</span><span>{s["footer"]}</span>
   </div>
 </div>
 """ + TAIL
@@ -227,6 +237,7 @@ SLIDES = {
 
 if __name__ == "__main__":
     for name, s in SLIDES.items():
+        s["footer"] = footer_tag(name, s["page"])
         p = os.path.join(OUT, name + ".dc.html")
         open(p, "w", encoding="utf-8").write(build(s))
         print("wrote", os.path.relpath(p, OUT))

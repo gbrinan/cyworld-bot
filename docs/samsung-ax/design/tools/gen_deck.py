@@ -5,6 +5,16 @@ import os
 
 OUT = os.path.join(os.path.dirname(__file__), "..")
 
+
+CORE_SLIDES = ['DeckD1', 'DeckD10', 'DeckD3', 'DeckD5', 'DeckM4', 'DeckO2', 'DeckO4', 'DeckO5', 'DeckW7', 'DeckZ2', 'HandsD1']
+SECTION_OF = {'DeckD2': '§1', 'DeckD3': '§2', 'DeckD4': '§3', 'DeckD6': '§4', 'DeckD7': '§3', 'DeckD8': '§3', 'DeckD10': '§7', 'DeckD12': '§9', 'DeckA2': '§1', 'DeckA3': '§6', 'DeckA4': '§3', 'DeckA5': '§4', 'DeckA6': '§4', 'DeckA7': '§6', 'DeckA8': '§5', 'DeckA12': '§9', 'DeckB2': '§1', 'DeckB3': '§6', 'DeckB4': '§3', 'DeckB5': '§4', 'DeckB6': '§4', 'DeckB7': '§6', 'DeckB8': '§5', 'DeckB12': '§9', 'DeckC2': '§1', 'DeckC3': '§2', 'DeckC4': '§3', 'DeckC5': '§5', 'DeckC6': '§5', 'DeckC7': '§6', 'DeckC8': '§4', 'DeckC10': '§8', 'HandsD1': '§7', 'HandsD2': '§7·8', 'HandsA1': '§7', 'HandsA2': '§7', 'HandsA3': '§7·8', 'HandsB1': '§7', 'HandsB2': '§7', 'HandsB3': '§7·8', 'HandsC1': '§7', 'HandsC2': '§7·8'}
+def footer_tag(name, page):
+    parts = []
+    if name not in CORE_SLIDES: parts.append('<span style="color: #c9c5bd;">90분 제외</span>')
+    if name in SECTION_OF: parts.append('<span style="color: #9a958d;">module.md ' + SECTION_OF[name] + '</span>')
+    parts.append(page)
+    return " &nbsp;·&nbsp; ".join(parts)
+
 HEAD = """<!doctype html>
 <html>
 <head>
@@ -189,7 +199,7 @@ SLIDES["DeckW7"] = shell("일을 보는 법", "④ 묶으면 에이전트가 나
     <div style="{BAND}">
       <div style="font-size: 22px; font-weight: 700;">{'<span style="color: #e88b8b;">사람만</span>이 끼면 나눕니다. 없으면 단계로.'}</div>
       <div style="flex-grow: 1;"></div>
-      <div style="font-size: 14px; color: #c9c5bd;">네 모듈 전부 에이전트 1개 + 단계 1~3개. 프롬프트가 셋인 건 우리가 정한 게 아니라 일이 그렇게 생겼습니다.</div>
+      <div style="font-size: 14px; color: #c9c5bd;">네 모듈 전부 에이전트 1개 + 단계 1~3개. 단계가 셋인 건 우리가 정한 게 아니라 일이 그렇게 생겼습니다.</div>
     </div>""", "W · 07")
 
 # ───────────── M4 그럴듯함 ≠ 정확함 ─────────────
@@ -1112,7 +1122,7 @@ SLIDES["DeckC5"] = shell("모듈 C", "밖의 데이터를 가져오는 법", "�
       {step_card(3, "4열 표 → 저장", "&quot;쉼표로 구분된 표로 출력해줘&quot; → 메모장 → <span class='mono' style='font-size: 13px; color: #111821;'>naver_crawl.csv</span>", last=True)}
     </div>
     <div style="display: flex; gap: 14px; align-items: stretch;">
-      <div style="{CARD} flex: 1 0 0; padding: 14px 20px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">표가 복잡해 뒤섞이면 — 화면 캡처</strong> 브라우저 확장프로그램으로 표 영역을 캡처해 이미지로 올립니다. 표 구조는 유지되지만 숫자는 OCR이라 <strong style="font-weight: 600; color: #111821;">가격은 복사로, 설명은 캡처로</strong> 나눠 씁니다.</div>
+      <div style="{CARD} flex: 1 0 0; padding: 14px 20px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">표가 복잡해 뒤섞이면 — 화면 캡처</strong> 브라우저 확장프로그램(Awesome Screenshot 등)으로 표 영역을 캡처해 이미지로 올립니다. 숫자는 OCR이라 <strong style="font-weight: 600; color: #111821;">가격은 복사로, 설명은 캡처로</strong>. PlayMCP(네이버 검색 API)는 응답에 가격이 없어 실습에서 쓰지 않습니다.</div>
       <div style="{WARN} width: 460px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; gap: 4px;"><div style="font-size: 16px; font-weight: 600; color: #9a2c2c;">자동 수집은 하지 않습니다.</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">오픈마켓 약관은 프로그램 수집을 금지합니다. 사람이 보고 복사하는 것과 다릅니다. 사외 재배포 없이 제안 검토용으로만.</div></div>
     </div>""", "C · 05")
 
@@ -1319,6 +1329,11 @@ SLIDES["DeckD1"] = HEAD + f"""<div style="width: 1280px; height: 720px; backgrou
 """ + TAIL
 
 if __name__ == "__main__":
+    import re as _re
     for name, src in SLIDES.items():
+        # 푸터 우측의 페이지 표기(예: "D · 02")를 축약판 표시 · 절 번호가 붙은 문자열로 바꾼다
+        m = _re.search(r"<span>([A-Z] · [0-9]{2})</span>(?:\s*</div>){2,3}\s*</x-dc>", src)
+        if m:
+            src = src[:m.start(1)] + footer_tag(name, m.group(1)) + src[m.end(1):]
         open(os.path.join(OUT, name + ".dc.html"), "w", encoding="utf-8").write(src)
         print("wrote", name)

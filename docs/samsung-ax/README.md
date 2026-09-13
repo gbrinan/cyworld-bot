@@ -11,20 +11,24 @@ docs/samsung-ax/
 ├─ reuse_from_eugene.md       유진투자증권 과정에서 가져온 것 / 안 가져온 것
 ├─ design_handoff_package.md  **Claude Design 핸드오프** — 한 파일로 자립 (프롬프트·72장·디자인 시스템·수치·검수)
 ├─ design/                    **덱 실물** — 아트보드 88장 (72장 전부) + 생성기 2개 + canvas.json. deck_audit.md가 검증 기록
-├─ deck/                      **A판 · B판 슬라이드쇼** — A판.html / B판.html (브라우저에서 열고 화살표로 넘김, 인쇄하면 PDF). tools/build_deck.py가 만든다
+├─ deck/                      **A판 · B판 슬라이드쇼** — A판.html / B판.html **강의 순서 72장** (← → 넘김 · N 발표자 노트 · 인쇄하면 PDF) + *_순서.txt + notes.json. design/tools/build_deck.py가 만든다
+├─ dist/                      **배포 zip** (gitignore) — 참가자_A판.zip · 참가자_B판.zip · 강사.zip. tools/build_pack.py가 만든다
 ├─ claude_design_handoff.md   (이전 버전 · 갱신 안 함)
 ├─ handoff_review.md          핸드오프 검토 — 사내강사 운영 가능성, P0~P2 부족 항목, 작업 순서
 ├─ validation_log.md          **블라인드 검증 기록** — 회차별 결함과 수정, 얻은 규칙 10가지
 ├─ module_spec.md             **모듈 방식 제안** — 요구조건서 1장 → 7단계 빌드 → CHECK 12항목. v2 팩은 이 구조로 제작
 ├─ slides_outline.md          슬라이드 72장 설계서 (정본) + 6시간 배치표 + 제작 메모
-├─ instructor_guide.md        강사용 진행 가이드 (큐시트·되묻기·보조강사 운영)
-├─ workbook.md                참가자 실습 워크북 (빈칸형)
+├─ instructor_guide.md        **강사용 진행 가이드 v2** — 교시별 큐시트(슬라이드 번호 = 덱 번호)·되묻기·보조강사 운영. tools/build_course_docs.py가 만든다
+├─ workbook_A판.md / B판.md    **참가자 워크북 v2** — 실습 슬라이드와 같은 데이터(파일 이름·신호·막혔을 때). 같은 스크립트가 만든다
+├─ workbook.md                (v1 · 마무리 절만 v2가 이어받음)
 ├─ faq.md                     예상 Q&A
 ├─ rehearsal_checklist.md     환경 리허설 점검표 + 삼성 확인 요청 사항
 ├─ tools/make_dummy_data.py   더미 데이터 생성기 (v1)
 ├─ tools/new_module.py        새 모듈 폴더 만들기 (_template 복사)
 ├─ tools/build_modules.py     모듈 데이터 빌더 (요구조건서 헤더 → 데이터·소계본·paste)
 ├─ tools/check_module.py      모듈 완성 판정 — 자동 8항목
+├─ tools/build_course_docs.py 워크북 v2 · 강사 가이드 v2 · 슬라이드 노트 · 순서 파일 — 덱과 같은 데이터에서
+├─ tools/build_pack.py        배포 zip 3개 (참가자 A판 · B판 · 강사)
 └─ context_pack/
    ├─ common/                 방법론·지시문 템플릿 — 팀이 바뀌어도 그대로
    ├─ modules/                **에이전트 모듈 4개** (A·B·C·D) + _template. 네 모듈 모두 자동 11/11 통과
@@ -59,12 +63,12 @@ python3 docs/samsung-ax/tools/check_module.py --all               # 자동 11항
 
 | 요청 자료 | 이 폴더의 파일 |
 |---|---|
-| 강의 Material | `slides_outline.md` (슬라이드 제작 후 교체) |
-| 스크립트 | `instructor_guide.md` 2·3장 큐시트 + 슬라이드 노트 |
+| 강의 Material | `deck/A판.html` · `B판.html` (+PDF) — 설계서는 `slides_outline.md` |
+| 스크립트 | `instructor_guide.md` 2·3장 큐시트 + `deck/notes.json` 발표자 노트 (슬라이드쇼 N 키) |
 | 예상 Q&A | `faq.md` |
-| 참가자 자료 | `workbook.md` |
-| 실습 데이터 | `context_pack/team_*/` |
-| 결과물 정리표 | `context_pack/team_*/manifest.md` |
+| 참가자 자료 | `workbook_A판.md` · `workbook_B판.md` → `dist/참가자_*.zip` |
+| 실습 데이터 | `context_pack/modules/*/01_data` (참가자 zip에 포함) |
+| 결과물 정리표 | 각 모듈 `module.md` + `07_skill/SKILL.md` |
 
 핵심 원칙은 **컨텍스트를 데이터로 분리**하는 것입니다.
 
@@ -157,18 +161,20 @@ python3 docs/samsung-ax/tools/make_dummy_data.py
 | 더미 데이터 + 테스트 케이스 + 정답 인계 파일 | 완료 |
 | 슬라이드 설계서 | **v2 72장 완료** — `slides_outline.md` |
 | Skill·MCP 내용 | 완료 — **Skills 사용 가능 여부는 확인 필요** |
-| 강사 가이드·워크북·예상 Q&A | 완료 (v1) |
+| 강사 가이드·워크북 | **v2 완료** — 72장 덱 번호 기준. 덱과 같은 생성기 데이터 |
+| 예상 Q&A | 완료 (v1) |
 | 웹 환경 대비 (paste·소계본·저장 절차) | 완료 |
 | 환경 리허설 점검표 | 완료 — **실행은 삼성 계정 필요** |
 | 컬럼 헤더 확정 | 삼성 9/7 양식 헤더를 그대로 사용 중. 실제 파일을 받으면 요구조건서의 `headers`만 교체 |
 | 시나리오 확정 | 완료 — 9/7 양식 + 9/12 A·B 케이스 확정 |
 | Claude Design 핸드오프 | **v3 완료** — 72장. **첨부 게이트 전면 해제. 전 구간 제작 가능** |
-| 핸드오프 검토 | 완료 — `handoff_review.md`. **P0 3건(v1/v2 불일치·완성 프롬프트·HTML 절차) 해결 전 실습 운영 불가** |
+| 핸드오프 검토 | 완료 — `handoff_review.md`. P0 3건은 v2 모듈·덱에서 해결 (검증은 `deck_audit.md`) |
 | 모듈 방식 제안 | 완료 — `module_spec.md` + `_template/` + 요구조건서 4장 + `check_module.py`. **구조 확정 후 D부터 빌드** |
 | **모듈 빌드 A·B·C·D** | **네 모듈 모두 완료 — 자동 11/11 통과.** 수동 3항목(정답 재현·도구 양쪽 실행·동료 테스트)은 도구 계정 필요 |
 | SKILL.md | **4개 작성 완료** — 각 모듈 `07_skill/` |
 | v1 팩 (`team_*/`) | 폐기 표시 완료 (`DEPRECATED.md`). **삭제는 확인 후** |
-| 슬라이드 실물 제작 | 미착수 — Claude Design에서 시안 생성 후 |
+| 슬라이드 실물 제작 | **72장 × 2판 완료** — 캔버스 88장(Version 8) · `deck/` 슬라이드쇼+PDF · `deck_audit.md` 28항목 점검 |
+| 배포 패키지 | **완료** — `tools/build_pack.py` → `dist/` (참가자 55~58 파일 · 강사 전체) |
 | 도구 리허설 (Gems 불가, Instant/Flash) | 미착수 — 9/12 예정 |
 
 ## 주의

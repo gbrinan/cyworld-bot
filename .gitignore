@@ -17,3 +17,4 @@ dist
 docs/samsung-ax/design/*.html
 !docs/samsung-ax/design/*.dc.html
 docs/samsung-ax/deck/*.pdf
+docs/samsung-ax/dist/

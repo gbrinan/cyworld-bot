@@ -1,72 +1,75 @@
-01 Main
-02 DeckO2
-03 DeckO3
-04 DeckO4
-05 DeckO5
-06 DeckO6
-07 DeckO7
-08 DeckO8
-09 DeckW1
-10 Design6
-11 DeckW3
-12 DeckW4
-13 DeckW5
-14 Tags4
-15 DeckW7
-16 AgentSkill
-17 DeckW9
-18 DeckM1
-19 DeckM2
-20 DeckM3
-21 DeckM4
-22 DeckM5
-23 DeckM6
-24 Blocks7
-25 DeckM8
-26 Tests3
-27 DeckM10
-28 DeckM11
-29 DeckD1
-30 DeckD2
-31 DeckD3
-32 DeckD4
-33 DeckD5
-34 DeckD6
-35 DeckD7
-36 DeckD8
-37 HandsD1
-38 DeckD10
-39 HandsD2
-40 DeckD12
-41 DeckB1
-42 DeckB2
-43 DeckB3
-44 DeckB4
-45 DeckB5
-46 DeckB6
-47 DeckB7
-48 DeckB8
-49 HandsB1
-50 HandsB2
-51 HandsB3
-52 DeckB12
-53 DeckC1
-54 DeckC2
-55 DeckC3
-56 DeckC4
-57 DeckC5
-58 DeckC6
-59 DeckC7
-60 DeckC8
-61 HandsC1
-62 DeckC10
-63 HandsC2
-64 DeckK1
-65 DeckK2
-66 DeckK3
-67 DeckK4
-68 DeckK5
-69 DeckK6
-70 DeckZ1
-71 DeckZ2
-72 DeckZ3
+── 1교시 ──
+01 Main         삼성전자 · B2B 영업 · B2B 영업 AI 에이전트 실습
+02 DeckO2       오프닝 · 오늘 에이전트 4개를 만듭니다
+03 DeckO3       오프닝 · 오늘의 흐름
+04 DeckO4       오프닝 · 시작 전 준비
+05 DeckO5       오프닝 · 웹에서 결과를 남기는 법
+06 DeckO6       오프닝 · 에이전트는 여기서 만듭니다
+07 DeckO7       오프닝 · HTML 결과를 여는 법
+08 DeckO8       오프닝 · 지시문은 메모장에 먼저
+09 DeckW1       일을 보는 법 · 에이전트를 못 만드는 진짜 이유
+10 Design6      일을 보는 법 · 설계 6단계
+11 DeckW3       일을 보는 법 · ① As-Is 프로세스 — 지금 일이 어떻게 흘러가는가
+12 DeckW4       일을 보는 법 · ② 단계별 IPO — 받는 것 · 하는 일 · 내놓는 것
+13 DeckW5       일을 보는 법 · 틈이 에이전트 자리입니다
+14 Tags4        일을 보는 법 · 03 · 꼬리표 4종
+15 DeckW7       일을 보는 법 · ④ 묶으면 에이전트가 나옵니다
+16 AgentSkill   일을 보는 법 · 05 · 에이전트와 스킬 나누기
+17 DeckW9       일을 보는 법 · ⑥ 분해표가 지시문이 됩니다
+18 DeckD1       모듈 D · 첫 모듈 · 데이터 분석 Agent
+19 DeckD2       모듈 D · 지금은 이렇게 일합니다 — 그리고 이렇게 쪼갰습니다
+20 DeckD3       모듈 D · 오늘 만들 결과물
+21 DeckD4       모듈 D · 입력 데이터
+22 DeckD5       모듈 D · 보고서보다 먼저 오는 것
+23 DeckD6       모듈 D · 이 데이터의 함정 세 가지
+24 DeckD7       모듈 D · 두 갈래 경로
+25 DeckD8       모듈 D · 집계를 사람이 먼저 하는 이유
+26 HandsD1      모듈 D · 실습 1 · 에이전트 만들고 정상 테스트 한 번
+27 DeckD10      모듈 D · 근거가 붙은 추천이란
+28 DeckM4       공통 방법론 · 그럴듯함 ≠ 정확함
+29 Tests3       공통 방법론 · 테스트 3종
+30 DeckM10      공통 방법론 · 사람이 하는 일
+31 DeckM11      공통 방법론 · 오늘의 완주 기준
+32 HandsD2      모듈 D · 실습 2·3 · 경계 · 실패 테스트, 그리고 검수
+33 DeckD12      모듈 D · 내 업무로 전환
+── 2교시 ──
+34 DeckM1       공통 방법론 · 왜 에이전트를 팀마다 따로 만들지 않는가
+35 DeckM2       공통 방법론 · 컨텍스트를 데이터로
+36 DeckM5       공통 방법론 · 시작은 RACS, 익숙해지면 7블록
+37 Blocks7      공통 방법론 · 지시문 7블록
+38 DeckM8       공통 방법론 · 나쁜 문장 vs 좋은 문장
+39 DeckB1       모듈 B · B2B유통전략팀 · 경로 Sensing Agent
+40 DeckB2       모듈 B · 지금은 이렇게 일합니다 — 그리고 이렇게 쪼갰습니다
+41 DeckB3       모듈 B · 에이전트는 하나, 단계는 셋
+42 DeckB4       모듈 B · 입력 데이터
+43 DeckB5       모듈 B · 작은 건은 모아야 보입니다
+44 DeckB6       모듈 B · 이 데이터의 함정
+45 DeckB7       모듈 B · 검색어는 곱셈입니다
+46 DeckB8       모듈 B · 도구와 클릭 경로
+47 HandsB1      모듈 B · 실습 1 · 에이전트 만들고 검색 키워드 받기
+48 HandsB2      모듈 B · 실습 2 · 기회 목록 뽑고 보고서를 Word로
+49 HandsB3      모듈 B · 실습 3 · 경계 · 실패 테스트, 그리고 검수
+50 DeckB12      모듈 B · 내 업무로 전환
+51 DeckM3       공통 방법론 · 일반 대화와 업무 에이전트의 차이
+── 3교시 ──
+52 DeckM6       공통 방법론 · IPO 명세 — 지시문보다 먼저 씁니다
+53 DeckC1       모듈 C · 전원 공통 · 제안자료 작성 Agent
+54 DeckC2       모듈 C · 지금은 이렇게 일합니다 — 그리고 이렇게 쪼갰습니다
+55 DeckC3       모듈 C · 오늘 만들 결과물
+56 DeckC4       모듈 C · 입력 데이터
+57 DeckC5       모듈 C · 밖의 데이터를 가져오는 법
+58 DeckC6       모듈 C · 어디서 무엇을 가져오나
+59 DeckC7       모듈 C · 단계가 셋인 이유
+60 DeckC8       모듈 C · 이 데이터의 함정
+61 HandsC1      모듈 C · 실습 1 · 에이전트 만들고 대조표 받기
+62 DeckC10      모듈 C · 이건 절대 쓰면 안 됩니다
+63 HandsC2      모듈 C · 실습 2·3 · 3안 제안, 저장, 그리고 확정 견적 거부
+64 DeckK1       Skill과 MCP · 오늘 만든 것에는 이름이 있습니다
+65 DeckK2       Skill과 MCP · SKILL.md 세 부분
+66 DeckK3       Skill과 MCP · description이 따로 있는 이유
+67 DeckK4       Skill과 MCP · Agent 워크플로우 5패턴 — 우리 4개는 어디에
+68 DeckK5       Skill과 MCP · 오늘 만들어도 되는 일인가
+69 DeckK6       Skill과 MCP · 다음 단계 — Skill은 어떻게, MCP는 무엇에
+70 DeckZ1       클로징 · 내 업무로 옮기려면
+71 DeckZ2       클로징 · 다섯 가지 원칙
+72 DeckZ3       클로징 · 7일 계획

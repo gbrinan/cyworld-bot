@@ -16,7 +16,7 @@ Claude Design 캔버스의 **작업 파일**입니다. 여기서 고치고 다�
 | `Components.dc.html` | 컴포넌트와 토큰 (마스터) |
 | `HandsD1` ~ `HandsC2` (10장) | **실습 슬라이드 실물** — 둘째 페이지. D 2장 · A 3장 · B 3장 · C 2장. `tools/gen_handson.py`가 만든다 |
 | `Deck*.dc.html` | **덱 슬라이드 실물** — 오프닝 · 일 보는 법 · 방법론 · 모듈 D · 클로징. `tools/gen_deck.py`가 만든다 |
-| `canvas.json` | 배치와 메모. **페이지 여덟** — 마스터 / 오프닝 / 일 보는 법·방법론 / 모듈 D / A / B / C / Skill·클로징. 덱 순서 = 페이지 안 왼쪽 위부터 |
+| `canvas.json` | 배치와 메모. **페이지 여덟** — 마스터 / 오프닝 / 일 보는 법·방법론 / 모듈 D / A / B / C / Skill·클로징. **캔버스는 블록별, 강의 순서는 `../deck/*_순서.txt`**(방법론 11장이 세 교시에 나뉨) |
 
 사양은 [`../design_handoff_package.md`](../design_handoff_package.md). 슬라이드 72장 목록은 [`../slides_outline.md`](../slides_outline.md).
 
@@ -70,7 +70,8 @@ Claude Design 캔버스의 **작업 파일**입니다. 여기서 고치고 다�
 
 ## A판 · B판 슬라이드쇼
 
-`tools/build_deck.py`가 `canvas.json`의 페이지 순서대로 아트보드를 이어 붙여 `../deck/A판.html` · `B판.html`을 만듭니다 — 브라우저에서 열면 화면에 맞춰 축소되고, 화살표 · 클릭으로 넘기며, 우하단에 `n / 72 · 장 이름`이 보입니다.
+`tools/build_deck.py`가 **강의 순서**(`../../tools/build_course_docs.py`의 `ORDER` — 워크북·강사 가이드의 슬라이드 번호와 같은 순서)로 아트보드를 이어 붙여 `../deck/A판.html` · `B판.html`을 만듭니다 — 브라우저에서 열면 화면에 맞춰 축소되고, 화살표 · 클릭으로 넘기며, 우하단에 `n / 72 · 교시 · 장 이름`이 보입니다. **N 키**로 발표자 노트(`../deck/notes.json`)가 아래에 열립니다.
+먼저 `python3 ../../tools/build_course_docs.py`(순서·노트·워크북·가이드)를, 그다음 `python3 tools/build_deck.py`를 돌립니다.
 PDF는 그 파일을 인쇄하면 됩니다(페이지 크기 1280×720이 CSS에 있음). 헤드리스 크롬으로는
 `chrome --headless=new --print-to-pdf=A판.pdf --no-pdf-header-footer A판.html`. PDF는 커밋하지 않습니다(`.gitignore`).
 

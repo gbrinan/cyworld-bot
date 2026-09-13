@@ -11,6 +11,7 @@ docs/samsung-ax/
 ├─ reuse_from_eugene.md       유진투자증권 과정에서 가져온 것 / 안 가져온 것
 ├─ design_handoff_package.md  **Claude Design 핸드오프** — 한 파일로 자립 (프롬프트·72장·디자인 시스템·수치·검수)
 ├─ design/                    **덱 실물** — 아트보드 88장 (72장 전부) + 생성기 2개 + canvas.json. deck_audit.md가 검증 기록
+├─ deck/                      **A판 · B판 슬라이드쇼** — A판.html / B판.html (브라우저에서 열고 화살표로 넘김, 인쇄하면 PDF). tools/build_deck.py가 만든다
 ├─ claude_design_handoff.md   (이전 버전 · 갱신 안 함)
 ├─ handoff_review.md          핸드오프 검토 — 사내강사 운영 가능성, P0~P2 부족 항목, 작업 순서
 ├─ validation_log.md          **블라인드 검증 기록** — 회차별 결함과 수정, 얻은 규칙 10가지

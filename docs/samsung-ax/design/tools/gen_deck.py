@@ -170,7 +170,7 @@ def ipo_row(n, p, o, kind, shade=False):
     return f"""<tr style="{'background: #f7f6f2;' if shade else ''}"><td style="padding: 7px 10px; color: #9a958d; font-weight: 600; width: 34px;">{n}</td><td style="padding: 7px 10px;">{p}</td><td class="mono" style="padding: 7px 10px; font-size: 13px; color: #3d4650;">{o}</td><td style="padding: 7px 10px; width: 118px;">{tag(kind)}</td></tr>"""
 SLIDES["DeckW7"] = shell("일을 보는 법", "④ 묶으면 에이전트가 나옵니다", "C 모듈 분해표 그대로", f"""
     <div style="display: flex; gap: 22px; align-items: stretch;">
-      <div style="{CARD} flex: 1.15 0 0; display: flex; flex-direction: column;">
+      <div style="{CARD} flex: 1.15 0 0; display: flex; flex-direction: column; justify-content: center;">
         <div style="padding: 12px 16px 8px; {LBL}">C 제안자료 — 단계별 IPO에 꼬리표를 붙인 것</div>
         <table style="border-collapse: collapse; font-size: 14px; width: 100%;">
           <tr style="color: #9a958d; font-size: 12px; letter-spacing: 0.08em;"><td style="padding: 4px 10px;">#</td><td style="padding: 4px 10px;">하는 일 (P)</td><td style="padding: 4px 10px;">내놓는 것 (O)</td><td style="padding: 4px 10px;">꼬리표</td></tr>
@@ -346,7 +346,7 @@ SLIDES["DeckD2"] = shell("모듈 D", "지금은 이렇게 일합니다 — 그�
           <strong style="font-weight: 600; color: #9a2c2c;">2번을 빼면 어떻게 되는지</strong>가 이 모듈의 시험입니다. 사람도 자주 건너뜁니다.
         </div>
       </div>
-      <div style="{CARD} flex-grow: 1; padding: 8px 6px;">
+      <div style="{CARD} flex-grow: 1; padding: 8px 6px; display: flex; flex-direction: column; justify-content: center;">
         <table style="border-collapse: collapse; width: 100%; font-size: 14px;">
           <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 4px 10px;">#</td><td style="padding: 4px 10px;">내가 하는 일</td><td style="padding: 4px 10px;">꼬리표</td><td style="padding: 4px 10px;">지시문 어디로</td></tr>
           {drow(1, "실적 엑셀을 연다", "outside", "입력 파일")}
@@ -459,7 +459,7 @@ chips = "".join(f'<span style="border: 1px solid #d9d7d0; background: #ffffff; p
 def q(n, t, d):
     return f'<div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 22px; font-weight: 700; color: #1c3f94; width: 28px; flex-shrink: 0; line-height: 1.2;">{n}</span><div><div style="font-size: 16px; font-weight: 600; line-height: 1.4;">{t}</div><div style="font-size: 14px; color: #6b6660; line-height: 1.5;">{d}</div></div></div>'
 SLIDES["DeckD12"] = shell("모듈 D", "내 업무로 전환", "5분 — 워크북 부록에 적습니다", f"""
-    <div style="{CARD} padding: 16px 22px; display: flex; flex-direction: column; gap: 12px;">
+    <div style="{CARD} padding: 16px 22px; display: flex; flex-direction: column; gap: 12px; justify-content: center;">
       <div style="{LBL}">오늘 쓴 실적 파일의 10개 컬럼</div>
       <div style="display: flex; flex-wrap: wrap; gap: 8px;">{chips}</div>
       <div style="font-size: 16px; line-height: 1.5;">내 실적 파일에는 이 중 <strong style="font-weight: 600;">무엇이 있고 무엇이 없는가?</strong> 없는 것은 어디서 가져오나? — 이 표 하나면 지시문 ③ 입력 검사가 내 것이 됩니다.</div>
@@ -495,7 +495,7 @@ def session(n, name, who, segs, note):
   <div style="display: flex; gap: 2px; height: 30px;">{lbar(segs)}</div>
 </div>"""
 SLIDES["DeckO3"] = shell("오프닝", "오늘의 흐름", "2시간 블록 셋 · 에이전트 1개 = 2시간", f"""
-    <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; flex-direction: column; gap: 10px; justify-content: space-evenly;">
       {session(1, "D 데이터 분석", "전원 · 첫 모듈", [(10,"오프닝","common"),(30,"일 보는 법 + 분해표","common"),(10,"시연","talk"),(25,"실습 1","hands"),(10,"방법론","common"),(25,"실습 2·3","hands"),(5,"전환","talk"),(5,"버퍼","buf")], "오프닝 · 일 보는 법이 여기 들어 있습니다 — 실습 50")}
       {session(2, "A 또는 B 시장·고객 분석", "B2B팀은 A · 유통전략팀은 B", [(20,"방법론 5장 + 분해표","common"),(15,"시연","talk"),(30,"실습 1","hands"),(25,"실습 2","hands"),(15,"실습 3","hands"),(10,"전환","talk"),(5,"버퍼","buf")], "실습 70")}
       {session(3, "C 제안자료 작성", "전원", [(20,"방법론 2장 + 분해표","common"),(15,"시연","talk"),(30,"실습 1","hands"),(40,"실습 2·3","hands"),(15,"Skill + 클로징","common")], "실습 70")}
@@ -590,7 +590,7 @@ def arow(n, st, who, t, block, hot=False):
     return f'<tr style="{bg}"><td style="padding: 6px 10px; color: #9a958d; font-weight: 600; width: 28px;">{n}</td><td style="padding: 6px 10px;">{st}</td><td style="padding: 6px 10px; color: #6b6660; width: 70px;">{who}</td><td style="padding: 6px 10px; text-align: right; width: 60px; {tw}">{t}</td><td style="padding: 6px 10px; color: #6b6660;">{block}</td></tr>'
 SLIDES["DeckW3"] = shell("일을 보는 법", "① As-Is 프로세스 — 지금 일이 어떻게 흘러가는가", "C 제안자료 9단계 실물", f"""
     <div style="display: flex; gap: 22px; align-items: stretch;">
-      <div style="{CARD} flex: 1.5 0 0; padding: 8px 6px;">
+      <div style="{CARD} flex: 1.5 0 0; padding: 8px 6px; display: flex; flex-direction: column; justify-content: center;">
         <table style="border-collapse: collapse; width: 100%; font-size: 14px;">
           <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 4px 10px;">#</td><td style="padding: 4px 10px;">단계 — 동사 하나</td><td style="padding: 4px 10px;">누가</td><td style="padding: 4px 10px; text-align: right;">시간</td><td style="padding: 4px 10px;">막히는 곳</td></tr>
           {arow(1, "고객 요구조건 메일을 읽는다", "나", "10분", "")}
@@ -641,7 +641,7 @@ SLIDES["DeckW4"] = shell("일을 보는 법", "② 단계별 IPO — 받는 것 
 # ───────────── W5 틈이 에이전트 자리입니다 ─────────────
 SLIDES["DeckW5"] = shell("일을 보는 법", "틈이 에이전트 자리입니다", "C 모듈 단계 ⓪이 나온 곳", f"""
     <div style="display: flex; gap: 12px; align-items: stretch;">
-      <div style="{CARD} flex: 1 0 0; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; background: #f7f6f2;">
+      <div style="{CARD} flex: 1 0 0; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; background: #f7f6f2; justify-content: center;">
         <div style="{LBL}">3단계의 O</div>
         <div style="font-size: 19px; font-weight: 600;">화면에서 복사한 뒤죽박죽 텍스트</div>
         <div class="mono" style="font-size: 13px; color: #6b6660; line-height: 1.6;">삼성 비즈니스 TV 65인치 4K … 1,290,000원 무료배송 판매자 ○○ … 리뷰 312 … 다른 상품 …</div>
@@ -652,7 +652,7 @@ SLIDES["DeckW5"] = shell("일을 보는 법", "틈이 에이전트 자리입니�
         <div style="font-size: 22px; color: #9a958d;">↓</div>
         <div style="background: #1c3f94; color: #fbfaf7; padding: 8px 12px; font-size: 14px; font-weight: 600; text-align: center;">단계 ⓪<br>수집 정제</div>
       </div>
-      <div style="{CARD} flex: 1 0 0; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; border-top: 3px solid #0f6b4f;">
+      <div style="{CARD} flex: 1 0 0; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; border-top: 3px solid #0f6b4f; justify-content: center;">
         <div style="{LBL}">4단계의 I</div>
         <div style="font-size: 19px; font-weight: 600;">4열 표</div>
         <table class="mono" style="border-collapse: collapse; font-size: 13px; width: 100%;"><tr style="color: #6b6660;"><td style="padding: 3px 6px; border-bottom: 1px solid #e4e2db;">수요처명</td><td style="padding: 3px 6px; border-bottom: 1px solid #e4e2db;">모델명</td><td style="padding: 3px 6px; border-bottom: 1px solid #e4e2db;">온라인가격</td><td style="padding: 3px 6px; border-bottom: 1px solid #e4e2db;">제품spec.</td></tr><tr><td style="padding: 3px 6px;">네이버쇼핑</td><td style="padding: 3px 6px;">MX-65P</td><td style="padding: 3px 6px;">1,290,000</td><td style="padding: 3px 6px;">65" 4K 500nit</td></tr></table>
@@ -877,7 +877,7 @@ def decomp(label, title, now, rows, note1, note2, page, legend_lock="사람만 �
         <div style="{CARD} border-left: 3px solid #1c3f94; padding: 14px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;">{note1}</div>
         <div style="{CARD} border-left: 3px solid #9a6408; padding: 14px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;">{note2}</div>
       </div>
-      <div style="{CARD} flex-grow: 1; padding: 8px 6px;">
+      <div style="{CARD} flex-grow: 1; padding: 8px 6px; display: flex; flex-direction: column; justify-content: center;">
         <table style="border-collapse: collapse; width: 100%; font-size: 14px;">
           <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 4px 10px;">#</td><td style="padding: 4px 10px;">{cols[0]}</td><td style="padding: 4px 10px;">{cols[1]}</td><td style="padding: 4px 10px;">{cols[2]}</td></tr>
           {trs}
@@ -971,7 +971,7 @@ def tl(rank, who, done, approach, gap, hot=False):
   </div>
 </div>"""
 SLIDES["DeckA5"] = shell("모듈 A", "신호를 읽는 법 — 준공 −6개월 = 접근 시점", "규모가 아니라 시점으로 정렬합니다", f"""
-    <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div style="display: flex; flex-direction: column; gap: 8px; justify-content: space-evenly;">
       {tl(1, "한울종합건설 강릉 호텔 재개관", "2027-03", "2026-09 = 지금", "기준일 2026-09-01", True)}
       {tl(3, "대성건설 오피스동 · 수주 1.2조", "2028-06", "2027-12", "15개월 뒤 — 규모는 크지만 시점이 멉니다")}
     </div>
@@ -1231,7 +1231,7 @@ def cannot(n, t):
     return f'<div style="display: flex; gap: 10px; align-items: flex-start;"><div style="width: 17px; height: 17px; border: 2px solid #9a2c2c; flex-shrink: 0; margin-top: 3px;"></div><div style="font-size: 14px; line-height: 1.5;">{t}</div></div>'
 SLIDES["DeckK5"] = shell("Skill과 MCP", "오늘 만들어도 되는 일인가", "하나라도 해당하면 범위를 줄이거나 분리합니다", f"""
     <div style="display: flex; gap: 22px; align-items: stretch; flex-grow: 1;">
-      <div style="{CARD} flex: 1.3 0 0; border-top: 4px solid #9a2c2c; padding: 16px 22px; display: flex; flex-direction: column; gap: 9px;">
+      <div style="{CARD} flex: 1.3 0 0; border-top: 4px solid #9a2c2c; padding: 16px 22px; display: flex; flex-direction: column; gap: 9px; justify-content: space-evenly;">
         <div style="font-size: 12px; letter-spacing: 0.16em; color: #9a2c2c; font-weight: 600;">CANNOT 7 — 해당하면 오늘은 안 됩니다</div>
         {cannot(1, "ERP · SCM · CRM 등 <strong style='font-weight: 600;'>사내 시스템과 자동 연동</strong>이 필요하다")}
         {cannot(2, "고객 담당자 <strong style='font-weight: 600;'>개인정보 · 계약 단가 · 미공개 실적</strong>이 입력에 들어간다")}

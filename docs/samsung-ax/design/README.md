@@ -68,6 +68,12 @@ Claude Design 캔버스의 **작업 파일**입니다. 여기서 고치고 다�
 
 렌더링 확인은 헤드리스 크롬으로 합니다 — 열 장 모두 `over=0`, 마지막 요소 하단 680px(= 720 − 여백 40)이어야 합니다.
 
+## A판 · B판 슬라이드쇼
+
+`tools/build_deck.py`가 `canvas.json`의 페이지 순서대로 아트보드를 이어 붙여 `../deck/A판.html` · `B판.html`을 만듭니다 — 브라우저에서 열면 화면에 맞춰 축소되고, 화살표 · 클릭으로 넘기며, 우하단에 `n / 72 · 장 이름`이 보입니다.
+PDF는 그 파일을 인쇄하면 됩니다(페이지 크기 1280×720이 CSS에 있음). 헤드리스 크롬으로는
+`chrome --headless=new --print-to-pdf=A판.pdf --no-pdf-header-footer A판.html`. PDF는 커밋하지 않습니다(`.gitignore`).
+
 ## 빌드 산출물
 
 캔버스 파일(`samsung-b2b-ax-deck-system.html`)은 에디터가 통째로 들어가 2MB가 넘어 커밋하지 않습니다(`.gitignore`).

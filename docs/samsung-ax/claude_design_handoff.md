@@ -1,5 +1,5 @@
 > **이 파일은 이전 버전(v4)입니다. 갱신하지 않습니다.**
-> 최신은 [`design_handoff_package.md`](design_handoff_package.md) — 저장소 없이 한 파일로 쓰는 핸드오프이며, 강의장 기준(실습 슬라이드 6요소 · 판독 크기 · A판/B판 · 첫 모듈 큐시트)이 여기에만 반영돼 있습니다.
+> 최신은 [`design_handoff_package.md`](design_handoff_package.md) — 저장소 없이 한 파일로 쓰는 핸드오프이며, 강의장 기준(실습 슬라이드 6요소 · 판독 크기 · A판/B판 · 6시간 배치표)이 여기에만 반영돼 있습니다.
 
 # Claude Design 핸드오프 (v3) — 삼성전자 B2B 영업 AX 과정 강의 슬라이드 deck
 

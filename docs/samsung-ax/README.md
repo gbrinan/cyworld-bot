@@ -9,11 +9,12 @@ docs/samsung-ax/
 ├─ README.md                  (이 파일)
 ├─ agent_structure_v2.md      Agent 구조 (9/7 삼성 시나리오 + 9/12 재설계). 에이전트 4개 · 모듈당 1개 · 2시간
 ├─ reuse_from_eugene.md       유진투자증권 과정에서 가져온 것 / 안 가져온 것
-├─ claude_design_handoff.md   Claude Design 복붙 프롬프트 (슬라이드 제작용)
+├─ design_handoff_package.md  **Claude Design 핸드오프** — 한 파일로 자립 (프롬프트·72장·디자인 시스템·수치·검수)
+├─ claude_design_handoff.md   (이전 버전 · 갱신 안 함)
 ├─ handoff_review.md          핸드오프 검토 — 사내강사 운영 가능성, P0~P2 부족 항목, 작업 순서
-├─ validation_log.md          **블라인드 검증 기록** — 회차별 결함과 수정, 얻은 규칙 5가지
+├─ validation_log.md          **블라인드 검증 기록** — 회차별 결함과 수정, 얻은 규칙 9가지
 ├─ module_spec.md             **모듈 방식 제안** — 요구조건서 1장 → 7단계 빌드 → CHECK 12항목. v2 팩은 이 구조로 제작
-├─ slides_outline.md          슬라이드 53장 설계서
+├─ slides_outline.md          슬라이드 72장 설계서 (정본) + 첫 모듈 큐시트 + 제작 메모
 ├─ instructor_guide.md        강사용 진행 가이드 (큐시트·되묻기·보조강사 운영)
 ├─ workbook.md                참가자 실습 워크북 (빈칸형)
 ├─ faq.md                     예상 Q&A
@@ -131,7 +132,7 @@ D  데이터 분석                    2h   단계 1  →  recommend_D.html
 ```
 
 **한 모듈이 2시간이고 그 안에서 에이전트 하나를 끝까지 만듭니다.** 단계가 셋이어도 에이전트는 하나입니다. 단계 사이에 🔒(사람만)이 없기 때문입니다.
-본 과정 6시간은 셋(A 또는 B → C → D), 양성과정 2일은 넷 전부입니다.
+본 과정 6시간은 셋 — **수업 순서는 D → A 또는 B → C**입니다(단계가 하나인 D를 먼저 해서 그 시간에 일 보는 법을 가르칩니다. 삼성 양식 번호 ②③④는 수업 순서가 아닙니다). 양성과정 2일은 넷 전부입니다.
 
 각 모듈의 출력은 파일로 저장해 다음 모듈에 올릴 수 있습니다. 도구가 달라도 파일로 이어집니다.
 

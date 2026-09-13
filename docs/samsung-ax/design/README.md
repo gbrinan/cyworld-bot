@@ -11,12 +11,12 @@ Claude Design 캔버스의 **작업 파일**입니다. 여기서 고치고 다�
 | `Blocks7.dc.html` | 지시문 7블록 |
 | `Tests3.dc.html` | 테스트 3종 |
 | `AgentSkill.dc.html` | 에이전트와 스킬 나누기 |
-| `Handson.dc.html` | 실습 안내 템플릿 (8장 반복) |
+| `Handson.dc.html` | 실습 슬라이드 마스터 (8장 반복 · 여섯 요소) |
 | `ClickPath.dc.html` | 클릭 경로 템플릿 (5장 반복) |
 | `Components.dc.html` | 컴포넌트와 토큰 (마스터) |
 | `canvas.json` | 배치와 메모 |
 
-사양은 [`../claude_design_handoff.md`](../claude_design_handoff.md). 슬라이드 72장 목록은 [`../slides_outline.md`](../slides_outline.md).
+사양은 [`../design_handoff_package.md`](../design_handoff_package.md). 슬라이드 72장 목록은 [`../slides_outline.md`](../slides_outline.md).
 
 ## 규칙
 
@@ -37,6 +37,11 @@ Claude Design 캔버스의 **작업 파일**입니다. 여기서 고치고 다�
 - **푸터에 제작 메모를 쓰지 않습니다.** 관객이 그대로 봅니다. 그런 문구는 `canvas.json`의 메모로 갑니다.
 - **슬라이드에 들어가는 수치는 각 모듈 `04_answer/` 기준본에서만** 가져옵니다. 임의로 바꾸면 강사가 참가자 결과를 판정할 수 없습니다.
 - 삼성 블루는 자리표시 토큰입니다. `Components.dc.html`의 토큰 값만 바꾸면 전체가 따라갑니다.
+- **실습 슬라이드는 텍스트를 줄이지 않습니다.** 30분 넘게 멈춰 있는 유일한 작업 지시서라서, `Handson.dc.html`의 여섯 요소가
+  전부 있어야 합니다 — 지금 만드는 것 / 쓰는 파일 이름(mono) / 할 일 + 종료 시각 빈칸 / 됐다는 신호 3개 / 막혔을 때 3줄 / 복사 출처.
+  참가자가 읽어야 하는 글자는 16 이상입니다.
+- 꼬리표는 **아이콘 단독으로 두지 않습니다.** 항상 글자 라벨을 붙입니다. 색만으로 구분하지 않습니다(빔 + 색약).
+- 타임바는 A·B·C가 같고 **첫 모듈 D만 다릅니다**(`Section.dc.html`은 표준 바를 C로 보여 줍니다).
 - 시간 막대처럼 **비율이 정보인 도식은 `flex: N 0 0`** 으로 그립니다. `flex-grow`만 쓰면 라벨 길이가 폭에 더해져
   30분짜리가 20분짜리와 같은 크기로 나옵니다.
 

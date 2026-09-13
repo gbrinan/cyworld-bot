@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">오프닝</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">시작 전 준비</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">3분이면 됩니다</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start;">
+  <div style="font-size: 30px; font-weight: 700; color: #1c3f94; line-height: 1; width: 40px; flex-shrink: 0;">1</div>
+  <div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 19px; font-weight: 600;">탭 두 개</div><div style="font-size: 14px; color: #6b6660; line-height: 1.55;">AI 창(ChatGPT 또는 Gemini) 하나, <strong style='font-weight: 600; color: #111821;'>메모장</strong> 하나. 지시문은 메모장에 먼저 둡니다 — 세션이 끊기면 채팅창의 지시문은 사라집니다</div></div>
+</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start;">
+  <div style="font-size: 30px; font-weight: 700; color: #1c3f94; line-height: 1; width: 40px; flex-shrink: 0;">2</div>
+  <div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 19px; font-weight: 600;">저장 폴더</div><div style="font-size: 14px; color: #6b6660; line-height: 1.55;"><span class='mono' style='font-size: 13px; color: #111821;'>바탕화면/AX실습_내이름/</span> 하나를 만들어 둡니다. 모듈마다 결과 파일 하나가 여기 쌓입니다</div></div>
+</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start;">
+  <div style="font-size: 30px; font-weight: 700; color: #1c3f94; line-height: 1; width: 40px; flex-shrink: 0;">3</div>
+  <div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 19px; font-weight: 600;">업로드 테스트</div><div style="font-size: 14px; color: #6b6660; line-height: 1.55;">작은 파일로 먼저 — <span class='mono' style='font-size: 13px; color: #111821;'>target_account.md</span> (1KB). 큰 파일로 시도하다 실패하면 시간이 날아갑니다</div></div>
+</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start;">
+  <div style="font-size: 30px; font-weight: 700; color: #1c3f94; line-height: 1; width: 40px; flex-shrink: 0;">4</div>
+  <div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 19px; font-weight: 600;">이번 모듈 폴더 열어 두기</div><div style="font-size: 14px; color: #6b6660; line-height: 1.55;">배포 폴더의 <span class='mono' style='font-size: 13px; color: #111821;'>modules/D_analysis/</span>. 파일 이름은 화면에 뜬 것을 그대로 씁니다</div></div>
+</div>
+    </div>
+    <div style="background: #ffffff; border: 1px solid #e4e2db; border-left: 4px solid #9a2c2c; padding: 14px 18px; display: flex; align-items: center; gap: 16px;">
+      <div style="font-size: 19px; font-weight: 600; color: #9a2c2c;">오늘 올리는 파일은 전부 가상 데이터입니다.</div>
+      <div style="font-size: 16px; color: #3d4650;">실제 고객사명 · 계약 단가 · 실적 파일은 올리지 않습니다. 실습이 끝나도 같습니다.</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>O · 04</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

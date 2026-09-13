@@ -15,7 +15,8 @@ Claude Design 캔버스의 **작업 파일**입니다. 여기서 고치고 다�
 | `ClickPath.dc.html` | 클릭 경로 템플릿 (5장 반복) |
 | `Components.dc.html` | 컴포넌트와 토큰 (마스터) |
 | `HandsD1` ~ `HandsC2` (10장) | **실습 슬라이드 실물** — 둘째 페이지. D 2장 · A 3장 · B 3장 · C 2장. `tools/gen_handson.py`가 만든다 |
-| `canvas.json` | 배치와 메모. 페이지 둘 — 디자인 시스템 / 실습 슬라이드 10장 |
+| `Deck*.dc.html` (10장) | **덱 슬라이드 실물** — 90분 축약판을 채우는 장들 (O2 O4 O5 · W7 · M4 · D1 D3 D5 D10 · Z2). `tools/gen_deck.py`가 만든다 |
+| `canvas.json` | 배치와 메모. **페이지 여덟** — 마스터 / 오프닝 / 일 보는 법·방법론 / 모듈 D / A / B / C / Skill·클로징. 덱 순서 = 페이지 안 왼쪽 위부터 |
 
 사양은 [`../design_handoff_package.md`](../design_handoff_package.md). 슬라이드 72장 목록은 [`../slides_outline.md`](../slides_outline.md).
 
@@ -45,6 +46,19 @@ Claude Design 캔버스의 **작업 파일**입니다. 여기서 고치고 다�
 - 타임바는 A·B·C가 같고 **첫 모듈 D만 다릅니다**(`Section.dc.html`은 표준 바를 C로 보여 줍니다).
 - 시간 막대처럼 **비율이 정보인 도식은 `flex: N 0 0`** 으로 그립니다. `flex-grow`만 쓰면 라벨 길이가 폭에 더해져
   30분짜리가 20분짜리와 같은 크기로 나옵니다.
+
+## 덱 슬라이드 — 어디까지 있나
+
+| 페이지 | 있는 장 | 남은 장 |
+|---|---|---|
+| 오프닝 8 | O1 O2 O4 O5 | O3 O6 O7 O8 (O6은 ClickPath 템플릿에서) |
+| 일 보는 법 9 · 방법론 11 | W2 W6 W7 W8 · M4 M7 M9 | W1 W3 W4 W5 W9 · M1 M2 M3 M5 M6 M8 M10 M11 |
+| 모듈 D 12 | D1 D3 D5 D9 D10 D11 | D2 D4 D6 D7 D8 D12 |
+| 모듈 A 12 · B 12 | 실습 3장씩 | 나머지 9장씩 (표지는 Section 템플릿에서) |
+| 모듈 C 11 | 실습 2장 | 나머지 9장 |
+| Skill 6 · 클로징 3 | Z2 | K1~K6 · Z1 Z3 |
+
+**90분 축약판 16장은 전부 있습니다.** `tools/gen_deck.py`의 `SLIDES`에 장을 더하면 같은 골격으로 나옵니다 — 헤더(블록 라벨 · 제목 · 우측 캡션)와 푸터는 `shell()`이 붙입니다.
 
 ## 실습 슬라이드 10장
 

@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">오프닝</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">오늘 에이전트 4개를 만듭니다</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">한 칸 = 2시간 = 에이전트 하나</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="display: flex; gap: 12px; align-items: stretch;">
+      <div style="display: flex; flex-direction: column; gap: 10px; flex: 1.1 0 0;">
+        <div style="font-size: 12px; letter-spacing: 0.16em; color: #6b6660; font-weight: 600;">시장 · 고객 분석 — 팀별로 하나</div>
+        <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;">
+  <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #1c3f94;">A</span><span style="font-size: 19px; font-weight: 600;">직판 Sensing</span></div>
+  <div style="font-size: 14px; color: #6b6660;">B2B팀 · 상장 건설사 1곳을 깊게</div>
+  <div style="font-size: 14px; line-height: 1.5; padding-top: 4px; border-top: 1px solid #e4e2db;">에이전트 <span style="color: #6b6660;">1개 · 2시간</span><br>스킬 <span class="mono" style="font-size: 13px;">sensing-listed-builders</span></div>
+  <div style="font-size: 14px; color: #6b6660;">결과물 <span class="mono" style="font-size: 13px; color: #111821;">dashboard_A.html</span></div>
+</div>
+        <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;">
+  <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #1c3f94;">B</span><span style="font-size: 19px; font-weight: 600;">경로 Sensing</span></div>
+  <div style="font-size: 14px; color: #6b6660;">B2B유통전략팀 · 권역의 작은 시설 여럿을 넓게</div>
+  <div style="font-size: 14px; line-height: 1.5; padding-top: 4px; border-top: 1px solid #e4e2db;">에이전트 <span style="color: #6b6660;">1개 · 2시간</span><br>스킬 <span class="mono" style="font-size: 13px;">scanning-district-openings</span></div>
+  <div style="font-size: 14px; color: #6b6660;">결과물 <span class="mono" style="font-size: 13px; color: #111821;">report_B.docx</span></div>
+</div>
+      </div>
+      <div style="display: flex; align-items: center; color: #9a958d; font-size: 22px; padding: 0 4px;">→</div>
+      <div style="display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+        <div style="font-size: 12px; letter-spacing: 0.16em; color: #6b6660; font-weight: 600;">데이터 분석 — 공통</div>
+        <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #9a6408; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;">
+  <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #9a6408;">D</span><span style="font-size: 19px; font-weight: 600;">데이터 분석</span></div>
+  <div style="font-size: 14px; color: #6b6660;">전원 · 과거 실적에서 추천 TOP 3</div>
+  <div style="font-size: 14px; line-height: 1.5; padding-top: 4px; border-top: 1px solid #e4e2db;">에이전트 <span style="color: #6b6660;">1개 · 2시간</span><br>스킬 <span class="mono" style="font-size: 13px;">recommending-products-by-vertical</span></div>
+  <div style="font-size: 14px; color: #6b6660;">결과물 <span class="mono" style="font-size: 13px; color: #111821;">recommend_D.html</span></div>
+</div>
+      </div>
+      <div style="display: flex; align-items: center; color: #9a958d; font-size: 22px; padding: 0 4px;">→</div>
+      <div style="display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+        <div style="font-size: 12px; letter-spacing: 0.16em; color: #6b6660; font-weight: 600;">제안자료 작성 — 공통</div>
+        <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;">
+  <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #1c3f94;">C</span><span style="font-size: 19px; font-weight: 600;">제안자료 작성</span></div>
+  <div style="font-size: 14px; color: #6b6660;">전원 · 요구조건에 맞는 3안 + 시장가 비교</div>
+  <div style="font-size: 14px; line-height: 1.5; padding-top: 4px; border-top: 1px solid #e4e2db;">에이전트 <span style="color: #6b6660;">1개 · 2시간</span><br>스킬 <span class="mono" style="font-size: 13px;">proposing-display-options</span></div>
+  <div style="font-size: 14px; color: #6b6660;">결과물 <span class="mono" style="font-size: 13px; color: #111821;">proposal_C.html</span></div>
+</div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; padding: 18px 26px; background: #111821; color: #fbfaf7;">
+      <div style="font-size: 22px; font-weight: 700;">에이전트는 넷, 모듈당 하나.</div>
+      <div style="font-size: 16px; color: #c9c5bd;">모듈 안에 단계가 셋이어도 에이전트는 하나입니다.</div>
+      <div style="flex-grow: 1;"></div>
+      <div style="font-size: 14px; color: #c9c5bd; text-align: right; line-height: 1.5;">본 과정 6시간은 셋 — 수업 순서 <strong style="color: #fbfaf7;">D → A 또는 B → C</strong><br>양성과정 2일은 넷 전부</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>O · 02</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

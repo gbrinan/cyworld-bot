@@ -1,7 +1,7 @@
 {
   "artboards": [
     {
-      "file": "Main.dc.html",
+      "file": "Components.dc.html",
       "x": 0,
       "y": 0,
       "w": 1280,
@@ -17,41 +17,9 @@
       "page": "page-1"
     },
     {
-      "file": "Design6.dc.html",
+      "file": "ClickPath.dc.html",
       "x": 2800,
       "y": 0,
-      "w": 1280,
-      "h": 720,
-      "page": "page-1"
-    },
-    {
-      "file": "Tags4.dc.html",
-      "x": 4200,
-      "y": 0,
-      "w": 1280,
-      "h": 720,
-      "page": "page-1"
-    },
-    {
-      "file": "Blocks7.dc.html",
-      "x": 0,
-      "y": 880,
-      "w": 1280,
-      "h": 720,
-      "page": "page-1"
-    },
-    {
-      "file": "Tests3.dc.html",
-      "x": 1400,
-      "y": 880,
-      "w": 1280,
-      "h": 720,
-      "page": "page-1"
-    },
-    {
-      "file": "AgentSkill.dc.html",
-      "x": 2800,
-      "y": 880,
       "w": 1280,
       "h": 720,
       "page": "page-1"
@@ -59,29 +27,13 @@
     {
       "file": "Handson.dc.html",
       "x": 4200,
-      "y": 880,
+      "y": 0,
       "w": 1280,
       "h": 720,
       "page": "page-1"
     },
     {
-      "file": "ClickPath.dc.html",
-      "x": 0,
-      "y": 1760,
-      "w": 1280,
-      "h": 720,
-      "page": "page-1"
-    },
-    {
-      "file": "Components.dc.html",
-      "x": 1400,
-      "y": 1760,
-      "w": 1280,
-      "h": 720,
-      "page": "page-1"
-    },
-    {
-      "file": "HandsD1.dc.html",
+      "file": "Main.dc.html",
       "x": 0,
       "y": 0,
       "w": 1280,
@@ -89,7 +41,7 @@
       "page": "page-2"
     },
     {
-      "file": "HandsD2.dc.html",
+      "file": "DeckO2.dc.html",
       "x": 1400,
       "y": 0,
       "w": 1280,
@@ -97,7 +49,7 @@
       "page": "page-2"
     },
     {
-      "file": "HandsC1.dc.html",
+      "file": "DeckO4.dc.html",
       "x": 2800,
       "y": 0,
       "w": 1280,
@@ -105,7 +57,7 @@
       "page": "page-2"
     },
     {
-      "file": "HandsC2.dc.html",
+      "file": "DeckO5.dc.html",
       "x": 4200,
       "y": 0,
       "w": 1280,
@@ -113,52 +65,180 @@
       "page": "page-2"
     },
     {
-      "file": "HandsA1.dc.html",
+      "file": "Design6.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-3"
+    },
+    {
+      "file": "Tags4.dc.html",
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-3"
+    },
+    {
+      "file": "DeckW7.dc.html",
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-3"
+    },
+    {
+      "file": "AgentSkill.dc.html",
+      "x": 4200,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-3"
+    },
+    {
+      "file": "DeckM4.dc.html",
       "x": 0,
       "y": 880,
       "w": 1280,
       "h": 720,
-      "page": "page-2"
+      "page": "page-3"
+    },
+    {
+      "file": "Blocks7.dc.html",
+      "x": 1400,
+      "y": 880,
+      "w": 1280,
+      "h": 720,
+      "page": "page-3"
+    },
+    {
+      "file": "Tests3.dc.html",
+      "x": 2800,
+      "y": 880,
+      "w": 1280,
+      "h": 720,
+      "page": "page-3"
+    },
+    {
+      "file": "DeckD1.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-4"
+    },
+    {
+      "file": "DeckD3.dc.html",
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-4"
+    },
+    {
+      "file": "DeckD5.dc.html",
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-4"
+    },
+    {
+      "file": "HandsD1.dc.html",
+      "x": 4200,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-4"
+    },
+    {
+      "file": "DeckD10.dc.html",
+      "x": 0,
+      "y": 880,
+      "w": 1280,
+      "h": 720,
+      "page": "page-4"
+    },
+    {
+      "file": "HandsD2.dc.html",
+      "x": 1400,
+      "y": 880,
+      "w": 1280,
+      "h": 720,
+      "page": "page-4"
+    },
+    {
+      "file": "HandsA1.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-5"
     },
     {
       "file": "HandsA2.dc.html",
       "x": 1400,
-      "y": 880,
+      "y": 0,
       "w": 1280,
       "h": 720,
-      "page": "page-2"
+      "page": "page-5"
     },
     {
       "file": "HandsA3.dc.html",
       "x": 2800,
-      "y": 880,
+      "y": 0,
       "w": 1280,
       "h": 720,
-      "page": "page-2"
+      "page": "page-5"
     },
     {
       "file": "HandsB1.dc.html",
       "x": 0,
-      "y": 1760,
+      "y": 0,
       "w": 1280,
       "h": 720,
-      "page": "page-2"
+      "page": "page-6"
     },
     {
       "file": "HandsB2.dc.html",
       "x": 1400,
-      "y": 1760,
+      "y": 0,
       "w": 1280,
       "h": 720,
-      "page": "page-2"
+      "page": "page-6"
     },
     {
       "file": "HandsB3.dc.html",
       "x": 2800,
-      "y": 1760,
+      "y": 0,
       "w": 1280,
       "h": 720,
-      "page": "page-2"
+      "page": "page-6"
+    },
+    {
+      "file": "HandsC1.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-7"
+    },
+    {
+      "file": "HandsC2.dc.html",
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-7"
+    },
+    {
+      "file": "DeckZ2.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-8"
     }
   ],
   "annotations": [
@@ -203,26 +283,58 @@
       "page": "page-1"
     },
     {
+      "id": "note-deck",
+      "x": 0,
+      "y": 900,
+      "w": 560,
+      "page": "page-2",
+      "text": "덱은 블록별 페이지입니다. 슬라이드 순서 = 페이지 안에서 왼쪽 위부터.\n\nA판 72장 = 오프닝 + 일 보는 법·방법론 + 모듈 D + 모듈 A + 모듈 C + Skill·클로징\nB판 72장 = 같은데 모듈 A 대신 모듈 B.\n\n90분 축약판 16장 — 전부 캔버스에 있습니다:\nO1 O2 O4 O5 · W2 W6 W7 · M4 M7 M9 · D1 D3 D5 D9(실습1) D10 · Z2\n\n아직 없는 장은 페이지 이름의 장수와 비교하면 보입니다. 수치·파일명은 04_answer 기준본에서만 가져옵니다.\n이 안내 문구는 최종본에서 지웁니다."
+    },
+    {
       "id": "note-handson",
-      "x": 4200,
+      "x": 0,
       "y": 900,
       "w": 460,
-      "page": "page-2",
-      "text": "실습 슬라이드 10장 — 강의장에서 30분 넘게 멈춰 있는 화면들.\n\n윗줄 D·C는 전원 공통. 둘째 줄 A는 B2B팀 판, 셋째 줄 B는 유통전략팀 판. A판 덱은 D1 D2 A1 A2 A3 C1 C2, B판 덱은 D1 D2 B1 B2 B3 C1 C2.\n\n파일 이름·수치·행 번호는 각 모듈 03_tests와 04_answer 기준본에서 그대로 가져왔습니다. 바꾸면 강사가 참가자 결과를 판정하지 못합니다.\n\n종료 시각 빈칸(__:__ 까지)은 강사가 현장에서 채웁니다.\n이 안내 문구는 최종본에서 지웁니다."
+      "page": "page-5",
+      "text": "실습 슬라이드는 각 모듈 페이지에 있습니다 — 30분 넘게 멈춰 있는 화면들.\n여섯 요소(만드는 것 · 파일 이름 · 할 일+종료 시각 · 됐다는 신호 · 막혔을 때 · 복사 출처)가 모두 같은 자리에 있습니다. tools/gen_handson.py가 만듭니다.\n종료 시각 빈칸(__:__ 까지)은 강사가 현장에서 채웁니다.\n이 안내 문구는 최종본에서 지웁니다."
     }
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-2"
+    "page": "page-4"
   },
   "pages": [
     {
       "id": "page-1",
-      "name": "디자인 시스템"
+      "name": "디자인 시스템 · 마스터"
     },
     {
       "id": "page-2",
-      "name": "실습 슬라이드 10장"
+      "name": "오프닝 (8장)"
+    },
+    {
+      "id": "page-3",
+      "name": "일 보는 법 · 방법론 (20장)"
+    },
+    {
+      "id": "page-4",
+      "name": "모듈 D (12장) · 첫 모듈"
+    },
+    {
+      "id": "page-5",
+      "name": "모듈 A (12장) · B2B팀"
+    },
+    {
+      "id": "page-6",
+      "name": "모듈 B (12장) · 유통전략팀"
+    },
+    {
+      "id": "page-7",
+      "name": "모듈 C (11장)"
+    },
+    {
+      "id": "page-8",
+      "name": "Skill · 클로징 (9장)"
     }
   ]
 }

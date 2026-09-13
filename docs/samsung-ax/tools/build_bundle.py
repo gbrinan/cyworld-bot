@@ -158,6 +158,7 @@ section{{margin-top:36px}}
 <div><b>3교시</b><strong>C 제안자료 작성</strong><small>전원 · 방법론 2장이 앞에 · Skill + 클로징이 뒤에</small><span class="mono">proposal_C.html</span></div>
 </div>
 <div class="note warn">모든 데이터 · 고객사 · 파트너 · 모델명 · 가격은 <strong>가상</strong>입니다. 실습 중 실제 업무 파일은 올리지 않습니다.</div>
+<div class="note">이 페이지가 <strong>온라인(artifact)</strong>이면 덱 · 강사 문서 · 참가자 워크북 · 모듈 A~D · 공통 문서만 열립니다. 디자인 원본(05) · 템플릿 · E 예제 · 도구(06) · zip 세 개는 <strong>AX_전체.zip</strong>(폴더판)에 있습니다. 폴더판에서는 전부 열립니다.</div>
 
 <section><h2>01 · 덱 — 강의 순서 72장 × 2판</h2>
 <p>브라우저에서 열고 ← → 로 넘깁니다. <strong>N</strong> 키로 발표자 노트, 우하단에 <span class="mono">n / 72 · 교시 · 장 이름</span>. 워크북 · 강사 가이드의 슬라이드 번호가 이 번호입니다.</p>

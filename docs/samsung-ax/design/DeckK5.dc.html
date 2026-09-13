@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">Skill과 MCP</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">오늘 만들어도 되는 일인가</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">하나라도 해당하면 범위를 줄이거나 분리합니다</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; display: flex; gap: 22px; align-items: stretch; flex-grow: 1;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1.3 0 0; border-top: 4px solid #9a2c2c; padding: 16px 22px; display: flex; flex-direction: column; gap: 9px;">
+        <div style="font-size: 12px; letter-spacing: 0.16em; color: #9a2c2c; font-weight: 600;">CANNOT 7 — 해당하면 오늘은 안 됩니다</div>
+        <div style="display: flex; gap: 10px; align-items: flex-start;"><div style="width: 17px; height: 17px; border: 2px solid #9a2c2c; flex-shrink: 0; margin-top: 3px;"></div><div style="font-size: 14px; line-height: 1.5;">ERP · SCM · CRM 등 <strong style='font-weight: 600;'>사내 시스템과 자동 연동</strong>이 필요하다</div></div>
+        <div style="display: flex; gap: 10px; align-items: flex-start;"><div style="width: 17px; height: 17px; border: 2px solid #9a2c2c; flex-shrink: 0; margin-top: 3px;"></div><div style="font-size: 14px; line-height: 1.5;">고객 담당자 <strong style='font-weight: 600;'>개인정보 · 계약 단가 · 미공개 실적</strong>이 입력에 들어간다</div></div>
+        <div style="display: flex; gap: 10px; align-items: flex-start;"><div style="width: 17px; height: 17px; border: 2px solid #9a2c2c; flex-shrink: 0; margin-top: 3px;"></div><div style="font-size: 14px; line-height: 1.5;"><strong style='font-weight: 600;'>별도 개발</strong>(스크립트 · API · 크롤러)이 필요하다</div></div>
+        <div style="display: flex; gap: 10px; align-items: flex-start;"><div style="width: 17px; height: 17px; border: 2px solid #9a2c2c; flex-shrink: 0; margin-top: 3px;"></div><div style="font-size: 14px; line-height: 1.5;"><strong style='font-weight: 600;'>사내 데이터 구조</strong>(DB 스키마 · 코드 체계)에 의존한다</div></div>
+        <div style="display: flex; gap: 10px; align-items: flex-start;"><div style="width: 17px; height: 17px; border: 2px solid #9a2c2c; flex-shrink: 0; margin-top: 3px;"></div><div style="font-size: 14px; line-height: 1.5;">가격 · 납기 · 할인 · 계약 조건을 <strong style='font-weight: 600;'>AI가 확정</strong>해야 한다</div></div>
+        <div style="display: flex; gap: 10px; align-items: flex-start;"><div style="width: 17px; height: 17px; border: 2px solid #9a2c2c; flex-shrink: 0; margin-top: 3px;"></div><div style="font-size: 14px; line-height: 1.5;"><strong style='font-weight: 600;'>외부 인터넷이 막힌 환경</strong>에서만 돌아가야 한다</div></div>
+        <div style="display: flex; gap: 10px; align-items: flex-start;"><div style="width: 17px; height: 17px; border: 2px solid #9a2c2c; flex-shrink: 0; margin-top: 3px;"></div><div style="font-size: 14px; line-height: 1.5;">고객 · 파트너에게 <strong style='font-weight: 600;'>직접 발송</strong>(메일 · 문자 · 카톡)한다</div></div>
+      </div>
+      <div style="flex: 1 0 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-size: 12px; letter-spacing: 0.16em; color: #6b6660; font-weight: 600;">좋은 과제 3원칙</div>
+        <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 18px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">01</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.3;">작은 성공 — 5~10%</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;">&quot;제안서 전체&quot;가 아니라 &quot;제안 제품 후보 3개 고르기&quot;</div>
+</div>
+        <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 18px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">02</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.3;">초안 수준</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;">완벽하게 만들려 하지 않습니다. 교육 중 생각이 바뀝니다</div>
+</div>
+        <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 18px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">03</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.3;">내가 할 수 있는 쉬운 일</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;">자주 해온 일. 남의 일 · 안 해본 일은 검수를 못 합니다</div>
+</div>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>K · 05</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

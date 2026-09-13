@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">Skill과 MCP</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">SKILL.md 세 부분</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">name · description · 본문</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; display: flex; gap: 22px; align-items: stretch; flex-grow: 1;">
+      <div class="mono" style="background: #ffffff; border: 1px solid #e4e2db; flex: 1.2 0 0; font-size: 13px; line-height: 1.8; padding: 18px 22px; background: #f2f1ec; display: flex; flex-direction: column; justify-content: center;"><span style="color: #9a958d;">---</span><br><span style="color: #1c3f94; font-weight: 500;">name:</span> recommending-products-by-vertical<br><span style="color: #1c3f94; font-weight: 500;">description:</span> 신규 수요처의 버티컬과 프로젝트 용도를 받아 과거 B2B 판매 실적에서 유사 버티컬의 판매 패턴을 분석하고 추천 제품 TOP3와 근거를 만든다. 영업 담당자가 제안 전에 제품 후보를 좁힐 때 쓴다.<br><span style="color: #9a958d;">---</span><br><br><span style="color: #6b6660;">(본문 = 지시문 7블록을 5섹션으로 접은 것)</span><br>## 1. 역할 · 목표 &nbsp;&nbsp;## 2. 출력 형식 &nbsp;&nbsp;## 3. 금지 사항<br>## 4. 검토 기준 &nbsp;&nbsp;## 5. 작업 단계 + 입출력 예시</div>
+      <div style="flex: 1 0 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 19px; font-weight: 700; color: #1c3f94; width: 26px; flex-shrink: 0;">name</span><div><div style="font-size: 16px; font-weight: 600; line-height: 1.4;">소문자 · 하이픈 · 동명사형(verb+ing) · 64자 이내</div><div style="font-size: 14px; color: #6b6660; line-height: 1.5;">파일 · 폴더명으로 그대로 쓰입니다</div></div></div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 19px; font-weight: 700; color: #1c3f94; width: 26px; flex-shrink: 0;">desc</span><div><div style="font-size: 16px; font-weight: 600; line-height: 1.4;">가장 중요 — &quot;무엇을 + 언제 쓰는지&quot;를 3인칭으로</div><div style="font-size: 14px; color: #6b6660; line-height: 1.5;">AI가 이 설명만 보고 스킬을 고릅니다. 모호하면 안 불립니다</div></div></div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 19px; font-weight: 700; color: #1c3f94; width: 26px; flex-shrink: 0;">본문</span><div><div style="font-size: 16px; font-weight: 600; line-height: 1.4;">단계별 지시 + 입출력 예시</div><div style="font-size: 14px; color: #6b6660; line-height: 1.5;">오늘 실습에서 만든 결과물(04_answer)이 그대로 입출력 예시가 됩니다. 버리지 않습니다</div></div></div>
+        <div style="background: #ffffff; border: 1px solid #e4e2db; border-left: 3px solid #0f6b4f; padding: 12px 16px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">노코드 팁</strong> — 7블록을 다 쓴 뒤 &quot;위 지시문을 SKILL.md 형식으로 정리해줘&quot;. AI가 초안을 만들고 사람은 description만 봅니다.</div>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>K · 02</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">Skill과 MCP</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">Agent 워크플로우 5패턴 — 우리 4개는 어디에</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">단순하게 · 순차로 · 검증 루프를 돌게</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; background: #ffffff; border: 1px solid #e4e2db; padding: 0; flex-grow: 1;">
+      <table style="border-collapse: collapse; width: 100%;">
+        <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">패턴</td><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">동작</td><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">삼성 에이전트</td></tr>
+        <tr style="background: #eef0ea;"><td style="padding: 10px 14px; font-size: 16px; font-weight: 600; width: 200px;">프롬프트 체이닝</td><td style="padding: 10px 14px; font-size: 14px; color: #3d4650;">순차 실행, 단계마다 검증 게이트</td><td style="padding: 10px 14px; font-size: 14px;"><span style="display: inline-block; background: #1c3f94; color: #fbfaf7; font-size: 12px; padding: 2px 8px; margin-right: 8px; font-weight: 600;">오늘</span><strong style='font-weight: 600;'>A · B</strong> 수집 → 요약 → 기회 → 액션 &nbsp;/&nbsp; <strong style='font-weight: 600;'>D</strong> 분석 → 추천 → 근거</td></tr>
+        <tr style=""><td style="padding: 10px 14px; font-size: 16px; font-weight: 600; width: 200px;">라우팅</td><td style="padding: 10px 14px; font-size: 14px; color: #3d4650;">입력 유형별로 담당 스킬 분기</td><td style="padding: 10px 14px; font-size: 14px;">(확장) 문의 유형별 제품 Q&amp;A</td></tr>
+        <tr style=""><td style="padding: 10px 14px; font-size: 16px; font-weight: 600; width: 200px;">병렬화</td><td style="padding: 10px 14px; font-size: 14px; color: #3d4650;">나눠서 동시 처리 후 집계</td><td style="padding: 10px 14px; font-size: 14px;">(확장) 수요처 여러 곳 동시 센싱</td></tr>
+        <tr style=""><td style="padding: 10px 14px; font-size: 16px; font-weight: 600; width: 200px;">오케스트레이터 - 워커</td><td style="padding: 10px 14px; font-size: 14px; color: #3d4650;">중앙이 쪼개 위임하고 종합</td><td style="padding: 10px 14px; font-size: 14px;">(확장) 권역별 취합 보고</td></tr>
+        <tr style="background: #eef0ea;"><td style="padding: 10px 14px; font-size: 16px; font-weight: 600; width: 200px;">평가자 - 최적화</td><td style="padding: 10px 14px; font-size: 14px; color: #3d4650;">하나가 만들고 하나가 검증</td><td style="padding: 10px 14px; font-size: 14px;"><span style="display: inline-block; background: #1c3f94; color: #fbfaf7; font-size: 12px; padding: 2px 8px; margin-right: 8px; font-weight: 600;">오늘</span><strong style='font-weight: 600;'>C</strong> 제안 3개 → 상호 비교 · 시장가 대조. 우리 테스트 3종 · 검수 기준이 이것</td></tr>
+      </table>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; padding: 18px 26px; background: #111821; color: #fbfaf7;"><div style="font-size: 22px; font-weight: 700;">오늘 4개는 전부 체이닝 + 평가자 조합입니다.</div><div style="flex-grow: 1;"></div><div style="font-size: 14px; color: #c9c5bd;">나머지 셋은 사내 연동이 열리면 다음 단계입니다.</div></div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>K · 04</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -33,14 +33,6 @@
       "page": "page-1"
     },
     {
-      "file": "DeckZ2.dc.html",
-      "x": 0,
-      "y": 0,
-      "w": 1280,
-      "h": 720,
-      "page": "page-8"
-    },
-    {
       "file": "DeckD1.dc.html",
       "x": 0,
       "y": 0,
@@ -639,6 +631,78 @@
       "w": 1280,
       "h": 720,
       "page": "page-7"
+    },
+    {
+      "file": "DeckK1.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-8"
+    },
+    {
+      "file": "DeckK2.dc.html",
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-8"
+    },
+    {
+      "file": "DeckK3.dc.html",
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-8"
+    },
+    {
+      "file": "DeckK4.dc.html",
+      "x": 4200,
+      "y": 0,
+      "w": 1280,
+      "h": 720,
+      "page": "page-8"
+    },
+    {
+      "file": "DeckK5.dc.html",
+      "x": 0,
+      "y": 880,
+      "w": 1280,
+      "h": 720,
+      "page": "page-8"
+    },
+    {
+      "file": "DeckK6.dc.html",
+      "x": 1400,
+      "y": 880,
+      "w": 1280,
+      "h": 720,
+      "page": "page-8"
+    },
+    {
+      "file": "DeckZ1.dc.html",
+      "x": 2800,
+      "y": 880,
+      "w": 1280,
+      "h": 720,
+      "page": "page-8"
+    },
+    {
+      "file": "DeckZ2.dc.html",
+      "x": 4200,
+      "y": 880,
+      "w": 1280,
+      "h": 720,
+      "page": "page-8"
+    },
+    {
+      "file": "DeckZ3.dc.html",
+      "x": 0,
+      "y": 1760,
+      "w": 1280,
+      "h": 720,
+      "page": "page-8"
     }
   ],
   "annotations": [
@@ -701,7 +765,7 @@
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-5"
+    "page": "page-2"
   },
   "pages": [
     {

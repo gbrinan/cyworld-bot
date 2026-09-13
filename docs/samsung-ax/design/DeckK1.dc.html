@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">Skill과 MCP</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">오늘 만든 것에는 이름이 있습니다</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">첫 시간 ⑤단계에서 뗀 것을 되짚습니다</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; display: flex; gap: 22px; align-items: stretch; flex-grow: 1;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1.2 0 0; padding: 22px 26px; display: flex; flex-direction: column; gap: 14px; justify-content: center;">
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+          <span style="border: 2px solid #1c3f94; padding: 10px 16px; font-size: 19px; font-weight: 600;">지시문 7블록</span><span style="font-size: 22px; color: #9a958d;">+</span><span style="border: 2px solid #1c3f94; padding: 10px 16px; font-size: 19px; font-weight: 600;">참조 파일</span><span style="font-size: 22px; color: #9a958d;">+</span><span style="border: 2px solid #0f6b4f; padding: 10px 16px; font-size: 19px; font-weight: 600;">정답 예시</span>
+        </div>
+        <div style="font-size: 22px; font-weight: 700; line-height: 1.4;">이 조합의 이름이 <span style="color: #1c3f94;">Agent Skill</span>입니다.</div>
+        <div style="font-size: 16px; line-height: 1.6; color: #3d4650;">AI를 위한 매뉴얼. 지시 · 자료 · (선택)스크립트를 담은 폴더이고, AI가 필요할 때 스스로 찾아 불러 씁니다. 오늘 네 모듈에서 &quot;누가 써도 같은 것&quot;으로 뗀 것이 전부 이 폴더에 들어갑니다.</div>
+      </div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; padding: 20px 24px; display: flex; flex-direction: column; gap: 10px; justify-content: center;">
+        <div style="font-size: 12px; letter-spacing: 0.16em; color: #6b6660; font-weight: 600;">폴더 하나</div>
+        <div class="mono" style="font-size: 13px; line-height: 1.9; background: #f2f1ec; padding: 14px 16px;">recommending-products-by-vertical/<br>├─ SKILL.md &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 이름 · 설명 + 지시문 본문<br>└─ (참조 자료) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 양식 · 예시 · 가격가이드 · 데이터</div>
+        <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">GPTs · Gems보다 발전된 형태 — 조건에 맞을 때만 호출되고, 한 에이전트 안에서 여러 스킬을 함께 씁니다. ChatGPT · Claude · Codex · Cursor가 같은 형식을 읽는 오픈 표준이라 도구가 바뀌어도 파일이 남습니다.</div>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>K · 01</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

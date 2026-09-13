@@ -1160,6 +1160,140 @@ SLIDES["DeckC10"] = shell("모듈 C", "이건 절대 쓰면 안 됩니다", "가
       <div style="width: 380px; flex-shrink: 0; font-size: 14px; line-height: 1.55; color: #3d4650;">실습 2·3의 실패 테스트 문장입니다. 거부하고 확인 항목을 안내하면 통과. <strong style="font-weight: 600; color: #9a2c2c;">"참고용"이라며 할인 금액을 계산해 보여주면 실패</strong> — 한 번만 적힌 금지는 압박이 들어오면 무시되니 ⑥과 ⑦ 두 곳에 씁니다.</div>
     </div>""", "C · 10")
 
+
+# ═══════════════════════ 블록 4 — Skill · MCP · 클로징 ═══════════════════════
+SLIDES["DeckK1"] = shell("Skill과 MCP", "오늘 만든 것에는 이름이 있습니다", "첫 시간 ⑤단계에서 뗀 것을 되짚습니다", f"""
+    <div style="display: flex; gap: 22px; align-items: stretch; flex-grow: 1;">
+      <div style="{CARD} flex: 1.2 0 0; padding: 22px 26px; display: flex; flex-direction: column; gap: 14px; justify-content: center;">
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+          <span style="border: 2px solid #1c3f94; padding: 10px 16px; font-size: 19px; font-weight: 600;">지시문 7블록</span><span style="font-size: 22px; color: #9a958d;">+</span><span style="border: 2px solid #1c3f94; padding: 10px 16px; font-size: 19px; font-weight: 600;">참조 파일</span><span style="font-size: 22px; color: #9a958d;">+</span><span style="border: 2px solid #0f6b4f; padding: 10px 16px; font-size: 19px; font-weight: 600;">정답 예시</span>
+        </div>
+        <div style="font-size: 22px; font-weight: 700; line-height: 1.4;">이 조합의 이름이 <span style="color: #1c3f94;">Agent Skill</span>입니다.</div>
+        <div style="font-size: 16px; line-height: 1.6; color: #3d4650;">AI를 위한 매뉴얼. 지시 · 자료 · (선택)스크립트를 담은 폴더이고, AI가 필요할 때 스스로 찾아 불러 씁니다. 오늘 네 모듈에서 &quot;누가 써도 같은 것&quot;으로 뗀 것이 전부 이 폴더에 들어갑니다.</div>
+      </div>
+      <div style="{CARD} flex: 1 0 0; padding: 20px 24px; display: flex; flex-direction: column; gap: 10px; justify-content: center;">
+        <div style="{LBL}">폴더 하나</div>
+        <div class="mono" style="font-size: 13px; line-height: 1.9; background: #f2f1ec; padding: 14px 16px;">recommending-products-by-vertical/<br>├─ SKILL.md &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 이름 · 설명 + 지시문 본문<br>└─ (참조 자료) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 양식 · 예시 · 가격가이드 · 데이터</div>
+        <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">GPTs · Gems보다 발전된 형태 — 조건에 맞을 때만 호출되고, 한 에이전트 안에서 여러 스킬을 함께 씁니다. ChatGPT · Claude · Codex · Cursor가 같은 형식을 읽는 오픈 표준이라 도구가 바뀌어도 파일이 남습니다.</div>
+      </div>
+    </div>""", "K · 01")
+
+SLIDES["DeckK2"] = shell("Skill과 MCP", "SKILL.md 세 부분", "name · description · 본문", f"""
+    <div style="display: flex; gap: 22px; align-items: stretch; flex-grow: 1;">
+      <div class="mono" style="{CARD} flex: 1.2 0 0; font-size: 13px; line-height: 1.8; padding: 18px 22px; background: #f2f1ec; display: flex; flex-direction: column; justify-content: center;"><span style="color: #9a958d;">---</span><br><span style="color: #1c3f94; font-weight: 500;">name:</span> recommending-products-by-vertical<br><span style="color: #1c3f94; font-weight: 500;">description:</span> 신규 수요처의 버티컬과 프로젝트 용도를 받아 과거 B2B 판매 실적에서 유사 버티컬의 판매 패턴을 분석하고 추천 제품 TOP3와 근거를 만든다. 영업 담당자가 제안 전에 제품 후보를 좁힐 때 쓴다.<br><span style="color: #9a958d;">---</span><br><br><span style="color: #6b6660;">(본문 = 지시문 7블록을 5섹션으로 접은 것)</span><br>## 1. 역할 · 목표 &nbsp;&nbsp;## 2. 출력 형식 &nbsp;&nbsp;## 3. 금지 사항<br>## 4. 검토 기준 &nbsp;&nbsp;## 5. 작업 단계 + 입출력 예시</div>
+      <div style="flex: 1 0 0; display: flex; flex-direction: column; gap: 10px;">
+        {rule("name", "소문자 · 하이픈 · 동명사형(verb+ing) · 64자 이내", "파일 · 폴더명으로 그대로 쓰입니다")}
+        {rule("desc", "가장 중요 — &quot;무엇을 + 언제 쓰는지&quot;를 3인칭으로", "AI가 이 설명만 보고 스킬을 고릅니다. 모호하면 안 불립니다")}
+        {rule("본문", "단계별 지시 + 입출력 예시", "오늘 실습에서 만든 결과물(04_answer)이 그대로 입출력 예시가 됩니다. 버리지 않습니다")}
+        <div style="{CARD} border-left: 3px solid #0f6b4f; padding: 12px 16px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">노코드 팁</strong> — 7블록을 다 쓴 뒤 &quot;위 지시문을 SKILL.md 형식으로 정리해줘&quot;. AI가 초안을 만들고 사람은 description만 봅니다.</div>
+      </div>
+    </div>""", "K · 02")
+
+SLIDES["DeckK3"] = shell("Skill과 MCP", "description이 따로 있는 이유", "점진적 공개 — 설명만 항상 읽힙니다", f"""
+    <div style="display: flex; gap: 10px; align-items: stretch;">
+      {step_card(1, "이름 · 설명", "<strong style='font-weight: 600; color: #111821;'>항상</strong> 읽힘. 여기서 쓸지 말지를 정합니다")}
+      {ARROW}
+      {step_card(2, "SKILL.md 본문", "관련될 때만 읽힘")}
+      {ARROW}
+      {step_card(3, "부속 파일", "필요할 때만 읽힘 — 그래서 여러 스킬을 한 에이전트에 둘 수 있습니다", last=True)}
+    </div>
+    {vs("보고서를 잘 만들어 줍니다", "무엇을 · 언제 쓰는지가 없습니다. AI는 이 스킬을 언제 써야 할지 모르고, 엉뚱한 때 부르거나 안 부릅니다.",
+        "월말 파이프라인 데이터를 받아 단계별 현황과 전월 대비 증감을 담은 초안을 만든다. 합계가 안 맞으면 중단한다", "입력 · 출력 · 중단 조건이 한 문장에 있습니다. 우리 지시문 ②번을 &quot;하는 일 / 하지 않는 일&quot;로 나눠 쓴 이유가 이것입니다.")}""", "K · 03")
+
+def prow(name, how, ours, mark=False):
+    bg = "background: #eef0ea;" if mark else ""
+    b = '<span style="display: inline-block; background: #1c3f94; color: #fbfaf7; font-size: 12px; padding: 2px 8px; margin-right: 8px; font-weight: 600;">오늘</span>' if mark else ""
+    return f'<tr style="{bg}"><td style="padding: 10px 14px; font-size: 16px; font-weight: 600; width: 200px;">{name}</td><td style="padding: 10px 14px; font-size: 14px; color: #3d4650;">{how}</td><td style="padding: 10px 14px; font-size: 14px;">{b}{ours}</td></tr>'
+SLIDES["DeckK4"] = shell("Skill과 MCP", "Agent 워크플로우 5패턴 — 우리 4개는 어디에", "단순하게 · 순차로 · 검증 루프를 돌게", f"""
+    <div style="{CARD} padding: 0; flex-grow: 1;">
+      <table style="border-collapse: collapse; width: 100%;">
+        <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">패턴</td><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">동작</td><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">삼성 에이전트</td></tr>
+        {prow("프롬프트 체이닝", "순차 실행, 단계마다 검증 게이트", "<strong style='font-weight: 600;'>A · B</strong> 수집 → 요약 → 기회 → 액션 &nbsp;/&nbsp; <strong style='font-weight: 600;'>D</strong> 분석 → 추천 → 근거", True)}
+        {prow("라우팅", "입력 유형별로 담당 스킬 분기", "(확장) 문의 유형별 제품 Q&amp;A")}
+        {prow("병렬화", "나눠서 동시 처리 후 집계", "(확장) 수요처 여러 곳 동시 센싱")}
+        {prow("오케스트레이터 - 워커", "중앙이 쪼개 위임하고 종합", "(확장) 권역별 취합 보고")}
+        {prow("평가자 - 최적화", "하나가 만들고 하나가 검증", "<strong style='font-weight: 600;'>C</strong> 제안 3개 → 상호 비교 · 시장가 대조. 우리 테스트 3종 · 검수 기준이 이것", True)}
+      </table>
+    </div>
+    <div style="{BAND}"><div style="font-size: 22px; font-weight: 700;">오늘 4개는 전부 체이닝 + 평가자 조합입니다.</div><div style="flex-grow: 1;"></div><div style="font-size: 14px; color: #c9c5bd;">나머지 셋은 사내 연동이 열리면 다음 단계입니다.</div></div>""", "K · 04")
+
+def cannot(n, t):
+    return f'<div style="display: flex; gap: 10px; align-items: flex-start;"><div style="width: 17px; height: 17px; border: 2px solid #9a2c2c; flex-shrink: 0; margin-top: 3px;"></div><div style="font-size: 14px; line-height: 1.5;">{t}</div></div>'
+SLIDES["DeckK5"] = shell("Skill과 MCP", "오늘 만들어도 되는 일인가", "하나라도 해당하면 범위를 줄이거나 분리합니다", f"""
+    <div style="display: flex; gap: 22px; align-items: stretch; flex-grow: 1;">
+      <div style="{CARD} flex: 1.3 0 0; border-top: 4px solid #9a2c2c; padding: 16px 22px; display: flex; flex-direction: column; gap: 9px;">
+        <div style="font-size: 12px; letter-spacing: 0.16em; color: #9a2c2c; font-weight: 600;">CANNOT 7 — 해당하면 오늘은 안 됩니다</div>
+        {cannot(1, "ERP · SCM · CRM 등 <strong style='font-weight: 600;'>사내 시스템과 자동 연동</strong>이 필요하다")}
+        {cannot(2, "고객 담당자 <strong style='font-weight: 600;'>개인정보 · 계약 단가 · 미공개 실적</strong>이 입력에 들어간다")}
+        {cannot(3, "<strong style='font-weight: 600;'>별도 개발</strong>(스크립트 · API · 크롤러)이 필요하다")}
+        {cannot(4, "<strong style='font-weight: 600;'>사내 데이터 구조</strong>(DB 스키마 · 코드 체계)에 의존한다")}
+        {cannot(5, "가격 · 납기 · 할인 · 계약 조건을 <strong style='font-weight: 600;'>AI가 확정</strong>해야 한다")}
+        {cannot(6, "<strong style='font-weight: 600;'>외부 인터넷이 막힌 환경</strong>에서만 돌아가야 한다")}
+        {cannot(7, "고객 · 파트너에게 <strong style='font-weight: 600;'>직접 발송</strong>(메일 · 문자 · 카톡)한다")}
+      </div>
+      <div style="flex: 1 0 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="{LBL}">좋은 과제 3원칙</div>
+        {principle(1, "작은 성공 — 5~10%", "&quot;제안서 전체&quot;가 아니라 &quot;제안 제품 후보 3개 고르기&quot;")}
+        {principle(2, "초안 수준", "완벽하게 만들려 하지 않습니다. 교육 중 생각이 바뀝니다")}
+        {principle(3, "내가 할 수 있는 쉬운 일", "자주 해온 일. 남의 일 · 안 해본 일은 검수를 못 합니다")}
+      </div>
+    </div>""", "K · 05")
+
+SLIDES["DeckK6"] = shell("Skill과 MCP", "다음 단계 — Skill은 어떻게, MCP는 무엇에", "오늘은 Skill까지", f"""
+    <div style="display: flex; gap: 22px; align-items: stretch; flex-grow: 1;">
+      <div style="{CARD} flex: 1 0 0; padding: 0;">
+        <table style="border-collapse: collapse; width: 100%; height: 100%;">
+          <tr><td style="border-bottom: 2px solid #111821;"></td><td style="padding: 10px 14px; font-size: 12px; letter-spacing: 0.16em; color: #1c3f94; font-weight: 600; border-bottom: 2px solid #111821;">Skill</td><td style="padding: 10px 14px; font-size: 12px; letter-spacing: 0.16em; color: #6b6660; font-weight: 600; border-bottom: 2px solid #111821; background: #f7f6f2;">MCP</td></tr>
+          {cmp("무엇", "<strong style='font-weight: 600;'>어떻게 일할지</strong> 알려줌", "<strong style='font-weight: 600;'>무엇에 접근할지</strong> 열어줌")}
+          {cmp("형태", "지시문 + 자료 파일", "서버 연결")}
+          {cmp("누가", "현업 담당자", "IT · 개발 조직")}
+          {cmp("오늘", "<strong style='font-weight: 600; color: #0f6b4f;'>함</strong>", "<strong style='font-weight: 600; color: #9a2c2c;'>안 함</strong>", True)}
+        </table>
+      </div>
+      <div style="flex: 1 0 0; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="margin-left: 0; width: 60%; background: #eef0ea; padding: 10px 14px; font-size: 14px;"><strong style="font-weight: 600;">지시문</strong> — 메모장에 보관, 붙여넣어 씀</div>
+          <div style="margin-left: 20%; width: 60%; background: #c3cde8; padding: 10px 14px; font-size: 14px;"><strong style="font-weight: 600;">Skill</strong> — 워크스페이스에 등록, 조직이 공유 <span style="color: #1c3f94; font-weight: 600;">← 오늘</span></div>
+          <div style="margin-left: 40%; width: 60%; background: #0e2560; color: #fbfaf7; padding: 10px 14px; font-size: 14px;"><strong style="font-weight: 600;">MCP</strong> — 사내 시스템이 파일을 자동으로 넘김</div>
+        </div>
+        <div style="{CARD} padding: 12px 16px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">왜 오늘은 안 하나</strong> — 사내 연동 없음(ERP 연동은 전사 기획 중) · 커스텀 커넥터는 관리자가 켜야 함 · 사내 데이터가 외부 서버를 경유하므로 보안 검토 대상. 개인이 외부 MCP를 붙이지 않습니다.</div>
+      </div>
+    </div>
+    <div style="{BAND}"><div style="font-size: 22px; font-weight: 700;">MCP는 &quot;연결하면 편해지는 것&quot;이 아니라 &quot;무엇을 열어줄지 정하는 것&quot;입니다.</div><div style="flex-grow: 1;"></div><div style="font-size: 14px; color: #c9c5bd;">오늘 ⑥번에 쓴 규칙이 그때 훨씬 중요해집니다.</div></div>""", "K · 06")
+
+SLIDES["DeckZ1"] = shell("클로징", "내 업무로 옮기려면", "설계 6단계를 되짚습니다 — 바꿀 것은 다섯 뿐", f"""
+    <div class="mono" style="{CARD} font-size: 13px; line-height: 1.9; padding: 14px 20px; background: #f2f1ec;"><span style="color: #9a2c2c; font-weight: 500;">As-Is</span>&nbsp; 매번 ________를 손으로 ________해서 ________가 걸리고 형식이 들쭉날쭉하다<br><span style="color: #0f6b4f; font-weight: 500;">To-Be</span>&nbsp; AI가 ________를 받아 ________ 초안을 만들고, 사람은 ________만 검수 · 확정한다</div>
+    <div style="display: flex; gap: 22px; align-items: stretch; flex-grow: 1;">
+      <div style="{CARD} flex: 1.2 0 0; padding: 0;">
+        <table style="border-collapse: collapse; width: 100%; height: 100%;">
+          <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">바꿀 것 — 다섯</td><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">오늘 (배포 데이터)</td><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">내 업무</td></tr>
+          <tr><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">팀 프로필</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">team_profile.md</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
+          <tr style="background: #f7f6f2;"><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">입력 데이터 — 파일 · 컬럼</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">sales_history.csv 10열</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
+          <tr><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">출력 서식</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">HTML 4절</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
+          <tr style="background: #f7f6f2;"><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">STOP 조건</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">검산 불일치 · 버티컬 없음</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
+          <tr><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">승인자</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">{{담당자}}</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
+        </table>
+      </div>
+      <div style="{CARD} flex: 1 0 0; border-top: 3px solid #0f6b4f; padding: 16px 20px; display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 12px; letter-spacing: 0.16em; color: #0f6b4f; font-weight: 600;">바꾸지 않아도 되는 것</div>
+        <div style="font-size: 16px; line-height: 1.7;">지시문 7블록 구조<br>테스트 3종 방식<br>검수 기준 6항목<br>파일로 인계하는 방식<br>사람 승인 지점이 지시문에 있다는 것</div>
+        <div style="font-size: 14px; color: #6b6660; line-height: 1.5; margin-top: auto;">오늘 골격 하나로 네 모듈을 만든 이유입니다. 내 업무도 다섯 번째 모듈일 뿐입니다.</div>
+      </div>
+    </div>""", "Z · 01")
+
+def day(n, t, last=False):
+    return f'<div style="{CARD} border-top: 3px solid {"#0f6b4f" if last else "#1c3f94"}; padding: 16px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;"><div style="font-size: 30px; font-weight: 700; color: {"#0f6b4f" if last else "#1c3f94"}; line-height: 1;">{n}</div><div style="font-size: 12px; color: #9a958d; font-weight: 600;">일차</div><div style="font-size: 16px; font-weight: 600; line-height: 1.4;">{t}</div></div>'
+SLIDES["DeckZ3"] = shell("클로징", "7일 계획", "워크북 마지막 장 — 오늘 안에 첫 줄을 씁니다", f"""
+    <div style="display: flex; gap: 10px; align-items: stretch; flex-grow: 1;">
+      {day(1, "업무 1개 확정, 금지 범위 정하기 — CANNOT 7로")}
+      {day(2, "가명화한 자료 준비 — 사내 가이드 확인")}
+      {day(3, "지시문 7블록 작성 — 메모장에")}
+      {day(4, "테스트 3종 실행 — 경계 · 실패까지")}
+      {day(5, "동료 · 팀장 검토 — 검수 6항목")}
+      {day(7, "v1 저장 + 다음 개선 1개 기록", True)}
+    </div>
+    <div style="{BAND}"><div style="font-size: 22px; font-weight: 700;">승인자 이름과 다음 개선 1개를 적으면 끝입니다.</div><div style="flex-grow: 1;"></div><div style="font-size: 14px; color: #c9c5bd;">6일이 비어 있는 건 검토 결과를 반영할 하루입니다.</div></div>""", "Z · 03")
+
 # ───────────── D1 모듈 표지 (첫 모듈 타임바) — 어두운 표지는 골격이 다르다 ─────────────
 SLIDES["DeckD1"] = HEAD + f"""<div style="width: 1280px; height: 720px; background: #0e2560; color: #fbfaf7; display: flex; flex-direction: column; justify-content: space-between; padding: 48px 64px 40px; box-sizing: border-box;">
   <div style="display: flex; align-items: center; gap: 16px;">

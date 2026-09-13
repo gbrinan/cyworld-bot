@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">Skill과 MCP</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">description이 따로 있는 이유</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">점진적 공개 — 설명만 항상 읽힙니다</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; display: flex; gap: 10px; align-items: stretch;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">01</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.35;">이름 · 설명</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;"><strong style='font-weight: 600; color: #111821;'>항상</strong> 읽힘. 여기서 쓸지 말지를 정합니다</div>
+</div>
+      <div style="display: flex; align-items: center; color: #9a958d; font-size: 22px; padding: 0 4px;">→</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">02</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.35;">SKILL.md 본문</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;">관련될 때만 읽힘</div>
+</div>
+      <div style="display: flex; align-items: center; color: #9a958d; font-size: 22px; padding: 0 4px;">→</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #9a6408; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">03</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.35;">부속 파일</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;">필요할 때만 읽힘 — 그래서 여러 스킬을 한 에이전트에 둘 수 있습니다</div>
+</div>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: stretch; flex-grow: 1;">
+  <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; padding: 22px 26px; background: #f7f6f2; display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #9a2c2c;">✕</span><span style="font-size: 19px; font-weight: 600;">보고서를 잘 만들어 줍니다</span></div>
+    <div style="font-size: 16px; line-height: 1.6; color: #3d4650;">무엇을 · 언제 쓰는지가 없습니다. AI는 이 스킬을 언제 써야 할지 모르고, 엉뚱한 때 부르거나 안 부릅니다.</div>
+  </div>
+  <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; padding: 22px 26px; border-top: 4px solid #0f6b4f; display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #0f6b4f;">○</span><span style="font-size: 19px; font-weight: 600;">월말 파이프라인 데이터를 받아 단계별 현황과 전월 대비 증감을 담은 초안을 만든다. 합계가 안 맞으면 중단한다</span></div>
+    <div style="font-size: 16px; line-height: 1.6; color: #3d4650;">입력 · 출력 · 중단 조건이 한 문장에 있습니다. 우리 지시문 ②번을 &quot;하는 일 / 하지 않는 일&quot;로 나눠 쓴 이유가 이것입니다.</div>
+  </div>
+</div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>K · 03</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -89,6 +89,11 @@ def hands_md(name, n):
 CLOSING = open(os.path.join(AX, "workbook.md"), encoding="utf-8").read()
 CLOSING = CLOSING[CLOSING.index("# 오늘 마무리 — 내 업무로 전환하기"):]
 CLOSING = CLOSING.replace("| 팀 프로필 | team_profile.md | |", "| 참조 파일 (팀 것) | target_account.md · target_builders.csv · partner_info.csv | |")
+# 꼬리표는 덱과 같이 글자 라벨로 (이모지는 인쇄·확대에서 깨짐)
+for _a, _b in [("> 꼬리표: 🔒 사람만 · ✍️ AI 초안 · ⚙️ AI 반복 · 🔌 밖에서 가져옴", "> 꼬리표 4종: [사람만] · [AI 초안] · [AI 반복] · [밖에서 가져옴] — 슬라이드의 선 아이콘과 같은 순서"),
+               ("| 🔒 | ✍️ | ⚙️ | 🔌 |", "| 사람만 | AI 초안 | AI 반복 | 밖에서 |"), ("경계 (🔒)     : ____번", "경계 (사람만) : ____번"), ("입력 (🔌)     : ____번", "입력 (밖에서) : ____번"),
+               ("| 꼬리표가 전부 ✍️ |", "| 꼬리표가 전부 [AI 초안] |"), ("| 🔒이 하나도 없음 |", "| [사람만]이 하나도 없음 |")]:
+    assert _a in CLOSING, _a; CLOSING = CLOSING.replace(_a, _b)
 CLOSING = CLOSING.replace("바꾸지 않아도 되는 것** — 지시문 7블록 구조, 테스트 3종 방식, 검수 기준, 파일로 인계하는 방식", "바꾸지 않아도 되는 것** — 지시문 7블록 구조, 테스트 3종 방식, 검수 기준 6항목, 파일로 인계하는 방식, 사람 승인 지점이 지시문에 있다는 것")
 
 def workbook(deck):

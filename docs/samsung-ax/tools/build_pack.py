@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """배포 패키지 — 참가자 zip 2개(A판·B판)와 강사 zip 1개를 dist/ 에 만든다.
-참가자 팩에는 실습에 필요한 것만: 데이터 · 지시문 · 테스트 데이터 · 기준본 · paste · SKILL.md · 공통 문서 8개 · 워크북 · 덱 PDF.
+참가자 팩에는 실습에 필요한 것만: 데이터 · 지시문 · 테스트 데이터 · 기준본 · paste · SKILL.md · 공통 문서 10개(예상 Q&A 포함) · 워크북 · 덱 PDF.
 요구조건서(00) · 시연 로그(05) · CHECK.md · 테스트 설명(test_*.md) · 강사 가이드는 강사 팩에만.
 사용: python3 build_pack.py   (먼저 build_course_docs.py → design/tools/build_deck.py → PDF 순으로 만들어 둔다)"""
 import os, sys, zipfile, datetime
@@ -11,7 +11,7 @@ STAMP = datetime.date.today().isoformat()
 
 TEAM = {"A판": ["D_analysis", "A_sensing_b2b", "C_proposal"], "B판": ["D_analysis", "B_sensing_partner", "C_proposal"]}
 COMMON_P = ["security_rules.md", "web_environment.md", "tool_paths.md", "review_criteria.md", "fit_check.md",
-            "task_decomposition.md", "agent_and_skill_split.md", "skills_and_mcp.md", "data_capture.md"]
+            "task_decomposition.md", "agent_and_skill_split.md", "skills_and_mcp.md", "data_capture.md", "tool_budget.md", "faq.md"]
 P_DIRS = ["01_data", "02_prompt", "04_answer", "06_paste", "07_skill"]
 
 def add(z, src, arc):
@@ -38,7 +38,9 @@ def participant(deck):
             t = os.path.join(base, "03_tests")  # 테스트 데이터만 (설명서 test_*.md는 강사 팩)
             for f in sorted(os.listdir(t)):
                 if not f.startswith("test_"): add(z, os.path.join(t, f), os.path.join(arc, "03_tests", f)); n += 1
-        for f in COMMON_P: add(z, os.path.join(COMMON, f), os.path.join(root, "common", f)); n += 1
+        for f in COMMON_P:
+            src = os.path.join(AX, f) if f == "faq.md" else os.path.join(COMMON, f)
+            add(z, src, os.path.join(root, "common", f)); n += 1
         add(z, os.path.join(AX, f"workbook_{deck}.md"), os.path.join(root, f"워크북_{deck}.md")); n += 1
         pdf = os.path.join(AX, "deck", f"{deck}.pdf")
         if os.path.exists(pdf): add(z, pdf, os.path.join(root, f"슬라이드_{deck}.pdf")); n += 1

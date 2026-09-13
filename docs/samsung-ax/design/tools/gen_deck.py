@@ -24,6 +24,10 @@ HEAD = """<!doctype html>
 """
 TAIL = "</x-dc>\n</body>\n</html>\n"
 
+def grow(body):
+    i = body.find('<div style="')
+    return body[:i+12] + "flex-grow: 1; " + body[i+12:]
+
 def shell(label, title, caption, body, page, badge=None):
     b = f'<div style="font-size: 12px; letter-spacing: 0.14em; padding: 4px 10px; background: #9a6408; color: #fbfaf7; font-weight: 600;">{badge}</div>' if badge else ""
     return HEAD + f"""<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
@@ -34,7 +38,7 @@ def shell(label, title, caption, body, page, badge=None):
     <div style="font-size: 12px; color: #6b6660;">{caption}</div>
   </div>
   <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
-{body}
+{grow(body)}
   </div>
   <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
     <span>모든 데이터는 가상입니다</span><span>{page}</span>
@@ -174,7 +178,7 @@ SLIDES["DeckW7"] = shell("일을 보는 법", "④ 묶으면 에이전트가 나
       </div>
     </div>
     <div style="{BAND}">
-      <div style="font-size: 22px; font-weight: 700;">{'<span style="color: #e88b8b;">사람만</span>이 끼면 나눕니다. 없으면 단계로 둡니다.'}</div>
+      <div style="font-size: 22px; font-weight: 700;">{'<span style="color: #e88b8b;">사람만</span>이 끼면 나눕니다. 없으면 단계로.'}</div>
       <div style="flex-grow: 1;"></div>
       <div style="font-size: 14px; color: #c9c5bd;">네 모듈 전부 에이전트 1개 + 단계 1~3개. 프롬프트가 셋인 건 우리가 정한 게 아니라 일이 그렇게 생겼습니다.</div>
     </div>""", "W · 07")
@@ -265,9 +269,9 @@ SLIDES["DeckD5"] = shell("모듈 D", "보고서보다 먼저 오는 것", "0번 
 
 # ───────────── D10 근거가 붙은 추천이란 ─────────────
 def rec(rank, model, kind, use, evidence, rows, strength, accent="#1c3f94"):
-    return f"""<div style="{CARD} display: flex; align-items: stretch;">
+    return f"""<div style="{CARD} display: flex; align-items: stretch; flex: 1 0 0;">
   <div style="width: 64px; background: {accent}; color: #fbfaf7; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 700; flex-shrink: 0;">{rank}</div>
-  <div style="padding: 12px 18px; display: flex; flex-direction: column; gap: 4px; flex-grow: 1;">
+  <div style="padding: 12px 18px; display: flex; flex-direction: column; gap: 4px; flex-grow: 1; justify-content: center;">
     <div style="display: flex; align-items: baseline; gap: 10px;"><span class="mono" style="font-size: 22px; font-weight: 500;">{model}</span><span style="font-size: 14px; color: #6b6660;">{kind} · {use}</span><div style="flex-grow: 1;"></div><span style="font-size: 12px; color: #9a958d;">{strength}</span></div>
     <div style="font-size: 16px; line-height: 1.5;">{evidence} <span class="mono" style="font-size: 13px; color: #1c3f94;">{rows}</span></div>
   </div>

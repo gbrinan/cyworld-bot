@@ -14,7 +14,8 @@ Claude Design 캔버스의 **작업 파일**입니다. 여기서 고치고 다�
 | `Handson.dc.html` | 실습 슬라이드 마스터 (8장 반복 · 여섯 요소) |
 | `ClickPath.dc.html` | 클릭 경로 템플릿 (5장 반복) |
 | `Components.dc.html` | 컴포넌트와 토큰 (마스터) |
-| `canvas.json` | 배치와 메모 |
+| `HandsD1` ~ `HandsC2` (10장) | **실습 슬라이드 실물** — 둘째 페이지. D 2장 · A 3장 · B 3장 · C 2장. `tools/gen_handson.py`가 만든다 |
+| `canvas.json` | 배치와 메모. 페이지 둘 — 디자인 시스템 / 실습 슬라이드 10장 |
 
 사양은 [`../design_handoff_package.md`](../design_handoff_package.md). 슬라이드 72장 목록은 [`../slides_outline.md`](../slides_outline.md).
 
@@ -44,6 +45,14 @@ Claude Design 캔버스의 **작업 파일**입니다. 여기서 고치고 다�
 - 타임바는 A·B·C가 같고 **첫 모듈 D만 다릅니다**(`Section.dc.html`은 표준 바를 C로 보여 줍니다).
 - 시간 막대처럼 **비율이 정보인 도식은 `flex: N 0 0`** 으로 그립니다. `flex-grow`만 쓰면 라벨 길이가 폭에 더해져
   30분짜리가 20분짜리와 같은 크기로 나옵니다.
+
+## 실습 슬라이드 10장
+
+`tools/gen_handson.py` 하나가 열 장을 같은 구조로 씁니다. 내용(파일 이름·첫 메시지·됐다는 신호·막혔을 때)은 각 모듈의
+`03_tests/test_*.md`와 `module.md` 7~8절에서 가져왔고, 수치는 `04_answer/` 기준본과 같습니다.
+고칠 때는 `.dc.html`이 아니라 **생성기의 `SLIDES` 표를 고치고 다시 돌립니다.** 손으로 고친 아트보드는 다음 생성에서 덮입니다.
+
+렌더링 확인은 헤드리스 크롬으로 합니다 — 열 장 모두 `over=0`, 마지막 요소 하단 680px(= 720 − 여백 40)이어야 합니다.
 
 ## 빌드 산출물
 

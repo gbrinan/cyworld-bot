@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">모듈 A</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">에이전트는 하나, 단계는 셋</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">수집 → 프로파일 → 분석</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; border: 2px solid #1c3f94; background: #ffffff; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-size: 19px; font-weight: 700; color: #1c3f94;">에이전트 1개</span><span style="font-size: 14px; color: #6b6660;">참조 파일도 한 곳, 고칠 곳도 한 곳</span></div>
+      <div style="display: flex; gap: 10px; align-items: stretch; flex-grow: 1;"><div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 1</div>
+      <div style="font-size: 19px; font-weight: 600;">수집</div>
+      <div style="font-size: 14px; color: #3d4650; line-height: 1.5;">매주 담당 건설사 · 산업 뉴스를 4열로 정리 — 품목 · 헤드라인 · 원본url · 키워드</div>
+      <div class="mono" style="font-size: 13px; color: #1c3f94;">prompt_1_수집.md</div>
+      <div style="font-size: 12px; color: #6b6660;">주기 실행 — 강사 시연. 참가자는 결과 파일을 받습니다</div>
+    </div><div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 2</div>
+      <div style="font-size: 19px; font-weight: 600;">프로파일</div>
+      <div style="font-size: 14px; color: #3d4650; line-height: 1.5;">새로 뜬 회사를 묻고 답하며 채웁니다. 모르면 비워 둡니다</div>
+      <div class="mono" style="font-size: 13px; color: #1c3f94;">prompt_2_프로파일.md</div>
+      <div style="font-size: 12px; color: #6b6660;">대화 메시지로</div>
+    </div><div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 3</div>
+      <div style="font-size: 19px; font-weight: 600;">기회 분석</div>
+      <div style="font-size: 14px; color: #3d4650; line-height: 1.5;">Key Signal → Needs → 접근 시점 → 시나리오 → Action을 HTML 대시보드로</div>
+      <div class="mono" style="font-size: 13px; color: #1c3f94;">prompt_3_분석.md ✂ 사이</div>
+      <div style="font-size: 12px; color: #6b6660;">에이전트 지침에</div>
+    </div></div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; padding: 18px 26px; background: #111821; color: #fbfaf7;">
+      <div style="font-size: 22px; font-weight: 700;">사이에 사람만 단계가 없어 나누지 않습니다.</div>
+      <div style="flex-grow: 1;"></div>
+      <div style="font-size: 14px; color: #c9c5bd; max-width: 520px; line-height: 1.5;">셋은 서로 다른 일이지만 어느 사이에도 사람이 확정해야 할 지점이 없습니다. 나누면 참조 파일을 세 곳에 올리고 결과를 사람이 옮겨 나릅니다.</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>S · 03</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

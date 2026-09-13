@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">모듈 C</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">단계가 셋인 이유</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">한 번에 시키지 않습니다</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; border: 2px solid #1c3f94; background: #ffffff; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-size: 19px; font-weight: 700; color: #1c3f94;">에이전트 1개</span><span style="font-size: 14px; color: #6b6660;">단계 사이마다 사람이 표를 한 번 봅니다 — 검증 게이트</span></div>
+      <div style="display: flex; gap: 10px; align-items: stretch; flex-grow: 1;">
+        <div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 ⓪ · 4번</div><div style="font-size: 19px; font-weight: 600;">수집 정제</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">복사한 텍스트 → 4열 표. 강사 시연, 결과 파일은 배포</div><div class="mono" style="font-size: 13px; color: #1c3f94;">prompt_0_정제.md</div></div>
+        <div style="display: flex; align-items: center; color: #9a958d; font-size: 22px;">→</div>
+        <div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 ① · 2 · 5번</div><div style="font-size: 19px; font-weight: 600;">요구조건 분석 + 스펙 추출</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">6항목 표와 13모델 O/X 대조표. <strong style="font-weight: 600; color: #111821;">여기서 사람이 대조표를 봅니다</strong></div><div class="mono" style="font-size: 13px; color: #1c3f94;">prompt_1_추출.md ✂ → 지침</div></div>
+        <div style="display: flex; align-items: center; color: #9a958d; font-size: 22px;">→</div>
+        <div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 ② · 6 · 7번</div><div style="font-size: 19px; font-weight: 600;">비교 + 3안 제안</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">전부 O인 모델로만 1 · 2안, 3안은 포기 항목을 적어서. 시장가 비교까지</div><div class="mono" style="font-size: 13px; color: #1c3f94;">prompt_2_제안.md ✂ → 다음 메시지</div></div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; padding: 18px 26px; background: #111821; color: #fbfaf7;"><div style="font-size: 22px; font-weight: 700;">한 번에 시키면 대조표를 건너뛰고 3안부터 씁니다.</div><div style="flex-grow: 1;"></div><div style="font-size: 14px; color: #c9c5bd; max-width: 480px; line-height: 1.5;">틀린 대조표 위에 그럴듯한 3안이 올라오면 사람이 못 잡습니다. 단계 사이의 표가 검수 지점입니다.</div></div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>C · 07</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

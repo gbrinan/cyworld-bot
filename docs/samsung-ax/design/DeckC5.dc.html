@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">모듈 C</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">밖의 데이터를 가져오는 법</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">크롤링이 아닙니다 — 사람이 화면을 보고 필요한 만큼</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; display: flex; gap: 10px; align-items: stretch;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">00</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.35;">헤더를 먼저 정한다</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;"><span class='mono' style='font-size: 13px; color: #111821;'>[수요처명] [모델명] [온라인가격] [제품spec.]</span> — 무엇을 채울지가 먼저, 어디서 가져올지는 나중</div>
+</div>
+      <div style="display: flex; align-items: center; color: #9a958d; font-size: 22px; padding: 0 4px;">→</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">01</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.35;">화면에서 복사</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;">필요한 영역만 드래그. 전체 선택은 메뉴 · 광고까지 잡힙니다. 목록 10개면 10개만</div>
+</div>
+      <div style="display: flex; align-items: center; color: #9a958d; font-size: 22px; padding: 0 4px;">→</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">02</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.35;">정제 지시문 + 붙여넣기</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;">채팅창에 정제 지시문을 먼저 쓰고 그 아래에 붙여넣습니다. 스펙 열에는 제조사 공식 정보만, 판매자 글이면 &quot;판매자기재&quot;</div>
+</div>
+      <div style="display: flex; align-items: center; color: #9a958d; font-size: 22px; padding: 0 4px;">→</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #9a6408; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">03</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.35;">4열 표 → 저장</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;">&quot;쉼표로 구분된 표로 출력해줘&quot; → 메모장 → <span class='mono' style='font-size: 13px; color: #111821;'>naver_crawl.csv</span></div>
+</div>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: stretch;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; padding: 14px 20px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">표가 복잡해 뒤섞이면 — 화면 캡처</strong> 브라우저 확장프로그램으로 표 영역을 캡처해 이미지로 올립니다. 표 구조는 유지되지만 숫자는 OCR이라 <strong style="font-weight: 600; color: #111821;">가격은 복사로, 설명은 캡처로</strong> 나눠 씁니다.</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-left: 4px solid #9a2c2c; padding: 14px 18px; width: 460px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; gap: 4px;"><div style="font-size: 16px; font-weight: 600; color: #9a2c2c;">자동 수집은 하지 않습니다.</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">오픈마켓 약관은 프로그램 수집을 금지합니다. 사람이 보고 복사하는 것과 다릅니다. 사외 재배포 없이 제안 검토용으로만.</div></div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>C · 05</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

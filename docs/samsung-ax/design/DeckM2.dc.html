@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">공통 방법론</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">컨텍스트를 데이터로</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">지시문에는 반복되는 것만</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; background: #ffffff; border: 1px solid #e4e2db; padding: 0; flex-grow: 1;">
+      <table style="border-collapse: collapse; width: 100%; height: 100%;">
+        <tr><td style="padding: 12px 16px; font-size: 12px; letter-spacing: 0.16em; color: #0f6b4f; font-weight: 600; border-bottom: 2px solid #111821;">바뀌지 않는 것 — 지시문 · 스킬에 고정</td><td style="padding: 12px 16px; font-size: 12px; letter-spacing: 0.16em; color: #9a6408; font-weight: 600; border-bottom: 2px solid #111821; background: #f7f6f2;">바뀌는 것 — 팀별 데이터 팩, 파일로</td></tr>
+        <tr><td style="padding: 12px 16px; font-size: 16px; border-bottom: 1px solid #eeece6; width: 50%;">지시문 골격 · 처리 순서 · 출력 형식</td><td style="padding: 12px 16px; font-size: 16px; border-bottom: 1px solid #eeece6; background: #f7f6f2;">업무 상황 (비즈니스 컨텍스트)</td></tr>
+        <tr><td style="padding: 12px 16px; font-size: 16px; border-bottom: 1px solid #eeece6; width: 50%;">검수 기준 · 중단(STOP) 규칙</td><td style="padding: 12px 16px; font-size: 16px; border-bottom: 1px solid #eeece6; background: #f7f6f2;">입력 더미데이터와 컬럼 헤더</td></tr>
+        <tr><td style="padding: 12px 16px; font-size: 16px; border-bottom: 1px solid #eeece6; width: 50%;">테스트 3종 구성 방식</td><td style="padding: 12px 16px; font-size: 16px; border-bottom: 1px solid #eeece6; background: #f7f6f2;">고객 · 제품 · 파트너 정보</td></tr>
+        <tr><td style="padding: 12px 16px; font-size: 16px;  width: 50%;">사람 승인 지점</td><td style="padding: 12px 16px; font-size: 16px;  background: #f7f6f2;">최종 결과물 서식</td></tr>
+      </table>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; padding: 18px 26px; background: #111821; color: #fbfaf7;">
+      <div style="font-size: 22px; font-weight: 700;">반복되는 건 지침에, 매번 바뀌는 건 파일로.</div>
+      <div style="flex-grow: 1;"></div>
+      <div style="font-size: 14px; color: #c9c5bd; max-width: 500px; line-height: 1.5;">금지 사항과 검토 기준을 지침에 고정하면 보안 · 검수 원칙이 매 대화에 자동으로 붙습니다.</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>M · 02</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">모듈 A</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">내 업무로 전환</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">5분 — 워크북 부록에 적습니다</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; background: #ffffff; border: 1px solid #e4e2db; padding: 22px 26px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1; justify-content: center;">
+      <div style="font-size: 12px; letter-spacing: 0.16em; color: #6b6660; font-weight: 600;">질문 하나</div>
+      <div style="font-size: 22px; font-weight: 600; line-height: 1.45;">내가 매주 훑는 자료는 무엇이고, 그 검색어를 파일로 적어 둔 적이 있는가?</div>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: stretch;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 12px; letter-spacing: 0.16em; color: #6b6660; font-weight: 600;">스킬로 뗄 것 — 누가 써도 같은 것</div><div style="font-size: 14px; line-height: 1.55; color: #3d4650;">수집 · 정제 절차, 프로파일 질문 목록, 준공 −6개월 역산 규칙, 대시보드 양식, 검수 기준. <span class="mono" style="font-size: 13px; color: #111821;">sensing-listed-builders</span></div></div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 12px; letter-spacing: 0.16em; color: #6b6660; font-weight: 600;">에이전트에 둘 것 — 우리 팀 것</div><div style="font-size: 14px; line-height: 1.55; color: #3d4650;">담당 건설사 목록, 검색어 파일, 우리 팀 용어, 실행 주기. 담당이 바뀌면 참조 파일만 바꿉니다 — <strong style='font-weight: 600; color: #111821;'>인수인계가 파일 한 개</strong>가 됩니다.</div></div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-left: 3px solid #1c3f94; width: 300px; flex-shrink: 0; padding: 14px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">다음 모듈로</strong> — 기회 목록을 <span class='mono' style='font-size: 13px;'>opportunity_list.csv</span>로 저장하면 D 모듈의 대상 수요처로 넘길 수 있습니다 (선택).</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>S · 12</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

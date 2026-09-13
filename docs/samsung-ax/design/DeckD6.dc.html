@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">모듈 D</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">이 데이터의 함정 세 가지</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">정답은 말하지 않습니다 — 결과에서 확인하세요</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; display: flex; gap: 12px; align-items: stretch;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #9a6408; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">함정 01</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.35;">호텔이 금액의 3분의 2입니다</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;">호텔 22행이 전체 판매금액의 68%. 호텔이 아닌 버티컬의 큰 금액 한 건 — 상업시설 미디어월 같은 것 — 에 끌려가면 대상 수요처와 상관없는 추천이 나옵니다.</div>
+</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #9a6408; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">함정 02</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.35;">금액 순으로 보면 안 보이는 것이 있습니다</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;">단가가 작은 제품은 금액 순위에서 5위 밖입니다. <strong style='font-weight: 600; color: #111821;'>수량과 동반 구매</strong>로 보면 자리가 달라집니다. 지시문의 축이 둘인 이유입니다.</div>
+</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #9a6408; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+  <div style="font-size: 12px; color: #9a958d; font-weight: 600;">함정 03</div>
+  <div style="font-size: 19px; font-weight: 600; line-height: 1.35;">대상은 신규지만, 처음 보는 고객이 아닙니다</div>
+  <div style="font-size: 14px; color: #6b6660; line-height: 1.55;">해솔호텔 제주는 실적에 없습니다. 그런데 같은 체인의 다른 지점이 있습니다. 1절에서 이걸 찾아내는지가 첫 번째 확인 항목입니다.</div>
+</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; padding: 18px 26px; background: #111821; color: #fbfaf7;">
+      <div style="font-size: 22px; font-weight: 700;">셋 다 사람이 엑셀에서 실제로 빠지는 함정입니다.</div>
+      <div style="flex-grow: 1;"></div>
+      <div style="font-size: 14px; color: #c9c5bd; max-width: 480px; line-height: 1.5;">에이전트가 피해 가는지는 실습 1의 결과로 봅니다. 하나라도 걸리면 지시문 ④-2 · ④-3을 다시 읽습니다.</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>D · 06</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

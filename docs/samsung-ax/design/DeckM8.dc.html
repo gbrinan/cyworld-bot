@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">공통 방법론</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">나쁜 문장 vs 좋은 문장</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">검증할 수 있게 씁니다</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 10px; flex-grow: 1; justify-content: center;">
+      <div style="display: flex; gap: 10px; align-items: stretch;">
+  <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; padding: 14px 18px; background: #f7f6f2; display: flex; align-items: center; gap: 12px;"><span style="font-size: 19px; font-weight: 700; color: #9a2c2c;">✕</span><span style="font-size: 16px; line-height: 1.5;">정확하게 작성해줘</span></div>
+  <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1.5 0 0; padding: 14px 18px; border-left: 3px solid #0f6b4f; display: flex; align-items: center; gap: 12px;"><span style="font-size: 19px; font-weight: 700; color: #0f6b4f;">○</span><span style="font-size: 16px; line-height: 1.5;">합계가 소계의 합과 다르면 표를 내지 말고 멈춘다. 근거 행이 없는 수치는 0건이어야 한다</span></div>
+  <div style="width: 230px; flex-shrink: 0; display: flex; align-items: center; font-size: 14px; color: #6b6660; line-height: 1.5; padding: 0 6px;">몇 건 · 몇 % · 어떤 상태면 통과인지가 없으면 검수를 못 합니다</div>
+</div>
+      <div style="display: flex; gap: 10px; align-items: stretch;">
+  <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; padding: 14px 18px; background: #f7f6f2; display: flex; align-items: center; gap: 12px;"><span style="font-size: 19px; font-weight: 700; color: #9a2c2c;">✕</span><span style="font-size: 16px; line-height: 1.5;">모르는 건 알아서 채워</span></div>
+  <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1.5 0 0; padding: 14px 18px; border-left: 3px solid #0f6b4f; display: flex; align-items: center; gap: 12px;"><span style="font-size: 19px; font-weight: 700; color: #0f6b4f;">○</span><span style="font-size: 16px; line-height: 1.5;">자료에 없으면 &quot;확인 필요&quot;라고 적고 질문한다. 추정해 채우지 않는다</span></div>
+  <div style="width: 230px; flex-shrink: 0; display: flex; align-items: center; font-size: 14px; color: #6b6660; line-height: 1.5; padding: 0 6px;">없는 값을 그럴듯하게 채우는 것이 51:49입니다</div>
+</div>
+      <div style="display: flex; gap: 10px; align-items: stretch;">
+  <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; padding: 14px 18px; background: #f7f6f2; display: flex; align-items: center; gap: 12px;"><span style="font-size: 19px; font-weight: 700; color: #9a2c2c;">✕</span><span style="font-size: 16px; line-height: 1.5;">보고서를 잘 만들어 줍니다</span></div>
+  <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1.5 0 0; padding: 14px 18px; border-left: 3px solid #0f6b4f; display: flex; align-items: center; gap: 12px;"><span style="font-size: 19px; font-weight: 700; color: #0f6b4f;">○</span><span style="font-size: 16px; line-height: 1.5;">신규 수요처의 버티컬을 받아 과거 실적에서 유사 버티컬 패턴을 분석하고 추천 TOP 3와 근거를 만든다</span></div>
+  <div style="width: 230px; flex-shrink: 0; display: flex; align-items: center; font-size: 14px; color: #6b6660; line-height: 1.5; padding: 0 6px;">무엇을 · 언제 쓰는지가 있어야 AI가 이 스킬을 고릅니다</div>
+</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; padding: 18px 26px; background: #111821; color: #fbfaf7;">
+      <div style="font-size: 22px; font-weight: 700;">"친절하게" 같은 성격 문장은 최소화합니다.</div>
+      <div style="flex-grow: 1;"></div>
+      <div style="font-size: 14px; color: #c9c5bd;">이 덱의 문장이 전부 지시 · 절차 · 기준인 이유입니다.</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>M · 08</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

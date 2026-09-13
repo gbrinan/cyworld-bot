@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">모듈 D</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">두 갈래 경로</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">내 도구에서 코드 실행이 되는가</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; display: flex; gap: 14px; align-items: stretch;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; border-top: 4px solid #0f6b4f; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #0f6b4f;">코드 실행 O</span><span style="font-size: 14px; color: #6b6660;">ChatGPT 데이터 분석이 켜져 있다</span></div>
+        <div style="font-size: 16px; line-height: 1.55;">원본 <span class="mono" style="font-size: 13px;">sales_history.csv</span> 한 개를 그대로 올립니다. 52행을 코드로 더하므로 합계가 맞습니다.</div>
+        <div style="flex-grow: 1;"></div>
+        <div style="font-size: 14px; color: #6b6660;">올리는 파일 <strong style="font-weight: 600; color: #111821;">2개</strong> — 원본 + target_account.md</div>
+      </div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; border-top: 4px solid #9a6408; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #9a6408;">코드 실행 X</span><span style="font-size: 14px; color: #6b6660;">Gemini, 또는 실행이 막힌 포털</span></div>
+        <div style="font-size: 16px; line-height: 1.55;">AI가 52행을 머릿속으로 더하면 <strong style="font-weight: 600;">산술 오류</strong>가 납니다. 원본 대신 사람이 미리 집계한 두 파일을 올립니다.</div>
+        <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px;">
+          <div><span class="mono" style="font-size: 13px;">sales_history_소계.csv</span> <span style="color: #6b6660;">— 네 축 합계, 검산용</span></div>
+          <div><span class="mono" style="font-size: 13px;">sales_history_호텔모델별.csv</span> <span style="color: #6b6660;">— 모델 단위 집계, 추천용</span></div>
+        </div>
+        <div style="flex-grow: 1;"></div>
+        <div style="font-size: 14px; color: #6b6660;">올리는 파일 <strong style="font-weight: 600; color: #111821;">3개</strong> — 소계본 + 호텔모델별 + target_account.md</div>
+      </div>
+    </div>
+    <div style="display: flex; gap: 14px;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-left: 4px solid #9a2c2c; padding: 14px 18px; flex: 1 0 0; display: flex; align-items: center; gap: 14px;"><div style="font-size: 19px; font-weight: 600; color: #9a2c2c;">소계본만 올리면 추천이 안 나옵니다.</div><div style="font-size: 14px; color: #3d4650;">버티컬별 금액까지만 나오고 TOP 3가 비어 있으면 호텔모델별 파일을 빠뜨린 것입니다.</div></div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; width: 430px; flex-shrink: 0; padding: 12px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;">검산은 어느 갈래든 같습니다 — 버티컬별 = 제품군별 = 지역별 = 모델명별 = <strong style="font-weight: 600; color: #111821;">570,258,000</strong>. 하나라도 다르면 중단.</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>D · 07</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

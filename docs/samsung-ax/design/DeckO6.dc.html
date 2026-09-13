@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">오프닝</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">에이전트는 여기서 만듭니다</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">메뉴 이름은 화면에 뜬 그대로</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; display: flex; gap: 14px; align-items: stretch;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+  <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 19px; font-weight: 600;">ChatGPT</span><span style="font-size: 14px; color: #6b6660;">주 경로 · 모델은 Instant</span></div>
+  <div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #1c3f94; width: 20px; flex-shrink: 0;">1</span><div style="font-size: 16px; line-height: 1.45;">사이드바 <strong style='font-weight: 600;'>[에이전트]</strong> → 우측 상단 <strong style='font-weight: 600;'>[만들기]</strong></div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #1c3f94; width: 20px; flex-shrink: 0;">2</span><div style="font-size: 16px; line-height: 1.45;">이름 · 설명 — 이름 앞에 내 이름을 붙이면 목록에서 찾기 쉽습니다</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #1c3f94; width: 20px; flex-shrink: 0;">3</span><div style="font-size: 16px; line-height: 1.45;"><strong style='font-weight: 600;'>[지침]</strong>에 배포 파일의 ✂ 사이를 붙여넣기</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #1c3f94; width: 20px; flex-shrink: 0;">4</span><div style="font-size: 16px; line-height: 1.45;"><strong style='font-weight: 600;'>[파일 업로드]</strong>에 이번 모듈 파일 · <strong style='font-weight: 600;'>[대화 시작]</strong>에 예시 3개</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #1c3f94; width: 20px; flex-shrink: 0;">5</span><div style="font-size: 16px; line-height: 1.45;"><strong style='font-weight: 600;'>[저장]</strong> — 첫 메시지는 대화 시작 예시 1번</div></div>
+</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #0f6b4f; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+  <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 19px; font-weight: 600;">Gemini</span><span style="font-size: 14px; color: #6b6660;">대체 경로 · 모델은 Flash</span></div>
+  <div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #0f6b4f; width: 20px; flex-shrink: 0;">1</span><div style="font-size: 16px; line-height: 1.45;">사이드바 <strong style='font-weight: 600;'>[에이전트]</strong> → <strong style='font-weight: 600;'>[+ 새 에이전트]</strong></div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #0f6b4f; width: 20px; flex-shrink: 0;">2</span><div style="font-size: 16px; line-height: 1.45;"><strong style='font-weight: 600;'>&quot;이 단계를 건너뛰고 수동으로 빌드&quot;</strong>를 고릅니다 — 자연어로 만들게 하면 지시문이 요약돼 7블록이 무너집니다</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #0f6b4f; width: 20px; flex-shrink: 0;">3</span><div style="font-size: 16px; line-height: 1.45;">지침에 같은 ✂ 사이를 붙여넣기</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #0f6b4f; width: 20px; flex-shrink: 0;">4</span><div style="font-size: 16px; line-height: 1.45;">참조 파일 업로드</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #0f6b4f; width: 20px; flex-shrink: 0;">5</span><div style="font-size: 16px; line-height: 1.45;"><strong style='font-weight: 600;'>[저장]</strong> — 내 것은 <strong style='font-weight: 600;'>내 에이전트</strong> 탭에 있습니다</div></div>
+</div>
+    </div>
+    <div style="background: #ffffff; border: 1px solid #e4e2db; border-left: 4px solid #9a2c2c; padding: 14px 18px; display: flex; gap: 24px; align-items: center;">
+      <div style="font-size: 16px; font-weight: 600; color: #9a2c2c; white-space: nowrap;">메뉴가 없으면</div>
+      <div style="font-size: 14px; color: #3d4650; line-height: 1.55;"><strong style="font-weight: 600; color: #111821;">대안 1</strong> [프로젝트] → 새 프로젝트 → 프로젝트 지침에 같은 지시문 · 같은 파일 → 프로젝트 안에서 새 대화 &nbsp;&nbsp;<strong style="font-weight: 600; color: #111821;">대안 2</strong> 새 대화 → 지시문 전체를 첫 메시지로 → 클립 아이콘으로 파일 첨부. 세션이 끊기면 다시 붙여넣습니다</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>O · 06</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">모듈 B</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">도구와 클릭 경로</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">ChatGPT 에이전트 + 파일 4개 · 결과는 Word</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; display: flex; gap: 14px; align-items: stretch; flex-grow: 1;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #1c3f94; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+  <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 19px; font-weight: 600;">ChatGPT 에이전트</span><span style="font-size: 14px; color: #6b6660;">모델은 Instant</span></div>
+  <div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #1c3f94; width: 20px; flex-shrink: 0;">1</span><div style="font-size: 16px; line-height: 1.45;">[에이전트] → [만들기] → 이름 · 설명</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #1c3f94; width: 20px; flex-shrink: 0;">2</span><div style="font-size: 16px; line-height: 1.45;">지침에 <span class='mono' style='font-size: 13px;'>prompt_2_추출.md</span> ✂ 사이</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #1c3f94; width: 20px; flex-shrink: 0;">3</span><div style="font-size: 16px; line-height: 1.45;">파일 업로드 <strong style='font-weight: 600;'>4개</strong> — 뉴스 JSON · 상권 · 파트너 · 시장조사</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #1c3f94; width: 20px; flex-shrink: 0;">4</span><div style="font-size: 16px; line-height: 1.45;">저장 → 첫 메시지에 담당 권역 <strong style='font-weight: 600;'>부산 해운대</strong></div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #1c3f94; width: 20px; flex-shrink: 0;">5</span><div style="font-size: 16px; line-height: 1.45;">단계 3은 같은 대화의 다음 메시지로</div></div>
+</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-top: 3px solid #9a6408; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
+  <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 19px; font-weight: 600;">Word로 옮기기</span><span style="font-size: 14px; color: #6b6660;">AI에게 Word 파일을 만들게 하지 않습니다</span></div>
+  <div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #9a6408; width: 20px; flex-shrink: 0;">1</span><div style="font-size: 16px; line-height: 1.45;">보고서 전체를 복사</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #9a6408; width: 20px; flex-shrink: 0;">2</span><div style="font-size: 16px; line-height: 1.45;">Word 새 문서 — 회사 양식이 있으면 그 파일을 먼저</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #9a6408; width: 20px; flex-shrink: 0;">3</span><div style="font-size: 16px; line-height: 1.45;">붙여넣기 옵션 — 표를 표로 받으려면 <strong style='font-weight: 600;'>원본 서식 유지</strong></div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #9a6408; width: 20px; flex-shrink: 0;">4</span><div style="font-size: 16px; line-height: 1.45;">제목 줄에 제목1 · 제목2 스타일</div></div><div style="display: flex; gap: 12px; align-items: flex-start;"><span style="font-size: 14px; font-weight: 700; color: #9a6408; width: 20px; flex-shrink: 0;">5</span><div style="font-size: 16px; line-height: 1.45;"><span class='mono' style='font-size: 13px;'>report_B.docx</span>로 저장</div></div>
+</div>
+    </div>
+    <div style="background: #ffffff; border: 1px solid #e4e2db; border-left: 4px solid #9a2c2c; padding: 14px 18px; display: flex; gap: 20px; align-items: center;"><div style="font-size: 16px; font-weight: 600; color: #9a2c2c; white-space: nowrap;">마크다운 표가 | 그대로 붙으면</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">채팅창에 — <span class="mono" style="font-size: 13px; background: #f2f1ec; padding: 1px 6px;">표를 마크다운 기호 없이, 항목마다 줄바꿈된 형태로 다시 출력해줘</span></div></div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>S · 08</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

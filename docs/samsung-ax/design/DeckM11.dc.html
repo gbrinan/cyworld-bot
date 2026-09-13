@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">공통 방법론</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">오늘의 완주 기준</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">완성도보다 체인이 끊기지 않는 것</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+
+    <div style="flex-grow: 1; display: flex; gap: 14px; align-items: stretch; flex-grow: 1;">
+      <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; border-top: 4px solid #0f6b4f; padding: 24px 28px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #0f6b4f;">최소 완주</span><span style="font-size: 14px; color: #6b6660;">이 선을 넘기면 다음 모듈로 갑니다</span></div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 1.5;">
+          <div>□ 에이전트 하나가 만들어져 있다</div>
+          <div>□ 정상 테스트 1건이 기준본과 같다</div>
+          <div>□ 결과물이 파일로 저장돼 있다 — <span class="mono" style="font-size: 13px;">recommend_D.html</span></div>
+        </div>
+      </div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; border-top: 4px solid #1c3f94; padding: 24px 28px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #1c3f94;">확장</span><span style="font-size: 14px; color: #6b6660;">시간이 남는 분</span></div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 1.5;">
+          <div>□ 경계 · 실패 테스트까지 셋 다 통과</div>
+          <div>□ 테스트에서 고친 문장을 지시문에 반영한 v1</div>
+          <div>□ 내 업무 전환 표를 채웠다</div>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; padding: 18px 26px; background: #111821; color: #fbfaf7;">
+      <div style="font-size: 22px; font-weight: 700;">뒤처져도 다음 실습은 반드시 시작합니다.</div>
+      <div style="flex-grow: 1;"></div>
+      <div style="font-size: 14px; color: #c9c5bd;">앞 모듈을 못 끝냈으면 배포 폴더 04_answer/의 기준본으로 시작합니다.</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>M · 11</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

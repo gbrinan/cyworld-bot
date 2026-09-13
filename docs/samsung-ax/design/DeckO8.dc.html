@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #1c3f94; } a:hover { color: #0e2560; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+<div style="width: 1280px; height: 720px; background: #fbfaf7; color: #111821; display: flex; flex-direction: column; box-sizing: border-box; padding: 48px 64px 40px;">
+  <div style="display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid #111821; padding-bottom: 12px;">
+    <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">오프닝</div>
+    <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">지시문은 메모장에 먼저</h2>
+    <div style="flex-grow: 1;"></div>
+    <div style="font-size: 12px; color: #6b6660;">세션이 끊기면 채팅창의 지시문은 사라집니다</div>
+  </div>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
+<div style="flex-grow: 1; display: flex; gap: 14px; align-items: stretch; flex-grow: 1;">
+  <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; padding: 22px 26px; background: #f7f6f2; display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #9a2c2c;">✕</span><span style="font-size: 19px; font-weight: 600;">채팅창에만 쓴다</span></div>
+    <div style="font-size: 16px; line-height: 1.6; color: #3d4650;">창을 닫거나 세션이 만료되면 지시문이 없어집니다. 다음 차수에 처음부터 다시 씁니다. 고친 내용도 같이 사라집니다.</div>
+  </div>
+  <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; padding: 22px 26px; border-top: 4px solid #0f6b4f; display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #0f6b4f;">○</span><span style="font-size: 19px; font-weight: 600;">메모장에 두고 붙여넣는다</span></div>
+    <div style="font-size: 16px; line-height: 1.6; color: #3d4650;">배포 파일 <span class='mono' style='font-size: 13px; color: #111821;'>02_prompt/prompt_1.md</span>를 열어 <span class='mono' style='font-size: 13px; color: #111821;'>agentD_prompt.txt</span>로 저장. 채팅창에는 붙여넣기만. 고칠 때는 메모장에서 고치고 다시 붙여넣습니다.<br><br>세션이 끊겨도, 다음 차수에도, 동료에게 넘길 때도 그대로입니다.</div>
+  </div>
+</div>
+    <div style="display: flex; align-items: center; gap: 18px; padding: 18px 26px; background: #111821; color: #fbfaf7;">
+      <div style="font-size: 22px; font-weight: 700;">"컨텍스트를 데이터로 다룬다"의 가장 작은 실천입니다.</div>
+      <div style="flex-grow: 1;"></div>
+      <div style="font-size: 14px; color: #c9c5bd;">스킬 기능이 열려 있으면 보관 장소만 워크스페이스로 바뀝니다. 만드는 내용은 같습니다.</div>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">
+    <span>모든 데이터는 가상입니다</span><span>O · 08</span>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

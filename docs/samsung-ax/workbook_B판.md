@@ -338,7 +338,7 @@ To-Be: AI가 __________를 받아 __________ 초안을 만들고, 사람은 ____
 
 | 바꿀 것 | 실습 (팩 데이터) | 내 업무 |
 |---|---|---|
-| 참조 파일 (팀 것) | target_account.md · target_builders.csv · partner_info.csv | |
+| 참조 파일 (팀 것) | target_account.md · partner_info.csv | |
 | Input 데이터 (파일·컬럼) | | |
 | 출력 서식 | | |
 | STOP 조건 | | |

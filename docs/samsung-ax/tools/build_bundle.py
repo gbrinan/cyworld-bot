@@ -2,7 +2,7 @@
 """전체 산출물을 폴더 하나(dist/AX_전체/)에 모으고 시작 페이지(index.html)를 붙인다.
 마크다운은 옆에 같은 이름의 .html로 렌더링해 브라우저에서 바로 열린다. 마지막에 dist/AX_전체.zip.
 사용: python3 build_bundle.py   (build_course_docs → build_deck → PDF → build_pack 다음에)"""
-import os, re, shutil, zipfile, datetime, html as H
+import os, re, shutil, zipfile, datetime, urllib.parse, html as H
 import markdown
 HERE = os.path.dirname(os.path.abspath(__file__)); AX = os.path.abspath(os.path.join(HERE, ".."))
 OUT = os.path.join(AX, "dist", "AX_전체"); STAMP = datetime.date.today().isoformat()
@@ -40,23 +40,58 @@ strong{font-weight:700}
 """
 MD = markdown.Markdown(extensions=["tables", "fenced_code", "sane_lists", "toc"], extension_configs={"toc": {"toc_depth": "2-3"}})
 
-def md_to_html(src_path, rel_up):
-    """rel_up: index.html 까지의 상대 경로 (예: '../../')"""
+PENDING = []   # (마크다운 원본, 만들 .html 경로) — 복사를 다 한 뒤에 한꺼번에 렌더링한다
+BASEMAP = {}   # 파일이름.html -> 묶음 안의 경로. 문서끼리 건 링크를 새 자리로 옮기는 데 쓴다
+
+def fix_links(body, dst_dir):
+    """묶음은 저장소와 폴더 구조가 다르다. 저장소 기준으로 적힌 링크를 새 자리로 옮기고,
+    묶음에 없는 파일을 가리키는 링크는 글자만 남긴다 (죽은 링크를 남기지 않는다)."""
+    def one(m):
+        href, attrs, text = m.group(1), m.group(2), m.group(3)
+        if href.startswith(("http://", "https://", "#", "mailto:", "data:")): return m.group(0)
+        path = href.split("#")[0]; frag = href[len(path):]
+        if not path: return m.group(0)
+        if os.path.exists(os.path.normpath(os.path.join(dst_dir, urllib.parse.unquote(path)))): return m.group(0)
+        cand = BASEMAP.get(os.path.basename(urllib.parse.unquote(path)))
+        if cand and len(cand) == 1:
+            new = os.path.relpath(os.path.join(OUT, next(iter(cand))), dst_dir).replace(os.sep, "/")
+            return f'<a href="{new}{frag}"{attrs}>{text}</a>'
+        return f'<span class="nolink">{text}</span>'
+    return re.sub(r'<a href="([^"]*)"([^>]*)>(.*?)</a>', one, body, flags=re.S)
+
+def md_to_html(src_path, dst_path):
     text = open(src_path, encoding="utf-8").read()
-    # 절 참조 링크: 같은 묶음 안의 .md 링크는 .html 로
+    # 같은 묶음 안의 .md 링크는 .html 로
     text = re.sub(r"\]\(([^)\s#]+?)\.md(#[^)]*)?\)", lambda m: f"]({m.group(1)}.html{m.group(2) or ''})", text)
     MD.reset(); body = MD.convert(text)
+    dst_dir = os.path.dirname(dst_path)
+    body = fix_links(body, dst_dir)
+    up = os.path.relpath(OUT, dst_dir).replace(os.sep, "/")
+    up = "" if up == "." else up + "/"
     m = re.search(r"<h1[^>]*>(.*?)</h1>", body, re.S); title = re.sub(r"<[^>]+>", "", m.group(1)) if m else os.path.basename(src_path)
     rel_src = os.path.relpath(src_path, AX)
     return f"""<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{H.escape(title)}</title>{FONT}<style>{CSS}</style></head><body><div class="wrap">
-<div class="crumb"><a href="{rel_up}index.html">AX 전체</a> · {H.escape(rel_src)} · <a href="{os.path.basename(src_path)}">.md 원본</a></div>
+<title>{H.escape(title)}</title>{FONT}<style>{CSS}
+.nolink{{color:var(--ink2);border-bottom:1px dotted var(--rule)}}
+</style></head><body><div class="wrap">
+<div class="crumb"><a href="{up}index.html">AX 전체</a> · {H.escape(rel_src)} · <a href="{urllib.parse.quote(os.path.basename(src_path))}">.md 원본</a></div>
 {body}
 <div class="foot">삼성전자 B2B 영업 AX 과정 교안 · {STAMP} · 모든 데이터는 가상입니다</div>
 </div></body></html>"""
 
+def render_pending():
+    """복사가 끝난 뒤: 어떤 파일이 어디에 놓였는지 먼저 색인하고, 그다음 렌더링한다."""
+    for dp, dn, fn in os.walk(OUT):
+        for f in fn:
+            if f.endswith(".html"):
+                BASEMAP.setdefault(f, set()).add(os.path.relpath(os.path.join(dp, f), OUT))
+    for src, dst in PENDING:
+        BASEMAP.setdefault(os.path.basename(dst), set()).add(os.path.relpath(dst, OUT))
+    for src, dst in PENDING:
+        open(dst, "w", encoding="utf-8").write(md_to_html(src, dst))
+
 INDEX_ROWS = []  # (section, [(href, label, note)])
-def copy_tree(src, dst, rel_up, skip=lambda rel: False):
+def copy_tree(src, dst, skip=lambda rel: False):
     """폴더를 복사하고 .md 옆에 .html 을 만든다. 만든 파일 목록을 돌려준다."""
     made = []
     for dp, dn, fn in os.walk(src):
@@ -68,33 +103,32 @@ def copy_tree(src, dst, rel_up, skip=lambda rel: False):
             q = os.path.join(dst, rel); os.makedirs(os.path.dirname(q), exist_ok=True)
             shutil.copy2(p, q); made.append(q)
             if f.endswith(".md"):
-                depth = rel.count(os.sep); up = rel_up + "../" * depth
-                hq = q[:-3] + ".html"; open(hq, "w", encoding="utf-8").write(md_to_html(p, up)); made.append(hq)
+                hq = q[:-3] + ".html"; PENDING.append((p, hq)); made.append(hq)
     return made
 
-def copy_files(files, dst, rel_up):
+def copy_files(files, dst):
     os.makedirs(dst, exist_ok=True); made = []
     for src in files:
         q = os.path.join(dst, os.path.basename(src)); shutil.copy2(src, q); made.append(q)
         if src.endswith(".md"):
-            hq = q[:-3] + ".html"; open(hq, "w", encoding="utf-8").write(md_to_html(src, rel_up)); made.append(hq)
+            hq = q[:-3] + ".html"; PENDING.append((src, hq)); made.append(hq)
     return made
 
 os.makedirs(OUT, exist_ok=True)
 D = os.path.join(AX, "deck"); DIST = os.path.join(AX, "dist")
 # 01 덱
-copy_files([os.path.join(D, f) for f in ["A판.html", "B판.html", "A판.pdf", "B판.pdf", "A판_순서.txt", "B판_순서.txt", "notes.json"] if os.path.exists(os.path.join(D, f))], os.path.join(OUT, "01_덱"), "../")
+copy_files([os.path.join(D, f) for f in ["A판.html", "B판.html", "A판.pdf", "B판.pdf", "A판_순서.txt", "B판_순서.txt", "notes.json"] if os.path.exists(os.path.join(D, f))], os.path.join(OUT, "01_덱"))
 # 02 강사 문서
-copy_files([os.path.join(AX, f) for f in ["instructor_guide.md", "faq.md", "rehearsal_checklist.md", "deck_audit.md", "slides_outline.md", "design_handoff_package.md", "validation_log.md", "module_spec.md", "agent_structure_v2.md", "handoff_review.md", "README.md"]], os.path.join(OUT, "02_강사"), "../")
+copy_files([os.path.join(AX, f) for f in ["instructor_guide.md", "faq.md", "rehearsal_checklist.md", "deck_audit.md", "slides_outline.md", "design_handoff_package.md", "validation_log.md", "module_spec.md", "agent_structure_v2.md", "handoff_review.md", "README.md"]], os.path.join(OUT, "02_강사"))
 # 03 참가자
-copy_files([os.path.join(AX, "workbook_A판.md"), os.path.join(AX, "workbook_B판.md")] + [os.path.join(DIST, z) for z in ["참가자_A판.zip", "참가자_B판.zip"] if os.path.exists(os.path.join(DIST, z))], os.path.join(OUT, "03_참가자"), "../")
+copy_files([os.path.join(AX, "workbook_A판.md"), os.path.join(AX, "workbook_B판.md")] + [os.path.join(DIST, z) for z in ["참가자_A판.zip", "참가자_B판.zip"] if os.path.exists(os.path.join(DIST, z))], os.path.join(OUT, "03_참가자"))
 # 04 모듈 + 공통
-copy_tree(os.path.join(AX, "context_pack", "modules"), os.path.join(OUT, "04_모듈"), "../../")
-copy_tree(os.path.join(AX, "context_pack", "common"), os.path.join(OUT, "04_모듈", "common"), "../../../")
+copy_tree(os.path.join(AX, "context_pack", "modules"), os.path.join(OUT, "04_모듈"))
+copy_tree(os.path.join(AX, "context_pack", "common"), os.path.join(OUT, "04_모듈", "common"))
 # 05 디자인 (아트보드 · canvas.json · 생성기)
-copy_tree(os.path.join(AX, "design"), os.path.join(OUT, "05_디자인"), "../../", skip=lambda rel: rel.endswith(".html") and not rel.endswith(".dc.html"))
+copy_tree(os.path.join(AX, "design"), os.path.join(OUT, "05_디자인"), skip=lambda rel: rel.endswith(".html") and not rel.endswith(".dc.html"))
 # 06 도구
-copy_tree(os.path.join(AX, "tools"), os.path.join(OUT, "06_도구"), "../../")
+copy_tree(os.path.join(AX, "tools"), os.path.join(OUT, "06_도구"))
 
 # ───────── index.html ─────────
 def row(href, label, note=""): return f'<tr><td><a href="{href}">{H.escape(label)}</a></td><td>{note}</td></tr>'
@@ -125,6 +159,7 @@ def dir_pages():
 <table class="files"><tbody>{"".join(items)}</tbody></table>
 <div class="foot">모든 데이터는 가상입니다</div></div></body></html>"""
         open(os.path.join(dp, "index.html"), "w", encoding="utf-8").write(page)
+render_pending()
 dir_pages()
 n_files = sum(len(f) for _, _, f in os.walk(OUT)) + 1  # + index.html
 index = f"""<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">

@@ -88,7 +88,8 @@ def hands_md(name, n):
 
 CLOSING = open(os.path.join(AX, "workbook.md"), encoding="utf-8").read()
 CLOSING = CLOSING[CLOSING.index("# 오늘 마무리 — 내 업무로 전환하기"):]
-CLOSING = CLOSING.replace("| 팀 프로필 | team_profile.md | |", "| 참조 파일 (팀 것) | target_account.md · target_builders.csv · partner_info.csv | |")
+# 참조 파일 예시는 그 판에 실제로 배포되는 파일만 든다 (다른 팀 파일을 대면 참가자가 폴더에서 못 찾는다)
+CLOSING = CLOSING.replace("| 팀 프로필 | team_profile.md | |", "| 참조 파일 (팀 것) | {REF_FILES} | |")
 # 꼬리표는 덱과 같이 글자 라벨로 (이모지는 인쇄·확대에서 깨짐)
 for _a, _b in [("> 꼬리표: 🔒 사람만 · ✍️ AI 초안 · ⚙️ AI 반복 · 🔌 밖에서 가져옴", "> 꼬리표 4종: [사람만] · [AI 초안] · [AI 반복] · [밖에서 가져옴] — 슬라이드의 선 아이콘과 같은 순서"),
                ("| 🔒 | ✍️ | ⚙️ | 🔌 |", "| 사람만 | AI 초안 | AI 반복 | 밖에서 |"), ("경계 (🔒)     : ____번", "경계 (사람만) : ____번"), ("입력 (🔌)     : ____번", "입력 (밖에서) : ____번"),
@@ -142,7 +143,7 @@ def workbook(deck):
          f"## 내 업무로 전환", "", f"**{C_q}**", "", "_____________________________________________________________", "", "---", "",
          f"# Skill과 MCP · 클로징 (슬라이드 {rng(deck,'DeckK1','DeckZ3')})", "",
          "오늘 만든 것에는 이름이 있습니다 — **Agent Skill** = 지시문 7블록 + 참조 파일 + 정답 예시. 각 모듈 배포 폴더의 `07_skill/SKILL.md`가 그 실물입니다. 스킬 기능이 열려 있으면 등록하고, 아니면 메모장 보관이 그대로 답입니다.", "", "---", "",
-         CLOSING]
+         CLOSING.replace("{REF_FILES}", "target_account.md · target_builders.csv" if deck == "A판" else "target_account.md · partner_info.csv")]
     return "\n".join(w)
 
 # ───────── 강사 진행 가이드 ─────────
@@ -161,7 +162,7 @@ def guide():
     principles = sect("## 0. 진행 원칙", "## 1. 하루 운영표")
     principles = principles.replace("`handoff/` 정답 파일로", "각 모듈 `04_answer/` 기준본으로").replace("IPO가 채워졌는지", "분해표와 파일이 준비됐는지")
     assist = sect("## 4. 보조강사 운영", "## 5. 진도 관리").replace("`handoff/` 안내", "`04_answer/` 안내").replace("짝 시연 | 짝이 안 맞는 참가자 매칭", "실습 2 · 3 | 새 대화를 여는 것을 어려워하는 참가자 확인")
-    situations = sect("## 6. 자주 나오는 상황 대응", "## 7. 모듈 종료 체크리스트").replace("`handoff/`", "`04_answer/`").replace("`paste/`", "`06_paste/`").replace("④에서 숫자가 매번 다름", "D에서 합계가 매번 다름").replace("소계본(`*_소계.csv`)으로 교체", "소계본 + 호텔모델별 집계본 둘로 교체 (소계본만 올리면 추천이 안 나옵니다)")
+    situations = sect("## 6. 자주 나오는 상황 대응", "## 7. 모듈 종료 체크리스트").replace("`handoff/`", "`04_answer/`").replace("`paste/`", "`06_paste/`").replace("④에서 숫자가 매번 다름", "D에서 합계가 매번 다름").replace("메모장에 보관한 `agent*_prompt.md`를 다시 붙여넣게 함. 안 만들어 뒀으면 지금 만들게 함", "메모장에 보관한 지시문을 다시 붙여넣게 함. 안 만들어 뒀으면 `02_prompt/`에서 다시 복사하게 함").replace("소계본(`*_소계.csv`)으로 교체", "소계본 + 호텔모델별 집계본 둘로 교체 (소계본만 올리면 추천이 안 나옵니다)")
     checklist = sect("## 7. 모듈 종료 체크리스트", None).replace("handoff 위치를 안다", "04_answer 위치를 안다")
     def cue(deck):
         L = "A" if deck == "A판" else "B"; HS = "Hands" + L

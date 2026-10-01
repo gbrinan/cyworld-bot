@@ -311,102 +311,100 @@ def instructor():
 """)
     print(f"강사.zip  {len(zipfile.ZipFile(out).namelist())} files  {os.path.getsize(out)//1024} KB")
 
-# ───────── 실습 파일 — 세션 순서대로 한 묶음 (참가자 배포본) ─────────
-# 세션1 A 직판 · B 유통영업 / 세션2 대시보드 / 세션3 데이터분석 / 세션4 제안자료
-# 함정 · 실패 테스트 데이터(03_테스트)와 테스트 설명서(테스트_*.md)는 넣지 않는다 — 강사 묶음에만 있다.
+# ───────── 실습 파일 — 세션마다 세 가지만 (참가자 배포본) ─────────
+# 세션 폴더 = 1_붙여넣을_프롬프트.md (지침란에 통째로) · 2_데이터/ (그 프롬프트가 쓰는 파일만) · 3_실습지시문_1.md → 4_실습지시문_2.md
+# 원본은 context_pack/실습묶음/. 세션2 · 3 프롬프트는 D 모듈 지시문의 ✂ 사이를 그대로 옮긴다 (사본을 따로 두면 어긋난다).
+# 함정 · 실패 테스트 데이터와 테스트 설명서는 넣지 않는다 — 강사 묶음에만 있다.
 PRACTICE = "AX_실습파일"
+SRC = os.path.join(AX, "context_pack", "실습묶음")
 def _m(mod, *parts): return os.path.join(MOD, mod, *parts)
-def _files(mod, sub, keep=lambda f: True):
-    d = _m(mod, sub)
-    return [(os.path.join(d, f), f) for f in sorted(os.listdir(d))
-            if not f.startswith((".", "테스트_")) and f != "README.md" and keep(f)] if os.path.isdir(d) else []
+def _cut(path):
+    import re
+    t = open(path, encoding="utf-8").read()
+    m = re.search(r"## ✂ 여기서부터 복사[^\n]*\n(.*?)\n## ✂ 여기까지 복사", t, re.S)
+    assert m, path
+    return m.group(1).strip() + "\n"
+def sync_session_prompts():
+    """세션2 · 3 통합 프롬프트를 D 지시문에서 다시 뽑아 실습묶음에 쓴다"""
+    for sess, f in [("세션2_대시보드", "지시문_1_대시보드.md"), ("세션3_데이터분석", "지시문_2_분석.md")]:
+        open(os.path.join(SRC, sess, "1_붙여넣을_프롬프트.md"), "w", encoding="utf-8").write(_cut(_m("D_analysis", "02_지시문", f)))
+DATA = {
+    "세션1_A_직판": [("A_sensing_b2b", "기사수집.csv"), ("A_sensing_b2b", "대상고객사.csv")],
+    "세션1_B_유통영업": [("B_sensing_partner", f) for f in ["뉴스수집.json", "상권정보.csv", "파트너정보.csv", "시장조사.md"]],
+    "세션2_대시보드": [("D_analysis", "매출데이터.csv"), ("D_analysis", "매출데이터_소계.csv")],
+    "세션3_데이터분석": [("D_analysis", "매출데이터.csv"), ("D_analysis", "매출데이터_소계.csv")],
+    "세션4_제안자료": [("C_proposal", f) for f in ["가격가이드.csv", "시장가격.csv", "고객요구조건.md"]],
+}
+REF = {  # 참고/ — 기준본과 업로드가 막혔을 때 붙여넣는 표
+    "세션1_A_직판": ("A_sensing_b2b", ["영업대시보드.html", "고객프로파일.md"]),
+    "세션1_B_유통영업": ("B_sensing_partner", ["권역보고서.md", "기회목록.csv", "검색어.md"]),
+    "세션2_대시보드": ("D_analysis", ["대시보드.html"]),
+    "세션3_데이터분석": ("D_analysis", ["리뷰.md", "대상수요처.md"]),
+    "세션4_제안자료": ("C_proposal", ["제안자료.html"]),
+}
 def practice_layout():
     """(묶음 안 경로, 원본 경로) 목록"""
     L = []
-    def put(dst_dir, items):
-        for src, name in items: L.append((f"{dst_dir}/{name}", src))
-    for mod, folder in [("A_sensing_b2b", "세션1_시장고객분석/A_직판"), ("B_sensing_partner", "세션1_시장고객분석/B_유통영업")]:
-        put(f"{folder}/1_프롬프트", _files(mod, "02_지시문"))
-        put(f"{folder}/2_자료", _files(mod, "01_데이터"))
-        put(f"{folder}/3_붙여넣기용", _files(mod, "06_붙여넣기"))
-        put(f"{folder}/4_기준본", _files(mod, "04_기준본"))
-        put(f"{folder}/5_스킬", _files(mod, "07_스킬"))
-        L.append((f"{folder}/모듈카드.md", _m(mod, "모듈카드.md")))
-    L.append(("세션1_시장고객분석/뉴스수집_예약_프롬프트.md", os.path.join(AX, "세션1_뉴스수집_제안", "지시문_뉴스수집.md")))
-    T = os.path.join(COMMON, "instruction_templates")
-    for f in ["dashboard_customer.md", "dashboard_customer_예시.md"]: L.append((f"세션1_시장고객분석/A_직판/6_내업무_템플릿/{f}", os.path.join(T, f)))
-    for f in ["dashboard_territory.md", "dashboard_territory_예시.md"]: L.append((f"세션1_시장고객분석/B_유통영업/6_내업무_템플릿/{f}", os.path.join(T, f)))
-    D = "D_analysis"
-    put("세션2_대시보드/1_프롬프트", [(p, f) for p, f in _files(D, "02_지시문") if "대시보드" in f])
-    put("세션2_대시보드/2_자료", _files(D, "01_데이터"))
-    put("세션2_대시보드/3_붙여넣기용", _files(D, "06_붙여넣기"))
-    put("세션2_대시보드/4_기준본", [(p, f) for p, f in _files(D, "04_기준본") if f == "대시보드.html"])
-    put("세션2_대시보드/5_스킬", _files(D, "07_스킬"))
-    L.append(("세션2_대시보드/모듈카드.md", _m(D, "모듈카드.md")))
-    for f in ["dashboard_sales.md", "dashboard_sales_예시.md"]: L.append((f"세션2_대시보드/6_내업무_템플릿/{f}", os.path.join(T, f)))
-    L.append(("세션2_대시보드/README_삼성측_요구_대조.md", os.path.join(AX, "세션2_대시보드_제안", "README.md")))
-    put("세션3_데이터분석/1_프롬프트", [(p, f) for p, f in _files(D, "02_지시문") if "분석" in f])
-    put("세션3_데이터분석/2_자료", _files(D, "01_데이터"))
-    put("세션3_데이터분석/3_붙여넣기용", _files(D, "06_붙여넣기"))
-    put("세션3_데이터분석/4_기준본", [(p, f) for p, f in _files(D, "04_기준본") if f in ("리뷰.md", "대상수요처.md", "대시보드.html")])
-    C = "C_proposal"
-    put("세션4_제안자료/1_프롬프트", _files(C, "02_지시문"))
-    put("세션4_제안자료/2_자료", _files(C, "01_데이터") + [(_m(D, "04_기준본", "대상수요처.md"), "대상수요처_세션3인계_선택.md")])
-    put("세션4_제안자료/3_붙여넣기용", _files(C, "06_붙여넣기"))
-    put("세션4_제안자료/4_기준본", _files(C, "04_기준본"))
-    put("세션4_제안자료/5_스킬", _files(C, "07_스킬"))
-    L.append(("세션4_제안자료/모듈카드.md", _m(C, "모듈카드.md")))
-    for f in ["dashboard_proposal.md", "dashboard_proposal_예시.md"]: L.append((f"세션4_제안자료/6_내업무_템플릿/{f}", os.path.join(T, f)))
-    for f in COMMON_P:
-        L.append((f"0_공통/{f}", os.path.join(AX, f) if f == "faq.md" else os.path.join(COMMON, f)))
-    for d in TEAM: L.append((f"0_공통/워크북_{d}.md", os.path.join(AX, f"workbook_{d}.md")))
+    for sess, files in DATA.items():
+        L.append((f"{sess}/1_붙여넣을_프롬프트.md", os.path.join(SRC, sess, "1_붙여넣을_프롬프트.md")))
+        for mod, f in files: L.append((f"{sess}/2_데이터/{f}", _m(mod, "01_데이터", f)))
+        L.append((f"{sess}/3_실습지시문_1.md", os.path.join(SRC, sess, "3_실습지시문_1.md")))
+        L.append((f"{sess}/4_실습지시문_2.md", os.path.join(SRC, sess, "4_실습지시문_2.md")))
+    # 세션4 프롬프트가 선택 입력으로 받는 세션3 인계본
+    L.append(("세션4_제안자료/2_데이터/대상수요처.md", _m("D_analysis", "04_기준본", "대상수요처.md")))
+    L.append(("뉴스수집_예약/뉴스수집_예약_프롬프트.md", os.path.join(AX, "세션1_뉴스수집_제안", "지시문_뉴스수집.md")))
+    for sess, (mod, files) in REF.items():
+        for f in files: L.append((f"참고/{sess}_기준본/{f}", _m(mod, "04_기준본", f)))
+        pdir = _m(mod, "06_붙여넣기")
+        need = {os.path.splitext(f)[0] for _, f in DATA[sess]}
+        for f in sorted(os.listdir(pdir)):
+            if os.path.splitext(f)[0] in need: L.append((f"참고/{sess}_붙여넣기용/{f}", os.path.join(pdir, f)))
+    for d in TEAM: L.append((f"참고/워크북_{d}.md", os.path.join(AX, f"workbook_{d}.md")))
     for d in TEAM:
         pdf = os.path.join(AX, "deck", f"{d}.pdf")
-        if os.path.exists(pdf): L.append((f"0_공통/슬라이드_{d}.pdf", pdf))
+        if os.path.exists(pdf): L.append((f"참고/슬라이드_{d}.pdf", pdf))
+    for f in ["security_rules.md", "web_environment.md", "faq.md"]:
+        L.append((f"참고/{f}", os.path.join(AX, f) if f == "faq.md" else os.path.join(COMMON, f)))
     return L
 
 def practice_readme(L):
-    n = lambda pre: sum(1 for a, _ in L if a.startswith(pre))
     return f"""# AX 실습 파일 · {STAMP}
 
-세션 순서대로 묶었습니다. **모든 데이터는 가상**이며 실제 고객사 · 파트너 · 매출과 무관합니다. 실습 중 실제 업무 파일은 올리지 않습니다 (`0_공통/security_rules.md`).
+**모든 데이터는 가상**이며 실제 고객사 · 파트너 · 매출과 무관합니다. 실습 중 실제 업무 파일은 올리지 않습니다.
 
-| 폴더 | 무엇 | 결과물 |
+| 폴더 | 누가 | 결과물 |
 |---|---|---|
-| `세션1_시장고객분석/A_직판/` | B2B팀 — 담당 고객사 6곳 기사로 접근 시점 찾기 ({n('세션1_시장고객분석/A_직판/')}개) | `영업대시보드.html` |
-| `세션1_시장고객분석/B_유통영업/` | B2B유통전략팀 — 권역 신규 시설과 파트너 매칭 ({n('세션1_시장고객분석/B_유통영업/')}개) | `권역보고서.docx` |
-| `세션1_시장고객분석/뉴스수집_예약_프롬프트.md` | 세션1 마지막 10분 — 내 고객사 뉴스를 Gemini / ChatGPT에 예약 | — |
-| `세션2_대시보드/` | 매출 데이터 16열로 매출 대시보드 ({n('세션2_대시보드/')}개) | `대시보드.html` |
-| `세션3_데이터분석/` | 같은 매출 데이터로 임원용 리뷰 한 장 + 넘길 수요처 ({n('세션3_데이터분석/')}개) | `리뷰.md` · `대상수요처.md` |
-| `세션4_제안자료/` | 요구조건에 맞는 3안 + 시장가 비교 ({n('세션4_제안자료/')}개) | `제안자료.html` |
-| `0_공통/` | 보안 규칙 · 웹 환경 · 도구 경로 · 검수 기준 · FAQ · 워크북 · 슬라이드 | — |
+| `세션1_A_직판/` | B2B팀 | `영업대시보드.html` |
+| `세션1_B_유통영업/` | B2B유통전략팀 | `권역보고서.docx` |
+| `세션2_대시보드/` | 전원 | `대시보드.html` |
+| `세션3_데이터분석/` | 전원 | 리뷰 한 장 + 넘길 수요처 |
+| `세션4_제안자료/` | 전원 | `제안자료.html` |
+| `뉴스수집_예약/` | 전원 · 세션1 마지막 10분 | 내 고객사 뉴스를 Gemini / ChatGPT에 예약 |
+| `참고/` | 필요할 때 | 기준본(기대 결과) · 업로드가 막혔을 때 붙여넣는 표 · 워크북 · 슬라이드 · 보안 규칙 |
 
-## 각 세션 폴더 안
+## 세션 폴더마다 하는 일 — 네 번
 
-| 하위 폴더 | 무엇 | 어떻게 |
-|---|---|---|
-| `1_프롬프트/` | 지시문 | 파일 안의 **✂ 표시 사이만** 복사해 에이전트 「지침」란이나 대화창에 붙여넣습니다 |
-| `2_자료/` | 올리는 파일 | `*_소계.csv`는 검산 대조용 — 같이 올립니다 |
-| `3_붙여넣기용/` | 같은 자료의 표 | 파일 업로드가 막혔을 때 복사해 붙여넣습니다 |
-| `4_기준본/` | 기대 결과 | 내 결과와 나란히 열어 숫자를 견줍니다. 못 따라왔을 때 이 파일로 다음 세션을 시작합니다 |
-| `5_스킬/SKILL.md` | 같은 내용의 스킬 형식 | 스킬 기능이 열려 있으면 등록합니다 |
-| `6_내업무_템플릿/` | 내 업무용 빈칸 지시문 + 채운 예시 | 실습 뒤 내 데이터로 옮길 때 |
+1. **`1_붙여넣을_프롬프트.md`** — 에이전트를 만들고 「지침」란에 **파일 전체**를 붙여넣습니다.
+2. **`2_데이터/`** — 안의 파일을 **모두** 올리고 저장합니다. 그 프롬프트가 쓰는 파일만 들어 있습니다.
+3. **`3_실습지시문_1.md`** — 대화창에 그대로 붙여넣어 보냅니다. 결과를 봅니다.
+4. **`4_실습지시문_2.md`** — 같은 대화에 이어서 보냅니다.
 
-지시문 · 모듈카드 안에서 부르는 폴더 이름은 원래 이름입니다 — `01_데이터/` = `2_자료/` · `06_붙여넣기/` = `3_붙여넣기용/` · `04_기준본/` = `4_기준본/` · `07_스킬/` = `5_스킬/`. 파일 이름은 같습니다.
+결과가 맞는지는 `참고/` 안의 같은 세션 기준본과 나란히 열어 봅니다. 확인할 항목과 막혔을 때 보낼 문장은 워크북에 있습니다.
+HTML로 나온 결과는 복사 → 메모장 → `이름.html`(파일 형식 **모든 파일**)로 저장해 더블클릭합니다.
 
 ## 이어지는 고객
 
-네 세션이 **같은 가상 고객 6곳**(해솔호텔 · 대성건설 · 한울종합건설 · 미래로병원 · 세종교육재단 · 서진리테일)을 돕니다.
-세션1 기사 「미래로병원 신관 증축 설계 착수」 → 세션2 · 3 매출에서 미래로병원 급감 → 세션3에서 고른 `대상수요처.md` → 세션4 신관 회의공간 제안.
-세션4의 `2_자료/대상수요처_세션3인계_선택.md`는 세션3의 기준본입니다. 내가 만든 인계본이 있으면 그것을 쓰고, 없어도 진행됩니다.
+다섯 폴더가 **같은 가상 고객 6곳**(해솔호텔 · 대성건설 · 한울종합건설 · 미래로병원 · 세종교육재단 · 서진리테일)을 돕니다.
+세션1 기사 「미래로병원 신관 증축 설계 착수」 → 세션2 · 3 매출에서 미래로병원 급감 → 세션3에서 고른 수요처 → 세션4 신관 회의공간 제안.
+세션4의 `2_데이터/대상수요처.md`는 세션3의 기준본입니다. 내가 세션3에서 만든 것이 있으면 그것으로 바꿔 올려도 됩니다.
 
 ## 이 묶음에 없는 것
 
-경계 · 실패 테스트용 **함정 데이터**(일부러 틀리게 만든 파일 · 가짜 개인정보가 든 파일)는 넣지 않았습니다. 실패 테스트는 **강사가 화면으로 시연**합니다.
-경계 테스트는 파일 없이 할 수 있습니다 — 세션1 A는 파일 없이 "프로파일 만들어줘", 세션2는 소계 파일 없이 "대시보드 만들어줘", 세션4는 `고객요구조건.md`에서 예산 줄을 지우고 실행.
+함정 · 실패 테스트 데이터(일부러 틀리게 만든 파일 · 가짜 개인정보가 든 파일)는 넣지 않았습니다. 실패 테스트는 **강사가 화면으로 시연**합니다.
 """
 
 def participant_all():
+    sync_session_prompts()
     L = practice_layout()
     out_dir = os.path.join(DIST, PRACTICE)
     if os.path.exists(out_dir):

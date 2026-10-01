@@ -130,7 +130,7 @@ SLIDES["DeckO4"] = shell("오프닝", "시작 전 준비", "3분이면 됩니다
       {prep(1, "탭 두 개", "AI 창(ChatGPT 또는 Gemini) 하나, <strong style='font-weight: 600; color: #111821;'>메모장</strong> 하나. 지시문은 메모장에 먼저 둡니다 — 세션이 끊기면 채팅창의 지시문은 사라집니다")}
       {prep(2, "저장 폴더", "<span class='mono' style='font-size: 13px; color: #111821;'>바탕화면/AX실습_내이름/</span> 하나를 만들어 둡니다. 모듈마다 결과 파일 하나가 여기 쌓입니다")}
       {prep(3, "업로드 테스트", "작은 파일로 먼저 — <span class='mono' style='font-size: 13px; color: #111821;'>대상수요처.md</span> (1KB). 큰 파일로 시도하다 실패하면 시간이 날아갑니다")}
-      {prep(4, "이번 모듈 폴더 열어 두기", "배포 폴더의 <span class='mono' style='font-size: 13px; color: #111821;'>modules/D_analysis/</span>. 파일 이름은 화면에 뜬 것을 그대로 씁니다")}
+      {prep(4, "실습 파일 폴더 열어 두기", "<span class='mono' style='font-size: 13px; color: #111821;'>AX_실습파일/</span> — 세션 폴더마다 프롬프트 1개 · 데이터 · 실습지시문 2개. 파일 이름은 화면에 뜬 것을 그대로 씁니다")}
     </div>
     <div style="{WARN} display: flex; align-items: center; gap: 16px;">
       <div style="font-size: 19px; font-weight: 600; color: #9a2c2c;">오늘 올리는 파일은 전부 가상 데이터입니다.</div>
@@ -392,7 +392,7 @@ SLIDES["DeckD2"] = shell("모듈 D", "지금은 이렇게 일합니다 — 그�
 def frow(f, hdr, n, src, alt=False):
     c = "color: #6b6660;" if alt else ""
     return f'<tr style="{c}"><td class="mono" style="padding: 8px 10px; font-size: 13px; white-space: nowrap;">{f}</td><td style="padding: 8px 10px; font-size: 14px; line-height: 1.45;">{hdr}</td><td style="padding: 8px 10px; text-align: right; font-size: 14px;">{n}</td><td style="padding: 8px 10px; font-size: 14px;">{src}</td></tr>'
-SLIDES["DeckD4"] = shell("모듈 D", "입력 데이터", "배포 폴더 modules/D_analysis/01_데이터/", f"""
+SLIDES["DeckD4"] = shell("모듈 D", "입력 데이터", "실습 파일 세션2_대시보드/2_데이터/", f"""
     <div style="{CARD} padding: 8px 6px;">
       <table style="border-collapse: collapse; width: 100%;">
         <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 4px 10px;">파일</td><td style="padding: 4px 10px;">헤더</td><td style="padding: 4px 10px; text-align: right;">행</td><td style="padding: 4px 10px;">어디서 온 것으로 가정</td></tr>
@@ -444,7 +444,7 @@ SLIDES["DeckD7"] = shell("모듈 D", "두 갈래 경로", "내 도구에서 파�
       </div>
       <div style="{CARD} flex: 1 0 0; border-top: 4px solid #9a6408; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
         <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #9a6408;">코드 실행 X</span><span style="font-size: 14px; color: #6b6660;">Gemini, 또는 업로드가 막힌 포털</span></div>
-        <div style="font-size: 16px; line-height: 1.55;">AI가 1,093행을 머릿속으로 더하면 <strong style="font-weight: 600;">산술 오류</strong>가 납니다. 원본 대신 <span class="mono" style="font-size: 13px;">06_붙여넣기/</span>의 집계표를 붙여넣습니다.</div>
+        <div style="font-size: 16px; line-height: 1.55;">AI가 1,093행을 머릿속으로 더하면 <strong style="font-weight: 600;">산술 오류</strong>가 납니다. 원본 대신 <span class="mono" style="font-size: 13px;">참고/세션2_대시보드_붙여넣기용/</span>의 집계표를 붙여넣습니다.</div>
         <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px;">
           <div><span class="mono" style="font-size: 13px;">매출데이터.md</span> <span style="color: #6b6660;">— 월 × 품목 합계 (만원)</span></div>
           <div><span class="mono" style="font-size: 13px;">매출데이터_소계.md</span> <span style="color: #6b6660;">— 다섯 축 합계, 검산용</span></div>
@@ -584,7 +584,7 @@ def vs(bad_t, bad_d, good_t, good_d):
 </div>"""
 SLIDES["DeckO8"] = shell("오프닝", "지시문은 메모장에 먼저", "세션이 끊기면 채팅창의 지시문은 사라집니다", vs(
     "채팅창에만 쓴다", "창을 닫거나 세션이 만료되면 지시문이 없어집니다. 다음 차수에 처음부터 다시 씁니다. 고친 내용도 같이 사라집니다.",
-    "메모장에 두고 붙여넣는다", "배포 파일 <span class='mono' style='font-size: 13px; color: #111821;'>02_지시문/지시문.md</span>를 열어 <span class='mono' style='font-size: 13px; color: #111821;'>agentD_prompt.txt</span>로 저장. 채팅창에는 붙여넣기만. 고칠 때는 메모장에서 고치고 다시 붙여넣습니다.<br><br>세션이 끊겨도, 다음 차수에도, 동료에게 넘길 때도 그대로입니다.") + f"""
+    "메모장에 두고 붙여넣는다", "실습 파일의 <span class='mono' style='font-size: 13px; color: #111821;'>1_붙여넣을_프롬프트.md</span>를 메모장으로 열어 둡니다. 채팅창에는 붙여넣기만. 고칠 때는 메모장에서 고치고 다시 붙여넣습니다.<br><br>세션이 끊겨도, 다음 차수에도, 동료에게 넘길 때도 그대로입니다.") + f"""
     <div style="{BAND}">
       <div style="font-size: 22px; font-weight: 700;">"컨텍스트를 데이터로 다룬다"의 가장 작은 실천입니다.</div>
       <div style="flex-grow: 1;"></div>
@@ -862,7 +862,7 @@ SLIDES["DeckM11"] = shell("공통 방법론", "오늘의 완주 기준", "완성
     <div style="{BAND}">
       <div style="font-size: 22px; font-weight: 700;">뒤처져도 다음 실습은 반드시 시작합니다.</div>
       <div style="flex-grow: 1;"></div>
-      <div style="font-size: 14px; color: #c9c5bd;">앞 모듈을 못 끝냈으면 배포 폴더 04_기준본/의 기준본으로 시작합니다.</div>
+      <div style="font-size: 14px; color: #c9c5bd;">앞 세션을 못 끝냈으면 실습 파일 참고/의 기준본으로 시작합니다.</div>
     </div>""", "M · 11")
 
 
@@ -960,7 +960,7 @@ SLIDES["DeckB3"] = three("모듈 B", "에이전트는 하나, 단계는 셋", [
 # ───────────── 입력 데이터 (A · B · C) ─────────────
 def inputs(label, files, extra, page, folder):
     trs = "".join(frow(f, h, n, src) for f, h, n, src in files)
-    return shell(label, "입력 데이터", f"배포 폴더 {folder}", f"""
+    return shell(label, "입력 데이터", f"실습 파일 {folder}", f"""
     <div style="{CARD} padding: 8px 6px;">
       <table style="border-collapse: collapse; width: 100%;">
         <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 4px 10px;">파일</td><td style="padding: 4px 10px;">헤더</td><td style="padding: 4px 10px; text-align: right;">행</td><td style="padding: 4px 10px;">어디서 온 것으로 가정</td></tr>
@@ -974,12 +974,12 @@ def inputs(label, files, extra, page, folder):
         <div style="font-size: 14px; color: #3d4650; line-height: 1.5;">회사명 · 시설명 · 파트너 · 실적 · 가격 전부. 실제 고객사 · 파트너 파일은 올리지 않습니다.</div>
       </div>
     </div>""", page)
-SLIDES["DeckA4"] = inputs("모듈 A", [("기사수집.csv", "품목 · 헤드라인 · 원본url · 키워드 (4열)", 30, "단계 1의 산출물 — 강사 시연으로 만든 것"), ("대상고객사.csv", "수요처명 · 업종 · 상장시장 · 주력공종 · 거래이력 · 담당팀", 6, "담당 고객사 목록 — 건설 2 · 호텔 · 병원 · 교육 · 유통"), ("검색어목록.md", "검색어 · RSS주소 · 수집주기", 8, "단계 1 실습의 정답 — 참조 파일")],
-    "30건 중 <strong style='font-weight: 600; color: #111821;'>같은 헤드라인이 다른 매체로 세 번</strong> 더 실려 있고, <strong style='font-weight: 600; color: #111821;'>14건은 회사가 특정되지 않는 업계 동향</strong>입니다. 수집 요약에 30 → 27이 나오는지, 무관 기사가 따로 세어지는지가 첫 확인입니다. 업로드가 막히면 06_붙여넣기/의 표를 붙여넣습니다.", "S · 04", "modules/A_sensing_b2b/01_데이터/")
+SLIDES["DeckA4"] = inputs("모듈 A", [("기사수집.csv", "품목 · 헤드라인 · 원본url · 키워드 (4열)", 30, "단계 1의 산출물 — 강사 시연으로 만든 것"), ("대상고객사.csv", "수요처명 · 업종 · 상장시장 · 주력공종 · 거래이력 · 담당팀", 6, "담당 고객사 목록 — 건설 2 · 호텔 · 병원 · 교육 · 유통")],
+    "30건 중 <strong style='font-weight: 600; color: #111821;'>같은 헤드라인이 다른 매체로 세 번</strong> 더 실려 있고, <strong style='font-weight: 600; color: #111821;'>14건은 회사가 특정되지 않는 업계 동향</strong>입니다. 수집 요약에 30 → 27이 나오는지, 무관 기사가 따로 세어지는지가 첫 확인입니다. 업로드가 막히면 참고/ 폴더의 붙여넣기용 표를 붙여넣습니다.", "S · 04", "세션1_A_직판/2_데이터/")
 SLIDES["DeckB4"] = inputs("모듈 B", [("뉴스수집.json", "title · originallink · link · description · pubDate", 30, "네이버 뉴스 API 응답 — 연동 가정"), ("상권정보.csv", "권역 · 행정구역 · 시설유형 · 시설명 · 상태 · 예정시기 · 규모", 18, "상권정보"), ("파트너정보.csv", "파트너사 · 담당권역 · 주력버티컬 · 최근분기실적등급 · 시공가능규모", 4, "파트너 관리 대장"), ("시장조사.md", "권역 · 지표 · 값 · 출처 · 조사시점", 8, "시장조사 자료")],
-    "넷을 <strong style='font-weight: 600; color: #111821;'>다 올려야</strong> 합니다. 뉴스만 올리면 규모를 못 걸러 카페가 기회 목록에 오르고, 파트너 파일이 없으면 매칭이 안 됩니다. 파트너 파일에 <strong style='font-weight: 600; color: #111821;'>계약단가 · 마진율</strong>이 있으면 올리지 않습니다 — 실패 테스트가 그것입니다.", "S · 04", "modules/B_sensing_partner/01_데이터/")
+    "넷을 <strong style='font-weight: 600; color: #111821;'>다 올려야</strong> 합니다. 뉴스만 올리면 규모를 못 걸러 카페가 기회 목록에 오르고, 파트너 파일이 없으면 매칭이 안 됩니다. 파트너 파일에 <strong style='font-weight: 600; color: #111821;'>계약단가 · 마진율</strong>이 있으면 올리지 않습니다 — 실패 테스트가 그것입니다.", "S · 04", "세션1_B_유통영업/2_데이터/")
 SLIDES["DeckC4"] = inputs("모듈 C", [("가격가이드.csv", "모델명 · 제품군 · 화면크기 · 해상도 · 밝기 · 주요기능 · 설치방식 · 가이드공급가 · 최소수량", 13, "사내 B2B 마케팅 / 가격가이드"), ("시장가격.csv", "수요처명 · 모델명 · 온라인가격 · 제품spec.", 10, "단계 ⓪의 산출물 — 강사 시연으로 만든 것"), ("고객요구조건.md", "요구조건 6항목 — 화면크기 · 사용목적 · 주요기능 · 설치환경 · 수량 · 예산", 1, "고객 메일")],
-    "요구조건은 <strong style='font-weight: 600; color: #111821;'>늘 반쯤 빠진 채로</strong> 옵니다. 경계 테스트 파일은 예산 줄이 지워져 있습니다. 크롤 표의 스펙은 <strong style='font-weight: 600; color: #111821;'>판매자가 쓴 글</strong>이라 경쟁사 평가 근거로 쓸 때 출처를 밝힙니다.", "C · 04", "modules/C_proposal/01_데이터/")
+    "요구조건은 <strong style='font-weight: 600; color: #111821;'>늘 반쯤 빠진 채로</strong> 옵니다. 경계 테스트 파일은 예산 줄이 지워져 있습니다. 크롤 표의 스펙은 <strong style='font-weight: 600; color: #111821;'>판매자가 쓴 글</strong>이라 경쟁사 평가 근거로 쓸 때 출처를 밝힙니다.", "C · 04", "세션4_제안자료/2_데이터/")
 
 # ───────────── A5 신호를 읽는 법 ─────────────
 def tl(rank, who, done, approach, gap, hot=False):
@@ -1219,7 +1219,7 @@ SLIDES["DeckK2"] = shell("Skill과 MCP", "SKILL.md 세 부분", "name · descrip
       <div style="flex: 1 0 0; display: flex; flex-direction: column; gap: 10px;">
         {rule("name", "소문자 · 하이픈 · 동명사형(verb+ing) · 64자 이내", "파일 · 폴더명으로 그대로 쓰입니다")}
         {rule("desc", "가장 중요 — &quot;무엇을 + 언제 쓰는지&quot;를 3인칭으로", "AI가 이 설명만 보고 스킬을 고릅니다. 모호하면 안 불립니다")}
-        {rule("본문", "단계별 지시 + 입출력 예시", "오늘 실습에서 만든 결과물(04_기준본)이 그대로 입출력 예시가 됩니다. 버리지 않습니다")}
+        {rule("본문", "단계별 지시 + 입출력 예시", "오늘 실습에서 만든 결과물(기준본)이 그대로 입출력 예시가 됩니다. 버리지 않습니다")}
         <div style="{CARD} border-left: 3px solid #0f6b4f; padding: 12px 16px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">노코드 팁</strong> — 7블록을 다 쓴 뒤 &quot;위 지시문을 SKILL.md 형식으로 정리해줘&quot;. AI가 초안을 만들고 사람은 description만 봅니다.</div>
       </div>
     </div>""", "K · 02")

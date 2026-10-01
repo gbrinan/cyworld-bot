@@ -5,7 +5,11 @@
 사용: python3 tools/build_session2_sample.py"""
 import os, csv, random, datetime, collections
 HERE=os.path.dirname(os.path.abspath(__file__)); AX=os.path.abspath(os.path.join(HERE,".."))
-OUT=os.path.join(AX,"세션2_대시보드_제안"); os.makedirs(OUT, exist_ok=True)
+MOD=os.path.join(AX,"context_pack","modules","D_analysis")
+D1=os.path.join(MOD,"01_데이터"); D3=os.path.join(MOD,"03_테스트")
+D4=os.path.join(MOD,"04_기준본"); D6=os.path.join(MOD,"06_붙여넣기")
+for d in (D1,D3,D4,D6): os.makedirs(d, exist_ok=True)
+OUT=D4                                   # 대시보드 기준본이 나가는 곳
 random.seed(20261002)
 
 HEADER=["영업기회 번호","영업기회 유형","그룹명","파트명","판매처코드","판매처명","판매처 주소",
@@ -53,15 +57,15 @@ for mi in range(1,10):                      # 2026-01 ~ 2026-09
         seq+=1
 rows.sort(key=lambda r: r[10])
 
-def write_csv(name, header, body):
-    p=os.path.join(OUT,name)
+def write_csv(name, header, body, where=None):
+    p=os.path.join(where or D1, name)
     with open(p,"w",encoding="utf-8",newline="") as f:
         w=csv.writer(f); w.writerow(header); w.writerows(body)
     return p
 
-write_csv("매출데이터_예시.csv", HEADER, rows)
+write_csv("매출데이터.csv", HEADER, rows)
 TOTAL=sum(r[14] for r in rows)
-print(f"매출데이터_예시.csv  {len(rows)}행 · 수요처 {len({r[8] for r in rows})}곳 · "
+print(f"01_데이터/매출데이터.csv  {len(rows)}행 · 수요처 {len({r[8] for r in rows})}곳 · "
       f"품목 {len({r[11] for r in rows})}종 · 합계 {TOTAL:,}원")
 
 # ───────── 소계 파일 ─────────
@@ -74,8 +78,8 @@ for col,idx in [("품목구분",11),("주문유형",13),("수요처명",8)]:
     for k,v in sorted(agg.items(), key=lambda x:-x[1]):
         SUB.append([col,k,cntc[k],v])
 SUB.append(["전체","합계",len(rows),TOTAL])
-write_csv("매출데이터_소계.csv", ["축","값","건수","매출금액"], SUB)
-print(f"매출데이터_소계.csv  {len(SUB)}행 · 축 3개 + 전체 합계")
+write_csv("매출데이터_소계.csv", ["축","값","건수","합계"], SUB)
+print(f"01_데이터/매출데이터_소계.csv  {len(SUB)}행 · 축 3개 + 전체 합계")
 
 # ───────── 함정 파일 ─────────
 # 일부러 어긋낸 판. 0번 점검이 무엇을 잡아야 하는지 가르치는 용도다.
@@ -112,10 +116,36 @@ TRAPS.append(f"{k+2}행 매출금액이 음수")
 k=find(lambda r: int(r[15])>0, 48); trap[k][15]=0
 TRAPS.append(f"{k+2}행 매출수량이 0")
 
-write_csv("매출데이터_함정.csv", HEADER, trap)
-print(f"매출데이터_함정.csv  {len(trap)}행 · 심어 둔 어긋남 {len(TRAPS)}가지 "
+write_csv("매출데이터_함정.csv", HEADER, trap, D3)
+print(f"03_테스트/매출데이터_함정.csv  {len(trap)}행 · 심어 둔 어긋남 {len(TRAPS)}가지 "
       f"(합계 {sum(int(r[14]) for r in trap):,}원 — 소계 파일과 안 맞음)")
 for t in TRAPS: print("   -", t)
+
+# ───────── 붙여넣기본 ─────────
+# 업로드가 막힌 환경에서 채팅창에 붙여넣는 표. 6KB를 넘으면 붙여넣기 자체가 실패한다.
+# 16열을 그대로 담으면 한참 넘으므로 집계에 쓰는 열만 추린다. 무엇을 뺐는지 표 위에 적는다.
+PASTE_COLS=["영업기회 번호","수요처명","매출일자","품목구분","모델명","주문유형","매출금액","매출수량"]
+def md_table(header, body):
+    out=["| "+" | ".join(header)+" |", "|"+"|".join("---" for _ in header)+"|"]
+    for r in body: out.append("| "+" | ".join(str(c) for c in r)+" |")
+    return "\n".join(out)
+
+idx=[HEADER.index(c) for c in PASTE_COLS]
+paste=md_table(PASTE_COLS, [[r[i] for i in idx] for r in rows])
+open(os.path.join(D6,"매출데이터.md"),"w",encoding="utf-8").write(
+ "# 매출데이터 (붙여넣기본)\n\n"
+ "> 업로드가 막힌 환경에서 채팅창에 붙여넣는 표입니다. 원본은 `01_데이터/매출데이터.csv` 16열이고,\n"
+ "> 여기에는 **집계에 쓰는 8열만** 담았습니다. 뺀 열: 영업기회 유형 · 그룹명 · 파트명 · 판매처코드 ·\n"
+ "> 판매처명 · 판매처 주소 · 수요처코드 · 영업기회명.\n"
+ "> **조직 필터는 이 표로 못 만듭니다.** 파트명이 빠져 있기 때문입니다. 업로드가 되는 환경에서는 원본을 쓰십시오.\n\n"
+ + paste + "\n")
+open(os.path.join(D6,"매출데이터_소계.md"),"w",encoding="utf-8").write(
+ "# 매출데이터 소계 (붙여넣기본)\n\n"
+ "> 축별 합계입니다. **검산 대조용**이고, 원본에서 직접 더한 값과 한 줄씩 맞춰 봅니다.\n\n"
+ + md_table(["축","값","건수","합계"], SUB) + "\n")
+for n in ("매출데이터.md","매출데이터_소계.md"):
+    sz=os.path.getsize(os.path.join(D6,n))
+    print(f"06_붙여넣기/{n}  {sz:,}B" + ("  ← 6KB 초과!" if sz>6*1024 else ""))
 # ───────── 대시보드 HTML — 필터가 붙은 판 ─────────
 import html as H, json
 
@@ -492,12 +522,12 @@ JS = (JS.replace("__ROWS__",  json.dumps(ROWS, ensure_ascii=False))
         .replace("__TOT__",   str(TOT)).replace("__CNT__", str(CNT)))
 
 html = """<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>영업 현황 대시보드 예시</title>
+<title>영업 현황 대시보드 — 기준본</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>__CSS__</style></head><body><div class="wrap">
-<div class="eyebrow">세션 2 · 대시보드 예시</div>
+<div class="eyebrow">세션 2 · 대시보드 기준본</div>
 <h1>한국총괄 B2B영업 매출 현황 — 2026-01 ~ 2026-09</h1>
-<p class="src">자료 <span class="mono">매출데이터_예시.csv</span> __CNT__행 · 수요처 6곳 · 모든 값은 가상입니다</p>
+<p class="src">자료 <span class="mono">매출데이터.csv</span> __CNT__행 · 수요처 6곳 · 모든 값은 가상입니다</p>
 
 <div class="filters" role="group" aria-label="필터">
 <label>기간<select id="fq">__OQ__</select></label>
@@ -534,12 +564,12 @@ html = """<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name=
 <p>· 걸어 둔 조건은 주소창에 남습니다. 링크를 그대로 복사해 보내면 상대도 같은 화면을 봅니다.</p>
 </div>
 
-<div class="foot">세션 2 대시보드 제안 · 모든 수요처명 · 모델명 · 금액은 가상이며 삼성전자 실제 정보와 무관합니다</div>
+<div class="foot">세션 2 기준본 · 모든 수요처명 · 모델명 · 금액은 가상이며 삼성전자 실제 정보와 무관합니다</div>
 </div><div id="tip" role="status" aria-live="polite"></div>
 <script>__JS__</script></body></html>"""
 
 html = (html.replace("__CSS__", CSS).replace("__CNT__", str(CNT))
             .replace("__OQ__", opts(QS)).replace("__OP__", opts(PARTS)).replace("__OO__", opts(ORDS))
             .replace("__JS__", JS))
-open(os.path.join(OUT, "대시보드_예시.html"), "w", encoding="utf-8").write(html)
-print("대시보드_예시.html  필터 3개(기간·조직·주문유형) · 합계 %s원 · %d행" % (f"{TOT:,}", CNT))
+open(os.path.join(OUT, "대시보드.html"), "w", encoding="utf-8").write(html)
+print("04_기준본/대시보드.html  필터 3개(기간·조직·주문유형) · 합계 %s원 · %d행" % (f"{TOT:,}", CNT))

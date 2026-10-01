@@ -133,7 +133,7 @@ copy_tree(os.path.join(AX, "tools"), os.path.join(OUT, "06_도구"))
 # ───────── index.html ─────────
 def row(href, label, note=""): return f'<tr><td><a href="{href}">{H.escape(label)}</a></td><td>{note}</td></tr>'
 def table(rows): return '<table class="files"><tbody>' + "".join(rows) + "</tbody></table>"
-mods = [("D_analysis", "D 데이터 분석", "1교시 · 전원", "제품추천.html"), ("A_sensing_b2b", "A 직판 Sensing", "2교시 · B2B팀", "영업대시보드.html"),
+mods = [("D_analysis", "D 데이터 분석", "1교시 · 전원", "대시보드.html"), ("A_sensing_b2b", "A 직판 Sensing", "2교시 · B2B팀", "영업대시보드.html"),
         ("B_sensing_partner", "B 경로 Sensing", "2교시 · 유통전략팀", "권역보고서.docx"), ("C_proposal", "C 제안자료 작성", "3교시 · 전원", "제안자료.html")]
 mod_rows = "".join(f'<tr><td><a href="04_모듈/{m}/모듈카드.html">{n}</a></td><td>{w}</td><td><a href="04_모듈/{m}/index.html">폴더</a> · <a href="04_모듈/{m}/00_요구조건서.html">요구조건서</a> · <a href="04_모듈/{m}/01_데이터/index.html">01_데이터</a> · <a href="04_모듈/{m}/02_지시문/index.html">02_지시문</a> · <a href="04_모듈/{m}/03_테스트/index.html">03_테스트</a> · <a href="04_모듈/{m}/04_기준본/index.html">04_기준본</a> · <a href="04_모듈/{m}/07_스킬/SKILL.html">SKILL.md</a></td><td class="mono">{o}</td></tr>' for m, n, w, o in mods)
 common = [("security_rules", "업로드 금지 목록 · 실습 대체 규칙"), ("web_environment", "웹 환경 — 결과 저장 · HTML 열기 · Word 만들기 · 붙여넣기 경로"), ("tool_paths", "도구 클릭 경로 — 에이전트 만들기 · 막혔을 때 3단"),
@@ -188,7 +188,7 @@ section{{margin-top:36px}}
 <p class="lede">에이전트 4개 · 모듈당 2시간 · 강사 담당 6시간. 이 폴더 하나에 덱 · 강사 문서 · 참가자 자료 · 모듈 팩 · 디자인 원본 · 생성 도구가 전부 있습니다({n_files}개 파일). 마크다운은 옆의 같은 이름 .html로 바로 열립니다.</p>
 
 <div class="day">
-<div><b>1교시</b><strong>D 데이터 분석</strong><small>전원 · 오프닝 + 일 보는 법 + 방법론 4장이 이 안에</small><span class="mono">제품추천.html</span></div>
+<div><b>1교시</b><strong>D 데이터 분석</strong><small>전원 · 오프닝 + 일 보는 법 + 방법론 4장이 이 안에</small><span class="mono">대시보드.html</span></div>
 <div><b>2교시</b><strong>A 또는 B Sensing</strong><small>B2B팀은 A(직판) · 유통전략팀은 B(경로) · 방법론 5장이 앞에</small><span class="mono">영업대시보드.html / 권역보고서.docx</span></div>
 <div><b>3교시</b><strong>C 제안자료 작성</strong><small>전원 · 방법론 2장이 앞에 · Skill + 클로징이 뒤에</small><span class="mono">제안자료.html</span></div>
 </div>

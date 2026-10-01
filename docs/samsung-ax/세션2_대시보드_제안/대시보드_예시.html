@@ -3,21 +3,37 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
 :root{--paper:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--mute:#7a7873;--line:#e4e2db;--panel:#f3f2ee;
---accent:#2a78d6;--accent2:#eb6834;--good:#1baf7a;--bad:#c0392b;--rule:#d9d7d0}
+--accent:#2a78d6;--accent2:#eb6834;--good:#1baf7a;--bad:#c0392b;--rule:#d9d7d0;--field:#fff;
+--i0:#2a78d6;--i1:#eb6834;--i2:#1baf7a;--i3:#eda100;--i4:#e87ba4}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1a19;--ink:#fff;--ink2:#c3c2b7;--mute:#9b998f;
---line:#343330;--panel:#242320;--accent:#3987e5;--accent2:#d95926;--good:#199e70;--bad:#e06a5a;--rule:#3a3936}}
+--line:#343330;--panel:#242320;--accent:#3987e5;--accent2:#d95926;--good:#199e70;--bad:#e06a5a;--rule:#3a3936;--field:#2b2a27;
+--i0:#3987e5;--i1:#d95926;--i2:#199e70;--i3:#c98500;--i4:#d55181}}
 :root[data-theme="dark"]{--paper:#1a1a19;--ink:#fff;--ink2:#c3c2b7;--mute:#9b998f;--line:#343330;--panel:#242320;
---accent:#3987e5;--accent2:#d95926;--good:#199e70;--bad:#e06a5a;--rule:#3a3936}
+--accent:#3987e5;--accent2:#d95926;--good:#199e70;--bad:#e06a5a;--rule:#3a3936;--field:#2b2a27;
+--i0:#3987e5;--i1:#d95926;--i2:#199e70;--i3:#c98500;--i4:#d55181}
 html{color-scheme:light dark}
 body{margin:0;background:var(--paper);color:var(--ink);font-size:15px;line-height:1.6;
 font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:900px;margin:0 auto;padding:36px 20px 72px}
 .eyebrow{font-size:12px;letter-spacing:.1em;color:var(--accent);font-weight:600;text-transform:uppercase}
 h1{font-size:26px;margin:6px 0 4px;line-height:1.3}
-.src{color:var(--mute);font-size:13px;margin:0 0 26px}
+.src{color:var(--mute);font-size:13px;margin:0 0 20px}
 h2{font-size:17px;margin:34px 0 10px;padding-top:14px;border-top:1px solid var(--rule)}
+h3{font-size:15px;margin:22px 0 4px;color:var(--ink2)}
+/* 필터 — 차트 위 한 줄. 차트 안에 넣지 않는다. */
+.filters{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end;
+background:var(--panel);border:1px solid var(--line);padding:12px 14px;margin:0 0 10px}
+.filters label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mute)}
+.filters select{font:inherit;font-size:14px;color:var(--ink);background:var(--field);
+border:1px solid var(--rule);border-radius:3px;padding:6px 8px;min-width:132px}
+.filters button{font:inherit;font-size:13px;color:var(--ink2);background:transparent;
+border:1px solid var(--rule);border-radius:3px;padding:7px 12px;cursor:pointer}
+.filters button:hover{background:var(--field)}
+.scope{font-size:13px;color:var(--ink2);margin:0 0 4px;padding:9px 12px;
+border-left:3px solid var(--accent);background:var(--panel)}
+.scope strong{color:var(--ink)}
 .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0 6px}
-@media(max-width:700px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.tiles{grid-template-columns:repeat(2,1fr)}.filters select{min-width:0}}
 .tile{background:var(--panel);border:1px solid var(--line);padding:13px 14px}
 .tile .k{font-size:12px;color:var(--mute);margin-bottom:5px}
 .tile .v{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
@@ -26,82 +42,332 @@ table{border-collapse:collapse;width:100%;margin:8px 0 4px;font-size:14px}
 th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
 thead th{font-size:12px;color:var(--mute);font-weight:600;border-bottom:1px solid var(--rule)}
 .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.barcell{width:168px;padding-right:0}
+.barcell{width:168px;padding-right:0;cursor:default}
+.barcell:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 .bar{display:block;height:9px;border-radius:0 4px 4px 0;min-width:2px}
+/* 구성 막대 — 칸 사이는 2px 바탕색으로 띄운다 */
+.stack{display:flex;height:28px;margin:10px 0 8px;background:var(--paper)}
+.seg{height:100%;margin-right:2px;min-width:3px;cursor:default}
+.seg:last-child{margin-right:0}
+.seg:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink2);margin:0 0 4px}
+.legend span.k{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:2px;display:inline-block}
 .note{font-size:13px;color:var(--ink2);margin:6px 0 0}
 .up{color:var(--good);font-weight:600}.down{color:var(--bad);font-weight:600}
 .chk{background:var(--panel);border-left:3px solid var(--accent);padding:12px 15px;font-size:14px;margin-top:10px}
 .chk p{margin:4px 0}
+.empty{border:1px dashed var(--rule);padding:18px;color:var(--ink2);font-size:14px;margin:18px 0}
+.empty p{margin:4px 0}
+[hidden]{display:none}
 .foot{margin-top:46px;padding-top:12px;border-top:1px solid var(--rule);font-size:12px;color:var(--mute)}
 .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13px}
+#tip{position:fixed;z-index:9;pointer-events:none;opacity:0;transition:opacity .08s;
+background:var(--ink);color:var(--paper);font-size:13px;line-height:1.45;padding:7px 10px;border-radius:4px;
+box-shadow:0 2px 10px rgba(0,0,0,.22);max-width:260px}
+#tip b{font-size:14px;font-variant-numeric:tabular-nums}
+#tip .l{display:flex;align-items:center;gap:6px;color:#bdbbb3}
+#tip .l i{width:12px;height:2px;display:inline-block}
 </style></head><body><div class="wrap">
 <div class="eyebrow">세션 2 · 대시보드 예시</div>
 <h1>한국총괄 B2B영업 매출 현황 — 2026-01 ~ 2026-09</h1>
 <p class="src">자료 <span class="mono">매출데이터_예시.csv</span> 57행 · 수요처 6곳 · 모든 값은 가상입니다</p>
 
-<h2>한눈에</h2>
-<div class="tiles">
-<div class="tile"><div class="k">매출금액 합계</div><div class="v">836,670,000</div><div class="s">직접 합산</div></div>
-<div class="tile"><div class="k">건수</div><div class="v">57</div><div class="s">영업기회 57건</div></div>
-<div class="tile"><div class="k">건당 평균</div><div class="v">14,678,421</div><div class="s">합계 ÷ 건수</div></div>
-<div class="tile"><div class="k">2026-Q2</div><div class="v">311,160,000</div>
-<div class="s"><span class="down">-12.4%</span> · 2026-Q1 355,070,000</div></div>
+<div class="filters" role="group" aria-label="필터">
+<label>기간<select id="fq"><option value="전체">전체</option><option value="2026-Q1">2026-Q1</option><option value="2026-Q2">2026-Q2</option><option value="2026-Q3">2026-Q3</option></select></label>
+<label>조직<select id="fp"><option value="전체">전체</option><option value="경로1파트">경로1파트</option><option value="직판1파트">직판1파트</option><option value="직판2파트">직판2파트</option></select></label>
+<label>주문유형<select id="fo"><option value="전체">전체</option><option value="유통주문">유통주문</option><option value="직판주문">직판주문</option></select></label>
+<button id="reset" type="button">전체로 되돌리기</button>
 </div>
-<p class="note">증감률 옆에 <strong>원래 값 두 개</strong>를 같이 둡니다. 비율만 있으면 크기를 알 수 없습니다.</p>
+<p class="scope" id="scope"></p>
+<p class="note">필터는 <strong>차트 위 한 줄</strong>에만 둡니다. 표마다 따로 달면 숫자끼리 안 맞는 화면이 됩니다.</p>
 
-<h2>어디서 나왔나</h2>
-<h3 style="font-size:15px;margin:20px 0 4px;color:var(--ink2)">무엇이 팔렸나 · 품목구분</h3>
-<table><thead><tr><th>품목구분</th><th class="num">건수</th><th class="num">매출금액</th><th class="num">비중</th><th></th></tr></thead>
-<tbody><tr><th scope="row">사이니지</th><td class="num">13</td><td class="num">256,120,000</td>
-<td class="num">30.6%</td><td class="barcell"><span class="bar" style="width:100.0%;background:var(--accent)"></span></td></tr>
-<tr><th scope="row">TV</th><td class="num">10</td><td class="num">243,060,000</td>
-<td class="num">29.1%</td><td class="barcell"><span class="bar" style="width:94.9%;background:var(--accent)"></span></td></tr>
-<tr><th scope="row">PC</th><td class="num">15</td><td class="num">193,780,000</td>
-<td class="num">23.2%</td><td class="barcell"><span class="bar" style="width:75.7%;background:var(--accent)"></span></td></tr>
-<tr><th scope="row">에어컨</th><td class="num">7</td><td class="num">89,600,000</td>
-<td class="num">10.7%</td><td class="barcell"><span class="bar" style="width:35.0%;background:var(--accent)"></span></td></tr>
-<tr><th scope="row">모니터</th><td class="num">12</td><td class="num">54,110,000</td>
-<td class="num">6.5%</td><td class="barcell"><span class="bar" style="width:21.1%;background:var(--accent)"></span></td></tr></tbody></table>
-<p class="note">상위 2개가 전체의 <strong>60%</strong>.</p><h3 style="font-size:15px;margin:20px 0 4px;color:var(--ink2)">직판인가 유통인가 · 주문유형</h3>
-<table><thead><tr><th>주문유형</th><th class="num">건수</th><th class="num">매출금액</th><th class="num">비중</th><th></th></tr></thead>
-<tbody><tr><th scope="row">직판주문</th><td class="num">34</td><td class="num">463,250,000</td>
-<td class="num">55.4%</td><td class="barcell"><span class="bar" style="width:100.0%;background:var(--accent2)"></span></td></tr>
-<tr><th scope="row">유통주문</th><td class="num">23</td><td class="num">373,420,000</td>
-<td class="num">44.6%</td><td class="barcell"><span class="bar" style="width:80.6%;background:var(--accent2)"></span></td></tr></tbody></table>
-<p class="note">직판주문이 유통주문보다 <strong>11%p</strong> 큽니다.</p><h3 style="font-size:15px;margin:20px 0 4px;color:var(--ink2)">어느 고객에서 · 수요처명</h3>
-<table><thead><tr><th>수요처명</th><th class="num">건수</th><th class="num">매출금액</th><th class="num">비중</th><th></th></tr></thead>
-<tbody><tr><th scope="row">한울종합건설</th><td class="num">16</td><td class="num">277,030,000</td>
-<td class="num">33.1%</td><td class="barcell"><span class="bar" style="width:100.0%;background:var(--accent)"></span></td></tr>
-<tr><th scope="row">서진리테일</th><td class="num">10</td><td class="num">191,400,000</td>
-<td class="num">22.9%</td><td class="barcell"><span class="bar" style="width:69.1%;background:var(--accent)"></span></td></tr>
-<tr><th scope="row">대성건설</th><td class="num">12</td><td class="num">136,810,000</td>
-<td class="num">16.4%</td><td class="barcell"><span class="bar" style="width:49.4%;background:var(--accent)"></span></td></tr>
-<tr><th scope="row">미래로병원</th><td class="num">9</td><td class="num">106,280,000</td>
-<td class="num">12.7%</td><td class="barcell"><span class="bar" style="width:38.4%;background:var(--accent)"></span></td></tr>
-<tr><th scope="row">세종교육재단</th><td class="num">5</td><td class="num">78,230,000</td>
-<td class="num">9.4%</td><td class="barcell"><span class="bar" style="width:28.2%;background:var(--accent)"></span></td></tr>
-<tr><th scope="row">해솔호텔</th><td class="num">5</td><td class="num">46,920,000</td>
-<td class="num">5.6%</td><td class="barcell"><span class="bar" style="width:16.9%;background:var(--accent)"></span></td></tr></tbody></table>
-<p class="note">상위 2개가 전체의 <strong>56%</strong>.</p>
+<div class="empty" id="emptybox" hidden></div>
 
-<h2>지난 기간과 견주면</h2>
-<table><thead><tr><th>분기</th><th class="num">건수</th><th class="num">매출금액</th><th class="num">비중</th></tr></thead>
-<tbody><tr><th scope="row">2026-Q1</th><td class="num">21</td><td class="num">355,070,000</td><td class="num">42.4%</td></tr><tr><th scope="row">2026-Q2</th><td class="num">21</td><td class="num">311,160,000</td><td class="num">37.2%</td></tr><tr><th scope="row">2026-Q3</th><td class="num">15</td><td class="num">170,440,000</td><td class="num">20.4%</td></tr></tbody></table>
-<p class="note"><strong>2026-Q3은 9월까지만 들어 있어 분기 비교에서 뺐습니다.</strong> 덜 찬 기간을 다 찬 기간과 나란히 놓으면 무조건 줄어든 것처럼 보입니다.</p>
+<section id="s1"><h2>한눈에</h2>
+<div class="tiles" id="tiles"></div>
+<p class="note">증감률 옆에 <strong>원래 값 두 개</strong>를 같이 둡니다. 비율만 있으면 크기를 알 수 없습니다.</p></section>
 
-<h2>눈에 띄는 것</h2>
-<p class="note">2026-Q1 → 2026-Q2, 품목구분 기준 ±20% 이상 변동.</p>
-<table><thead><tr><th>품목구분</th><th class="num">2026-Q1</th><th class="num">2026-Q2</th><th class="num">변동</th></tr></thead>
-<tbody><tr><th scope="row">TV</th><td class="num">159,300,000</td><td class="num">67,380,000</td><td class="num">-58%</td></tr><tr><th scope="row">에어컨</th><td class="num">24,640,000</td><td class="num">38,080,000</td><td class="num">+55%</td></tr><tr><th scope="row">사이니지</th><td class="num">96,800,000</td><td class="num">138,200,000</td><td class="num">+43%</td></tr></tbody></table>
-<p class="note">원인은 쓰지 않았습니다. 쓰려면 <strong>"가설"로 표시하고 확인 방법을 같이</strong> 적습니다.</p>
+<section id="s2"><h2>어디서 나왔나</h2>
+<div id="axes"></div></section>
+
+<section id="s3"><h2>지난 기간과 견주면</h2>
+<div id="quarters"></div></section>
+
+<section id="s4"><h2>눈에 띄는 것</h2>
+<div id="notable"></div></section>
 
 <h2>확인 필요</h2>
 <div class="chk">
 <p>· 매출금액 = 단가 × 매출수량 검산 — 이 헤더에는 단가 열이 없어 <strong>검산할 식이 없습니다.</strong> 단가 열을 넣을지 확인 필요.</p>
 <p>· 판매처 주소는 직판주문일 때 값이 없어 <span class="mono">—</span>로 두었습니다.</p>
 <p>· 영업기회 번호가 한 건에 하나씩이라 영업기회 단위 집계와 매출 단위 집계가 같습니다. 한 영업기회에 여러 번 매출이 잡히는 경우가 실제로 있는지 확인 필요.</p>
-<p>· 축을 셋으로 줄였습니다. 그룹명 · 파트명 · 영업기회 유형도 열에 있으나 넣으면 표가 길어집니다.</p>
+<p>· 필터는 셋만 뒀습니다. 기간 · 조직 · 주문유형입니다. 품목구분과 수요처명은 표에서 바로 보이니 필터로 또 두지 않았습니다.</p>
+<p>· 걸어 둔 조건은 주소창에 남습니다. 링크를 그대로 복사해 보내면 상대도 같은 화면을 봅니다.</p>
 </div>
 
 <div class="foot">세션 2 대시보드 제안 · 모든 수요처명 · 모델명 · 금액은 가상이며 삼성전자 실제 정보와 무관합니다</div>
-</div></body></html>
+</div><div id="tip" role="status" aria-live="polite"></div>
+<script>
+const ROWS = [{"n": 2, "q": "2026-Q1", "part": "경로1파트", "ord": "유통주문", "item": "PC", "acct": "한울종합건설", "amt": 3080000, "qty": 2, "opp": "OPP-2026-0002"}, {"n": 3, "q": "2026-Q1", "part": "경로1파트", "ord": "유통주문", "item": "PC", "acct": "대성건설", "amt": 1780000, "qty": 2, "opp": "OPP-2026-0006"}, {"n": 4, "q": "2026-Q1", "part": "직판2파트", "ord": "직판주문", "item": "모니터", "acct": "서진리테일", "amt": 5160000, "qty": 12, "opp": "OPP-2026-0007"}, {"n": 5, "q": "2026-Q1", "part": "경로1파트", "ord": "유통주문", "item": "모니터", "acct": "대성건설", "amt": 860000, "qty": 2, "opp": "OPP-2026-0004"}, {"n": 6, "q": "2026-Q1", "part": "경로1파트", "ord": "유통주문", "item": "사이니지", "acct": "대성건설", "amt": 21120000, "qty": 12, "opp": "OPP-2026-0001"}, {"n": 7, "q": "2026-Q1", "part": "직판1파트", "ord": "직판주문", "item": "모니터", "acct": "한울종합건설", "amt": 3450000, "qty": 5, "opp": "OPP-2026-0005"}, {"n": 8, "q": "2026-Q1", "part": "경로1파트", "ord": "유통주문", "item": "PC", "acct": "한울종합건설", "amt": 26700000, "qty": 30, "opp": "OPP-2026-0003"}, {"n": 9, "q": "2026-Q1", "part": "직판1파트", "ord": "직판주문", "item": "모니터", "acct": "세종교육재단", "amt": 1380000, "qty": 2, "opp": "OPP-2026-0014"}, {"n": 10, "q": "2026-Q1", "part": "경로1파트", "ord": "유통주문", "item": "TV", "acct": "대성건설", "amt": 70200000, "qty": 30, "opp": "OPP-2026-0010"}, {"n": 11, "q": "2026-Q1", "part": "직판2파트", "ord": "직판주문", "item": "PC", "acct": "서진리테일", "amt": 10680000, "qty": 12, "opp": "OPP-2026-0011"}, {"n": 12, "q": "2026-Q1", "part": "직판1파트", "ord": "직판주문", "item": "TV", "acct": "한울종합건설", "amt": 39600000, "qty": 20, "opp": "OPP-2026-0012"}, {"n": 13, "q": "2026-Q1", "part": "직판1파트", "ord": "직판주문", "item": "사이니지", "acct": "미래로병원", "amt": 35200000, "qty": 20, "opp": "OPP-2026-0009"}, {"n": 14, "q": "2026-Q1", "part": "직판1파트", "ord": "직판주문", "item": "PC", "acct": "미래로병원", "amt": 18480000, "qty": 12, "opp": "OPP-2026-0013"}, {"n": 15, "q": "2026-Q1", "part": "직판1파트", "ord": "직판주문", "item": "사이니지", "acct": "해솔호텔", "amt": 17600000, "qty": 10, "opp": "OPP-2026-0008"}, {"n": 16, "q": "2026-Q1", "part": "직판1파트", "ord": "직판주문", "item": "TV", "acct": "미래로병원", "amt": 9900000, "qty": 5, "opp": "OPP-2026-0015"}, {"n": 17, "q": "2026-Q1", "part": "직판1파트", "ord": "직판주문", "item": "사이니지", "acct": "한울종합건설", "amt": 17600000, "qty": 10, "opp": "OPP-2026-0018"}, {"n": 18, "q": "2026-Q1", "part": "직판1파트", "ord": "직판주문", "item": "모니터", "acct": "대성건설", "amt": 2760000, "qty": 4, "opp": "OPP-2026-0020"}, {"n": 19, "q": "2026-Q1", "part": "경로1파트", "ord": "유통주문", "item": "사이니지", "acct": "서진리테일", "amt": 5280000, "qty": 3, "opp": "OPP-2026-0016"}, {"n": 20, "q": "2026-Q1", "part": "직판1파트", "ord": "직판주문", "item": "에어컨", "acct": "미래로병원", "amt": 11200000, "qty": 10, "opp": "OPP-2026-0021"}, {"n": 21, "q": "2026-Q1", "part": "직판2파트", "ord": "직판주문", "item": "에어컨", "acct": "서진리테일", "amt": 13440000, "qty": 12, "opp": "OPP-2026-0019"}, {"n": 22, "q": "2026-Q1", "part": "직판1파트", "ord": "직판주문", "item": "TV", "acct": "세종교육재단", "amt": 39600000, "qty": 20, "opp": "OPP-2026-0017"}, {"n": 23, "q": "2026-Q2", "part": "직판1파트", "ord": "직판주문", "item": "TV", "acct": "한울종합건설", "amt": 4260000, "qty": 3, "opp": "OPP-2026-0023"}, {"n": 24, "q": "2026-Q2", "part": "직판1파트", "ord": "직판주문", "item": "PC", "acct": "한울종합건설", "amt": 6160000, "qty": 4, "opp": "OPP-2026-0022"}, {"n": 25, "q": "2026-Q2", "part": "직판1파트", "ord": "직판주문", "item": "에어컨", "acct": "한울종합건설", "amt": 2240000, "qty": 2, "opp": "OPP-2026-0026"}, {"n": 26, "q": "2026-Q2", "part": "경로1파트", "ord": "유통주문", "item": "에어컨", "acct": "한울종합건설", "amt": 33600000, "qty": 30, "opp": "OPP-2026-0024"}, {"n": 27, "q": "2026-Q2", "part": "경로1파트", "ord": "유통주문", "item": "모니터", "acct": "한울종합건설", "amt": 5520000, "qty": 8, "opp": "OPP-2026-0025"}, {"n": 28, "q": "2026-Q2", "part": "경로1파트", "ord": "유통주문", "item": "PC", "acct": "서진리테일", "amt": 30800000, "qty": 20, "opp": "OPP-2026-0027"}, {"n": 29, "q": "2026-Q2", "part": "경로1파트", "ord": "유통주문", "item": "TV", "acct": "대성건설", "amt": 4680000, "qty": 2, "opp": "OPP-2026-0028"}, {"n": 30, "q": "2026-Q2", "part": "경로1파트", "ord": "유통주문", "item": "사이니지", "acct": "한울종합건설", "amt": 35200000, "qty": 20, "opp": "OPP-2026-0032"}, {"n": 31, "q": "2026-Q2", "part": "경로1파트", "ord": "유통주문", "item": "모니터", "acct": "세종교육재단", "amt": 5160000, "qty": 12, "opp": "OPP-2026-0029"}, {"n": 32, "q": "2026-Q2", "part": "직판2파트", "ord": "직판주문", "item": "PC", "acct": "서진리테일", "amt": 12320000, "qty": 8, "opp": "OPP-2026-0035"}, {"n": 33, "q": "2026-Q2", "part": "직판1파트", "ord": "직판주문", "item": "TV", "acct": "미래로병원", "amt": 15840000, "qty": 8, "opp": "OPP-2026-0031"}, {"n": 34, "q": "2026-Q2", "part": "직판1파트", "ord": "직판주문", "item": "사이니지", "acct": "미래로병원", "amt": 4600000, "qty": 4, "opp": "OPP-2026-0033"}, {"n": 35, "q": "2026-Q2", "part": "직판1파트", "ord": "직판주문", "item": "TV", "acct": "한울종합건설", "amt": 42600000, "qty": 30, "opp": "OPP-2026-0030"}, {"n": 36, "q": "2026-Q2", "part": "직판1파트", "ord": "직판주문", "item": "사이니지", "acct": "해솔호텔", "amt": 13800000, "qty": 12, "opp": "OPP-2026-0034"}, {"n": 37, "q": "2026-Q2", "part": "직판1파트", "ord": "직판주문", "item": "에어컨", "acct": "미래로병원", "amt": 2240000, "qty": 2, "opp": "OPP-2026-0038"}, {"n": 38, "q": "2026-Q2", "part": "경로1파트", "ord": "유통주문", "item": "모니터", "acct": "해솔호텔", "amt": 1380000, "qty": 2, "opp": "OPP-2026-0041"}, {"n": 39, "q": "2026-Q2", "part": "직판1파트", "ord": "직판주문", "item": "PC", "acct": "대성건설", "amt": 3080000, "qty": 2, "opp": "OPP-2026-0039"}, {"n": 40, "q": "2026-Q2", "part": "직판2파트", "ord": "직판주문", "item": "사이니지", "acct": "서진리테일", "amt": 23000000, "qty": 20, "opp": "OPP-2026-0042"}, {"n": 41, "q": "2026-Q2", "part": "경로1파트", "ord": "유통주문", "item": "사이니지", "acct": "한울종합건설", "amt": 8800000, "qty": 5, "opp": "OPP-2026-0037"}, {"n": 42, "q": "2026-Q2", "part": "직판1파트", "ord": "직판주문", "item": "PC", "acct": "대성건설", "amt": 3080000, "qty": 2, "opp": "OPP-2026-0040"}, {"n": 43, "q": "2026-Q2", "part": "경로1파트", "ord": "유통주문", "item": "사이니지", "acct": "서진리테일", "amt": 52800000, "qty": 30, "opp": "OPP-2026-0036"}, {"n": 44, "q": "2026-Q3", "part": "경로1파트", "ord": "유통주문", "item": "PC", "acct": "미래로병원", "amt": 1780000, "qty": 2, "opp": "OPP-2026-0045"}, {"n": 45, "q": "2026-Q3", "part": "경로1파트", "ord": "유통주문", "item": "PC", "acct": "해솔호텔", "amt": 7120000, "qty": 8, "opp": "OPP-2026-0044"}, {"n": 46, "q": "2026-Q3", "part": "경로1파트", "ord": "유통주문", "item": "TV", "acct": "해솔호텔", "amt": 7020000, "qty": 3, "opp": "OPP-2026-0047"}, {"n": 47, "q": "2026-Q3", "part": "직판1파트", "ord": "직판주문", "item": "모니터", "acct": "대성건설", "amt": 5160000, "qty": 12, "opp": "OPP-2026-0043"}, {"n": 48, "q": "2026-Q3", "part": "경로1파트", "ord": "유통주문", "item": "사이니지", "acct": "미래로병원", "amt": 7040000, "qty": 4, "opp": "OPP-2026-0046"}, {"n": 49, "q": "2026-Q3", "part": "직판2파트", "ord": "직판주문", "item": "PC", "acct": "서진리테일", "amt": 7120000, "qty": 8, "opp": "OPP-2026-0049"}, {"n": 50, "q": "2026-Q3", "part": "직판1파트", "ord": "직판주문", "item": "에어컨", "acct": "한울종합건설", "amt": 13440000, "qty": 12, "opp": "OPP-2026-0050"}, {"n": 51, "q": "2026-Q3", "part": "경로1파트", "ord": "유통주문", "item": "TV", "acct": "대성건설", "amt": 9360000, "qty": 4, "opp": "OPP-2026-0051"}, {"n": 52, "q": "2026-Q3", "part": "직판1파트", "ord": "직판주문", "item": "PC", "acct": "세종교육재단", "amt": 30800000, "qty": 20, "opp": "OPP-2026-0048"}, {"n": 53, "q": "2026-Q3", "part": "직판1파트", "ord": "직판주문", "item": "모니터", "acct": "대성건설", "amt": 1290000, "qty": 3, "opp": "OPP-2026-0052"}, {"n": 54, "q": "2026-Q3", "part": "직판1파트", "ord": "직판주문", "item": "사이니지", "acct": "한울종합건설", "amt": 14080000, "qty": 8, "opp": "OPP-2026-0055"}, {"n": 55, "q": "2026-Q3", "part": "경로1파트", "ord": "유통주문", "item": "에어컨", "acct": "대성건설", "amt": 13440000, "qty": 12, "opp": "OPP-2026-0054"}, {"n": 56, "q": "2026-Q3", "part": "직판1파트", "ord": "직판주문", "item": "모니터", "acct": "세종교육재단", "amt": 1290000, "qty": 3, "opp": "OPP-2026-0057"}, {"n": 57, "q": "2026-Q3", "part": "경로1파트", "ord": "유통주문", "item": "모니터", "acct": "한울종합건설", "amt": 20700000, "qty": 30, "opp": "OPP-2026-0053"}, {"n": 58, "q": "2026-Q3", "part": "직판2파트", "ord": "직판주문", "item": "PC", "acct": "서진리테일", "amt": 30800000, "qty": 20, "opp": "OPP-2026-0056"}], COLOR = {"사이니지": "var(--i0)", "TV": "var(--i1)", "PC": "var(--i2)", "에어컨": "var(--i3)", "모니터": "var(--i4)"}, ITEM_ORDER = ["사이니지", "TV", "PC", "에어컨", "모니터"],
+      QS = ["2026-Q1", "2026-Q2", "2026-Q3"], LASTQ = "2026-Q3", TOT = 836670000, CNT = 57;
+const nf = new Intl.NumberFormat('ko-KR');
+const $ = id => document.getElementById(id);
+const fq = $('fq'), fp = $('fp'), fo = $('fo'), tip = $('tip');
+
+function el(tag, cls, text){
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text !== undefined && text !== null) n.textContent = String(text);  // 라벨은 데이터다. textContent로만 넣는다.
+  return n;
+}
+function pct(a, b){ return b ? (a / b * 100) : 0; }
+
+/* 툴팁 — 마크보다 넓은 칸 전체가 과녁이다 */
+function bindTip(node, label, value, share, hue){
+  const show = ev => {
+    tip.replaceChildren();
+    const l = el('div', 'l');
+    if (hue){ const i = el('i'); i.style.background = hue; l.appendChild(i); }
+    l.appendChild(el('span', null, label));
+    tip.appendChild(el('b', null, nf.format(value) + '원'));
+    if (share !== null) tip.appendChild(el('div', null, share.toFixed(1) + '%'));
+    tip.appendChild(l);
+    const r = node.getBoundingClientRect();
+    const x = (ev && ev.clientX !== undefined) ? ev.clientX : r.left + r.width / 2;
+    tip.style.opacity = '1';
+    tip.style.left = Math.min(x + 14, innerWidth - tip.offsetWidth - 10) + 'px';
+    tip.style.top  = Math.max(r.top - tip.offsetHeight - 8, 8) + 'px';
+  };
+  node.addEventListener('pointermove', show);
+  node.addEventListener('focus', show);
+  const hide = () => { tip.style.opacity = '0'; };
+  node.addEventListener('pointerleave', hide);
+  node.addEventListener('blur', hide);
+}
+
+function agg(list, key){
+  const m = new Map();
+  for (const r of list){
+    const k = r[key], o = m.get(k) || { n: 0, v: 0 };
+    o.n++; o.v += r.amt; m.set(k, o);
+  }
+  return [...m].map(([k, o]) => ({ k, n: o.n, v: o.v })).sort((a, b) => b.v - a.v);
+}
+
+function barTable(host, colName, items, sum, hue){
+  const t = el('table'), th = el('thead'), tr = el('tr');
+  for (const [lab, cls] of [[colName, ''], ['건수', 'num'], ['매출금액', 'num'], ['비중', 'num'], ['', '']])
+    tr.appendChild(Object.assign(el('th', cls, lab), { scope: 'col' }));
+  th.appendChild(tr); t.appendChild(th);
+  const tb = el('tbody'), mx = Math.max(...items.map(i => i.v), 1);
+  for (const it of items){
+    const row = el('tr');
+    row.appendChild(Object.assign(el('th', null, it.k), { scope: 'row' }));
+    row.appendChild(el('td', 'num', nf.format(it.n)));
+    row.appendChild(el('td', 'num', nf.format(it.v)));
+    const sh = pct(it.v, sum);
+    row.appendChild(el('td', 'num', sh.toFixed(1) + '%'));
+    const cell = el('td', 'barcell'); cell.tabIndex = 0;
+    const b = el('span', 'bar');
+    const col = hue || COLOR[it.k] || 'var(--accent)';
+    b.style.width = (it.v / mx * 100).toFixed(1) + '%'; b.style.background = col;
+    cell.appendChild(b); bindTip(cell, it.k, it.v, sh, col);
+    row.appendChild(cell); tb.appendChild(row);
+  }
+  t.appendChild(tb); host.appendChild(t);
+}
+
+function skewNote(items, sum){
+  if (items.length <= 1) return items.length ? items[0].k + ' 하나뿐입니다.' : '';
+  if (items.length === 2)   // 값이 둘뿐이면 "상위 2개가 100%"는 뜻이 없다. 격차를 적는다.
+    return items[0].k + '이 ' + items[1].k + '보다 ' +
+           (pct(items[0].v - items[1].v, sum)).toFixed(0) + '%p 큽니다.';
+  return '상위 2개가 전체의 ' + pct(items[0].v + items[1].v, sum).toFixed(0) + '%.';
+}
+
+function render(){
+  const s = { q: fq.value, p: fp.value, o: fo.value };
+  const keep = (r, ignoreQ) =>
+    (ignoreQ || s.q === '전체' || r.q === s.q) &&
+    (s.p === '전체' || r.part === s.p) &&
+    (s.o === '전체' || r.ord === s.o);
+
+  const sel = ROWS.filter(r => keep(r, false));     // 화면 대부분이 보는 집합
+  const cmp = ROWS.filter(r => keep(r, true));      // 분기 비교용 — 기간 필터만 뺀다
+
+  /* 지금 보고 있는 것 */
+  const sum = sel.reduce((a, r) => a + r.amt, 0);
+  const scope = $('scope'); scope.replaceChildren();
+  const cond = [s.q === '전체' ? '전체 기간' : s.q,
+                s.p === '전체' ? '전체 조직' : s.p,
+                s.o === '전체' ? '직판·유통 모두' : s.o].join(' · ');
+  scope.appendChild(el('strong', null, '지금 보고 있는 것 — ' + cond));
+  scope.appendChild(el('span', null,
+    '  |  ' + nf.format(CNT) + '건 중 ' + nf.format(sel.length) + '건 · ' +
+    '전체 금액 ' + nf.format(TOT) + '원의 ' + pct(sum, TOT).toFixed(1) + '%'));
+
+  const ids = ['tiles', 'axes', 'quarters', 'notable'];
+  ids.forEach(i => $(i).replaceChildren());
+  const secs = ['s1', 's2', 's3', 's4'], box = $('emptybox');
+
+  /* 0건이면 0을 그리지 않는다. 섹션을 통째로 접고 한 번만 알려 준다. */
+  if (!sel.length){
+    secs.forEach(i => { $(i).hidden = true; });
+    box.hidden = false; box.replaceChildren();
+    box.appendChild(el('p', null, '이 조건에 맞는 건이 없습니다.'));
+    const loose = [];
+    if (s.q !== '전체') loose.push('기간');
+    if (s.p !== '전체') loose.push('조직');
+    if (s.o !== '전체') loose.push('주문유형');
+    box.appendChild(el('p', null,
+      loose.join(' · ') + ' 중 하나를 "전체"로 되돌리면 다시 보입니다. ' +
+      '빈 화면에 0을 그려 두면 실적이 0인 것처럼 보여서, 아예 비워 두고 이렇게 적습니다.'));
+    location.hash = hashOf(s);
+    return;
+  }
+  secs.forEach(i => { $(i).hidden = false; });
+  box.hidden = true;
+
+  /* 한눈에 */
+  const cur  = s.q !== '전체' ? s.q : QS[QS.length - 2];   // 덜 찬 마지막 분기는 기본에서 뺀다
+  const pi   = QS.indexOf(cur), prev = pi > 0 ? QS[pi - 1] : null;
+  const qsum = q => cmp.filter(r => r.q === q).reduce((a, r) => a + r.amt, 0);
+  const cv = qsum(cur), pvv = prev ? qsum(prev) : 0;
+  const d  = (prev && pvv) ? (cv / pvv - 1) * 100 : null;
+
+  const tiles = [
+    ['매출금액 합계', nf.format(sum), '이 조건에서 직접 합산'],
+    ['건수', nf.format(sel.length), '영업기회 ' + new Set(sel.map(r => r.opp)).size + '건'],
+    ['건당 평균', nf.format(Math.round(sum / sel.length)), '합계 ÷ 건수'],
+  ];
+  for (const [k, v, sub] of tiles){
+    const t = el('div', 'tile');
+    t.appendChild(el('div', 'k', k)); t.appendChild(el('div', 'v', v)); t.appendChild(el('div', 's', sub));
+    $('tiles').appendChild(t);
+  }
+  const t4 = el('div', 'tile');
+  t4.appendChild(el('div', 'k', cur));
+  t4.appendChild(el('div', 'v', nf.format(cv)));
+  const s4 = el('div', 's');
+  if (d === null) s4.appendChild(el('span', null, '비교 기간 데이터 없음'));
+  else {
+    s4.appendChild(el('span', d < 0 ? 'down' : 'up', (d >= 0 ? '+' : '') + d.toFixed(1) + '%'));
+    s4.appendChild(el('span', null, ' · ' + prev + ' ' + nf.format(pvv)));
+  }
+  t4.appendChild(s4); $('tiles').appendChild(t4);
+
+  /* 어디서 나왔나 */
+  const axes = $('axes');
+  const items = agg(sel, 'item');
+  axes.appendChild(el('h3', null, '무엇이 팔렸나 · 품목구분'));
+
+  const stack = el('div', 'stack');
+  const byOrder = ITEM_ORDER.map(k => items.find(i => i.k === k)).filter(Boolean);  // 색 순서 고정
+  for (const it of byOrder){
+    const seg = el('div', 'seg'); seg.tabIndex = 0;
+    seg.style.width = pct(it.v, sum).toFixed(2) + '%';
+    seg.style.background = COLOR[it.k];
+    seg.setAttribute('aria-label', it.k + ' ' + pct(it.v, sum).toFixed(1) + '%');
+    bindTip(seg, it.k, it.v, pct(it.v, sum), COLOR[it.k]);
+    stack.appendChild(seg);
+  }
+  axes.appendChild(stack);
+  const lg = el('div', 'legend');
+  for (const it of byOrder){
+    const k = el('span', 'k'); const i = el('i'); i.style.background = COLOR[it.k];
+    k.appendChild(i); k.appendChild(el('span', null, it.k + ' ' + pct(it.v, sum).toFixed(1) + '%'));
+    lg.appendChild(k);
+  }
+  axes.appendChild(lg);
+  if (byOrder.length < ITEM_ORDER.length)
+    axes.appendChild(el('p', 'note',
+      '필터로 ' + (ITEM_ORDER.length - byOrder.length) + '개 품목이 빠졌습니다. ' +
+      '남은 품목의 색은 그대로입니다 — 색은 항목을 따라가지 순위를 따라가지 않습니다.'));
+  barTable(axes, '품목구분', items, sum, null);
+  axes.appendChild(el('p', 'note', skewNote(items, sum)));
+
+  for (const [col, title, hue] of [['ord', '직판인가 유통인가 · 주문유형', 'var(--accent2)'],
+                                   ['acct', '어느 고객에서 · 수요처명', 'var(--accent)']]){
+    axes.appendChild(el('h3', null, title));
+    const it = agg(sel, col);
+    barTable(axes, col === 'ord' ? '주문유형' : '수요처명', it, sum, hue);
+    axes.appendChild(el('p', 'note', skewNote(it, sum)));
+  }
+
+  /* 지난 기간과 견주면 — 기간 필터는 빼고 계산한다 */
+  const qh = $('quarters');
+  const qa = agg(cmp, 'q').sort((a, b) => a.k < b.k ? -1 : 1);
+  const qtot = cmp.reduce((a, r) => a + r.amt, 0);
+  const t = el('table'), th = el('thead'), tr = el('tr');
+  for (const [lab, cls] of [['분기', ''], ['건수', 'num'], ['매출금액', 'num'], ['비중', 'num']])
+    tr.appendChild(Object.assign(el('th', cls, lab), { scope: 'col' }));
+  th.appendChild(tr); t.appendChild(th);
+  const tb = el('tbody');
+  for (const it of qa){
+    const row = el('tr');
+    row.appendChild(Object.assign(el('th', null, it.k + (it.k === LASTQ ? ' (덜 찬 분기)' : '')), { scope: 'row' }));
+    row.appendChild(el('td', 'num', nf.format(it.n)));
+    row.appendChild(el('td', 'num', nf.format(it.v)));
+    row.appendChild(el('td', 'num', pct(it.v, qtot).toFixed(1) + '%'));
+    tb.appendChild(row);
+  }
+  t.appendChild(tb); qh.appendChild(t);
+  qh.appendChild(el('p', 'note',
+    LASTQ + '은 9월까지만 들어 있어 분기 비교에서 뺐습니다. 덜 찬 기간을 다 찬 기간과 나란히 놓으면 무조건 줄어든 것처럼 보입니다.'));
+  if (s.q !== '전체')
+    qh.appendChild(el('p', 'note',
+      '이 표만은 기간 필터를 빼고 계산합니다. 기간을 ' + s.q + '로 걸어 둔 채 분기를 견주면 비교할 상대가 사라집니다. 조직·주문유형 필터는 그대로 걸려 있습니다.'));
+
+  /* 눈에 띄는 것 */
+  const nh = $('notable');
+  if (!prev){
+    nh.appendChild(el('p', 'note', cur + ' 앞 분기가 없어 비교하지 못했습니다.'));
+  } else {
+    const pm = new Map(agg(cmp.filter(r => r.q === prev), 'item').map(i => [i.k, i.v]));
+    const cm = new Map(agg(cmp.filter(r => r.q === cur),  'item').map(i => [i.k, i.v]));
+    const out = [];
+    for (const k of new Set([...pm.keys(), ...cm.keys()])){
+      const a = pm.get(k) || 0, b = cm.get(k) || 0;
+      if (!a){ out.push({ k, a, b, d: null }); continue; }
+      const dd = (b / a - 1) * 100;
+      if (Math.abs(dd) >= 20) out.push({ k, a, b, d: dd });
+    }
+    out.sort((x, y) => Math.abs(y.d ?? 999) - Math.abs(x.d ?? 999));
+    nh.appendChild(el('p', 'note', prev + ' → ' + cur + ', 품목구분 기준 ±20% 이상 변동.'));
+    const t2 = el('table'), th2 = el('thead'), tr2 = el('tr');
+    for (const [lab, cls] of [['품목구분', ''], [prev, 'num'], [cur, 'num'], ['변동', 'num']])
+      tr2.appendChild(Object.assign(el('th', cls, lab), { scope: 'col' }));
+    th2.appendChild(tr2); t2.appendChild(th2);
+    const tb2 = el('tbody');
+    if (!out.length){
+      const row = el('tr'), td = el('td', null, '기준에 걸린 항목 없음');
+      td.colSpan = 4; td.style.color = 'var(--mute)'; row.appendChild(td); tb2.appendChild(row);
+    }
+    for (const o of out.slice(0, 5)){
+      const row = el('tr');
+      row.appendChild(Object.assign(el('th', null, o.k), { scope: 'row' }));
+      row.appendChild(el('td', 'num', nf.format(o.a)));
+      row.appendChild(el('td', 'num', nf.format(o.b)));
+      row.appendChild(el('td', 'num', o.d === null ? '신규' : (o.d >= 0 ? '+' : '') + o.d.toFixed(0) + '%'));
+      tb2.appendChild(row);
+    }
+    t2.appendChild(tb2); nh.appendChild(t2);
+    nh.appendChild(el('p', 'note', '원인은 쓰지 않았습니다. 쓰려면 "가설"로 표시하고 확인 방법을 같이 적습니다.'));
+  }
+  location.hash = hashOf(s);
+}
+
+/* 걸어 둔 조건은 주소에 남는다 — 회의에서 "그거 다시" 할 때 링크 하나면 된다 */
+function hashOf(s){
+  return 'q=' + encodeURIComponent(s.q) + '&p=' + encodeURIComponent(s.p) + '&o=' + encodeURIComponent(s.o);
+}
+function readHash(){
+  const h = new URLSearchParams(location.hash.replace(/^#/, ''));
+  const put = (selEl, v) => { if (v && [...selEl.options].some(o => o.value === v)) selEl.value = v; };
+  put(fq, h.get('q')); put(fp, h.get('p')); put(fo, h.get('o'));
+}
+[fq, fp, fo].forEach(n => n.addEventListener('change', render));
+$('reset').addEventListener('click', () => { fq.value = fp.value = fo.value = '전체'; render(); });
+readHash(); render();
+</script></body></html>

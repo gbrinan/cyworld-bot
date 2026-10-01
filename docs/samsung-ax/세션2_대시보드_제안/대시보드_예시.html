@@ -1,0 +1,107 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>영업 현황 대시보드 예시</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+:root{--paper:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--mute:#7a7873;--line:#e4e2db;--panel:#f3f2ee;
+--accent:#2a78d6;--accent2:#eb6834;--good:#1baf7a;--bad:#c0392b;--rule:#d9d7d0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1a19;--ink:#fff;--ink2:#c3c2b7;--mute:#9b998f;
+--line:#343330;--panel:#242320;--accent:#3987e5;--accent2:#d95926;--good:#199e70;--bad:#e06a5a;--rule:#3a3936}}
+:root[data-theme="dark"]{--paper:#1a1a19;--ink:#fff;--ink2:#c3c2b7;--mute:#9b998f;--line:#343330;--panel:#242320;
+--accent:#3987e5;--accent2:#d95926;--good:#199e70;--bad:#e06a5a;--rule:#3a3936}
+html{color-scheme:light dark}
+body{margin:0;background:var(--paper);color:var(--ink);font-size:15px;line-height:1.6;
+font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:36px 20px 72px}
+.eyebrow{font-size:12px;letter-spacing:.1em;color:var(--accent);font-weight:600;text-transform:uppercase}
+h1{font-size:26px;margin:6px 0 4px;line-height:1.3}
+.src{color:var(--mute);font-size:13px;margin:0 0 26px}
+h2{font-size:17px;margin:34px 0 10px;padding-top:14px;border-top:1px solid var(--rule)}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0 6px}
+@media(max-width:700px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.tile{background:var(--panel);border:1px solid var(--line);padding:13px 14px}
+.tile .k{font-size:12px;color:var(--mute);margin-bottom:5px}
+.tile .v{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+.tile .s{font-size:12px;color:var(--ink2);margin-top:5px}
+table{border-collapse:collapse;width:100%;margin:8px 0 4px;font-size:14px}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+thead th{font-size:12px;color:var(--mute);font-weight:600;border-bottom:1px solid var(--rule)}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.barcell{width:168px;padding-right:0}
+.bar{display:block;height:9px;border-radius:0 4px 4px 0;min-width:2px}
+.note{font-size:13px;color:var(--ink2);margin:6px 0 0}
+.up{color:var(--good);font-weight:600}.down{color:var(--bad);font-weight:600}
+.chk{background:var(--panel);border-left:3px solid var(--accent);padding:12px 15px;font-size:14px;margin-top:10px}
+.chk p{margin:4px 0}
+.foot{margin-top:46px;padding-top:12px;border-top:1px solid var(--rule);font-size:12px;color:var(--mute)}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13px}
+</style></head><body><div class="wrap">
+<div class="eyebrow">세션 2 · 대시보드 예시</div>
+<h1>한국총괄 B2B영업 매출 현황 — 2026-01 ~ 2026-09</h1>
+<p class="src">자료 <span class="mono">매출데이터_예시.csv</span> 57행 · 수요처 6곳 · 모든 값은 가상입니다</p>
+
+<h2>한눈에</h2>
+<div class="tiles">
+<div class="tile"><div class="k">매출금액 합계</div><div class="v">836,670,000</div><div class="s">직접 합산</div></div>
+<div class="tile"><div class="k">건수</div><div class="v">57</div><div class="s">영업기회 57건</div></div>
+<div class="tile"><div class="k">건당 평균</div><div class="v">14,678,421</div><div class="s">합계 ÷ 건수</div></div>
+<div class="tile"><div class="k">2026-Q2</div><div class="v">311,160,000</div>
+<div class="s"><span class="down">-12.4%</span> · 2026-Q1 355,070,000</div></div>
+</div>
+<p class="note">증감률 옆에 <strong>원래 값 두 개</strong>를 같이 둡니다. 비율만 있으면 크기를 알 수 없습니다.</p>
+
+<h2>어디서 나왔나</h2>
+<h3 style="font-size:15px;margin:20px 0 4px;color:var(--ink2)">무엇이 팔렸나 · 품목구분</h3>
+<table><thead><tr><th>품목구분</th><th class="num">건수</th><th class="num">매출금액</th><th class="num">비중</th><th></th></tr></thead>
+<tbody><tr><th scope="row">사이니지</th><td class="num">13</td><td class="num">256,120,000</td>
+<td class="num">30.6%</td><td class="barcell"><span class="bar" style="width:100.0%;background:var(--accent)"></span></td></tr>
+<tr><th scope="row">TV</th><td class="num">10</td><td class="num">243,060,000</td>
+<td class="num">29.1%</td><td class="barcell"><span class="bar" style="width:94.9%;background:var(--accent)"></span></td></tr>
+<tr><th scope="row">PC</th><td class="num">15</td><td class="num">193,780,000</td>
+<td class="num">23.2%</td><td class="barcell"><span class="bar" style="width:75.7%;background:var(--accent)"></span></td></tr>
+<tr><th scope="row">에어컨</th><td class="num">7</td><td class="num">89,600,000</td>
+<td class="num">10.7%</td><td class="barcell"><span class="bar" style="width:35.0%;background:var(--accent)"></span></td></tr>
+<tr><th scope="row">모니터</th><td class="num">12</td><td class="num">54,110,000</td>
+<td class="num">6.5%</td><td class="barcell"><span class="bar" style="width:21.1%;background:var(--accent)"></span></td></tr></tbody></table>
+<p class="note">상위 2개가 전체의 <strong>60%</strong>.</p><h3 style="font-size:15px;margin:20px 0 4px;color:var(--ink2)">직판인가 유통인가 · 주문유형</h3>
+<table><thead><tr><th>주문유형</th><th class="num">건수</th><th class="num">매출금액</th><th class="num">비중</th><th></th></tr></thead>
+<tbody><tr><th scope="row">직판주문</th><td class="num">34</td><td class="num">463,250,000</td>
+<td class="num">55.4%</td><td class="barcell"><span class="bar" style="width:100.0%;background:var(--accent2)"></span></td></tr>
+<tr><th scope="row">유통주문</th><td class="num">23</td><td class="num">373,420,000</td>
+<td class="num">44.6%</td><td class="barcell"><span class="bar" style="width:80.6%;background:var(--accent2)"></span></td></tr></tbody></table>
+<p class="note">직판주문이 유통주문보다 <strong>11%p</strong> 큽니다.</p><h3 style="font-size:15px;margin:20px 0 4px;color:var(--ink2)">어느 고객에서 · 수요처명</h3>
+<table><thead><tr><th>수요처명</th><th class="num">건수</th><th class="num">매출금액</th><th class="num">비중</th><th></th></tr></thead>
+<tbody><tr><th scope="row">한울종합건설</th><td class="num">16</td><td class="num">277,030,000</td>
+<td class="num">33.1%</td><td class="barcell"><span class="bar" style="width:100.0%;background:var(--accent)"></span></td></tr>
+<tr><th scope="row">서진리테일</th><td class="num">10</td><td class="num">191,400,000</td>
+<td class="num">22.9%</td><td class="barcell"><span class="bar" style="width:69.1%;background:var(--accent)"></span></td></tr>
+<tr><th scope="row">대성건설</th><td class="num">12</td><td class="num">136,810,000</td>
+<td class="num">16.4%</td><td class="barcell"><span class="bar" style="width:49.4%;background:var(--accent)"></span></td></tr>
+<tr><th scope="row">미래로병원</th><td class="num">9</td><td class="num">106,280,000</td>
+<td class="num">12.7%</td><td class="barcell"><span class="bar" style="width:38.4%;background:var(--accent)"></span></td></tr>
+<tr><th scope="row">세종교육재단</th><td class="num">5</td><td class="num">78,230,000</td>
+<td class="num">9.4%</td><td class="barcell"><span class="bar" style="width:28.2%;background:var(--accent)"></span></td></tr>
+<tr><th scope="row">해솔호텔</th><td class="num">5</td><td class="num">46,920,000</td>
+<td class="num">5.6%</td><td class="barcell"><span class="bar" style="width:16.9%;background:var(--accent)"></span></td></tr></tbody></table>
+<p class="note">상위 2개가 전체의 <strong>56%</strong>.</p>
+
+<h2>지난 기간과 견주면</h2>
+<table><thead><tr><th>분기</th><th class="num">건수</th><th class="num">매출금액</th><th class="num">비중</th></tr></thead>
+<tbody><tr><th scope="row">2026-Q1</th><td class="num">21</td><td class="num">355,070,000</td><td class="num">42.4%</td></tr><tr><th scope="row">2026-Q2</th><td class="num">21</td><td class="num">311,160,000</td><td class="num">37.2%</td></tr><tr><th scope="row">2026-Q3</th><td class="num">15</td><td class="num">170,440,000</td><td class="num">20.4%</td></tr></tbody></table>
+<p class="note"><strong>2026-Q3은 9월까지만 들어 있어 분기 비교에서 뺐습니다.</strong> 덜 찬 기간을 다 찬 기간과 나란히 놓으면 무조건 줄어든 것처럼 보입니다.</p>
+
+<h2>눈에 띄는 것</h2>
+<p class="note">2026-Q1 → 2026-Q2, 품목구분 기준 ±20% 이상 변동.</p>
+<table><thead><tr><th>품목구분</th><th class="num">2026-Q1</th><th class="num">2026-Q2</th><th class="num">변동</th></tr></thead>
+<tbody><tr><th scope="row">TV</th><td class="num">159,300,000</td><td class="num">67,380,000</td><td class="num">-58%</td></tr><tr><th scope="row">에어컨</th><td class="num">24,640,000</td><td class="num">38,080,000</td><td class="num">+55%</td></tr><tr><th scope="row">사이니지</th><td class="num">96,800,000</td><td class="num">138,200,000</td><td class="num">+43%</td></tr></tbody></table>
+<p class="note">원인은 쓰지 않았습니다. 쓰려면 <strong>"가설"로 표시하고 확인 방법을 같이</strong> 적습니다.</p>
+
+<h2>확인 필요</h2>
+<div class="chk">
+<p>· 매출금액 = 단가 × 매출수량 검산 — 이 헤더에는 단가 열이 없어 <strong>검산할 식이 없습니다.</strong> 단가 열을 넣을지 확인 필요.</p>
+<p>· 판매처 주소는 직판주문일 때 값이 없어 <span class="mono">—</span>로 두었습니다.</p>
+<p>· 영업기회 번호가 한 건에 하나씩이라 영업기회 단위 집계와 매출 단위 집계가 같습니다. 한 영업기회에 여러 번 매출이 잡히는 경우가 실제로 있는지 확인 필요.</p>
+<p>· 축을 셋으로 줄였습니다. 그룹명 · 파트명 · 영업기회 유형도 열에 있으나 넣으면 표가 길어집니다.</p>
+</div>
+
+<div class="foot">세션 2 대시보드 제안 · 모든 수요처명 · 모델명 · 금액은 가상이며 삼성전자 실제 정보와 무관합니다</div>
+</div></body></html>

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""세션2 대시보드 제안용 — 삼성이 공유한 매출 데이터 헤더(16열)로 가상 데이터와 대시보드를 만든다.
+"""세션2용 — 삼성이 공유한 매출 데이터 헤더(16열)로 가상 데이터와 대시보드를 만든다.
+세션2 전반(대시보드)과 후반(데이터 분석·인사이트)이 같은 파일을 쓴다.
 시드 고정이라 몇 번을 돌려도 같은 값이 나온다.
 사용: python3 tools/build_session2_sample.py"""
 import os, csv, random, datetime, collections
@@ -13,44 +14,108 @@ HEADER=["영업기회 번호","영업기회 유형","그룹명","파트명","판
 # 수요처 6곳 — 삼성 메일의 "고객사 숫자는 일관성 있게 6개로 유지" 안에 맞춤. 전부 가상.
 ACCOUNTS=[("1000101","해솔호텔","호텔"),("1000204","대성건설","건설"),("1000311","한울종합건설","건설"),
           ("1000425","미래로병원","병원"),("1000538","세종교육재단","교육"),("1000642","서진리테일","유통")]
+# 판매처 = 대리점. 헤더 설명의 "판매한 대리점 이름 (ex. oo정보통신)"을 따른다.
 DEALERS=[("2000071","남해정보통신","부산광역시 해운대구 센텀중앙로 45"),
          ("2000088","동백시스템","부산광역시 해운대구 좌동순환로 12"),
          ("2000095","가야네트웍스","경상남도 김해시 분성로 221")]
 ORG=[("한국총괄 B2B영업그룹","직판1파트"),("한국총괄 B2B영업그룹","직판2파트"),("한국총괄 B2B유통그룹","경로1파트")]
-ITEMS=[("TV",[("HX-55T",1420000),("HX-65T",1980000),("BX-65S",2340000)]),
-       ("사이니지",[("SG-43C",1150000),("SG-55C",1760000)]),
-       ("모니터",[("MN-27Q",430000),("MN-32U",690000)]),
-       ("PC",[("DP-i5N",890000),("NB-i7P",1540000)]),
-       ("에어컨",[("AC-18W",1120000)])]
-PURPOSE={"호텔":["객실 TV 교체","로비 사이니지"],"건설":["신축 현장 회의실","모델하우스 사이니지"],
-         "병원":["대기실 사이니지","진료실 모니터"],"교육":["강의실 디스플레이","행정실 PC"],
-         "유통":["매장 프로모션 사이니지","백오피스 PC"]}
+
+# (품목구분, [(모델명, 단가, 규격표기)]) — 규격표기는 영업기회명을 삼성 예시 형식으로 만들 때 쓴다.
+# 품목구분은 헤더 설명의 예시(청소기, PC, TV 등)를 따라 청소기를 포함했다.
+ITEMS=[("TV",[("HX-55T",1420000,"55인치"),("HX-65T",1980000,"65인치"),("BX-65S",2340000,"65인치")]),
+       ("사이니지",[("SG-43C",1150000,"43인치"),("SG-55C",1760000,"55인치")]),
+       ("모니터",[("MN-27Q",430000,"27인치"),("MN-32U",690000,"32인치")]),
+       ("PC",[("DP-i5N",890000,"데스크톱"),("NB-i7P",1540000,"노트북")]),
+       ("에어컨",[("AC-18W",1120000,"18평형")]),
+       ("청소기",[("VC-20B",280000,"업소용"),("VC-35H",460000,"대용량")])]
 
 rows=[]; seq=1
 for mi in range(1,10):                      # 2026-01 ~ 2026-09
-    n = 7 if mi<=6 else 5                   # 하반기로 갈수록 건수가 줄어드는 흐름
+    # 3분기(7~9월)는 9월까지만 집계된 '덜 찬 분기'다. 건수도 금액도 작게 둬야
+    # "덜 찬 기간을 다 찬 기간과 나란히 놓으면 줄어 보인다"는 실습 포인트가 성립한다.
+    n = 7 if mi<=6 else 4
     for _ in range(n):
         code,acct,vert = random.choice(ACCOUNTS)
         item,models = random.choice(ITEMS)
-        model,unit  = random.choice(models)
-        qty = random.choice([2,3,4,5,8,10,12,20,30])
+        model,unit,spec = random.choice(models)
+        qty = random.choice([2,3,4,5,8,10,12,20,30] if mi<=6 else [2,3,4,5,8,10])
         direct = random.random() < 0.6
+        # 헤더 설명: "유통이 중간에 없다면 수요처명과 동일한 값이 들어감" — 직판이면 판매처 = 수요처
         if direct: scode,sname,saddr = code,acct,"—"
         else:      scode,sname,saddr = random.choice(DEALERS)
         grp,part = ORG[0] if direct and vert!="유통" else (ORG[2] if not direct else ORG[1])
         day = random.randint(1,28)
+        # 영업기회명 — 헤더 설명의 예시 "해솔호텔 50인치 TV 납품건" 형식을 그대로 따른다
         rows.append([f"OPP-2026-{seq:04d}", random.choice(["선행영업","트렌드","트렌드"]), grp, part,
                      scode, sname, saddr, code, acct,
-                     f"{acct} {random.choice(PURPOSE[vert])}", f"2026-{mi:02d}-{day:02d}",
+                     f"{acct} {spec} {item} 납품건", f"2026-{mi:02d}-{day:02d}",
                      item, model, "직판주문" if direct else "유통주문", unit*qty, qty])
         seq+=1
 rows.sort(key=lambda r: r[10])
-p=os.path.join(OUT,"매출데이터_예시.csv")
-with open(p,"w",encoding="utf-8",newline="") as f:
-    w=csv.writer(f); w.writerow(HEADER); w.writerows(rows)
-print(f"매출데이터_예시.csv  {len(rows)}행 · 수요처 {len({r[8] for r in rows})}곳 · "
-      f"합계 {sum(r[14] for r in rows):,}원")
 
+def write_csv(name, header, body):
+    p=os.path.join(OUT,name)
+    with open(p,"w",encoding="utf-8",newline="") as f:
+        w=csv.writer(f); w.writerow(header); w.writerows(body)
+    return p
+
+write_csv("매출데이터_예시.csv", HEADER, rows)
+TOTAL=sum(r[14] for r in rows)
+print(f"매출데이터_예시.csv  {len(rows)}행 · 수요처 {len({r[8] for r in rows})}곳 · "
+      f"품목 {len({r[11] for r in rows})}종 · 합계 {TOTAL:,}원")
+
+# ───────── 소계 파일 ─────────
+# 이 헤더에는 단가 열이 없어 '단가 × 수량 = 금액' 검산을 할 수 없다.
+# 대신 축별 소계를 따로 내려 주고, 참가자가 원본에서 다시 더해 대조하게 한다. 그게 이 모듈의 검산 장치다.
+SUB=[]
+for col,idx in [("품목구분",11),("주문유형",13),("수요처명",8)]:
+    agg=collections.Counter(); cntc=collections.Counter()
+    for r in rows: agg[r[idx]]+=r[14]; cntc[r[idx]]+=1
+    for k,v in sorted(agg.items(), key=lambda x:-x[1]):
+        SUB.append([col,k,cntc[k],v])
+SUB.append(["전체","합계",len(rows),TOTAL])
+write_csv("매출데이터_소계.csv", ["축","값","건수","매출금액"], SUB)
+print(f"매출데이터_소계.csv  {len(SUB)}행 · 축 3개 + 전체 합계")
+
+# ───────── 함정 파일 ─────────
+# 일부러 어긋낸 판. 0번 점검이 무엇을 잡아야 하는지 가르치는 용도다.
+# 단가가 없어 검산식을 못 쓰는 대신, 이 헤더에서 실제로 생길 수 있는 어긋남만 넣었다.
+trap=[list(r) for r in rows]
+TRAPS=[]
+
+def find(pred, start=0):
+    """조건에 맞는 첫 행을 찾는다. 행 번호를 손으로 박아 두면 데이터가 바뀔 때 조용히 엉뚱한 행이 망가진다."""
+    for k in range(start, len(trap)):
+        if pred(trap[k]): return k
+    raise SystemExit("함정을 심을 행을 못 찾았다")
+
+# ① 날짜 형식만 다르게 — 날짜 자체는 그대로 둔다
+k=find(lambda r: r[10].startswith("2026-02"))
+trap[k][10]=trap[k][10].replace("-","/")
+TRAPS.append(f"{k+2}행 매출일자 {trap[k][10]} — 다른 행과 형식이 다름")
+
+# ② 같은 수요처코드에 표기만 다른 이름 — 띄어쓰기 하나 차이여야 '표기 불일치'가 된다
+k=find(lambda r: r[8]=="대성건설")
+trap[k][8]="대성 건설"
+TRAPS.append(f"{k+2}행 수요처명이 '대성 건설' — 같은 코드 {trap[k][7]}의 다른 행은 '대성건설'")
+
+# ③ 영업기회 번호 중복
+k=find(lambda r: True, 30)
+trap[k][0]=trap[k-1][0]
+TRAPS.append(f"{k+2}행 영업기회 번호가 {trap[k][0]}로 바로 앞 행과 중복")
+
+# ④ 매출금액 음수
+k=find(lambda r: int(r[14])>0, 40); trap[k][14]=-int(trap[k][14])
+TRAPS.append(f"{k+2}행 매출금액이 음수")
+
+# ⑤ 매출수량 0 — 금액은 그대로라 금액÷수량이 0으로 나뉜다
+k=find(lambda r: int(r[15])>0, 48); trap[k][15]=0
+TRAPS.append(f"{k+2}행 매출수량이 0")
+
+write_csv("매출데이터_함정.csv", HEADER, trap)
+print(f"매출데이터_함정.csv  {len(trap)}행 · 심어 둔 어긋남 {len(TRAPS)}가지 "
+      f"(합계 {sum(int(r[14]) for r in trap):,}원 — 소계 파일과 안 맞음)")
+for t in TRAPS: print("   -", t)
 # ───────── 대시보드 HTML — 필터가 붙은 판 ─────────
 import html as H, json
 
@@ -72,6 +137,9 @@ TOT = sum(r["amt"] for r in ROWS); CNT = len(ROWS)
 _amt = collections.Counter()
 for r in ROWS: _amt[r["item"]] += r["amt"]
 ITEM_ORDER = [k for k, _ in _amt.most_common()]
+SLOTS = 6                                             # CSS에 정의된 --i0..--i5
+if len(ITEM_ORDER) > SLOTS:
+    raise SystemExit(f"품목구분이 {len(ITEM_ORDER)}종인데 색 슬롯은 {SLOTS}개다. CSS에 --i{SLOTS} 이상을 더하고 검증기를 다시 돌려라.")
 ITEM_VAR = {k: "var(--i%d)" % i for i, k in enumerate(ITEM_ORDER)}
 
 QS    = sorted({r["q"] for r in ROWS})
@@ -86,13 +154,13 @@ def opts(vals):
 CSS = """
 :root{--paper:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--mute:#7a7873;--line:#e4e2db;--panel:#f3f2ee;
 --accent:#2a78d6;--accent2:#eb6834;--good:#1baf7a;--bad:#c0392b;--rule:#d9d7d0;--field:#fff;
---i0:#2a78d6;--i1:#eb6834;--i2:#1baf7a;--i3:#eda100;--i4:#e87ba4}
+--i0:#2a78d6;--i1:#eb6834;--i2:#1baf7a;--i3:#eda100;--i4:#e87ba4;--i5:#008300}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1a19;--ink:#fff;--ink2:#c3c2b7;--mute:#9b998f;
 --line:#343330;--panel:#242320;--accent:#3987e5;--accent2:#d95926;--good:#199e70;--bad:#e06a5a;--rule:#3a3936;--field:#2b2a27;
---i0:#3987e5;--i1:#d95926;--i2:#199e70;--i3:#c98500;--i4:#d55181}}
+--i0:#3987e5;--i1:#d95926;--i2:#199e70;--i3:#c98500;--i4:#d55181;--i5:#008300}}
 :root[data-theme="dark"]{--paper:#1a1a19;--ink:#fff;--ink2:#c3c2b7;--mute:#9b998f;--line:#343330;--panel:#242320;
 --accent:#3987e5;--accent2:#d95926;--good:#199e70;--bad:#e06a5a;--rule:#3a3936;--field:#2b2a27;
---i0:#3987e5;--i1:#d95926;--i2:#199e70;--i3:#c98500;--i4:#d55181}
+--i0:#3987e5;--i1:#d95926;--i2:#199e70;--i3:#c98500;--i4:#d55181;--i5:#008300}
 html{color-scheme:light dark}
 body{margin:0;background:var(--paper);color:var(--ink);font-size:15px;line-height:1.6;
 font-family:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased}
@@ -457,9 +525,11 @@ html = """<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name=
 
 <h2>확인 필요</h2>
 <div class="chk">
-<p>· 매출금액 = 단가 × 매출수량 검산 — 이 헤더에는 단가 열이 없어 <strong>검산할 식이 없습니다.</strong> 단가 열을 넣을지 확인 필요.</p>
+<p>· 이 헤더에는 <strong>단가 열이 없어</strong> <span class="mono">단가 × 수량 = 금액</span> 검산을 할 수 없습니다. 대신 <span class="mono">매출데이터_소계.csv</span>의 축별 합계와 대조했고 <strong>전부 일치</strong>합니다. 단가 열을 넣을지 확인 필요.</p>
+<p>· 모델명은 가상입니다. 헤더 설명이 "인터넷에 조회되는 그 제품 모델명"이라, <strong>실제 모델명으로 바꿔 주시면 그대로 반영</strong>하겠습니다. 세션3에서 사양을 찾아보는 흐름과도 이어집니다.</p>
 <p>· 판매처 주소는 직판주문일 때 값이 없어 <span class="mono">—</span>로 두었습니다.</p>
 <p>· 영업기회 번호가 한 건에 하나씩이라 영업기회 단위 집계와 매출 단위 집계가 같습니다. 한 영업기회에 여러 번 매출이 잡히는 경우가 실제로 있는지 확인 필요.</p>
+<p>· 파트명과 주문유형이 1:1로 묶여 있습니다(직판파트는 직판주문만, 경로파트는 유통주문만). 실제로 직판파트가 유통주문을 가져가는 경우가 있는지 확인 필요.</p>
 <p>· 필터는 셋만 뒀습니다. 기간 · 조직 · 주문유형입니다. 품목구분과 수요처명은 표에서 바로 보이니 필터로 또 두지 않았습니다.</p>
 <p>· 걸어 둔 조건은 주소창에 남습니다. 링크를 그대로 복사해 보내면 상대도 같은 화면을 봅니다.</p>
 </div>

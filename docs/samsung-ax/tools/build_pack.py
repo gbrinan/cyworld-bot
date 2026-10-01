@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""배포 패키지 — 참가자 zip 2개(A판·B판) · 실습데이터 zip · 강사 zip 을 dist/ 에 만든다.
+"""배포 패키지 — 참가자 zip 2개(A판·B판) · 실습데이터 zip · 지시문 zip · 강사 zip 을 dist/ 에 만든다.
 참가자 팩에는 실습에 필요한 것만: 데이터 · 지시문 · 테스트 데이터 · 기준본 · paste · SKILL.md · 공통 문서 10개(예상 Q&A 포함) · 워크북 · 덱 PDF.
 요구조건서(00) · 시연 로그(05) · CHECK.md · 테스트 설명(test_*.md) · 강사 가이드는 강사 팩에만.
 사용: python3 build_pack.py   (먼저 build_course_docs.py → design/tools/build_deck.py → PDF 순으로 만들어 둔다)"""
@@ -41,6 +41,8 @@ def participant(deck):
         for f in COMMON_P:
             src = os.path.join(AX, f) if f == "faq.md" else os.path.join(COMMON, f)
             add(z, src, os.path.join(root, "common", f)); n += 1
+        for f in ["dashboard_sales.md", "dashboard_sales_예시.md"]:  # 워크북 전환 절이 가리키는 템플릿
+            add(z, os.path.join(COMMON, "instruction_templates", f), os.path.join(root, "common", "instruction_templates", f)); n += 1
         add(z, os.path.join(AX, f"workbook_{deck}.md"), os.path.join(root, f"워크북_{deck}.md")); n += 1
         pdf = os.path.join(AX, "deck", f"{deck}.pdf")
         if os.path.exists(pdf): add(z, pdf, os.path.join(root, f"슬라이드_{deck}.pdf")); n += 1
@@ -167,6 +169,111 @@ def data_pack():
     print(f"실습데이터.zip  {n} files  {os.path.getsize(out)//1024} KB")
     return picked
 
+# ───────── 지시문(프롬프트)만 따로 ─────────
+PROMPT_README = """# 지시문 모음 · {STAMP}
+
+실습에서 쓰는 **지시문(프롬프트) 전부**와 **내 업무로 옮길 때 쓰는 템플릿**을 모았습니다. 데이터·기준본·문서는 빼고 {N}개입니다.
+
+슬라이드에서는 이것을 **지시문**이라고 부릅니다. 도구의 입력칸은 **지침란**, 모듈 안의 하위 작업은 **단계**입니다. 셋을 섞어 쓰지 않습니다.
+
+---
+
+## 어디에 붙여넣나
+
+파일마다 `✂ 여기서부터 복사` ~ `✂ 여기까지 복사`가 있습니다. **그 사이만** 복사합니다. 위의 `>` 안내문은 사람이 읽는 것이라 붙여넣지 않습니다.
+
+| 파일 | 어디에 |
+|---|---|
+| 에이전트 **지침란**에 넣는 본체 | `D/prompt_1` · `A/prompt_3_분석` · `B/prompt_2_추출` · `C/prompt_1_추출` |
+| 만든 뒤 **대화창**에 보내는 메시지 | 나머지 전부 |
+
+에이전트 메뉴가 없으면 본체를 새 대화 맨 앞에 붙여넣고 시작해도 됩니다. 그때는 대화 메시지도 순서대로 이어서 보냅니다.
+
+---
+
+## 지시문 7블록
+
+본체 네 개는 같은 뼈대입니다. 순서가 곧 에이전트가 생각하는 순서라 바꾸지 않습니다.
+
+| 블록 | 무엇을 쓰나 | 빠지면 |
+|---|---|---|
+| ① 역할 | 누구이고, 누구를 돕고, 무엇을 경계하는가 | 말투와 판단 기준이 매번 달라짐 |
+| ② 업무 범위 | 하는 일과 **하지 않는 일** | 시키지 않은 걸 해 옴 |
+| ③ 입력 검사 | 무엇이 있어야 시작하나, 없으면 어떻게 | 빈손으로 그럴듯한 답을 만들어 냄 |
+| ④ 처리 순서 | 어떤 차례로 | 사람마다 결과가 달라짐 |
+| ⑤ 출력 형식 | 어떤 모양으로 | 매번 다른 서식이 나옴 |
+| ⑥ 중단·보안 | 어디서 멈추나 | 멈춰야 할 데서 안 멈춤 |
+| ⑦ 성공 기준 | 무엇이 통과인가 | 잘된 건지 판단할 수가 없음 |
+
+---
+
+## ① 역할을 쓰는 법
+
+가장 자주 비는 칸이고, 제일 효과가 큰 칸입니다. **직함 한 줄로 끝내지 마십시오.** 네 가지를 넣습니다.
+
+**누구인가** — 직무와 연차를 줍니다. "데이터 분석 Agent"보다 "판매 데이터를 오래 들여다본 분석 담당자"가 낫습니다.
+
+**무엇을 먼저 보는가** — 그 직무가 몸에 익힌 습관입니다. 이게 판단 기준이 됩니다.
+> 건설사 기사를 읽을 때 남들은 수주 금액을 보지만, 너는 준공 시기를 먼저 본다.
+
+**누구를 돕는가** — 읽는 사람이 처한 상황까지 적습니다. 결과물의 모양이 여기서 정해집니다.
+> 담당 수요처를 몇십 곳 들고 있는 영업 담당자다. 그 사람에게 필요한 건 기사 요약이 아니라 "이번 달에 누구부터 만나야 하나"라는 답이다.
+
+**무엇을 경계하는가** — 이 일에서 가장 비싼 실수를 적습니다. 대부분 "모르는 걸 채워 넣는 것"입니다.
+> 빈칸을 남긴 분석이 채워 넣은 분석보다 낫다.
+
+내 업무로 옮길 때 **역할 블록만 바꿔도 절반은 끝납니다.** ④~⑦은 대개 그대로 쓸 수 있습니다.
+
+---
+
+## 폴더
+
+```
+1교시_D_데이터분석/    제품 추천 (본체 1개)
+2교시_A_직판Sensing/   수집 → 프로파일 → 분석 (3단계, 에이전트는 하나)
+2교시_B_경로Sensing/   키워드 → 추출 → 보고서 (3단계, 에이전트는 하나)
+3교시_C_제안자료/      정제 → 추출 → 제안 (3단계, 에이전트는 하나)
+템플릿/               내 업무로 옮길 때 쓰는 빈 양식
+스킬형식/             같은 내용의 SKILL.md. 스킬 기능이 열려 있으면 이걸 등록합니다
+```
+
+**한 모듈에 단계가 셋이어도 에이전트는 하나입니다.** 단계 사이에 사람만 하는 일이 없어서 나누지 않았습니다.
+
+---
+
+## 템플릿 — 영업 현황 대시보드
+
+`템플릿/dashboard_sales.md`는 **1교시 D에서 데이터를 분석하는 앞부분만 떼어낸 것**입니다.
+D는 분석한 다음 제품을 추천하지만, 이 템플릿은 분석에서 멈추고 대시보드 한 장으로 끝냅니다. 추천할 대상이 정해지지 않은 평소 업무에 씁니다.
+
+`{{ }}` 자리를 내 실적 파일에 맞춰 채우면 됩니다. 채워 본 예시는 `템플릿/dashboard_sales_예시.md`에 있고, 거기 수치는 실습 데이터에서 그대로 재현됩니다.
+
+---
+
+모든 데이터와 회사명은 가상입니다. 지시문에 나오는 수치는 각 모듈 `04_answer/` 기준본과 맞춰져 있으니 바꾸면 강사가 결과를 판정할 수 없습니다.
+"""
+
+PROMPT_DIRS = [("D_analysis", "1교시_D_데이터분석"), ("A_sensing_b2b", "2교시_A_직판Sensing"),
+               ("B_sensing_partner", "2교시_B_경로Sensing"), ("C_proposal", "3교시_C_제안자료")]
+
+def prompt_pack():
+    """지시문과 템플릿만. 데이터 · 기준본 · 문서는 뺀다."""
+    out = os.path.join(DIST, "지시문.zip"); root = "AX_지시문"; n = 0
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
+        for m, label in PROMPT_DIRS:
+            src = os.path.join(MOD, m, "02_prompt")
+            for f in sorted(os.listdir(src)):
+                if f.endswith(".md") and not f.startswith("README"):
+                    add(z, os.path.join(src, f), f"{root}/{label}/{f}"); n += 1
+            sk = os.path.join(MOD, m, "07_skill", "SKILL.md")
+            if os.path.exists(sk):
+                add(z, sk, f"{root}/스킬형식/{label.split('_')[1]}_SKILL.md"); n += 1
+        tdir = os.path.join(COMMON, "instruction_templates")
+        for f in ["dashboard_sales.md", "dashboard_sales_예시.md"]:
+            add(z, os.path.join(tdir, f), f"{root}/템플릿/{f}"); n += 1
+        z.writestr(f"{root}/README.md", PROMPT_README.replace("{STAMP}", STAMP).replace("{N}", str(n)))
+    print(f"지시문.zip  {n} files  {os.path.getsize(out)//1024} KB")
+
 def instructor():
     out = os.path.join(DIST, "강사.zip")
     skip = lambda rel: rel.startswith(("dist/", "context_pack/team_b2b/", "context_pack/team_partner/", "tools/.")) \
@@ -191,4 +298,5 @@ def instructor():
 if __name__ == "__main__":
     for d in TEAM: participant(d)
     data_pack()
+    prompt_pack()
     instructor()

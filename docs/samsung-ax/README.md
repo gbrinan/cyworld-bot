@@ -94,6 +94,8 @@ Agent를 팀마다 따로 만들지 않고, 같은 지시문에 다른 팩을 �
 | `instruction_templates/agent02_sensing.md` | ② 시장·고객 분석 Agent 지시문 (`{{ }}`만 교체) |
 | `instruction_templates/agent03_action.md` | ③ 제안자료 작성 Agent 지시문 |
 | `instruction_templates/agent04_analysis.md` | ④ 데이터 분석 Agent 지시문 |
+| `instruction_templates/dashboard_sales.md` | **영업 현황 대시보드 템플릿.** D 모듈의 분석 앞부분만 떼어낸 것. `{{ }}`를 내 실적 파일에 맞춰 채웁니다 |
+| `instruction_templates/dashboard_sales_예시.md` | 위 템플릿을 실습 데이터로 채운 참고본. 수치가 그대로 재현됩니다 |
 | `proposal_structure.md` | 제안서 공통 순서 (회사소개→제안내용→제품소개→유지보수, 삼성 확정) |
 | `review_criteria.md` | 5분 검수 체크리스트와 등급 |
 | `test_cases_guide.md` | 테스트 3종 실행 순서와 모듈별 입력 · 기대 행동 한 표 |

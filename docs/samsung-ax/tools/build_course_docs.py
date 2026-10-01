@@ -146,7 +146,7 @@ def workbook(deck):
          "**가져갈 템플릿** — 요구조건 대조표와 안 3개 비교를 한 장으로 만들려면 `common/instruction_templates/dashboard_proposal.md`를 쓰십시오. 채워 본 예시가 같은 폴더에 있습니다.", "", "---", "",
          f"# Skill과 MCP · 클로징 (슬라이드 {rng(deck,'DeckK1','DeckZ3')})", "",
          "오늘 만든 것에는 이름이 있습니다 — **Agent Skill** = 지시문 7블록 + 참조 파일 + 정답 예시. 각 모듈 배포 폴더의 `07_스킬/SKILL.md`가 그 실물입니다. 스킬 기능이 열려 있으면 등록하고, 아니면 메모장 보관이 그대로 답입니다.", "", "---", "",
-         CLOSING.replace("{REF_FILES}", "대상수요처.md · 대상건설사.csv" if deck == "A판" else "대상수요처.md · 파트너정보.csv")]
+         CLOSING.replace("{REF_FILES}", "대상수요처.md · 대상고객사.csv" if deck == "A판" else "대상수요처.md · 파트너정보.csv")]
     return "\n".join(w)
 
 # ───────── 강사 진행 가이드 ─────────

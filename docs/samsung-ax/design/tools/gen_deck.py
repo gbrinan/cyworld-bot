@@ -949,7 +949,7 @@ def inputs(label, files, extra, page, folder):
         <div style="font-size: 14px; color: #3d4650; line-height: 1.5;">회사명 · 시설명 · 파트너 · 실적 · 가격 전부. 실제 고객사 · 파트너 파일은 올리지 않습니다.</div>
       </div>
     </div>""", page)
-SLIDES["DeckA4"] = inputs("모듈 A", [("기사수집.csv", "품목 · 헤드라인 · 원본url · 키워드 (4열)", 30, "단계 1의 산출물 — 강사 시연으로 만든 것"), ("대상건설사.csv", "수요처명 · 상장시장 · 주력공종 · 거래이력 · 담당팀", 6, "담당 수요처 목록"), ("검색어목록.md", "검색어 · RSS주소 · 수집주기", 8, "단계 1 실습의 정답 — 참조 파일")],
+SLIDES["DeckA4"] = inputs("모듈 A", [("기사수집.csv", "품목 · 헤드라인 · 원본url · 키워드 (4열)", 30, "단계 1의 산출물 — 강사 시연으로 만든 것"), ("대상고객사.csv", "수요처명 · 상장시장 · 주력공종 · 거래이력 · 담당팀", 6, "담당 수요처 목록"), ("검색어목록.md", "검색어 · RSS주소 · 수집주기", 8, "단계 1 실습의 정답 — 참조 파일")],
     "30건 중 <strong style='font-weight: 600; color: #111821;'>같은 헤드라인이 다른 매체로 세 번</strong> 더 실려 있고, <strong style='font-weight: 600; color: #111821;'>18건은 업계 일반 동향</strong>입니다. 수집 요약에 30 → 27이 나오는지, 무관 기사가 따로 세어지는지가 첫 확인입니다. 업로드가 막히면 06_붙여넣기/의 표를 붙여넣습니다.", "S · 04", "modules/A_sensing_b2b/01_데이터/")
 SLIDES["DeckB4"] = inputs("모듈 B", [("뉴스수집.json", "title · originallink · link · description · pubDate", 30, "네이버 뉴스 API 응답 — 연동 가정"), ("상권정보.csv", "권역 · 행정구역 · 시설유형 · 시설명 · 상태 · 예정시기 · 규모", 18, "상권정보"), ("파트너정보.csv", "파트너사 · 담당권역 · 주력버티컬 · 최근분기실적등급 · 시공가능규모", 4, "파트너 관리 대장"), ("시장조사.md", "권역 · 지표 · 값 · 출처 · 조사시점", 8, "시장조사 자료")],
     "넷을 <strong style='font-weight: 600; color: #111821;'>다 올려야</strong> 합니다. 뉴스만 올리면 규모를 못 걸러 카페가 기회 목록에 오르고, 파트너 파일이 없으면 매칭이 안 됩니다. 파트너 파일에 <strong style='font-weight: 600; color: #111821;'>계약단가 · 마진율</strong>이 있으면 올리지 않습니다 — 실패 테스트가 그것입니다.", "S · 04", "modules/B_sensing_partner/01_데이터/")
@@ -998,7 +998,7 @@ SLIDES["DeckB5"] = shell("모듈 B", "작은 건은 모아야 보입니다", "�
       <div style="{CARD} flex: 1 0 0; border-top: 4px solid #0f6b4f; padding: 18px 22px; display: flex; flex-direction: column; gap: 10px;">
         <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #0f6b4f;">기준 이상 → 기회 목록</span><span style="font-size: 14px; color: #6b6660;">파트너가 쓸 수 있는 크기</span></div>
         <div style="font-size: 16px; line-height: 1.55;">객실 <strong style="font-weight: 600;">50실</strong> · 연면적 <strong style="font-weight: 600;">3,000㎡</strong> · 병상 <strong style="font-weight: 600;">50</strong> — 셋 중 하나라도 넘으면 기회. 단위가 다르면 <strong style="font-weight: 600;">환산하지 않고</strong> 불충족으로 봅니다.</div>
-        <div style="{CARD} background: #f7f6f2; padding: 10px 14px; font-size: 14px; line-height: 1.6;">1 해운대베이호텔 객실 200실 → 남해정보통신<br>2 마린그랜드호텔 객실 150실 → 남해정보통신<br>3 해운대제일고 연면적 8,400㎡ → <strong style="font-weight: 600; color: #9a2c2c;">해당 파트너 없음</strong></div>
+        <div style="{CARD} background: #f7f6f2; padding: 10px 14px; font-size: 14px; line-height: 1.6;">1 해솔호텔 객실 200실 → 남해정보통신<br>2 마린그랜드호텔 객실 150실 → 남해정보통신<br>3 해운대제일고 연면적 8,400㎡ → <strong style="font-weight: 600; color: #9a2c2c;">해당 파트너 없음</strong></div>
         <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">1 · 2순위 합계 350실이 파트너 시공가능 200실을 넘습니다 — 논의사항에 올립니다.</div>
       </div>
       <div style="{CARD} flex: 1 0 0; border-top: 4px solid #9a6408; padding: 18px 22px; display: flex; flex-direction: column; gap: 10px;">
@@ -1058,7 +1058,7 @@ SLIDES["DeckB7"] = shell("모듈 B", "검색어는 곱셈입니다", "권역 × 
 # ───────────── 도구와 클릭 경로 (A · B) ─────────────
 SLIDES["DeckA8"] = shell("모듈 A", "도구와 클릭 경로", "주 도구 Gemini 에이전트 · 예약은 ChatGPT로 시연", f"""
     <div style="display: flex; gap: 14px; align-items: stretch; flex-grow: 1;">
-      {path("Gemini 에이전트 — 단계 2 · 3", "수동으로 빌드", ["[에이전트] → [+ 새 에이전트] → &quot;이 단계를 건너뛰고 수동으로 빌드&quot;", "지침에 <span class='mono' style='font-size: 13px;'>지시문_3_분석.md</span> ✂ 사이", "참조 파일 <span class='mono' style='font-size: 13px;'>기사수집.csv</span> · <span class='mono' style='font-size: 13px;'>대상건설사.csv</span>", "저장 → 첫 메시지에 기준일 2026-09-01", "HTML은 메모장에 <span class='mono' style='font-size: 13px;'>영업대시보드.html</span>로"], "#0f6b4f")}
+      {path("Gemini 에이전트 — 단계 2 · 3", "수동으로 빌드", ["[에이전트] → [+ 새 에이전트] → &quot;이 단계를 건너뛰고 수동으로 빌드&quot;", "지침에 <span class='mono' style='font-size: 13px;'>지시문_3_분석.md</span> ✂ 사이", "참조 파일 <span class='mono' style='font-size: 13px;'>기사수집.csv</span> · <span class='mono' style='font-size: 13px;'>대상고객사.csv</span>", "저장 → 첫 메시지에 기준일 2026-09-01", "HTML은 메모장에 <span class='mono' style='font-size: 13px;'>영업대시보드.html</span>로"], "#0f6b4f")}
       {path("ChatGPT [예약] — 단계 1 시연", "매주 같은 일은 주기가 돌립니다", ["사이드바 <strong style='font-weight: 600;'>[예약]</strong> → [만들기]", "실행할 내용에 <span class='mono' style='font-size: 13px;'>지시문_1_수집.md</span> ✂ 사이", "주기 매주 월요일 08:00 · 결과는 대화로", "스킬로 저장해 두면 예약에는 &quot;무엇을 언제&quot;만 남습니다", "<strong style='font-weight: 600;'>첫 실행을 수동으로 한 번</strong> — 건너뛰면 한 주를 버립니다"])}
     </div>
     <div style="{WARN} display: flex; gap: 20px; align-items: center;"><div style="font-size: 16px; font-weight: 600; color: #9a2c2c; white-space: nowrap;">예약 메뉴가 없으면</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">강사가 3분 시연만 하고, 참가자는 에이전트에서 수동으로 1회 실행합니다. 배우는 것은 같습니다 — 매주 같은 일은 절차로 떼어 두고, 그 절차가 스킬입니다.</div></div>""", "S · 08")

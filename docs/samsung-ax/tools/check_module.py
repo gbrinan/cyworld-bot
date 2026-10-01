@@ -5,8 +5,8 @@
     python3 docs/samsung-ax/tools/check_module.py D_analysis
     python3 docs/samsung-ax/tools/check_module.py --all
 
-00_requirement.md 의 frontmatter 를 원본으로 삼아 모듈 폴더를 대조합니다.
-종료 코드 0 = 자동 항목 전부 통과. 수동 4항목(#10~12)은 CHECK.md 에서 사람이 확인합니다.
+00_요구조건서.md 의 frontmatter 를 원본으로 삼아 모듈 폴더를 대조합니다.
+종료 코드 0 = 자동 항목 전부 통과. 수동 4항목(#10~12)은 완성판정.md 에서 사람이 확인합니다.
 """
 import csv
 import io
@@ -22,7 +22,7 @@ MODULES = os.path.normpath(os.path.join(HERE, "..", "context_pack", "modules"))
 
 REQUIRED_FIELDS = ["module", "name", "source", "team", "tool", "inputs", "outputs",
                    "process", "planted", "tests", "forbidden", "agent_count", "skill", "steps"]
-TEST_FILES = ["test_normal.md", "test_boundary.md", "test_failure.md"]
+TEST_FILES = ["테스트_정상.md", "테스트_경계.md", "테스트_실패.md"]
 DEMO_SECTIONS = ["올린 파일", "붙여넣은 프롬프트", "첫 응답에서 확인할 것", "안 나오면 되묻는 문장"]
 SKILL_SECTIONS = ["역할·목표", "출력 형식", "금지 사항", "검토 기준", "작업 단계"]
 NAME_RE = re.compile(r"^[a-z][a-z0-9]*(-[a-z0-9]+)+$")
@@ -32,9 +32,9 @@ EMAIL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+")
 
 
 def load_requirement(mod_dir):
-    path = os.path.join(mod_dir, "00_requirement.md")
+    path = os.path.join(mod_dir, "00_요구조건서.md")
     if not os.path.exists(path):
-        return None, "00_requirement.md 없음"
+        return None, "00_요구조건서.md 없음"
     text = open(path, encoding="utf-8").read()
     m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
     if not m:
@@ -72,7 +72,7 @@ def check(mod_id):
     add(1, not missing, "필수 필드 " + ("모두 있음" if not missing else "누락: " + ", ".join(missing)))
 
     # 2. 입력 파일 + 헤더
-    data_dir = os.path.join(mod_dir, "01_data")
+    data_dir = os.path.join(mod_dir, "01_데이터")
     probs = []
     for inp in req.get("inputs", []):
         p = os.path.join(data_dir, inp["file"])
@@ -96,7 +96,7 @@ def check(mod_id):
     add(2, not probs, "입력 파일·헤더 " + ("일치" if not probs else "; ".join(probs)))
 
     # 3. 프롬프트
-    pdir = os.path.join(mod_dir, "02_prompt")
+    pdir = os.path.join(mod_dir, "02_지시문")
     prompts = [f for f in os.listdir(pdir)] if os.path.isdir(pdir) else []
     prompts = [f for f in prompts if f.endswith(".md") and f != "README.md"]
     holes = []
@@ -105,24 +105,24 @@ def check(mod_id):
         if n:
             holes.append(f"{f}: {{{{ }}}} {n}개")
     if not prompts:
-        add(3, False, "02_prompt/ 에 프롬프트 파일 없음")
+        add(3, False, "02_지시문/ 에 프롬프트 파일 없음")
     else:
         add(3, not holes, f"프롬프트 {len(prompts)}개, " + ("자리 0개" if not holes else "; ".join(holes)))
 
     # 4. 테스트 3파일
-    tdir = os.path.join(mod_dir, "03_tests")
+    tdir = os.path.join(mod_dir, "03_테스트")
     miss = [f for f in TEST_FILES if not os.path.exists(os.path.join(tdir, f))]
     add(4, not miss, "테스트 3파일 " + ("있음" if not miss else "누락: " + ", ".join(miss)))
 
     # 5. 정답 파일
-    adir = os.path.join(mod_dir, "04_answer")
+    adir = os.path.join(mod_dir, "04_기준본")
     miss = [o["file"] for o in req.get("outputs", []) if not os.path.exists(os.path.join(adir, o["file"]))]
     add(5, not miss, "정답 파일 " + ("있음" if not miss else "누락: " + ", ".join(miss)))
 
     # 6. 시연 로그
-    dpath = os.path.join(mod_dir, "05_demo_log.md")
+    dpath = os.path.join(mod_dir, "05_시연로그.md")
     if not os.path.exists(dpath):
-        add(6, False, "05_demo_log.md 없음")
+        add(6, False, "05_시연로그.md 없음")
     else:
         txt = open(dpath, encoding="utf-8").read()
         miss = [s for s in DEMO_SECTIONS if s not in txt]
@@ -131,7 +131,7 @@ def check(mod_id):
             + ("" if filled else " / 템플릿 자리표시자 남음"))
 
     # 7. paste
-    pastedir = os.path.join(mod_dir, "06_paste")
+    pastedir = os.path.join(mod_dir, "06_붙여넣기")
     probs = []
     for inp in req.get("inputs", []):
         base = os.path.splitext(inp["file"])[0] + ".md"
@@ -186,7 +186,7 @@ def check(mod_id):
     hits = []
     for root, _, files in os.walk(mod_dir):
         for f in files:
-            if f == "00_requirement.md" or "실패" in f or f == "test_failure.md":
+            if f == "00_요구조건서.md" or "실패" in f or f == "테스트_실패.md":
                 continue
             p = os.path.join(root, f)
             try:
@@ -204,9 +204,9 @@ def check(mod_id):
     add(9, not hits, "금지 문자열 " + ("없음" if not hits else "; ".join(hits[:8])))
 
     # 10. SKILL.md
-    spath = os.path.join(mod_dir, "07_skill", "SKILL.md")
+    spath = os.path.join(mod_dir, "07_스킬", "SKILL.md")
     if not os.path.exists(spath):
-        add(10, False, "07_skill/SKILL.md 없음")
+        add(10, False, "07_스킬/SKILL.md 없음")
     else:
         txt = open(spath, encoding="utf-8").read()
         m = re.match(r"^---\n(.*?)\n---\n", txt, re.S)
@@ -244,10 +244,10 @@ def check(mod_id):
     stale = []
     if ans_txt:
         ans_nums = set(MONEY.findall(ans_txt))
-        for rel in [os.path.join("07_skill", "SKILL.md"),
-                    os.path.join("03_tests", "test_normal.md"),
-                    os.path.join("05_demo_log.md"),
-                    os.path.join("module.md")]:
+        for rel in [os.path.join("07_스킬", "SKILL.md"),
+                    os.path.join("03_테스트", "테스트_정상.md"),
+                    os.path.join("05_시연로그.md"),
+                    os.path.join("모듈카드.md")]:
             fp = os.path.join(mod_dir, rel)
             if not os.path.exists(fp):
                 continue
@@ -282,7 +282,7 @@ def main():
             print(f"  [{'o' if passed else 'x'}] #{no} {msg}")
         if not ok:
             exit_code = 1
-    print("\n#13~15 는 수동 — CHECK.md 에서 확인자·날짜를 적습니다.")
+    print("\n#13~15 는 수동 — 완성판정.md 에서 확인자·날짜를 적습니다.")
     sys.exit(exit_code)
 
 

@@ -44,7 +44,7 @@
 
 ```
 context_pack/team_b2b/agentA_sensing/prompt/agentA_prompt.md      ← 자리 0개, 그대로 붙여넣기
-context_pack/team_partner/agentB_sensing/prompt/agentB_prompt_1_키워드.md
+context_pack/team_partner/agentB_sensing/prompt/agentB_지시문_1_키워드.md
 context_pack/team_partner/agentB_sensing/prompt/agentB_prompt_2_API연동.md
 context_pack/team_partner/agentB_sensing/prompt/agentB_prompt_3_양식출력.md
 context_pack/common/agentC_prompt.md   (공통)
@@ -82,7 +82,7 @@ context_pack/common/agentD_prompt.md   (공통)
 
 ### F4. 시연 대화 로그가 없다
 
-**증거** — `handoff/`에는 **최종 결과물만** 있습니다(`customer_profile.md` 등 6개). "어떤 지시문을 붙여넣고, 어떤 파일을 올리고, AI가 뭐라고 답했고, 어디서 되물었는지"가 없습니다.
+**증거** — `handoff/`에는 **최종 결과물만** 있습니다(`고객프로파일.md` 등 6개). "어떤 지시문을 붙여넣고, 어떤 파일을 올리고, AI가 뭐라고 답했고, 어디서 되물었는지"가 없습니다.
 
 **영향** — 사내강사 17명이 각자 돌리면 17가지 결과가 나오고, 자기 결과가 맞는지 판단할 기준이 없습니다. 도입 15분 시연에서 강사가 무엇을 보여줘야 하는지도 없습니다.
 
@@ -90,7 +90,7 @@ context_pack/common/agentD_prompt.md   (공통)
 
 ```
 ## 시연 순서 (도입 15분)
-1. 올린 파일: sales_history.csv, target_account.md
+1. 올린 파일: 판매실적.csv, 대상수요처.md
 2. 붙여넣은 지시문: agentD_prompt.md 전체
 3. 첫 응답에서 확인할 것:
    □ "0. 데이터 점검"이 먼저 나오는가

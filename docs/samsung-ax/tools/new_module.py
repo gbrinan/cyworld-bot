@@ -4,13 +4,13 @@
     python3 docs/samsung-ax/tools/new_module.py E_forecast forecasting-demand-by-region
 
 만든 뒤 순서 (module_spec.md 4장):
-    1. 00_requirement.md 를 채운다            ← 여기가 원본. 나머지는 파생물
+    1. 00_요구조건서.md 를 채운다            ← 여기가 원본. 나머지는 파생물
     2. build_modules.py 에 build_E() 를 추가하고 데이터를 만든다
-    3. 02_prompt/ 완성 프롬프트를 쓴다 (자리 0개)
-    4. 실제 도구에 돌려 04_answer/ 를 받는다
-    5. 03_tests/ 를 실제로 넣어 본다
-    6. 05_demo_log.md 를 오간 대화로 채운다
-    7. 07_skill/SKILL.md · module.md · CHECK.md 를 마감하고 check_module.py 를 돌린다
+    3. 02_지시문/ 완성 프롬프트를 쓴다 (자리 0개)
+    4. 실제 도구에 돌려 04_기준본/ 를 받는다
+    5. 03_테스트/ 를 실제로 넣어 본다
+    6. 05_시연로그.md 를 오간 대화로 채운다
+    7. 07_스킬/SKILL.md · 모듈카드.md · 완성판정.md 를 마감하고 check_module.py 를 돌린다
 """
 import os
 import re
@@ -37,8 +37,8 @@ def main():
         sys.exit(f"이미 있습니다: {dst}")
 
     shutil.copytree(os.path.join(MODULES, "_template"), dst)
-    for rel in ["00_requirement.md", "module.md", "CHECK.md", "05_demo_log.md",
-                os.path.join("07_skill", "SKILL.md")]:
+    for rel in ["00_요구조건서.md", "모듈카드.md", "완성판정.md", "05_시연로그.md",
+                os.path.join("07_스킬", "SKILL.md")]:
         p = os.path.join(dst, rel)
         txt = open(p, encoding="utf-8").read()
         txt = (txt.replace("X_name", mod_id).replace("{모듈 ID}", mod_id)
@@ -49,7 +49,7 @@ def main():
     print(f"만들었습니다: context_pack/modules/{mod_id}/")
     print(f"  스킬 이름  : {skill_name}")
     print("\n다음 순서")
-    print("  1. 00_requirement.md 를 채웁니다 (여기가 원본입니다)")
+    print("  1. 00_요구조건서.md 를 채웁니다 (여기가 원본입니다)")
     print(f"  2. tools/build_modules.py 에 build_{mod_id.split('_')[0]}() 를 추가합니다")
     print(f"  3. python3 docs/samsung-ax/tools/check_module.py {mod_id}  로 남은 것을 확인합니다")
 

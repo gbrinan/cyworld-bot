@@ -106,7 +106,7 @@ def build_b2b():
             rnd.choice(["신규", "기존", "휴면"]),
             f"담당자 {code[-1]}",  # 가명
         ])
-    w("team_b2b/agent02_sensing/data/target_accounts.csv",
+    w("team_b2b/agent02_sensing/data/대상수요처s.csv",
       ["고객사코드", "고객사명", "업종", "임직원수", "지역", "담당경로",
        "최근거래품목군", "최근거래일", "거래상태", "담당자(가명)"],
       accounts)

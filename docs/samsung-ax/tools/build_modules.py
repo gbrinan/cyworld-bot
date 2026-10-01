@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""v2 모듈 데이터 빌더 — 요구조건서(00_requirement.md)의 headers 를 읽어 01_data/ 03_tests/ 06_paste/ 를 만든다.
+"""v2 모듈 데이터 빌더 — 요구조건서(00_요구조건서.md)의 headers 를 읽어 01_데이터/ 03_테스트/ 06_붙여넣기/ 를 만든다.
 
     python3 docs/samsung-ax/tools/build_modules.py D_analysis
     python3 docs/samsung-ax/tools/build_modules.py --all
@@ -24,7 +24,7 @@ SEED = 20261001
 
 # ---------- 공통 ----------
 def req_of(mod):
-    text = open(os.path.join(MODULES, mod, "00_requirement.md"), encoding="utf-8").read()
+    text = open(os.path.join(MODULES, mod, "00_요구조건서.md"), encoding="utf-8").read()
     return yaml.safe_load(re.match(r"^---\n(.*?)\n---\n", text, re.S).group(1))
 
 
@@ -43,7 +43,7 @@ def write_csv(path, header, rows):
 def write_subtotals(mod, req):
     """subtotals 정의대로 [축, 값, 합계] 소계본을 만든다. sum 컬럼이 없으면 건수."""
     st = req["subtotals"]
-    src = os.path.join(MODULES, mod, "01_data", st["source"])
+    src = os.path.join(MODULES, mod, "01_데이터", st["source"])
     rows = list(csv.reader(open(src, encoding="utf-8", newline="")))
     hdr, body = rows[0], rows[1:]
     out = []
@@ -59,11 +59,11 @@ def write_subtotals(mod, req):
 
 
 def write_paste(mod, req):
-    """01_data 각 파일의 마크다운 표 버전. CSV 는 표로, md/json 은 코드블록으로."""
-    pdir = os.path.join(MODULES, mod, "06_paste")
+    """01_데이터 각 파일의 마크다운 표 버전. CSV 는 표로, md/json 은 코드블록으로."""
+    pdir = os.path.join(MODULES, mod, "06_붙여넣기")
     os.makedirs(pdir, exist_ok=True)
     for inp in req["inputs"]:
-        src = os.path.join(MODULES, mod, "01_data", inp["file"])
+        src = os.path.join(MODULES, mod, "01_데이터", inp["file"])
         dst = os.path.join(pdir, os.path.splitext(inp["file"])[0] + ".md")
         text = open(src, encoding="utf-8").read()
         if inp["format"] == "csv":
@@ -92,7 +92,7 @@ def write_paste(mod, req):
     st = req.get("subtotals")
     if st:
         base = os.path.splitext(st["source"])[0] + "_소계"
-        rows = list(csv.reader(open(os.path.join(MODULES, mod, "01_data", base + ".csv"), encoding="utf-8")))
+        rows = list(csv.reader(open(os.path.join(MODULES, mod, "01_데이터", base + ".csv"), encoding="utf-8")))
         lines = ["| " + " | ".join(rows[0]) + " |", "|---|---|---|"] + ["| " + " | ".join(r) + " |" for r in rows[1:]]
         open(os.path.join(pdir, base + ".md"), "w", encoding="utf-8").write(
             "<!-- 코드 실행이 안 되는 환경용 소계본. 세 축의 합계가 서로 같습니다. -->\n" + "\n".join(lines) + "\n")
@@ -112,7 +112,7 @@ MODELS = {  # 모델명: (제품군, 공급가)
 def build_D():
     mod = "D_analysis"
     req = req_of(mod)
-    hdr = headers_of(req, "sales_history.csv")
+    hdr = headers_of(req, "판매실적.csv")
     assert hdr == ["판매일자", "버티컬", "수요처", "제품군", "모델명", "공급가", "판매수량", "판매금액", "프로젝트/용도", "지역"]
     rnd = random.Random(SEED)
     R = []  # (일자, 버티컬, 수요처, 모델, 수량, 용도, 지역)
@@ -163,16 +163,16 @@ def build_D():
     for d, v, a, m, q, u, reg in R:
         grp, price = MODELS[m]
         rows.append([d, v, a, grp, m, price, q, price * q, u, reg])
-    write_csv(os.path.join(MODULES, mod, "01_data", "sales_history.csv"), hdr, rows)
+    write_csv(os.path.join(MODULES, mod, "01_데이터", "판매실적.csv"), hdr, rows)
 
     # 실패 테스트 파일: 판매금액 오류 3행 + 버티컬 오타 1행
     bad = [list(r) for r in rows]
     for idx in (5, 23, 41):
         bad[idx][7] = bad[idx][7] + 150000
     bad[12][1] = "호탤"
-    write_csv(os.path.join(MODULES, mod, "03_tests", "sales_history_실패.csv"), hdr, bad)
+    write_csv(os.path.join(MODULES, mod, "03_테스트", "판매실적_실패.csv"), hdr, bad)
 
-    open(os.path.join(MODULES, mod, "01_data", "target_account.md"), "w", encoding="utf-8").write(
+    open(os.path.join(MODULES, mod, "01_데이터", "대상수요처.md"), "w", encoding="utf-8").write(
         "# 분석 대상 수요처\n\n| 수요처명 | 버티컬 | 프로젝트/용도 |\n|---|---|---|\n"
         "| 해솔호텔 제주 | 호텔 | 신축 (객실 120실 + 로비, 2027년 3월 개관 예정) |\n\n"
         "- 참고: 같은 체인의 해솔호텔 부산이 과거 구매 이력에 있습니다.\n- 모든 정보는 가상입니다.\n")
@@ -185,13 +185,13 @@ def build_D():
         m = r[4]
         a = agg.setdefault(m, [r[3], 0, 0, 0, set(), []])
         a[1] += 1; a[2] += r[6]; a[3] += r[7]; a[4].add(r[2]); a[5].append(str(i))
-    hdr2 = headers_of(req, "sales_history_호텔모델별.csv")
-    write_csv(os.path.join(MODULES, mod, "01_data", "sales_history_호텔모델별.csv"), hdr2,
+    hdr2 = headers_of(req, "판매실적_호텔모델별.csv")
+    write_csv(os.path.join(MODULES, mod, "01_데이터", "판매실적_호텔모델별.csv"), hdr2,
               [[m, v[0], v[1], v[2], v[3], len(v[4]), " ".join(v[5])]
                for m, v in sorted(agg.items(), key=lambda x: -x[1][3])])
     write_subtotals(mod, req)
     write_paste(mod, req)
-    print(f"{mod}: sales_history 52행, 소계본, 실패 파일, target_account, paste 생성")
+    print(f"{mod}: 판매실적 52행, 소계본, 실패 파일, 대상수요처, paste 생성")
 
 
 
@@ -230,12 +230,12 @@ CRAWL = [
 def build_C():
     mod = "C_proposal"
     req = req_of(mod)
-    hdr = headers_of(req, "tv_price_guide.csv")
-    write_csv(os.path.join(MODULES, mod, "01_data", "tv_price_guide.csv"), hdr,
+    hdr = headers_of(req, "가격가이드.csv")
+    write_csv(os.path.join(MODULES, mod, "01_데이터", "가격가이드.csv"), hdr,
               [[m, g, f"{s}인치", r, f"{b}nit", fn, ins, p, q] for m, g, s, r, b, fn, ins, p, q in GUIDE])
-    write_csv(os.path.join(MODULES, mod, "01_data", "naver_crawl.csv"),
-              headers_of(req, "naver_crawl.csv"), [list(r) for r in CRAWL])
-    open(os.path.join(MODULES, mod, "01_data", "customer_request.md"), "w", encoding="utf-8").write(
+    write_csv(os.path.join(MODULES, mod, "01_데이터", "시장가격.csv"),
+              headers_of(req, "시장가격.csv"), [list(r) for r in CRAWL])
+    open(os.path.join(MODULES, mod, "01_데이터", "고객요구조건.md"), "w", encoding="utf-8").write(
         """# 고객 요구조건 — 한빛에스앤디 신규 사무공간 (가상)
 
 | 항목 | 내용 |
@@ -251,8 +251,8 @@ def build_C():
 - 모든 정보는 가상입니다.
 """)
     # 경계 테스트용: 예산 줄 삭제
-    src = open(os.path.join(MODULES, mod, "01_data", "customer_request.md"), encoding="utf-8").read()
-    open(os.path.join(MODULES, mod, "03_tests", "customer_request_경계.md"), "w", encoding="utf-8").write(
+    src = open(os.path.join(MODULES, mod, "01_데이터", "고객요구조건.md"), encoding="utf-8").read()
+    open(os.path.join(MODULES, mod, "03_테스트", "고객요구조건_경계.md"), "w", encoding="utf-8").write(
         "\n".join(l for l in src.split("\n") if "예산" not in l))
     write_subtotals(mod, req)
     write_paste(mod, req)
@@ -299,23 +299,23 @@ DUP_IDX = [0, 4, 12]   # 이 세 건은 헤드라인이 한 번 더 실린다 (�
 def build_A():
     mod = "A_sensing_b2b"
     req = req_of(mod)
-    hdr = headers_of(req, "rss_feed.csv")
+    hdr = headers_of(req, "기사수집.csv")
     rows = [[p, h, f"https://news.example.kr/{u}", k] for p, h, u, k in BUILDERS_A_SIGNAL]
     rows += [[p, h, f"https://news.example.kr/{u}", k] for p, h, u, k in BUILDERS_A_NOISE]
     for i in DUP_IDX:                      # 같은 헤드라인, 다른 매체 url
         p, h, u, k = BUILDERS_A_NOISE[i]
         rows.append([p, h, f"https://press.example.kr/{u}r", k])
     assert len(rows) == 30, len(rows)
-    write_csv(os.path.join(MODULES, mod, "01_data", "rss_feed.csv"), hdr, rows)
+    write_csv(os.path.join(MODULES, mod, "01_데이터", "기사수집.csv"), hdr, rows)
 
     bad = [list(r) for r in rows]
     bad[1][1] = "대성건설 오피스동 준공 (담당 김O수 부장 010-1234-5678)"
     bad[5][1] = "한울 강릉호텔 재개관, 이O영 상무 010-9876-5432 문의"
     bad[10][1] = "건자재 가격 상승, 박O호 팀장 010-2222-3333"
-    write_csv(os.path.join(MODULES, mod, "03_tests", "rss_feed_실패.csv"), hdr, bad)
+    write_csv(os.path.join(MODULES, mod, "03_테스트", "기사수집_실패.csv"), hdr, bad)
 
-    write_csv(os.path.join(MODULES, mod, "01_data", "target_builders.csv"),
-              headers_of(req, "target_builders.csv"),
+    write_csv(os.path.join(MODULES, mod, "01_데이터", "대상건설사.csv"),
+              headers_of(req, "대상건설사.csv"),
               [["대성건설", "코스피", "물류·오피스", "신규", "B2B 1팀"],
                ["한울종합건설", "코스닥", "호텔·상업시설", "신규", "B2B 1팀"],
                ["서진이엔씨", "코스피", "토목·플랜트", "기존", "B2B 2팀"],
@@ -323,7 +323,7 @@ def build_A():
                ["세아이앤씨", "코스닥", "병원·교육", "신규", "B2B 1팀"],
                ["광명종합건설", "코넥스", "상업시설", "신규", "B2B 1팀"]])
 
-    open(os.path.join(MODULES, mod, "01_data", "rss_sources.md"), "w", encoding="utf-8").write(
+    open(os.path.join(MODULES, mod, "01_데이터", "검색어목록.md"), "w", encoding="utf-8").write(
         """# 수집 검색어와 RSS 주소 (단계 1의 정답)
 
 구글 뉴스 RSS 주소 형식입니다. `q=` 뒤의 검색어만 바꿔 씁니다.
@@ -357,7 +357,7 @@ https://news.google.com/rss/search?q={검색어}&hl=ko&gl=KR&ceid=KR:ko
 """)
     write_subtotals(mod, req)
     write_paste(mod, req)
-    print(f"{mod}: rss_feed 30행(신호 9·노이즈 18·중복 3), 실패 파일, 건설사 6곳, 검색어 8개, 소계본, paste 생성")
+    print(f"{mod}: 기사수집 30행(신호 9·노이즈 18·중복 3), 실패 파일, 건설사 6곳, 검색어 8개, 소계본, paste 생성")
 
 
 
@@ -420,10 +420,10 @@ NEWS = [  # (제목, 요약, 날짜, url키)
 def build_B():
     mod = "B_sensing_partner"
     req = req_of(mod)
-    write_csv(os.path.join(MODULES, mod, "01_data", "district_info.csv"),
-              headers_of(req, "district_info.csv"), [list(r) for r in DISTRICT])
-    write_csv(os.path.join(MODULES, mod, "01_data", "partner_info.csv"),
-              headers_of(req, "partner_info.csv"),
+    write_csv(os.path.join(MODULES, mod, "01_데이터", "상권정보.csv"),
+              headers_of(req, "상권정보.csv"), [list(r) for r in DISTRICT])
+    write_csv(os.path.join(MODULES, mod, "01_데이터", "파트너정보.csv"),
+              headers_of(req, "파트너정보.csv"),
               [["남해정보통신", "부산·경남", "호텔", "A", "객실 200실"],
                ["동백시스템", "부산·경남", "상업시설", "B", "연면적 5,000㎡"],
                ["가야네트웍스", "대구·경북", "오피스", "B", "연면적 10,000㎡"],
@@ -433,11 +433,11 @@ def build_B():
               "pubDate": p} for t, d, p, u in NEWS]
     doc = {"lastBuildDate": "2026-09-09", "total": len(items), "start": 1,
            "display": len(items), "items": items}
-    os.makedirs(os.path.join(MODULES, mod, "01_data"), exist_ok=True)
-    with open(os.path.join(MODULES, mod, "01_data", "naver_news_dummy.json"), "w", encoding="utf-8") as f:
+    os.makedirs(os.path.join(MODULES, mod, "01_데이터"), exist_ok=True)
+    with open(os.path.join(MODULES, mod, "01_데이터", "뉴스수집.json"), "w", encoding="utf-8") as f:
         json.dump(doc, f, ensure_ascii=False, indent=1)
 
-    open(os.path.join(MODULES, mod, "01_data", "market_research.md"), "w", encoding="utf-8").write(
+    open(os.path.join(MODULES, mod, "01_데이터", "시장조사.md"), "w", encoding="utf-8").write(
         """# 시장조사 자료 (권역 지표)
 
 기사만으로는 상권 규모와 흐름이 안 나옵니다. 기회 목록에는 안 올라가지만 **권역시장 요약**의 근거가 됩니다.
@@ -460,7 +460,7 @@ def build_B():
            ["동백시스템", "부산·경남", "상업시설", "B", "연면적 5,000㎡", "980,000", "15%"],
            ["가야네트웍스", "대구·경북", "오피스", "B", "연면적 10,000㎡", "1,050,000", "16%"],
            ["빛고을솔루션", "광주·전라", "교육시설", "C", "연면적 3,000㎡", "870,000", "12%"]]
-    write_csv(os.path.join(MODULES, mod, "03_tests", "partner_info_실패.csv"), bad[0], bad[1:])
+    write_csv(os.path.join(MODULES, mod, "03_테스트", "파트너정보_실패.csv"), bad[0], bad[1:])
     write_subtotals(mod, req)
     write_paste(mod, req)
     print(f"{mod}: 뉴스 30건(해운대 18·타권역 12), 상권 18행, 파트너 4곳, 시장조사 8행, 실패 파일, 소계본, paste 생성")
@@ -503,11 +503,11 @@ def build_E():
                          lead + rnd.randint(-2, 4), pay,
                          f"2026-09-0{rnd.randint(1, 5)}"])
     assert len(rows) == 24, len(rows)
-    write_csv(os.path.join(MODULES, mod, "01_data", "quotes.csv"), headers_of(req, "quotes.csv"), rows)
-    write_csv(os.path.join(MODULES, mod, "01_data", "supplier_history.csv"),
-              headers_of(req, "supplier_history.csv"),
+    write_csv(os.path.join(MODULES, mod, "01_데이터", "견적서.csv"), headers_of(req, "견적서.csv"), rows)
+    write_csv(os.path.join(MODULES, mod, "01_데이터", "공급사이력.csv"),
+              headers_of(req, "공급사이력.csv"),
               [[s, f"{HISTORY[s][0]}%", HISTORY[s][1], HISTORY[s][2]] for s in SUPPLIERS])
-    open(os.path.join(MODULES, mod, "01_data", "purchase_request.md"), "w", encoding="utf-8").write(
+    open(os.path.join(MODULES, mod, "01_데이터", "구매요청.md"), "w", encoding="utf-8").write(
         """# 구매 요청서 — 2026-09-12
 
 | 항목 | 내용 |
@@ -522,8 +522,8 @@ def build_E():
 - 모든 값은 가상입니다.
 """)
     # 경계 테스트용: 필수규격 줄 삭제
-    src = open(os.path.join(MODULES, mod, "01_data", "purchase_request.md"), encoding="utf-8").read()
-    open(os.path.join(MODULES, mod, "03_tests", "purchase_request_경계.md"), "w", encoding="utf-8").write(
+    src = open(os.path.join(MODULES, mod, "01_데이터", "구매요청.md"), encoding="utf-8").read()
+    open(os.path.join(MODULES, mod, "03_테스트", "구매요청_경계.md"), "w", encoding="utf-8").write(
         "\n".join(l for l in src.split("\n") if "필수규격" not in l))
     write_subtotals(mod, req)
     write_paste(mod, req)

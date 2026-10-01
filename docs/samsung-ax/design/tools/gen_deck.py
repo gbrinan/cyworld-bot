@@ -11,7 +11,7 @@ SECTION_OF = {'DeckD2': '§1', 'DeckD3': '§2', 'DeckD4': '§3', 'DeckD6': '§4'
 def footer_tag(name, page):
     parts = []
     if name not in CORE_SLIDES: parts.append('<span style="color: #c9c5bd;">90분 제외</span>')
-    if name in SECTION_OF: parts.append('<span style="color: #9a958d;">module.md ' + SECTION_OF[name] + '</span>')
+    if name in SECTION_OF: parts.append('<span style="color: #9a958d;">모듈카드.md ' + SECTION_OF[name] + '</span>')
     parts.append(page)
     return " &nbsp;·&nbsp; ".join(parts)
 
@@ -98,18 +98,18 @@ SLIDES["DeckO2"] = shell("오프닝", "오늘 에이전트 4개를 만듭니다"
     <div style="display: flex; gap: 12px; align-items: stretch;">
       <div style="display: flex; flex-direction: column; gap: 10px; flex: 1.1 0 0;">
         <div style="{LBL}">시장 · 고객 분석 — 팀별로 하나</div>
-        {agent_card("A", "직판 Sensing", "B2B팀 · 상장 건설사 1곳을 깊게", "sensing-listed-builders", "dashboard_A.html")}
-        {agent_card("B", "경로 Sensing", "B2B유통전략팀 · 권역의 작은 시설 여럿을 넓게", "scanning-district-openings", "report_B.docx")}
+        {agent_card("A", "직판 Sensing", "B2B팀 · 상장 건설사 1곳을 깊게", "sensing-listed-builders", "영업대시보드.html")}
+        {agent_card("B", "경로 Sensing", "B2B유통전략팀 · 권역의 작은 시설 여럿을 넓게", "scanning-district-openings", "권역보고서.docx")}
       </div>
       {ARROW}
       <div style="display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
         <div style="{LBL}">데이터 분석 — 공통</div>
-        {agent_card("D", "데이터 분석", "전원 · 과거 실적에서 추천 TOP 3", "recommending-products-by-vertical", "recommend_D.html", "#9a6408")}
+        {agent_card("D", "데이터 분석", "전원 · 과거 실적에서 추천 TOP 3", "recommending-products-by-vertical", "제품추천.html", "#9a6408")}
       </div>
       {ARROW}
       <div style="display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
         <div style="{LBL}">제안자료 작성 — 공통</div>
-        {agent_card("C", "제안자료 작성", "전원 · 요구조건에 맞는 3안 + 시장가 비교", "proposing-display-options", "proposal_C.html")}
+        {agent_card("C", "제안자료 작성", "전원 · 요구조건에 맞는 3안 + 시장가 비교", "proposing-display-options", "제안자료.html")}
       </div>
     </div>
     <div style="{BAND}">
@@ -129,7 +129,7 @@ SLIDES["DeckO4"] = shell("오프닝", "시작 전 준비", "3분이면 됩니다
     <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
       {prep(1, "탭 두 개", "AI 창(ChatGPT 또는 Gemini) 하나, <strong style='font-weight: 600; color: #111821;'>메모장</strong> 하나. 지시문은 메모장에 먼저 둡니다 — 세션이 끊기면 채팅창의 지시문은 사라집니다")}
       {prep(2, "저장 폴더", "<span class='mono' style='font-size: 13px; color: #111821;'>바탕화면/AX실습_내이름/</span> 하나를 만들어 둡니다. 모듈마다 결과 파일 하나가 여기 쌓입니다")}
-      {prep(3, "업로드 테스트", "작은 파일로 먼저 — <span class='mono' style='font-size: 13px; color: #111821;'>target_account.md</span> (1KB). 큰 파일로 시도하다 실패하면 시간이 날아갑니다")}
+      {prep(3, "업로드 테스트", "작은 파일로 먼저 — <span class='mono' style='font-size: 13px; color: #111821;'>대상수요처.md</span> (1KB). 큰 파일로 시도하다 실패하면 시간이 날아갑니다")}
       {prep(4, "이번 모듈 폴더 열어 두기", "배포 폴더의 <span class='mono' style='font-size: 13px; color: #111821;'>modules/D_analysis/</span>. 파일 이름은 화면에 뜬 것을 그대로 씁니다")}
     </div>
     <div style="{WARN} display: flex; align-items: center; gap: 16px;">
@@ -157,7 +157,7 @@ SLIDES["DeckO5"] = shell("오프닝", "웹에서 결과를 남기는 법", "모�
     <div style="display: flex; gap: 14px; align-items: stretch;">
       <div style="{CARD} padding: 14px 20px; flex: 1 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px 16px; font-size: 14px; align-content: center;">
         <div style="color: #6b6660;">A 직판 Sensing</div><div style="color: #6b6660;">B 경로 Sensing</div><div style="color: #6b6660;">C 제안자료</div><div style="color: #6b6660;">D 데이터 분석</div>
-        <div class="mono" style="font-size: 13px;">dashboard_A.html</div><div class="mono" style="font-size: 13px;">report_B.docx</div><div class="mono" style="font-size: 13px;">proposal_C.html</div><div class="mono" style="font-size: 13px;">recommend_D.html</div>
+        <div class="mono" style="font-size: 13px;">영업대시보드.html</div><div class="mono" style="font-size: 13px;">권역보고서.docx</div><div class="mono" style="font-size: 13px;">제안자료.html</div><div class="mono" style="font-size: 13px;">제품추천.html</div>
       </div>
       <div style="{WARN} width: 420px; flex-shrink: 0; display: flex; flex-direction: column; gap: 4px; justify-content: center;">
         <div style="font-size: 16px; font-weight: 600; color: #9a2c2c;">AI에게 "파일로 만들어줘"라고 하지 않습니다.</div>
@@ -175,9 +175,9 @@ SLIDES["DeckW7"] = shell("일을 보는 법", "④ 묶으면 에이전트가 나
         <table style="border-collapse: collapse; font-size: 14px; width: 100%;">
           <tr style="color: #9a958d; font-size: 12px; letter-spacing: 0.08em;"><td style="padding: 4px 10px;">#</td><td style="padding: 4px 10px;">하는 일 (P)</td><td style="padding: 4px 10px;">내놓는 것 (O)</td><td style="padding: 4px 10px;">꼬리표</td></tr>
           {ipo_row(3, "사이트를 열어 본다", "복사한 텍스트", "outside")}
-          {ipo_row(4, "4열로 정제한다", "naver_crawl.csv", "repeat", True)}
+          {ipo_row(4, "4열로 정제한다", "시장가격.csv", "repeat", True)}
           {ipo_row("2·5", "조건을 뽑고 맞는 모델을 고른다", "후보 모델 목록", "draft")}
-          {ipo_row("6·7", "비교하고 3안을 쓴다", "proposal_C.html", "draft", True)}
+          {ipo_row("6·7", "비교하고 3안을 쓴다", "제안자료.html", "draft", True)}
           {ipo_row("8·9", "가격·납기를 확정해 보낸다", "확정 견적", "lock")}
         </table>
       </div>
@@ -225,7 +225,7 @@ SLIDES["DeckM4"] = shell("공통 방법론", "그럴듯함 ≠ 정확함", "왜 
 # ───────────── D3 오늘 만들 결과물 ─────────────
 def sec(n, t, d):
     return f'<div style="display: flex; gap: 12px; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #eeece6;"><span class="mono" style="font-size: 13px; color: #1c3f94; width: 18px; flex-shrink: 0;">{n}</span><span style="font-size: 16px; font-weight: 600; width: 150px; flex-shrink: 0;">{t}</span><span style="font-size: 14px; color: #6b6660;">{d}</span></div>'
-SLIDES["DeckD3"] = shell("모듈 D", "오늘 만들 결과물", "recommend_D.html — 브라우저에서 열리는 보고서 1개", f"""
+SLIDES["DeckD3"] = shell("모듈 D", "오늘 만들 결과물", "제품추천.html — 브라우저에서 열리는 보고서 1개", f"""
     <div style="display: flex; gap: 22px; align-items: stretch;">
       <div style="{CARD} flex: 1 0 0; padding: 16px 22px; display: flex; flex-direction: column;">
         <div style="{LBL} padding-bottom: 8px;">절 순서 — 이대로 나와야 합니다</div>
@@ -295,7 +295,7 @@ def rec(rank, model, kind, use, evidence, rows, strength, accent="#1c3f94"):
     <div style="font-size: 16px; line-height: 1.5;">{evidence} <span class="mono" style="font-size: 13px; color: #1c3f94;">{rows}</span></div>
   </div>
 </div>"""
-SLIDES["DeckD10"] = shell("모듈 D", "근거가 붙은 추천이란", "기준본 recommend_D.html 3절 그대로", f"""
+SLIDES["DeckD10"] = shell("모듈 D", "근거가 붙은 추천이란", "기준본 제품추천.html 3절 그대로", f"""
     <div style="display: flex; flex-direction: column; gap: 10px;">
       {rec(1, "HX-55T", "호텔TV", "객실 120실 — 축 A 1위", "호텔 5개 수요처 <strong style='font-weight: 600;'>464대 283,040,000원</strong>, 호텔 판매금액의 72.5%. 같은 체인 부산점도 96대", "6 · 22 · 25 · 30 · 47행", "강함 · 5개 수요처")}
       {rec(2, "BX-65S", "사이니지", "로비 안내 — 축 B 1위", "호텔 3개 수요처 <strong style='font-weight: 600;'>8대</strong>, 전부 로비 용도. 객실 TV 구매 다음 달에 추가", "8 · 24 · 32행", "보통 · 3개 수요처")}
@@ -368,20 +368,20 @@ SLIDES["DeckD2"] = shell("모듈 D", "지금은 이렇게 일합니다 — 그�
 def frow(f, hdr, n, src, alt=False):
     c = "color: #6b6660;" if alt else ""
     return f'<tr style="{c}"><td class="mono" style="padding: 8px 10px; font-size: 13px; white-space: nowrap;">{f}</td><td style="padding: 8px 10px; font-size: 14px; line-height: 1.45;">{hdr}</td><td style="padding: 8px 10px; text-align: right; font-size: 14px;">{n}</td><td style="padding: 8px 10px; font-size: 14px;">{src}</td></tr>'
-SLIDES["DeckD4"] = shell("모듈 D", "입력 데이터", "배포 폴더 modules/D_analysis/01_data/", f"""
+SLIDES["DeckD4"] = shell("모듈 D", "입력 데이터", "배포 폴더 modules/D_analysis/01_데이터/", f"""
     <div style="{CARD} padding: 8px 6px;">
       <table style="border-collapse: collapse; width: 100%;">
         <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 4px 10px;">파일</td><td style="padding: 4px 10px;">헤더</td><td style="padding: 4px 10px; text-align: right;">행</td><td style="padding: 4px 10px;">어디서 온 것으로 가정</td></tr>
-        {frow("sales_history.csv", "판매일자 · 버티컬 · 수요처 · 제품군 · 모델명 · 공급가 · 판매수량 · 판매금액 · 프로젝트/용도 · 지역 <span style='color: #9a958d;'>(10열)</span>", 52, "사내 B2B 판매 실적 2025-01 ~ 2026-08")}
-        {frow("target_account.md", "수요처명 · 버티컬 · 프로젝트/용도", 1, "영업 담당자가 입력")}
+        {frow("판매실적.csv", "판매일자 · 버티컬 · 수요처 · 제품군 · 모델명 · 공급가 · 판매수량 · 판매금액 · 프로젝트/용도 · 지역 <span style='color: #9a958d;'>(10열)</span>", 52, "사내 B2B 판매 실적 2025-01 ~ 2026-08")}
+        {frow("대상수요처.md", "수요처명 · 버티컬 · 프로젝트/용도", 1, "영업 담당자가 입력")}
         <tr><td colspan="4" style="padding: 6px 10px 2px; font-size: 12px; color: #9a958d; letter-spacing: 0.06em; border-top: 1px solid #e4e2db;">코드 실행이 안 될 때 — 둘을 함께</td></tr>
-        {frow("sales_history_소계.csv", "축 · 값 · 합계 — 버티컬 · 제품군 · 지역 · 모델명 네 축", 26, "검산용", True)}
-        {frow("sales_history_호텔모델별.csv", "모델명 · 제품군 · 건수 · 판매수량 · 판매금액 · 수요처수 · 근거행", 10, "추천용 — 이게 없으면 TOP 3가 안 나옵니다", True)}
+        {frow("판매실적_소계.csv", "축 · 값 · 합계 — 버티컬 · 제품군 · 지역 · 모델명 네 축", 26, "검산용", True)}
+        {frow("판매실적_호텔모델별.csv", "모델명 · 제품군 · 건수 · 판매수량 · 판매금액 · 수요처수 · 근거행", 10, "추천용 — 이게 없으면 TOP 3가 안 나옵니다", True)}
       </table>
     </div>
     <div style="display: flex; gap: 14px; align-items: stretch;">
       <div style="{CARD} flex: 1 0 0; padding: 14px 20px; display: flex; flex-direction: column; gap: 8px;">
-        <div style="{LBL}">target_account.md — 한 줄이 전부입니다</div>
+        <div style="{LBL}">대상수요처.md — 한 줄이 전부입니다</div>
         <table style="border-collapse: collapse; font-size: 16px;"><tr style="font-size: 12px; color: #9a958d;"><td style="padding: 2px 12px 2px 0;">수요처명</td><td style="padding: 2px 12px;">버티컬</td><td style="padding: 2px 12px;">프로젝트/용도</td></tr><tr><td style="padding: 4px 12px 4px 0; font-weight: 600;">해솔호텔 제주</td><td style="padding: 4px 12px;">호텔</td><td style="padding: 4px 12px;">신축 · 객실 120실 + 로비 · 2027-03 개관</td></tr></table>
         <div style="font-size: 14px; color: #6b6660;">같은 체인 해솔호텔 부산이 실적에 있습니다. 이걸 찾는지가 1절의 포인트입니다.</div>
       </div>
@@ -415,19 +415,19 @@ SLIDES["DeckD7"] = shell("모듈 D", "두 갈래 경로", "내 도구에서 코�
     <div style="display: flex; gap: 14px; align-items: stretch;">
       <div style="{CARD} flex: 1 0 0; border-top: 4px solid #0f6b4f; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
         <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #0f6b4f;">코드 실행 O</span><span style="font-size: 14px; color: #6b6660;">ChatGPT 데이터 분석이 켜져 있다</span></div>
-        <div style="font-size: 16px; line-height: 1.55;">원본 <span class="mono" style="font-size: 13px;">sales_history.csv</span> 한 개를 그대로 올립니다. 52행을 코드로 더하므로 합계가 맞습니다.</div>
+        <div style="font-size: 16px; line-height: 1.55;">원본 <span class="mono" style="font-size: 13px;">판매실적.csv</span> 한 개를 그대로 올립니다. 52행을 코드로 더하므로 합계가 맞습니다.</div>
         <div style="flex-grow: 1;"></div>
-        <div style="font-size: 14px; color: #6b6660;">올리는 파일 <strong style="font-weight: 600; color: #111821;">2개</strong> — 원본 + target_account.md</div>
+        <div style="font-size: 14px; color: #6b6660;">올리는 파일 <strong style="font-weight: 600; color: #111821;">2개</strong> — 원본 + 대상수요처.md</div>
       </div>
       <div style="{CARD} flex: 1 0 0; border-top: 4px solid #9a6408; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
         <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #9a6408;">코드 실행 X</span><span style="font-size: 14px; color: #6b6660;">Gemini, 또는 실행이 막힌 포털</span></div>
         <div style="font-size: 16px; line-height: 1.55;">AI가 52행을 머릿속으로 더하면 <strong style="font-weight: 600;">산술 오류</strong>가 납니다. 원본 대신 사람이 미리 집계한 두 파일을 올립니다.</div>
         <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px;">
-          <div><span class="mono" style="font-size: 13px;">sales_history_소계.csv</span> <span style="color: #6b6660;">— 네 축 합계, 검산용</span></div>
-          <div><span class="mono" style="font-size: 13px;">sales_history_호텔모델별.csv</span> <span style="color: #6b6660;">— 모델 단위 집계, 추천용</span></div>
+          <div><span class="mono" style="font-size: 13px;">판매실적_소계.csv</span> <span style="color: #6b6660;">— 네 축 합계, 검산용</span></div>
+          <div><span class="mono" style="font-size: 13px;">판매실적_호텔모델별.csv</span> <span style="color: #6b6660;">— 모델 단위 집계, 추천용</span></div>
         </div>
         <div style="flex-grow: 1;"></div>
-        <div style="font-size: 14px; color: #6b6660;">올리는 파일 <strong style="font-weight: 600; color: #111821;">3개</strong> — 소계본 + 호텔모델별 + target_account.md</div>
+        <div style="font-size: 14px; color: #6b6660;">올리는 파일 <strong style="font-weight: 600; color: #111821;">3개</strong> — 소계본 + 호텔모델별 + 대상수요처.md</div>
       </div>
     </div>
     <div style="display: flex; gap: 14px;">
@@ -476,7 +476,7 @@ SLIDES["DeckD12"] = shell("모듈 D", "내 업무로 전환", "5분 — 워크�
           <div style="font-size: 14px; line-height: 1.55; color: #3d4650;">점검 절차 · 축 선정 규칙 · HTML 4절 양식 · 확정가 금지 · 검수 기준 — 누가 써도 같은 것. <span class="mono" style="font-size: 13px; color: #111821;">recommending-products-by-vertical</span></div>
           <div style="font-size: 14px; line-height: 1.55; color: #3d4650;">실적 파일 · 버티컬 명칭 · 대상 수요처 — 우리 팀 것. 에이전트에 남깁니다.</div>
         </div>
-        <div style="{CARD} border-left: 3px solid #1c3f94; padding: 12px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">다음 모듈로</strong> — TOP 3를 <span class="mono" style="font-size: 13px;">recommended_models.csv</span>로 저장해 두면 C 모듈의 후보 힌트로 쓸 수 있습니다 (선택).</div>
+        <div style="{CARD} border-left: 3px solid #1c3f94; padding: 12px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">다음 모듈로</strong> — TOP 3를 <span class="mono" style="font-size: 13px;">추천모델.csv</span>로 저장해 두면 C 모듈의 후보 힌트로 쓸 수 있습니다 (선택).</div>
       </div>
     </div>""", "D · 12")
 
@@ -533,14 +533,14 @@ SLIDES["DeckO7"] = shell("오프닝", "HTML 결과를 여는 법", "A · C · D�
       {ARROW}
       {step_card(2, "메모장에 붙여넣기", "시작 → &quot;메모장&quot; 검색 → Ctrl+V")}
       {ARROW}
-      {step_card(3, "다른 이름으로 저장", "파일 이름 <span class='mono' style='font-size: 13px; color: #111821;'>recommend_D.html</span> — 확장자까지 직접<br>파일 형식 <strong style='font-weight: 600; color: #111821;'>모든 파일 (*.*)</strong> · 인코딩 <strong style='font-weight: 600; color: #111821;'>UTF-8</strong>")}
+      {step_card(3, "다른 이름으로 저장", "파일 이름 <span class='mono' style='font-size: 13px; color: #111821;'>제품추천.html</span> — 확장자까지 직접<br>파일 형식 <strong style='font-weight: 600; color: #111821;'>모든 파일 (*.*)</strong> · 인코딩 <strong style='font-weight: 600; color: #111821;'>UTF-8</strong>")}
       {ARROW}
       {step_card(4, "더블클릭", "브라우저에서 보고서가 열립니다. 제목과 표가 보이면 성공", last=True)}
     </div>
     <div style="display: flex; gap: 14px; align-items: stretch;">
       <div style="{WARN} flex: 1 0 0; display: flex; flex-direction: column; justify-content: center; gap: 4px;">
         <div style="font-size: 19px; font-weight: 600; color: #9a2c2c;">코드가 그대로 보이면 .txt로 저장된 것입니다.</div>
-        <div style="font-size: 14px; color: #3d4650;">③에서 파일 형식을 안 바꾸면 <span class="mono" style="font-size: 13px;">recommend_D.html.txt</span>가 됩니다. 이름을 바꿔 .html로 끝나게 하면 됩니다.</div>
+        <div style="font-size: 14px; color: #3d4650;">③에서 파일 형식을 안 바꾸면 <span class="mono" style="font-size: 13px;">제품추천.html.txt</span>가 됩니다. 이름을 바꿔 .html로 끝나게 하면 됩니다.</div>
       </div>
       <div style="{CARD} width: 420px; flex-shrink: 0; padding: 14px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">출력이 중간에 끊겼다면</strong> 채팅창에 <span class="mono" style="font-size: 13px; background: #f2f1ec; padding: 1px 6px;">이어서 출력해줘</span> — 이어진 부분을 메모장 끝에 붙입니다. <span class="mono" style="font-size: 13px;">&lt;/html&gt;</span>로 끝나야 완성입니다.</div>
     </div>""", "O · 07")
@@ -559,7 +559,7 @@ def vs(bad_t, bad_d, good_t, good_d):
 </div>"""
 SLIDES["DeckO8"] = shell("오프닝", "지시문은 메모장에 먼저", "세션이 끊기면 채팅창의 지시문은 사라집니다", vs(
     "채팅창에만 쓴다", "창을 닫거나 세션이 만료되면 지시문이 없어집니다. 다음 차수에 처음부터 다시 씁니다. 고친 내용도 같이 사라집니다.",
-    "메모장에 두고 붙여넣는다", "배포 파일 <span class='mono' style='font-size: 13px; color: #111821;'>02_prompt/prompt_1.md</span>를 열어 <span class='mono' style='font-size: 13px; color: #111821;'>agentD_prompt.txt</span>로 저장. 채팅창에는 붙여넣기만. 고칠 때는 메모장에서 고치고 다시 붙여넣습니다.<br><br>세션이 끊겨도, 다음 차수에도, 동료에게 넘길 때도 그대로입니다.") + f"""
+    "메모장에 두고 붙여넣는다", "배포 파일 <span class='mono' style='font-size: 13px; color: #111821;'>02_지시문/지시문.md</span>를 열어 <span class='mono' style='font-size: 13px; color: #111821;'>agentD_prompt.txt</span>로 저장. 채팅창에는 붙여넣기만. 고칠 때는 메모장에서 고치고 다시 붙여넣습니다.<br><br>세션이 끊겨도, 다음 차수에도, 동료에게 넘길 때도 그대로입니다.") + f"""
     <div style="{BAND}">
       <div style="font-size: 22px; font-weight: 700;">"컨텍스트를 데이터로 다룬다"의 가장 작은 실천입니다.</div>
       <div style="flex-grow: 1;"></div>
@@ -628,12 +628,12 @@ SLIDES["DeckW4"] = shell("일을 보는 법", "② 단계별 IPO — 받는 것 
       <div style="display: flex; gap: 10px; flex: 1.3 0 0;">
         {ipo_card("I", "Input", "이 단계를 시작하려면 손에 무엇이 있어야 하나", "요구조건 메일<br>가격가이드 엑셀<br>화면에서 복사한 표")}
         {ipo_card("P", "Process", "그것으로 무엇을 하나", "조건 6항목을 뽑는다<br>4열로 정제한다")}
-        {ipo_card("O", "Output", "끝나면 무엇이 남나 — 파일 이름으로", "customer_request.md<br>naver_crawl.csv")}
+        {ipo_card("O", "Output", "끝나면 무엇이 남나 — 파일 이름으로", "고객요구조건.md<br>시장가격.csv")}
       </div>
       <div style="{CARD} flex: 1 0 0; padding: 18px 22px; display: flex; flex-direction: column; gap: 14px;">
         <div style="{LBL}">규칙 세 가지</div>
         {rule(1, "Input은 꺼낼 수 있는 것", "&quot;내 경험&quot; · &quot;감&quot;이면 지금은 못 만듭니다. 문서로 적어 두거나, <strong style='font-weight: 600; color: #111821;'>에이전트가 질문해서 받거나</strong> — A 모듈 단계 2가 두 번째 방법")}
-        {rule(2, "Output은 파일 이름으로", "&quot;고객 프로필 정리&quot;가 아니라 <span class='mono' style='font-size: 13px; color: #111821;'>customer_profile.md</span>. 다음 단계가 받을 수 있는 모양")}
+        {rule(2, "Output은 파일 이름으로", "&quot;고객 프로필 정리&quot;가 아니라 <span class='mono' style='font-size: 13px; color: #111821;'>고객프로파일.md</span>. 다음 단계가 받을 수 있는 모양")}
         {rule(3, "앞 O ≠ 다음 I이면 사람이 메우고 있다", "거기가 에이전트 자리입니다. 다음 장")}
       </div>
     </div>""", "W · 04")
@@ -822,7 +822,7 @@ SLIDES["DeckM11"] = shell("공통 방법론", "오늘의 완주 기준", "완성
         <div style="display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 1.5;">
           <div>□ 에이전트 하나가 만들어져 있다</div>
           <div>□ 정상 테스트 1건이 기준본과 같다</div>
-          <div>□ 결과물이 파일로 저장돼 있다 — <span class="mono" style="font-size: 13px;">recommend_D.html</span></div>
+          <div>□ 결과물이 파일로 저장돼 있다 — <span class="mono" style="font-size: 13px;">제품추천.html</span></div>
         </div>
       </div>
       <div style="{CARD} flex: 1 0 0; border-top: 4px solid #1c3f94; padding: 24px 28px; display: flex; flex-direction: column; gap: 14px;">
@@ -837,7 +837,7 @@ SLIDES["DeckM11"] = shell("공통 방법론", "오늘의 완주 기준", "완성
     <div style="{BAND}">
       <div style="font-size: 22px; font-weight: 700;">뒤처져도 다음 실습은 반드시 시작합니다.</div>
       <div style="flex-grow: 1;"></div>
-      <div style="font-size: 14px; color: #c9c5bd;">앞 모듈을 못 끝냈으면 배포 폴더 04_answer/의 기준본으로 시작합니다.</div>
+      <div style="font-size: 14px; color: #c9c5bd;">앞 모듈을 못 끝냈으면 배포 폴더 04_기준본/의 기준본으로 시작합니다.</div>
     </div>""", "M · 11")
 
 
@@ -922,14 +922,14 @@ def three(label, title, steps, caption, page, foot):
       <div style="font-size: 14px; color: #c9c5bd; max-width: 520px; line-height: 1.5;">{foot}</div>
     </div>""", page)
 SLIDES["DeckA3"] = three("모듈 A", "에이전트는 하나, 단계는 셋", [
-    ("수집", "매주 담당 건설사 · 산업 뉴스를 4열로 정리 — 품목 · 헤드라인 · 원본url · 키워드", "prompt_1_수집.md", "주기 실행 — 강사 시연. 참가자는 결과 파일을 받습니다"),
-    ("프로파일", "새로 뜬 회사를 묻고 답하며 채웁니다. 모르면 비워 둡니다", "prompt_2_프로파일.md", "대화 메시지로"),
-    ("기회 분석", "Key Signal → Needs → 접근 시점 → 시나리오 → Action을 HTML 대시보드로", "prompt_3_분석.md ✂ 사이", "에이전트 지침에")],
+    ("수집", "매주 담당 건설사 · 산업 뉴스를 4열로 정리 — 품목 · 헤드라인 · 원본url · 키워드", "지시문_1_수집.md", "주기 실행 — 강사 시연. 참가자는 결과 파일을 받습니다"),
+    ("프로파일", "새로 뜬 회사를 묻고 답하며 채웁니다. 모르면 비워 둡니다", "지시문_2_프로파일.md", "대화 메시지로"),
+    ("기회 분석", "Key Signal → Needs → 접근 시점 → 시나리오 → Action을 HTML 대시보드로", "지시문_3_분석.md ✂ 사이", "에이전트 지침에")],
     "수집 → 프로파일 → 분석", "S · 03", "셋은 서로 다른 일이지만 어느 사이에도 사람이 확정해야 할 지점이 없습니다. 나누면 참조 파일을 세 곳에 올리고 결과를 사람이 옮겨 나릅니다.")
 SLIDES["DeckB3"] = three("모듈 B", "에이전트는 하나, 단계는 셋", [
-    ("검색 키워드", "권역 × 시설유형 × 상태를 곱해 검색어를 만들고, 뺀 조합의 이유를 적습니다", "prompt_1_키워드.md", "대화 메시지로"),
-    ("추출 · 매칭", "뉴스에서 시설 · 상태 · 시기 · 규모를 뽑아 상권정보와 대조, 규모로 가르고 파트너를 매칭", "prompt_2_추출.md ✂ 사이", "에이전트 지침에"),
-    ("보고서", "5절 보고서로 출력 → Word에 붙여넣기", "prompt_3_보고서.md ✂ 사이", "같은 대화의 다음 메시지")],
+    ("검색 키워드", "권역 × 시설유형 × 상태를 곱해 검색어를 만들고, 뺀 조합의 이유를 적습니다", "지시문_1_키워드.md", "대화 메시지로"),
+    ("추출 · 매칭", "뉴스에서 시설 · 상태 · 시기 · 규모를 뽑아 상권정보와 대조, 규모로 가르고 파트너를 매칭", "지시문_2_추출.md ✂ 사이", "에이전트 지침에"),
+    ("보고서", "5절 보고서로 출력 → Word에 붙여넣기", "지시문_3_보고서.md ✂ 사이", "같은 대화의 다음 메시지")],
     "키워드 → 추출 → 보고서", "S · 03", "삼성 양식의 「제공 프롬프트 3종」이 이 셋입니다. 셋을 에이전트 셋으로 그리면 안 됩니다 — 단계 박스는 에이전트 테두리 안에 있습니다.")
 
 # ───────────── 입력 데이터 (A · B · C) ─────────────
@@ -949,12 +949,12 @@ def inputs(label, files, extra, page, folder):
         <div style="font-size: 14px; color: #3d4650; line-height: 1.5;">회사명 · 시설명 · 파트너 · 실적 · 가격 전부. 실제 고객사 · 파트너 파일은 올리지 않습니다.</div>
       </div>
     </div>""", page)
-SLIDES["DeckA4"] = inputs("모듈 A", [("rss_feed.csv", "품목 · 헤드라인 · 원본url · 키워드 (4열)", 30, "단계 1의 산출물 — 강사 시연으로 만든 것"), ("target_builders.csv", "수요처명 · 상장시장 · 주력공종 · 거래이력 · 담당팀", 6, "담당 수요처 목록"), ("rss_sources.md", "검색어 · RSS주소 · 수집주기", 8, "단계 1 실습의 정답 — 참조 파일")],
-    "30건 중 <strong style='font-weight: 600; color: #111821;'>같은 헤드라인이 다른 매체로 세 번</strong> 더 실려 있고, <strong style='font-weight: 600; color: #111821;'>18건은 업계 일반 동향</strong>입니다. 수집 요약에 30 → 27이 나오는지, 무관 기사가 따로 세어지는지가 첫 확인입니다. 업로드가 막히면 06_paste/의 표를 붙여넣습니다.", "S · 04", "modules/A_sensing_b2b/01_data/")
-SLIDES["DeckB4"] = inputs("모듈 B", [("naver_news_dummy.json", "title · originallink · link · description · pubDate", 30, "네이버 뉴스 API 응답 — 연동 가정"), ("district_info.csv", "권역 · 행정구역 · 시설유형 · 시설명 · 상태 · 예정시기 · 규모", 18, "상권정보"), ("partner_info.csv", "파트너사 · 담당권역 · 주력버티컬 · 최근분기실적등급 · 시공가능규모", 4, "파트너 관리 대장"), ("market_research.md", "권역 · 지표 · 값 · 출처 · 조사시점", 8, "시장조사 자료")],
-    "넷을 <strong style='font-weight: 600; color: #111821;'>다 올려야</strong> 합니다. 뉴스만 올리면 규모를 못 걸러 카페가 기회 목록에 오르고, 파트너 파일이 없으면 매칭이 안 됩니다. 파트너 파일에 <strong style='font-weight: 600; color: #111821;'>계약단가 · 마진율</strong>이 있으면 올리지 않습니다 — 실패 테스트가 그것입니다.", "S · 04", "modules/B_sensing_partner/01_data/")
-SLIDES["DeckC4"] = inputs("모듈 C", [("tv_price_guide.csv", "모델명 · 제품군 · 화면크기 · 해상도 · 밝기 · 주요기능 · 설치방식 · 가이드공급가 · 최소수량", 13, "사내 B2B 마케팅 / 가격가이드"), ("naver_crawl.csv", "수요처명 · 모델명 · 온라인가격 · 제품spec.", 10, "단계 ⓪의 산출물 — 강사 시연으로 만든 것"), ("customer_request.md", "요구조건 6항목 — 화면크기 · 사용목적 · 주요기능 · 설치환경 · 수량 · 예산", 1, "고객 메일")],
-    "요구조건은 <strong style='font-weight: 600; color: #111821;'>늘 반쯤 빠진 채로</strong> 옵니다. 경계 테스트 파일은 예산 줄이 지워져 있습니다. 크롤 표의 스펙은 <strong style='font-weight: 600; color: #111821;'>판매자가 쓴 글</strong>이라 경쟁사 평가 근거로 쓸 때 출처를 밝힙니다.", "C · 04", "modules/C_proposal/01_data/")
+SLIDES["DeckA4"] = inputs("모듈 A", [("기사수집.csv", "품목 · 헤드라인 · 원본url · 키워드 (4열)", 30, "단계 1의 산출물 — 강사 시연으로 만든 것"), ("대상건설사.csv", "수요처명 · 상장시장 · 주력공종 · 거래이력 · 담당팀", 6, "담당 수요처 목록"), ("검색어목록.md", "검색어 · RSS주소 · 수집주기", 8, "단계 1 실습의 정답 — 참조 파일")],
+    "30건 중 <strong style='font-weight: 600; color: #111821;'>같은 헤드라인이 다른 매체로 세 번</strong> 더 실려 있고, <strong style='font-weight: 600; color: #111821;'>18건은 업계 일반 동향</strong>입니다. 수집 요약에 30 → 27이 나오는지, 무관 기사가 따로 세어지는지가 첫 확인입니다. 업로드가 막히면 06_붙여넣기/의 표를 붙여넣습니다.", "S · 04", "modules/A_sensing_b2b/01_데이터/")
+SLIDES["DeckB4"] = inputs("모듈 B", [("뉴스수집.json", "title · originallink · link · description · pubDate", 30, "네이버 뉴스 API 응답 — 연동 가정"), ("상권정보.csv", "권역 · 행정구역 · 시설유형 · 시설명 · 상태 · 예정시기 · 규모", 18, "상권정보"), ("파트너정보.csv", "파트너사 · 담당권역 · 주력버티컬 · 최근분기실적등급 · 시공가능규모", 4, "파트너 관리 대장"), ("시장조사.md", "권역 · 지표 · 값 · 출처 · 조사시점", 8, "시장조사 자료")],
+    "넷을 <strong style='font-weight: 600; color: #111821;'>다 올려야</strong> 합니다. 뉴스만 올리면 규모를 못 걸러 카페가 기회 목록에 오르고, 파트너 파일이 없으면 매칭이 안 됩니다. 파트너 파일에 <strong style='font-weight: 600; color: #111821;'>계약단가 · 마진율</strong>이 있으면 올리지 않습니다 — 실패 테스트가 그것입니다.", "S · 04", "modules/B_sensing_partner/01_데이터/")
+SLIDES["DeckC4"] = inputs("모듈 C", [("가격가이드.csv", "모델명 · 제품군 · 화면크기 · 해상도 · 밝기 · 주요기능 · 설치방식 · 가이드공급가 · 최소수량", 13, "사내 B2B 마케팅 / 가격가이드"), ("시장가격.csv", "수요처명 · 모델명 · 온라인가격 · 제품spec.", 10, "단계 ⓪의 산출물 — 강사 시연으로 만든 것"), ("고객요구조건.md", "요구조건 6항목 — 화면크기 · 사용목적 · 주요기능 · 설치환경 · 수량 · 예산", 1, "고객 메일")],
+    "요구조건은 <strong style='font-weight: 600; color: #111821;'>늘 반쯤 빠진 채로</strong> 옵니다. 경계 테스트 파일은 예산 줄이 지워져 있습니다. 크롤 표의 스펙은 <strong style='font-weight: 600; color: #111821;'>판매자가 쓴 글</strong>이라 경쟁사 평가 근거로 쓸 때 출처를 밝힙니다.", "C · 04", "modules/C_proposal/01_데이터/")
 
 # ───────────── A5 신호를 읽는 법 ─────────────
 def tl(rank, who, done, approach, gap, hot=False):
@@ -1025,7 +1025,7 @@ SLIDES["DeckC8"] = traps("모듈 C", [("경쟁사가 75만원 싸 보입니다",
 # ───────────── A7 묻는 것이 기능인 단계 ─────────────
 SLIDES["DeckA7"] = shell("모듈 A", "묻는 것이 기능인 단계", "다른 모듈에서 질문은 통과 조건, 여기서는 본업", vs(
     "다른 모듈 — 질문은 통과 조건", "예산이 빠진 요구조건, 버티컬이 없는 추천 요청. 지어내지 않고 되물으면 통과입니다. 물은 뒤에는 원래 일을 합니다.",
-    "단계 2 — 질문이 일입니다", "새 회사를 조사하는 일은 원래 아는 것부터 적고 모르는 것을 표시하는 일입니다. <strong style='font-weight: 600; color: #111821;'>한 번에 하나씩</strong> 묻고, \"모른다\"면 <strong style='font-weight: 600; color: #111821;'>확인 필요</strong>로 비워 둔 채 다음으로. 마지막에 빈 항목과 누구에게 물으면 되는지를 적습니다.<br><br>기준본 customer_profile.md는 <strong style='font-weight: 600; color: #111821;'>빈 항목이 4개</strong>입니다. 그게 정답입니다.") + f"""
+    "단계 2 — 질문이 일입니다", "새 회사를 조사하는 일은 원래 아는 것부터 적고 모르는 것을 표시하는 일입니다. <strong style='font-weight: 600; color: #111821;'>한 번에 하나씩</strong> 묻고, \"모른다\"면 <strong style='font-weight: 600; color: #111821;'>확인 필요</strong>로 비워 둔 채 다음으로. 마지막에 빈 항목과 누구에게 물으면 되는지를 적습니다.<br><br>기준본 고객프로파일.md는 <strong style='font-weight: 600; color: #111821;'>빈 항목이 4개</strong>입니다. 그게 정답입니다.") + f"""
     <div style="{BAND}"><div style="font-size: 22px; font-weight: 700;">빈칸이 남은 프로파일이 채워진 가짜 프로파일보다 낫습니다.</div><div style="flex-grow: 1;"></div><div style="font-size: 14px; color: #c9c5bd;">회사명만 주면 나머지를 알아서 채우는 것이 가장 흔한 실패입니다.</div></div>""", "S · 07")
 
 # ───────────── B7 검색어는 곱셈입니다 ─────────────
@@ -1058,14 +1058,14 @@ SLIDES["DeckB7"] = shell("모듈 B", "검색어는 곱셈입니다", "권역 × 
 # ───────────── 도구와 클릭 경로 (A · B) ─────────────
 SLIDES["DeckA8"] = shell("모듈 A", "도구와 클릭 경로", "주 도구 Gemini 에이전트 · 예약은 ChatGPT로 시연", f"""
     <div style="display: flex; gap: 14px; align-items: stretch; flex-grow: 1;">
-      {path("Gemini 에이전트 — 단계 2 · 3", "수동으로 빌드", ["[에이전트] → [+ 새 에이전트] → &quot;이 단계를 건너뛰고 수동으로 빌드&quot;", "지침에 <span class='mono' style='font-size: 13px;'>prompt_3_분석.md</span> ✂ 사이", "참조 파일 <span class='mono' style='font-size: 13px;'>rss_feed.csv</span> · <span class='mono' style='font-size: 13px;'>target_builders.csv</span>", "저장 → 첫 메시지에 기준일 2026-09-01", "HTML은 메모장에 <span class='mono' style='font-size: 13px;'>dashboard_A.html</span>로"], "#0f6b4f")}
-      {path("ChatGPT [예약] — 단계 1 시연", "매주 같은 일은 주기가 돌립니다", ["사이드바 <strong style='font-weight: 600;'>[예약]</strong> → [만들기]", "실행할 내용에 <span class='mono' style='font-size: 13px;'>prompt_1_수집.md</span> ✂ 사이", "주기 매주 월요일 08:00 · 결과는 대화로", "스킬로 저장해 두면 예약에는 &quot;무엇을 언제&quot;만 남습니다", "<strong style='font-weight: 600;'>첫 실행을 수동으로 한 번</strong> — 건너뛰면 한 주를 버립니다"])}
+      {path("Gemini 에이전트 — 단계 2 · 3", "수동으로 빌드", ["[에이전트] → [+ 새 에이전트] → &quot;이 단계를 건너뛰고 수동으로 빌드&quot;", "지침에 <span class='mono' style='font-size: 13px;'>지시문_3_분석.md</span> ✂ 사이", "참조 파일 <span class='mono' style='font-size: 13px;'>기사수집.csv</span> · <span class='mono' style='font-size: 13px;'>대상건설사.csv</span>", "저장 → 첫 메시지에 기준일 2026-09-01", "HTML은 메모장에 <span class='mono' style='font-size: 13px;'>영업대시보드.html</span>로"], "#0f6b4f")}
+      {path("ChatGPT [예약] — 단계 1 시연", "매주 같은 일은 주기가 돌립니다", ["사이드바 <strong style='font-weight: 600;'>[예약]</strong> → [만들기]", "실행할 내용에 <span class='mono' style='font-size: 13px;'>지시문_1_수집.md</span> ✂ 사이", "주기 매주 월요일 08:00 · 결과는 대화로", "스킬로 저장해 두면 예약에는 &quot;무엇을 언제&quot;만 남습니다", "<strong style='font-weight: 600;'>첫 실행을 수동으로 한 번</strong> — 건너뛰면 한 주를 버립니다"])}
     </div>
     <div style="{WARN} display: flex; gap: 20px; align-items: center;"><div style="font-size: 16px; font-weight: 600; color: #9a2c2c; white-space: nowrap;">예약 메뉴가 없으면</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">강사가 3분 시연만 하고, 참가자는 에이전트에서 수동으로 1회 실행합니다. 배우는 것은 같습니다 — 매주 같은 일은 절차로 떼어 두고, 그 절차가 스킬입니다.</div></div>""", "S · 08")
 SLIDES["DeckB8"] = shell("모듈 B", "도구와 클릭 경로", "ChatGPT 에이전트 + 파일 4개 · 결과는 Word", f"""
     <div style="display: flex; gap: 14px; align-items: stretch; flex-grow: 1;">
-      {path("ChatGPT 에이전트", "모델은 Instant", ["[에이전트] → [만들기] → 이름 · 설명", "지침에 <span class='mono' style='font-size: 13px;'>prompt_2_추출.md</span> ✂ 사이", "파일 업로드 <strong style='font-weight: 600;'>4개</strong> — 뉴스 JSON · 상권 · 파트너 · 시장조사", "저장 → 첫 메시지에 담당 권역 <strong style='font-weight: 600;'>부산 해운대</strong>", "단계 3은 같은 대화의 다음 메시지로"])}
-      {path("Word로 옮기기", "AI에게 Word 파일을 만들게 하지 않습니다", ["보고서 전체를 복사", "Word 새 문서 — 회사 양식이 있으면 그 파일을 먼저", "붙여넣기 옵션 — 표를 표로 받으려면 <strong style='font-weight: 600;'>원본 서식 유지</strong>", "제목 줄에 제목1 · 제목2 스타일", "<span class='mono' style='font-size: 13px;'>report_B.docx</span>로 저장"], "#9a6408")}
+      {path("ChatGPT 에이전트", "모델은 Instant", ["[에이전트] → [만들기] → 이름 · 설명", "지침에 <span class='mono' style='font-size: 13px;'>지시문_2_추출.md</span> ✂ 사이", "파일 업로드 <strong style='font-weight: 600;'>4개</strong> — 뉴스 JSON · 상권 · 파트너 · 시장조사", "저장 → 첫 메시지에 담당 권역 <strong style='font-weight: 600;'>부산 해운대</strong>", "단계 3은 같은 대화의 다음 메시지로"])}
+      {path("Word로 옮기기", "AI에게 Word 파일을 만들게 하지 않습니다", ["보고서 전체를 복사", "Word 새 문서 — 회사 양식이 있으면 그 파일을 먼저", "붙여넣기 옵션 — 표를 표로 받으려면 <strong style='font-weight: 600;'>원본 서식 유지</strong>", "제목 줄에 제목1 · 제목2 스타일", "<span class='mono' style='font-size: 13px;'>권역보고서.docx</span>로 저장"], "#9a6408")}
     </div>
     <div style="{WARN} display: flex; gap: 20px; align-items: center;"><div style="font-size: 16px; font-weight: 600; color: #9a2c2c; white-space: nowrap;">마크다운 표가 | 그대로 붙으면</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">채팅창에 — <span class="mono" style="font-size: 13px; background: #f2f1ec; padding: 1px 6px;">표를 마크다운 기호 없이, 항목마다 줄바꿈된 형태로 다시 출력해줘</span></div></div>""", "S · 08")
 
@@ -1081,11 +1081,11 @@ def transfer(label, question, skill, agent, handoff, page, skill_name):
       <div style="{CARD} flex: 1 0 0; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px;"><div style="{LBL}">에이전트에 둘 것 — 우리 팀 것</div><div style="font-size: 14px; line-height: 1.55; color: #3d4650;">{agent}</div></div>
       <div style="{CARD} border-left: 3px solid #1c3f94; width: 300px; flex-shrink: 0; padding: 14px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">다음 모듈로</strong> — {handoff}</div>
     </div>""", page)
-SLIDES["DeckA12"] = transfer("모듈 A", "내가 매주 훑는 자료는 무엇이고, 그 검색어를 파일로 적어 둔 적이 있는가?", "수집 · 정제 절차, 프로파일 질문 목록, 준공 −6개월 역산 규칙, 대시보드 양식, 검수 기준.", "담당 건설사 목록, 검색어 파일, 우리 팀 용어, 실행 주기. 담당이 바뀌면 참조 파일만 바꿉니다 — <strong style='font-weight: 600; color: #111821;'>인수인계가 파일 한 개</strong>가 됩니다.", "기회 목록을 <span class='mono' style='font-size: 13px;'>opportunity_list.csv</span>로 저장하면 D 모듈의 대상 수요처로 넘길 수 있습니다 (선택).", "S · 12", "sensing-listed-builders")
-SLIDES["DeckB12"] = transfer("모듈 B", "내 권역에서 '작아서 안 세던 것' 중, 모으면 의미가 있는 건 무엇인가?", "키워드 조합 규칙, 추출 항목, 규모 기준과 두 갈래 규칙, 파트너 매칭 규칙, 보고서 5절 양식, 검수 기준.", "담당 권역, 파트너 목록, 상권정보 파일, 규모 하한선 값. 권역이 바뀌면 참조 파일과 권역 값만 바꿉니다.", "기회 목록을 <span class='mono' style='font-size: 13px;'>opportunity_list.csv</span>로 저장하면 D 모듈의 대상 수요처로 넘길 수 있습니다 (선택).", "S · 12", "scanning-district-openings")
+SLIDES["DeckA12"] = transfer("모듈 A", "내가 매주 훑는 자료는 무엇이고, 그 검색어를 파일로 적어 둔 적이 있는가?", "수집 · 정제 절차, 프로파일 질문 목록, 준공 −6개월 역산 규칙, 대시보드 양식, 검수 기준.", "담당 건설사 목록, 검색어 파일, 우리 팀 용어, 실행 주기. 담당이 바뀌면 참조 파일만 바꿉니다 — <strong style='font-weight: 600; color: #111821;'>인수인계가 파일 한 개</strong>가 됩니다.", "기회 목록을 <span class='mono' style='font-size: 13px;'>기회목록.csv</span>로 저장하면 D 모듈의 대상 수요처로 넘길 수 있습니다 (선택).", "S · 12", "sensing-listed-builders")
+SLIDES["DeckB12"] = transfer("모듈 B", "내 권역에서 '작아서 안 세던 것' 중, 모으면 의미가 있는 건 무엇인가?", "키워드 조합 규칙, 추출 항목, 규모 기준과 두 갈래 규칙, 파트너 매칭 규칙, 보고서 5절 양식, 검수 기준.", "담당 권역, 파트너 목록, 상권정보 파일, 규모 하한선 값. 권역이 바뀌면 참조 파일과 권역 값만 바꿉니다.", "기회 목록을 <span class='mono' style='font-size: 13px;'>기회목록.csv</span>로 저장하면 D 모듈의 대상 수요처로 넘길 수 있습니다 (선택).", "S · 12", "scanning-district-openings")
 
 # ───────────── C3 오늘 만들 결과물 ─────────────
-SLIDES["DeckC3"] = shell("모듈 C", "오늘 만들 결과물", "proposal_C.html — 브라우저에서 열리는 제안 자료 1개", f"""
+SLIDES["DeckC3"] = shell("모듈 C", "오늘 만들 결과물", "제안자료.html — 브라우저에서 열리는 제안 자료 1개", f"""
     <div style="display: flex; gap: 22px; align-items: stretch;">
       <div style="{CARD} flex: 1 0 0; padding: 16px 22px; display: flex; flex-direction: column;">
         <div style="{LBL} padding-bottom: 8px;">절 순서 — 이대로 나와야 합니다</div>
@@ -1119,7 +1119,7 @@ SLIDES["DeckC5"] = shell("모듈 C", "밖의 데이터를 가져오는 법", "�
       {ARROW}
       {step_card(2, "정제 지시문 + 붙여넣기", "채팅창에 정제 지시문을 먼저 쓰고 그 아래에 붙여넣습니다. 스펙 열에는 제조사 공식 정보만, 판매자 글이면 &quot;판매자기재&quot;")}
       {ARROW}
-      {step_card(3, "4열 표 → 저장", "&quot;쉼표로 구분된 표로 출력해줘&quot; → 메모장 → <span class='mono' style='font-size: 13px; color: #111821;'>naver_crawl.csv</span>", last=True)}
+      {step_card(3, "4열 표 → 저장", "&quot;쉼표로 구분된 표로 출력해줘&quot; → 메모장 → <span class='mono' style='font-size: 13px; color: #111821;'>시장가격.csv</span>", last=True)}
     </div>
     <div style="display: flex; gap: 14px; align-items: stretch;">
       <div style="{CARD} flex: 1 0 0; padding: 14px 20px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">표가 복잡해 뒤섞이면 — 화면 캡처</strong> 브라우저 확장프로그램(Awesome Screenshot 등)으로 표 영역을 캡처해 이미지로 올립니다. 숫자는 OCR이라 <strong style="font-weight: 600; color: #111821;">가격은 복사로, 설명은 캡처로</strong>. PlayMCP(네이버 검색 API)는 응답에 가격이 없어 실습에서 쓰지 않습니다.</div>
@@ -1152,11 +1152,11 @@ SLIDES["DeckC7"] = shell("모듈 C", "단계가 셋인 이유", "한 번에 시�
     <div style="border: 2px solid #1c3f94; background: #ffffff; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1;">
       <div style="display: flex; justify-content: space-between; align-items: baseline;"><span style="font-size: 19px; font-weight: 700; color: #1c3f94;">에이전트 1개</span><span style="font-size: 14px; color: #6b6660;">단계 사이마다 사람이 표를 한 번 봅니다 — 검증 게이트</span></div>
       <div style="display: flex; gap: 10px; align-items: stretch; flex-grow: 1;">
-        <div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 ⓪ · 4번</div><div style="font-size: 19px; font-weight: 600;">수집 정제</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">복사한 텍스트 → 4열 표. 강사 시연, 결과 파일은 배포</div><div class="mono" style="font-size: 13px; color: #1c3f94;">prompt_0_정제.md</div></div>
+        <div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 ⓪ · 4번</div><div style="font-size: 19px; font-weight: 600;">수집 정제</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">복사한 텍스트 → 4열 표. 강사 시연, 결과 파일은 배포</div><div class="mono" style="font-size: 13px; color: #1c3f94;">지시문_0_정제.md</div></div>
         <div style="display: flex; align-items: center; color: #9a958d; font-size: 22px;">→</div>
-        <div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 ① · 2 · 5번</div><div style="font-size: 19px; font-weight: 600;">요구조건 분석 + 스펙 추출</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">6항목 표와 13모델 O/X 대조표. <strong style="font-weight: 600; color: #111821;">여기서 사람이 대조표를 봅니다</strong></div><div class="mono" style="font-size: 13px; color: #1c3f94;">prompt_1_추출.md ✂ → 지침</div></div>
+        <div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 ① · 2 · 5번</div><div style="font-size: 19px; font-weight: 600;">요구조건 분석 + 스펙 추출</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">6항목 표와 13모델 O/X 대조표. <strong style="font-weight: 600; color: #111821;">여기서 사람이 대조표를 봅니다</strong></div><div class="mono" style="font-size: 13px; color: #1c3f94;">지시문_1_추출.md ✂ → 지침</div></div>
         <div style="display: flex; align-items: center; color: #9a958d; font-size: 22px;">→</div>
-        <div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 ② · 6 · 7번</div><div style="font-size: 19px; font-weight: 600;">비교 + 3안 제안</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">전부 O인 모델로만 1 · 2안, 3안은 포기 항목을 적어서. 시장가 비교까지</div><div class="mono" style="font-size: 13px; color: #1c3f94;">prompt_2_제안.md ✂ → 다음 메시지</div></div>
+        <div style="flex: 1 0 0; background: #eef0ea; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 12px; color: #9a958d; font-weight: 600;">단계 ② · 6 · 7번</div><div style="font-size: 19px; font-weight: 600;">비교 + 3안 제안</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">전부 O인 모델로만 1 · 2안, 3안은 포기 항목을 적어서. 시장가 비교까지</div><div class="mono" style="font-size: 13px; color: #1c3f94;">지시문_2_제안.md ✂ → 다음 메시지</div></div>
       </div>
     </div>
     <div style="{BAND}"><div style="font-size: 22px; font-weight: 700;">한 번에 시키면 대조표를 건너뛰고 3안부터 씁니다.</div><div style="flex-grow: 1;"></div><div style="font-size: 14px; color: #c9c5bd; max-width: 480px; line-height: 1.5;">틀린 대조표 위에 그럴듯한 3안이 올라오면 사람이 못 잡습니다. 단계 사이의 표가 검수 지점입니다.</div></div>""", "C · 07")
@@ -1194,7 +1194,7 @@ SLIDES["DeckK2"] = shell("Skill과 MCP", "SKILL.md 세 부분", "name · descrip
       <div style="flex: 1 0 0; display: flex; flex-direction: column; gap: 10px;">
         {rule("name", "소문자 · 하이픈 · 동명사형(verb+ing) · 64자 이내", "파일 · 폴더명으로 그대로 쓰입니다")}
         {rule("desc", "가장 중요 — &quot;무엇을 + 언제 쓰는지&quot;를 3인칭으로", "AI가 이 설명만 보고 스킬을 고릅니다. 모호하면 안 불립니다")}
-        {rule("본문", "단계별 지시 + 입출력 예시", "오늘 실습에서 만든 결과물(04_answer)이 그대로 입출력 예시가 됩니다. 버리지 않습니다")}
+        {rule("본문", "단계별 지시 + 입출력 예시", "오늘 실습에서 만든 결과물(04_기준본)이 그대로 입출력 예시가 됩니다. 버리지 않습니다")}
         <div style="{CARD} border-left: 3px solid #0f6b4f; padding: 12px 16px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">노코드 팁</strong> — 7블록을 다 쓴 뒤 &quot;위 지시문을 SKILL.md 형식으로 정리해줘&quot;. AI가 초안을 만들고 사람은 description만 봅니다.</div>
       </div>
     </div>""", "K · 02")
@@ -1278,7 +1278,7 @@ SLIDES["DeckZ1"] = shell("클로징", "내 업무로 옮기려면", "설계 6단
         <table style="border-collapse: collapse; width: 100%; height: 100%;">
           <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">바꿀 것 — 다섯</td><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">오늘 (배포 데이터)</td><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">내 업무</td></tr>
           <tr><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">팀 프로필</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">team_profile.md</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
-          <tr style="background: #f7f6f2;"><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">입력 데이터 — 파일 · 컬럼</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">sales_history.csv 10열</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
+          <tr style="background: #f7f6f2;"><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">입력 데이터 — 파일 · 컬럼</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">판매실적.csv 10열</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
           <tr><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">출력 서식</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">HTML 4절</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
           <tr style="background: #f7f6f2;"><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">STOP 조건</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">검산 불일치 · 버티컬 없음</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
           <tr><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">승인자</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">{{담당자}}</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>

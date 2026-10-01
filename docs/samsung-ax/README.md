@@ -38,15 +38,15 @@ docs/samsung-ax/
 
 ## 모듈 구조 (v2)
 
-Agent 하나 = 폴더 하나. `00_requirement.md`(삼성 양식을 옮긴 요구조건서)가 원본이고 나머지는 파생물입니다. 자세한 것은 [`module_spec.md`](module_spec.md).
+Agent 하나 = 폴더 하나. `00_요구조건서.md`(삼성 양식을 옮긴 요구조건서)가 원본이고 나머지는 파생물입니다. 자세한 것은 [`module_spec.md`](module_spec.md).
 
 ```
 modules/D_analysis/
-├─ 00_requirement.md   요구조건서 (헤더·단계·스킬 분리·planted 신호·테스트 정의)
-├─ module.md           모듈 카드 1장 (9절) = 슬라이드 본문 정본
-├─ 01_data/  02_prompt/  03_tests/  04_answer/  05_demo_log.md  06_paste/
-├─ 07_skill/SKILL.md   스킬 형식 (name·description·5섹션·입출력 예시)
-└─ CHECK.md            14항목 통과 = 공유 가능
+├─ 00_요구조건서.md   요구조건서 (헤더·단계·스킬 분리·planted 신호·테스트 정의)
+├─ 모듈카드.md           모듈 카드 1장 (9절) = 슬라이드 본문 정본
+├─ 01_데이터/  02_지시문/  03_테스트/  04_기준본/  05_시연로그.md  06_붙여넣기/
+├─ 07_스킬/SKILL.md   스킬 형식 (name·description·5섹션·입출력 예시)
+└─ 완성판정.md            14항목 통과 = 공유 가능
 ```
 
 ```bash
@@ -67,8 +67,8 @@ python3 docs/samsung-ax/tools/check_module.py --all               # 자동 11항
 | 스크립트 | `instructor_guide.md` 2·3장 큐시트 + `deck/notes.json` 발표자 노트 (슬라이드쇼 N 키) |
 | 예상 Q&A | `faq.md` |
 | 참가자 자료 | `workbook_A판.md` · `workbook_B판.md` → `dist/참가자_*.zip` |
-| 실습 데이터 | `context_pack/modules/*/01_data` (참가자 zip에 포함) |
-| 결과물 정리표 | 각 모듈 `module.md` + `07_skill/SKILL.md` |
+| 실습 데이터 | `context_pack/modules/*/01_데이터` (참가자 zip에 포함) |
+| 결과물 정리표 | 각 모듈 `모듈카드.md` + `07_스킬/SKILL.md` |
 
 핵심 원칙은 **컨텍스트를 데이터로 분리**하는 것입니다.
 
@@ -94,8 +94,11 @@ Agent를 팀마다 따로 만들지 않고, 같은 지시문에 다른 팩을 �
 | `instruction_templates/agent02_sensing.md` | ② 시장·고객 분석 Agent 지시문 (`{{ }}`만 교체) |
 | `instruction_templates/agent03_action.md` | ③ 제안자료 작성 Agent 지시문 |
 | `instruction_templates/agent04_analysis.md` | ④ 데이터 분석 Agent 지시문 |
-| `instruction_templates/dashboard_sales.md` | **영업 현황 대시보드 템플릿.** D 모듈의 분석 앞부분만 떼어낸 것. `{{ }}`를 내 실적 파일에 맞춰 채웁니다 |
-| `instruction_templates/dashboard_sales_예시.md` | 위 템플릿을 실습 데이터로 채운 참고본. 수치가 그대로 재현됩니다 |
+| `instruction_templates/dashboard_sales.md` | **영업 현황 대시보드** (1교시 D에서) — 실적을 축별로 쪼갠 현황 한 장 |
+| `instruction_templates/dashboard_customer.md` | **고객사 동향 대시보드** (2교시 A에서) — 담당 고객사를 접근 시점 순으로 |
+| `instruction_templates/dashboard_territory.md` | **담당 구역 기회 대시보드** (2교시 B에서) — 구역 기회와 담당 배정 |
+| `instruction_templates/dashboard_proposal.md` | **제안 비교 대시보드** (3교시 C에서) — 요구조건 대조표와 안 3개 |
+| `instruction_templates/dashboard_*_예시.md` | 위 넷을 실습 데이터로 채운 참고본. 수치가 그대로 재현됩니다 |
 | `proposal_structure.md` | 제안서 공통 순서 (회사소개→제안내용→제품소개→유지보수, 삼성 확정) |
 | `review_criteria.md` | 5분 검수 체크리스트와 등급 |
 | `test_cases_guide.md` | 테스트 3종 실행 순서와 모듈별 입력 · 기대 행동 한 표 |
@@ -123,7 +126,7 @@ v2에서는 `modules/<모듈>/` 한 폴더가 이 역할을 합니다(`module_sp
 | 웹 환경 제약 | 이 팩의 대비 |
 |---|---|
 | AI가 만든 파일 다운로드가 막힐 수 있음 | 화면 출력을 복사해 저장하는 절차 (`web_environment.md` 2장) |
-| 파일 업로드가 막힐 수 있음 | 각 모듈 `06_paste/` 폴더의 마크다운 표. 가장 큰 파일도 6KB |
+| 파일 업로드가 막힐 수 있음 | 각 모듈 `06_붙여넣기/` 폴더의 마크다운 표. 가장 큰 파일도 6KB |
 | 코드 실행이 안 될 수 있음 | `*_소계.csv`. 세 축의 합계가 상세와 일치하도록 검산됨 |
 | 세션이 끊기면 지시문이 사라짐 | 지시문을 로컬 `agent*_prompt.md`로 보관하는 절차 |
 
@@ -133,10 +136,10 @@ v2에서는 `modules/<모듈>/` 한 폴더가 이 역할을 합니다(`module_sp
 ## 에이전트 4개 · 모듈당 하나 · 2시간씩
 
 ```
-A  Sensing (직판, 상장 건설사)    2h   단계 3  →  dashboard_A.html
-B  Sensing (경로, 작은 시설)      2h   단계 3  →  report_B.md → Word
-C  제안자료 작성                  2h   단계 3  →  proposal_C.html
-D  데이터 분석                    2h   단계 1  →  recommend_D.html
+A  Sensing (직판, 상장 건설사)    2h   단계 3  →  영업대시보드.html
+B  Sensing (경로, 작은 시설)      2h   단계 3  →  권역보고서.md → Word
+C  제안자료 작성                  2h   단계 3  →  제안자료.html
+D  데이터 분석                    2h   단계 1  →  제품추천.html
 ```
 
 **한 모듈이 2시간이고 그 안에서 에이전트 하나를 끝까지 만듭니다.** 단계가 셋이어도 에이전트는 하나입니다. 단계 사이에 🔒(사람만)이 없기 때문입니다.
@@ -173,7 +176,7 @@ python3 docs/samsung-ax/tools/make_dummy_data.py
 | 핸드오프 검토 | 완료 — `handoff_review.md`. P0 3건은 v2 모듈·덱에서 해결 (검증은 `deck_audit.md`) |
 | 모듈 방식 제안 | 완료 — `module_spec.md` + `_template/` + 요구조건서 4장 + `check_module.py`. **구조 확정 후 D부터 빌드** |
 | **모듈 빌드 A·B·C·D** | **네 모듈 모두 완료 — 자동 11/11 통과.** 수동 3항목(정답 재현·도구 양쪽 실행·동료 테스트)은 도구 계정 필요 |
-| SKILL.md | **4개 작성 완료** — 각 모듈 `07_skill/` |
+| SKILL.md | **4개 작성 완료** — 각 모듈 `07_스킬/` |
 | v1 팩 (`team_*/`) | 폐기 표시 완료 (`DEPRECATED.md`). **삭제는 확인 후** |
 | 슬라이드 실물 제작 | **72장 × 2판 완료** — 캔버스 88장(Version 8) · `deck/` 슬라이드쇼+PDF · `deck_audit.md` 28항목 점검 |
 | 배포 패키지 | **완료** — `tools/build_pack.py` → `dist/` (참가자 55~58 파일 · 강사 전체) |

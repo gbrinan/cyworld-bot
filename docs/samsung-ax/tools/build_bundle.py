@@ -133,9 +133,9 @@ copy_tree(os.path.join(AX, "tools"), os.path.join(OUT, "06_도구"))
 # ───────── index.html ─────────
 def row(href, label, note=""): return f'<tr><td><a href="{href}">{H.escape(label)}</a></td><td>{note}</td></tr>'
 def table(rows): return '<table class="files"><tbody>' + "".join(rows) + "</tbody></table>"
-mods = [("D_analysis", "D 데이터 분석", "1교시 · 전원", "recommend_D.html"), ("A_sensing_b2b", "A 직판 Sensing", "2교시 · B2B팀", "dashboard_A.html"),
-        ("B_sensing_partner", "B 경로 Sensing", "2교시 · 유통전략팀", "report_B.docx"), ("C_proposal", "C 제안자료 작성", "3교시 · 전원", "proposal_C.html")]
-mod_rows = "".join(f'<tr><td><a href="04_모듈/{m}/module.html">{n}</a></td><td>{w}</td><td><a href="04_모듈/{m}/index.html">폴더</a> · <a href="04_모듈/{m}/00_requirement.html">요구조건서</a> · <a href="04_모듈/{m}/01_data/index.html">01_data</a> · <a href="04_모듈/{m}/02_prompt/index.html">02_prompt</a> · <a href="04_모듈/{m}/03_tests/index.html">03_tests</a> · <a href="04_모듈/{m}/04_answer/index.html">04_answer</a> · <a href="04_모듈/{m}/07_skill/SKILL.html">SKILL.md</a></td><td class="mono">{o}</td></tr>' for m, n, w, o in mods)
+mods = [("D_analysis", "D 데이터 분석", "1교시 · 전원", "제품추천.html"), ("A_sensing_b2b", "A 직판 Sensing", "2교시 · B2B팀", "영업대시보드.html"),
+        ("B_sensing_partner", "B 경로 Sensing", "2교시 · 유통전략팀", "권역보고서.docx"), ("C_proposal", "C 제안자료 작성", "3교시 · 전원", "제안자료.html")]
+mod_rows = "".join(f'<tr><td><a href="04_모듈/{m}/모듈카드.html">{n}</a></td><td>{w}</td><td><a href="04_모듈/{m}/index.html">폴더</a> · <a href="04_모듈/{m}/00_요구조건서.html">요구조건서</a> · <a href="04_모듈/{m}/01_데이터/index.html">01_데이터</a> · <a href="04_모듈/{m}/02_지시문/index.html">02_지시문</a> · <a href="04_모듈/{m}/03_테스트/index.html">03_테스트</a> · <a href="04_모듈/{m}/04_기준본/index.html">04_기준본</a> · <a href="04_모듈/{m}/07_스킬/SKILL.html">SKILL.md</a></td><td class="mono">{o}</td></tr>' for m, n, w, o in mods)
 common = [("security_rules", "업로드 금지 목록 · 실습 대체 규칙"), ("web_environment", "웹 환경 — 결과 저장 · HTML 열기 · Word 만들기 · 붙여넣기 경로"), ("tool_paths", "도구 클릭 경로 — 에이전트 만들기 · 막혔을 때 3단"),
           ("task_decomposition", "일을 보는 법 — 설계 6단계 (과정의 첫 시간)"), ("agent_and_skill_split", "에이전트와 스킬 나누기"), ("methodology", "IPO · 7블록 · 테스트 3종 · 사람 승인"),
           ("review_criteria", "검수 6항목"), ("test_cases_guide", "테스트 3종 — 모듈별 입력과 기대 행동"), ("data_capture", "화면 데이터를 표로 가져오기 (C 모듈)"), ("skills_and_mcp", "Skill과 MCP"), ("fit_check", "CANNOT 7항목 · 업무 유형"), ("tool_budget", "실행 횟수 예산")]
@@ -188,9 +188,9 @@ section{{margin-top:36px}}
 <p class="lede">에이전트 4개 · 모듈당 2시간 · 강사 담당 6시간. 이 폴더 하나에 덱 · 강사 문서 · 참가자 자료 · 모듈 팩 · 디자인 원본 · 생성 도구가 전부 있습니다({n_files}개 파일). 마크다운은 옆의 같은 이름 .html로 바로 열립니다.</p>
 
 <div class="day">
-<div><b>1교시</b><strong>D 데이터 분석</strong><small>전원 · 오프닝 + 일 보는 법 + 방법론 4장이 이 안에</small><span class="mono">recommend_D.html</span></div>
-<div><b>2교시</b><strong>A 또는 B Sensing</strong><small>B2B팀은 A(직판) · 유통전략팀은 B(경로) · 방법론 5장이 앞에</small><span class="mono">dashboard_A.html / report_B.docx</span></div>
-<div><b>3교시</b><strong>C 제안자료 작성</strong><small>전원 · 방법론 2장이 앞에 · Skill + 클로징이 뒤에</small><span class="mono">proposal_C.html</span></div>
+<div><b>1교시</b><strong>D 데이터 분석</strong><small>전원 · 오프닝 + 일 보는 법 + 방법론 4장이 이 안에</small><span class="mono">제품추천.html</span></div>
+<div><b>2교시</b><strong>A 또는 B Sensing</strong><small>B2B팀은 A(직판) · 유통전략팀은 B(경로) · 방법론 5장이 앞에</small><span class="mono">영업대시보드.html / 권역보고서.docx</span></div>
+<div><b>3교시</b><strong>C 제안자료 작성</strong><small>전원 · 방법론 2장이 앞에 · Skill + 클로징이 뒤에</small><span class="mono">제안자료.html</span></div>
 </div>
 <div class="note warn">모든 데이터 · 고객사 · 파트너 · 모델명 · 가격은 <strong>가상</strong>입니다. 실습 중 실제 업무 파일은 올리지 않습니다.</div>
 <div class="note">이 페이지가 <strong>온라인(artifact)</strong>이면 덱 · 강사 문서 · 참가자 워크북 · 모듈 A~D · 공통 문서만 열립니다. 디자인 원본(05) · 템플릿 · E 예제 · 도구(06) · zip 세 개는 <strong>AX_전체.zip</strong>(폴더판)에 있습니다. 폴더판에서는 전부 열립니다.</div>
@@ -225,8 +225,8 @@ section{{margin-top:36px}}
 
 <section><h2>04 · 모듈 팩 — 에이전트 하나 = 폴더 하나</h2>
 <table class="files"><thead><tr><th>모듈</th><th>언제 · 누가</th><th>폴더</th><th>산출물</th></tr></thead><tbody>{mod_rows}</tbody></table>
-<p>각 폴더: <span class="mono">00_requirement.md</span>(요구조건서 · 원본) · <span class="mono">module.md</span>(모듈 카드 9절 = 슬라이드 정본) · 01_data · 02_prompt · 03_tests · 04_answer · 05_demo_log · 06_paste · 07_skill · CHECK.md.
-새 모듈을 만드는 법은 <a href="04_모듈/TEMPLATE.html">TEMPLATE.md</a>, 검증 예제는 <a href="04_모듈/E_supplier/module.html">E_supplier</a>.</p>
+<p>각 폴더: <span class="mono">00_요구조건서.md</span>(요구조건서 · 원본) · <span class="mono">모듈카드.md</span>(모듈 카드 9절 = 슬라이드 정본) · 01_데이터 · 02_지시문 · 03_테스트 · 04_기준본 · 05_demo_log · 06_붙여넣기 · 07_스킬 · 완성판정.md.
+새 모듈을 만드는 법은 <a href="04_모듈/TEMPLATE.html">TEMPLATE.md</a>, 검증 예제는 <a href="04_모듈/E_supplier/모듈카드.html">E_supplier</a>.</p>
 <h3>공통 문서 (common/)</h3>
 {table([common_rows])}
 </section>

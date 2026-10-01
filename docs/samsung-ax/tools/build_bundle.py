@@ -121,7 +121,7 @@ copy_files([os.path.join(D, f) for f in ["A판.html", "B판.html", "A판.pdf", "
 # 02 강사 문서
 copy_files([os.path.join(AX, f) for f in ["instructor_guide.md", "faq.md", "rehearsal_checklist.md", "deck_audit.md", "slides_outline.md", "design_handoff_package.md", "validation_log.md", "module_spec.md", "agent_structure_v2.md", "handoff_review.md", "README.md"]], os.path.join(OUT, "02_강사"))
 # 03 참가자
-copy_files([os.path.join(AX, "workbook_A판.md"), os.path.join(AX, "workbook_B판.md")] + [os.path.join(DIST, z) for z in ["참가자_A판.zip", "참가자_B판.zip"] if os.path.exists(os.path.join(DIST, z))], os.path.join(OUT, "03_참가자"))
+copy_files([os.path.join(AX, "workbook_A판.md"), os.path.join(AX, "workbook_B판.md")] + [os.path.join(DIST, z) for z in ["AX_실습파일.zip"] if os.path.exists(os.path.join(DIST, z))], os.path.join(OUT, "03_참가자"))
 # 04 모듈 + 공통
 copy_tree(os.path.join(AX, "context_pack", "modules"), os.path.join(OUT, "04_모듈"))
 copy_tree(os.path.join(AX, "context_pack", "common"), os.path.join(OUT, "04_모듈", "common"))
@@ -133,8 +133,8 @@ copy_tree(os.path.join(AX, "tools"), os.path.join(OUT, "06_도구"))
 # ───────── index.html ─────────
 def row(href, label, note=""): return f'<tr><td><a href="{href}">{H.escape(label)}</a></td><td>{note}</td></tr>'
 def table(rows): return '<table class="files"><tbody>' + "".join(rows) + "</tbody></table>"
-mods = [("D_analysis", "D 데이터 분석", "1교시 · 전원", "대시보드.html"), ("A_sensing_b2b", "A 직판 Sensing", "2교시 · B2B팀", "영업대시보드.html"),
-        ("B_sensing_partner", "B 경로 Sensing", "2교시 · 유통전략팀", "권역보고서.docx"), ("C_proposal", "C 제안자료 작성", "3교시 · 전원", "제안자료.html")]
+mods = [("A_sensing_b2b", "A 직판 Sensing", "세션1-1 · B2B팀", "영업대시보드.html"), ("B_sensing_partner", "B 경로 Sensing", "세션1-2 · 유통전략팀", "권역보고서.docx"),
+        ("D_analysis", "D 대시보드 · 데이터 분석", "세션2 · 3 · 전원", "대시보드.html · 리뷰.md"), ("C_proposal", "C 제안자료 작성", "세션4 · 전원", "제안자료.html")]
 mod_rows = "".join(f'<tr><td><a href="04_모듈/{m}/모듈카드.html">{n}</a></td><td>{w}</td><td><a href="04_모듈/{m}/index.html">폴더</a> · <a href="04_모듈/{m}/00_요구조건서.html">요구조건서</a> · <a href="04_모듈/{m}/01_데이터/index.html">01_데이터</a> · <a href="04_모듈/{m}/02_지시문/index.html">02_지시문</a> · <a href="04_모듈/{m}/03_테스트/index.html">03_테스트</a> · <a href="04_모듈/{m}/04_기준본/index.html">04_기준본</a> · <a href="04_모듈/{m}/07_스킬/SKILL.html">SKILL.md</a></td><td class="mono">{o}</td></tr>' for m, n, w, o in mods)
 common = [("security_rules", "업로드 금지 목록 · 실습 대체 규칙"), ("web_environment", "웹 환경 — 결과 저장 · HTML 열기 · Word 만들기 · 붙여넣기 경로"), ("tool_paths", "도구 클릭 경로 — 에이전트 만들기 · 막혔을 때 3단"),
           ("task_decomposition", "일을 보는 법 — 설계 6단계 (과정의 첫 시간)"), ("agent_and_skill_split", "에이전트와 스킬 나누기"), ("methodology", "IPO · 7블록 · 테스트 3종 · 사람 승인"),
@@ -188,23 +188,24 @@ section{{margin-top:36px}}
 <p class="lede">에이전트 4개 · 모듈당 2시간 · 강사 담당 6시간. 이 폴더 하나에 덱 · 강사 문서 · 참가자 자료 · 모듈 팩 · 디자인 원본 · 생성 도구가 전부 있습니다({n_files}개 파일). 마크다운은 옆의 같은 이름 .html로 바로 열립니다.</p>
 
 <div class="day">
-<div><b>1교시</b><strong>D 데이터 분석</strong><small>전원 · 오프닝 + 일 보는 법 + 방법론 4장이 이 안에</small><span class="mono">대시보드.html</span></div>
-<div><b>2교시</b><strong>A 또는 B Sensing</strong><small>B2B팀은 A(직판) · 유통전략팀은 B(경로) · 방법론 5장이 앞에</small><span class="mono">영업대시보드.html / 권역보고서.docx</span></div>
-<div><b>3교시</b><strong>C 제안자료 작성</strong><small>전원 · 방법론 2장이 앞에 · Skill + 클로징이 뒤에</small><span class="mono">제안자료.html</span></div>
+<div><b>세션0</b><strong>오프닝</strong><small>전원 · 일 보는 법 + 방법론 5장</small><span class="mono">—</span></div>
+<div><b>세션1</b><strong>A 또는 B Sensing</strong><small>B2B팀은 A(1-1 직판) · 유통전략팀은 B(1-2 경로) · 방법론 4장이 실습 2와 3 사이</small><span class="mono">영업대시보드.html / 권역보고서.docx</span></div>
+<div><b>세션2 · 3</b><strong>D 대시보드 → 데이터 분석</strong><small>전원 · 세션1의 고객 6곳 매출</small><span class="mono">대시보드.html · 리뷰.md</span></div>
+<div><b>세션4</b><strong>C 제안자료 작성</strong><small>전원 · 방법론 2장이 앞에 · Skill + 클로징이 뒤에</small><span class="mono">제안자료.html</span></div>
 </div>
 <div class="note warn">모든 데이터 · 고객사 · 파트너 · 모델명 · 가격은 <strong>가상</strong>입니다. 실습 중 실제 업무 파일은 올리지 않습니다.</div>
-<div class="note">이 페이지가 <strong>온라인(artifact)</strong>이면 덱 · 강사 문서 · 참가자 워크북 · 모듈 A~D · 공통 문서만 열립니다. 디자인 원본(05) · 템플릿 · E 예제 · 도구(06) · zip 세 개는 <strong>AX_전체.zip</strong>(폴더판)에 있습니다. 폴더판에서는 전부 열립니다.</div>
+<div class="note">이 페이지가 <strong>온라인(artifact)</strong>이면 덱 · 강사 문서 · 참가자 워크북 · 모듈 A~D · 공통 문서만 열립니다. 디자인 원본(05) · 템플릿 · E 예제 · 도구(06) · zip은 <strong>AX_전체.zip</strong>(폴더판)에 있습니다. 폴더판에서는 전부 열립니다.</div>
 
 <section><h2>01 · 덱 — 강의 순서 72장 × 2판</h2>
-<p>브라우저에서 열고 ← → 로 넘깁니다. <strong>N</strong> 키로 발표자 노트, 우하단에 <span class="mono">n / 72 · 교시 · 장 이름</span>. 워크북 · 강사 가이드의 슬라이드 번호가 이 번호입니다.</p>
+<p>브라우저에서 열고 ← → 로 넘깁니다. <strong>N</strong> 키로 발표자 노트, 우하단에 <span class="mono">n / 72 · 세션 · 장 이름</span>. 워크북 · 강사 가이드의 슬라이드 번호가 이 번호입니다.</p>
 {table([row("01_덱/A판.html", "A판.html", "B2B팀 — D · A · C"), row("01_덱/B판.html", "B판.html", "B2B유통전략팀 — D · B · C"),
         row("01_덱/A판.pdf", "A판.pdf", "인쇄용 72쪽"), row("01_덱/B판.pdf", "B판.pdf", "인쇄용 72쪽"),
-        row("01_덱/A판_순서.txt", "A판_순서.txt · B판_순서.txt", "강의 순서의 정본 — 교시 구분선 포함"), row("01_덱/notes.json", "notes.json", "발표자 노트 원본")])}
+        row("01_덱/A판_순서.txt", "A판_순서.txt · B판_순서.txt", "강의 순서의 정본 — 세션 구분선 포함"), row("01_덱/notes.json", "notes.json", "발표자 노트 원본")])}
 <div class="note">캔버스(Claude Design): <a href="https://claude.ai/code/artifact/084d98a0-07fa-4d9a-921c-e80d408e9ca4">artifact 084d98a0 · Version 8</a> — 아트보드 88장. 원본은 05_디자인.</div>
 </section>
 
 <section><h2>02 · 강사 문서</h2>
-{table([row("02_강사/instructor_guide.html", "instructor_guide", "진행 가이드 v2 — 교시별 큐시트 · 되묻기 · 보조강사 운영 · 상황 대응"),
+{table([row("02_강사/instructor_guide.html", "instructor_guide", "진행 가이드 v2 — 세션별 큐시트 · 되묻기 · 보조강사 운영 · 상황 대응"),
         row("02_강사/faq.html", "faq", "예상 Q&A — 웹 환경 · 도구 제약 · 보안 · 실습 · 설계 · 현업 적용 · 사내강사"),
         row("02_강사/rehearsal_checklist.html", "rehearsal_checklist", "환경 리허설 점검표 + 삼성 확인 요청 7가지 — 실행은 삼성 계정 필요"),
         row("02_강사/deck_audit.html", "deck_audit", "덱 28항목 점검 기록 · §4 남은 것(삼성 몫)"),
@@ -219,8 +220,7 @@ section{{margin-top:36px}}
 <section><h2>03 · 참가자 자료</h2>
 {table([row("03_참가자/workbook_A판.html", "workbook_A판", "B2B팀 워크북 — 실습 슬라이드와 같은 파일 이름 · 신호 · 막혔을 때"),
         row("03_참가자/workbook_B판.html", "workbook_B판", "유통전략팀 워크북"),
-        row("03_참가자/참가자_A판.zip", "참가자_A판.zip", "배포용 — 데이터 · 지시문 · 테스트 · 기준본 · paste · SKILL.md · 공통 문서 · 워크북 · PDF (zip은 폴더판 · AX_전체.zip 안에만)"),
-        row("03_참가자/참가자_B판.zip", "참가자_B판.zip", "배포용 (B판) — zip은 폴더판에만")])}
+        row("03_참가자/AX_실습파일.zip", "AX_실습파일.zip", "배포용 — 세션1 A · B / 세션2 대시보드 / 세션3 데이터분석 / 세션4 제안자료. 프롬프트 · 자료 · 붙여넣기 · 기준본 · 스킬 · 템플릿 · 공통 문서 · 워크북 · PDF. 함정 · 실패 데이터는 빠짐 (zip은 폴더판에만)")])}
 </section>
 
 <section><h2>04 · 모듈 팩 — 에이전트 하나 = 폴더 하나</h2>
@@ -247,7 +247,7 @@ python3 tools/build_bundle.py              # 이 폴더</pre>
 
 <section><h2>남은 것 — 삼성 · 강사 몫</h2>
 <ul><li>도구 화면 캡처 5장 (O6 · O7 · D7 · A8 · B8) — 리허설 점검표 확인 요청 1~4번 답에 따라</li>
-<li>CI 컬러 토큰 2개 · 로고</li><li>오프닝 10분 귀속 확인 — 받아주면 D 실습 1을 35분으로</li>
+<li>CI 컬러 토큰 2개 · 로고</li><li>세션0 길이 확인 — 지금 60분 가정</li>
 <li>90분 축약 16장 확정</li><li>14px 표(분해표 · 비교표) 뒷줄 판독 리허설</li></ul>
 </section>
 <div class="foot">저장소 docs/samsung-ax · 브랜치 claude/agent-curriculum-planning-ftcw7s · 모든 데이터는 가상입니다</div>

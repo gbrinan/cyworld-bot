@@ -56,7 +56,7 @@ fit();show(parseInt(location.hash.slice(1)||'1',10)-1);
 """
 os.makedirs(OUT, exist_ok=True)
 for name, names in ORDER.items():
-    parts = []; session = "1교시"
+    parts = []; session = "세션0 · 오프닝"
     for k, stem in enumerate(names, 1):
         session = SESSION_BREAKS[name].get(k, session)
         parts.append(f'<section class="slide" data-name="{html.escape(stem)}" data-session="{session}">\n{root_of(stem)}\n</section>')

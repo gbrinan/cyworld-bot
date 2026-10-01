@@ -1,6 +1,6 @@
 # 제안 비교 대시보드 — 채운 예시
 
-> `dashboard_proposal.md`의 `채우는 칸`을 **3교시 C 실습 데이터로 채워 본 것**입니다.
+> `dashboard_proposal.md`의 `채우는 칸`을 **세션4 C 실습 데이터로 채워 본 것**입니다.
 > 수치는 `modules/C_proposal/01_데이터/`에서 그대로 재현됩니다.
 
 ## 채우는 칸

@@ -19,31 +19,31 @@
     <div style="font-size: 12px; letter-spacing: 0.18em; color: #1c3f94; font-weight: 600;">모듈 D</div>
     <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em;">두 갈래 경로</h2>
     <div style="flex-grow: 1;"></div>
-    <div style="font-size: 12px; color: #6b6660;">내 도구에서 코드 실행이 되는가</div>
+    <div style="font-size: 12px; color: #6b6660;">내 도구에서 파일을 올려 계산이 되는가</div>
   </div>
   <div style="flex-grow: 1; display: flex; flex-direction: column; padding-top: 24px; gap: 18px;">
 
     <div style="flex-grow: 1; display: flex; gap: 14px; align-items: stretch;">
       <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; border-top: 4px solid #0f6b4f; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
         <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #0f6b4f;">코드 실행 O</span><span style="font-size: 14px; color: #6b6660;">ChatGPT 데이터 분석이 켜져 있다</span></div>
-        <div style="font-size: 16px; line-height: 1.55;">원본 <span class="mono" style="font-size: 13px;">판매실적.csv</span> 한 개를 그대로 올립니다. 52행을 코드로 더하므로 합계가 맞습니다.</div>
+        <div style="font-size: 16px; line-height: 1.55;"><span class="mono" style="font-size: 13px;">매출데이터.csv</span>와 <span class="mono" style="font-size: 13px;">매출데이터_소계.csv</span>를 그대로 올립니다. 1,093행을 코드로 더하므로 합계가 맞고, 대시보드 여섯 칸이 전부 나옵니다.</div>
         <div style="flex-grow: 1;"></div>
-        <div style="font-size: 14px; color: #6b6660;">올리는 파일 <strong style="font-weight: 600; color: #111821;">2개</strong> — 원본 + 대상수요처.md</div>
+        <div style="font-size: 14px; color: #6b6660;">올리는 파일 <strong style="font-weight: 600; color: #111821;">2개</strong> — 원본 + 소계</div>
       </div>
       <div style="background: #ffffff; border: 1px solid #e4e2db; flex: 1 0 0; border-top: 4px solid #9a6408; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
-        <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #9a6408;">코드 실행 X</span><span style="font-size: 14px; color: #6b6660;">Gemini, 또는 실행이 막힌 포털</span></div>
-        <div style="font-size: 16px; line-height: 1.55;">AI가 52행을 머릿속으로 더하면 <strong style="font-weight: 600;">산술 오류</strong>가 납니다. 원본 대신 사람이 미리 집계한 두 파일을 올립니다.</div>
+        <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #9a6408;">코드 실행 X</span><span style="font-size: 14px; color: #6b6660;">Gemini, 또는 업로드가 막힌 포털</span></div>
+        <div style="font-size: 16px; line-height: 1.55;">AI가 1,093행을 머릿속으로 더하면 <strong style="font-weight: 600;">산술 오류</strong>가 납니다. 원본 대신 <span class="mono" style="font-size: 13px;">06_붙여넣기/</span>의 집계표를 붙여넣습니다.</div>
         <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px;">
-          <div><span class="mono" style="font-size: 13px;">판매실적_소계.csv</span> <span style="color: #6b6660;">— 네 축 합계, 검산용</span></div>
-          <div><span class="mono" style="font-size: 13px;">판매실적_호텔모델별.csv</span> <span style="color: #6b6660;">— 모델 단위 집계, 추천용</span></div>
+          <div><span class="mono" style="font-size: 13px;">매출데이터.md</span> <span style="color: #6b6660;">— 월 × 품목 합계 (만원)</span></div>
+          <div><span class="mono" style="font-size: 13px;">매출데이터_소계.md</span> <span style="color: #6b6660;">— 다섯 축 합계, 검산용</span></div>
         </div>
         <div style="flex-grow: 1;"></div>
-        <div style="font-size: 14px; color: #6b6660;">올리는 파일 <strong style="font-weight: 600; color: #111821;">3개</strong> — 소계본 + 호텔모델별 + 대상수요처.md</div>
+        <div style="font-size: 14px; color: #6b6660;">붙여넣는 표 <strong style="font-weight: 600; color: #111821;">2개</strong> — 한눈에 · 월별 · 품목별까지</div>
       </div>
     </div>
     <div style="display: flex; gap: 14px;">
-      <div style="background: #ffffff; border: 1px solid #e4e2db; border-left: 4px solid #9a2c2c; padding: 14px 18px; flex: 1 0 0; display: flex; align-items: center; gap: 14px;"><div style="font-size: 19px; font-weight: 600; color: #9a2c2c;">소계본만 올리면 추천이 안 나옵니다.</div><div style="font-size: 14px; color: #3d4650;">버티컬별 금액까지만 나오고 TOP 3가 비어 있으면 호텔모델별 파일을 빠뜨린 것입니다.</div></div>
-      <div style="background: #ffffff; border: 1px solid #e4e2db; width: 430px; flex-shrink: 0; padding: 12px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;">검산은 어느 갈래든 같습니다 — 버티컬별 = 제품군별 = 지역별 = 모델명별 = <strong style="font-weight: 600; color: #111821;">570,258,000</strong>. 하나라도 다르면 중단.</div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; border-left: 4px solid #9a2c2c; padding: 14px 18px; flex: 1 0 0; display: flex; align-items: center; gap: 14px;"><div style="font-size: 19px; font-weight: 600; color: #9a2c2c;">붙여넣기본으로는 일별 · 판매처 화면이 안 나옵니다.</div><div style="font-size: 14px; color: #3d4650;">집계표에 하루 단위와 판매처가 없습니다. 파일을 올릴 수 있는 도구로 바꾸는 것이 답입니다.</div></div>
+      <div style="background: #ffffff; border: 1px solid #e4e2db; width: 430px; flex-shrink: 0; padding: 12px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;">검산은 어느 갈래든 같습니다 — 다섯 축 모두 <strong style="font-weight: 600; color: #111821;">8,623,580,000</strong>. 하나라도 다르면 중단.</div>
     </div>
   </div>
   <div style="display: flex; justify-content: space-between; font-size: 12px; color: #9a958d; border-top: 1px solid #d9d7d0; padding-top: 12px; margin-top: 18px;">

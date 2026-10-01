@@ -276,8 +276,8 @@ button:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px s
 .seg button{border:0;border-right:1px solid var(--rule);border-radius:0;background:var(--field);padding:5px 10px}
 .seg button:last-child{border-right:0}
 .seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper);font-weight:600}
-.persona{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
-.persona button{font-size:12.5px;padding:4px 10px;border-radius:14px}
+.how{font-size:13.5px;color:var(--ink2);margin:0 0 8px}
+.hint{color:var(--mute);font-size:12px}
 .scope{font-size:13px;color:var(--ink2);margin:8px 0 0;padding:8px 12px;border-left:3px solid var(--s1);background:var(--panel);display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .chip{display:inline-flex;align-items:center;gap:4px;background:var(--field);border:1px solid var(--rule);border-radius:12px;padding:1px 4px 1px 9px;font-size:12.5px;color:var(--ink)}
 .chip button{border:0;background:transparent;padding:0 5px;font-size:13px;line-height:1.2;color:var(--ink2)}
@@ -300,7 +300,6 @@ thead th{font-size:12px;color:var(--mute);font-weight:600;background:var(--panel
 tbody tr.drill{cursor:pointer}
 tbody tr.drill:hover,tbody tr.drill:focus{background:var(--hl)}
 tbody tr.tot td,tbody tr.tot th{font-weight:700;background:var(--panel)}
-.share{display:inline-block;height:8px;background:var(--s1);border-radius:0 4px 4px 0;vertical-align:middle;min-width:2px}
 .ctl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:4px 0 0;font-size:12.5px;color:var(--mute)}
 .why{display:grid;grid-template-columns:minmax(90px,150px) 1fr 120px 78px;gap:4px 10px;align-items:center;margin-top:10px;font-size:13px}
 .why .lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -329,16 +328,16 @@ font-size:12.5px;line-height:1.5;padding:7px 10px;border-radius:4px;box-shadow:0
 JS=r"""
 const LK=__LK__, R=__ROWS__, LAST=__LAST__, Y=2026, PY=2025;
 const LASTM=Math.floor(LAST/100)%100, LASTD=LAST%100;
-const DIM={S:{i:1,n:'판매처'},C:{i:2,n:'수요처'},P:{i:3,n:'파트'},I:{i:4,n:'품목구분'},M:{i:5,n:'모델명'}};
+const DIM={S:{i:1,n:'판매처'},C:{i:2,n:'수요처'},P:{i:3,n:'파트'},I:{i:4,n:'품목'},M:{i:5,n:'모델'}};
 const NEXT={S:'C',C:'I',P:'C',I:'M',M:null};
 const FKEY={S:'dealer',C:'acct',P:'part',I:'item'};
-const st={m:LASTM,part:-1,dealer:-1,acct:-1,item:-1,dim:'S',mode:'cmp',wc:'py',wd:'C',day:0};
+const st={m:LASTM,part:-1,dealer:-1,acct:-1,item:-1,dim:'S',day:0};
 const $=id=>document.getElementById(id), tip=$('tip');
 const nf=new Intl.NumberFormat('ko-KR');
 const won=n=>nf.format(Math.round(n));
 const mil=n=>(Math.round(n/1e5)/10).toLocaleString('ko-KR',{minimumFractionDigits:1,maximumFractionDigits:1});
-const short=n=>{const a=Math.abs(n),s=n<0?'−':'';return a>=1e8?s+(a/1e8).toFixed(a>=1e9?0:1)+'억':a>=1e4?s+nf.format(Math.round(a/1e4))+'만':s+nf.format(a)};
-const rate=(a,b)=>b===0?(a>0?'신규':'—'):((a/b-1)*100>=0?'+':'−')+Math.abs((a/b-1)*100).toFixed(1)+'%';
+const short=n=>{const a=Math.abs(n),s=n<0?'−':'';return a>=1e8?s+(a/1e8).toFixed(1).replace(/\.0$/,'')+'억':a>=1e4?s+nf.format(Math.round(a/1e4))+'만':s+nf.format(a)};
+const rate=(a,b)=>b===0?(a>0?'이전 0':'—'):((a/b-1)*100>=0?'+':'−')+Math.abs((a/b-1)*100).toFixed(1)+'%';
 const signed=n=>(n>=0?'+':'−')+won(Math.abs(n));
 const ymd=(y,m,d)=>y*10000+m*100+d, dim=(y,m)=>new Date(y,m,0).getDate();
 const cutoffDay=m=>m===LASTM?LASTD:dim(Y,m);
@@ -349,7 +348,7 @@ const eun=w=>w+(jong(w)?'은':'는'), ro=w=>{const j=jong(w);return w+(j&&j!==8?
 function el(t,c,x){const n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=String(x);return n}
 function svg(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n}
 
-/* 기간 — 당월은 1일부터 기준일까지. 비교 기간은 같은 날짜까지만 자른다 (동기간) */
+/* 기간 — 이번 달은 1일부터 기준일까지. 비교하는 쪽도 같은 날짜까지만 자른다 */
 function periods(m){
   const cd=cutoffDay(m), pmY=m===1?PY:Y, pmM=m===1?12:m-1;
   return {cd,
@@ -388,36 +387,23 @@ function fillSelect(id,list,label){
 }
 function setupControls(){
   const ms=$('fm');for(let m=1;m<=LASTM;m++){const o=el('option',null,Y+'년 '+m+'월'+(m===LASTM?' ('+LASTD+'일까지)':''));o.value=m;ms.appendChild(o)}
-  fillSelect('fp',LK.P);fillSelect('fs',LK.S);fillSelect('fc',LK.C);fillSelect('fi',LK.I);
-  [['fm','m'],['fp','part'],['fs','dealer'],['fc','acct'],['fi','item']].forEach(([id,k])=>
+  fillSelect('fp',LK.P);fillSelect('fc',LK.C);fillSelect('fi',LK.I);
+  [['fm','m'],['fp','part'],['fc','acct'],['fi','item']].forEach(([id,k])=>
     $(id).addEventListener('change',e=>{st[k]=+e.target.value;st.day=0;render()}));
-  $('reset').addEventListener('click',()=>{Object.assign(st,{m:LASTM,part:-1,dealer:-1,acct:-1,item:-1,dim:'S',mode:'cmp',day:0});render()});
-  segment('dimSeg',Object.keys(DIM).map(k=>[k,DIM[k].n]),()=>st.dim,v=>{st.dim=v;render()});
-  segment('modeSeg',[['cmp','비교'],['mon','월별']],()=>st.mode,v=>{st.mode=v;render()});
-  segment('wcSeg',[['py','전년 동월'],['pm','전월'],['ytd','전년 누계']],()=>st.wc,v=>{st.wc=v;render()});
-  segment('wdSeg',[['C','수요처'],['I','품목구분'],['S','판매처'],['P','파트'],['M','모델명']],()=>st.wd,v=>{st.wd=v;render()});
-  document.querySelectorAll('[data-persona]').forEach(b=>b.addEventListener('click',()=>{
-    const p=b.dataset.persona;
-    if(p==='exec'){st.wc='py';st.wd='C';render();$('sec-trend').scrollIntoView({behavior:'smooth'})}
-    if(p==='lead'){st.dim='S';st.mode='cmp';render();$('sec-day').scrollIntoView({behavior:'smooth'})}
-    if(p==='item'){st.dim='I';st.mode='mon';render();$('sec-pivot').scrollIntoView({behavior:'smooth'})}
-    if(p==='dealer'){render();$('sec-dealer').scrollIntoView({behavior:'smooth'})}
-  }));
-}
-function segment(id,opts,get,set){
-  const host=$(id);host.replaceChildren();
-  for(const [v,t] of opts){const b=el('button',null,t);b.type='button';b.dataset.v=v;b.addEventListener('click',()=>set(v));host.appendChild(b)}
+  $('reset').addEventListener('click',()=>{Object.assign(st,{m:LASTM,part:-1,dealer:-1,acct:-1,item:-1,dim:'S',day:0});render()});
+  const host=$('dimSeg');
+  for(const k of ['S','C','P','I','M']){const b=el('button',null,DIM[k].n+'별');b.type='button';b.dataset.v=k;
+    b.addEventListener('click',()=>{st.dim=k;render()});host.appendChild(b)}
 }
 function syncControls(){
-  $('fm').value=st.m;$('fp').value=st.part;$('fs').value=st.dealer;$('fc').value=st.acct;$('fi').value=st.item;
-  for(const [id,k] of [['dimSeg','dim'],['modeSeg','mode'],['wcSeg','wc'],['wdSeg','wd']])
-    $(id).querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===st[k])));
+  $('fm').value=st.m;$('fp').value=st.part;$('fc').value=st.acct;$('fi').value=st.item;
+  $('dimSeg').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===st.dim)));
 }
 
 /* 지금 보고 있는 것 */
 function renderScope(rows,P){
   const host=$('scope');host.replaceChildren();
-  host.appendChild(el('strong',null,'지금 보고 있는 것 —'));
+  host.appendChild(el('strong',null,'지금 보는 범위 —'));
   host.appendChild(el('span',null,Y+'년 '+st.m+'월 1~'+P.cd+'일'));
   let any=false;
   for(const [k,f,n] of [['P','part','파트'],['S','dealer','판매처'],['C','acct','수요처'],['I','item','품목']]){
@@ -425,9 +411,10 @@ function renderScope(rows,P){
     const c=el('span','chip',n+' = '+LK[k][st[f]]);const x=el('button',null,'✕');x.type='button';
     x.setAttribute('aria-label',n+' 조건 풀기');x.addEventListener('click',()=>{st[f]=-1;render()});c.appendChild(x);host.appendChild(c);
   }
-  if(!any)host.appendChild(el('span',null,'· 조건 없음 (전체)'));
+  if(!any)host.appendChild(el('span',null,'· 전체'));
+  else host.appendChild(el('span','hint','(✕를 누르면 그 조건이 풀립니다)'));
   const all=sum(R,P.ytd), mine=sum(rows,P.ytd);
-  host.appendChild(el('span',null,'| 연 누계 기준 전체 '+short(all)+'원 중 '+short(mine)+'원 ('+(all?(mine/all*100).toFixed(1):'0')+'%)'));
+  if(any)host.appendChild(el('span',null,'| 올해 누계 '+short(all)+'원 중 '+short(mine)+'원 ('+(all?(mine/all*100).toFixed(1):'0')+'%)'));
 }
 
 /* 한눈에 */
@@ -435,19 +422,19 @@ function renderTiles(rows,P){
   const host=$('tiles');host.replaceChildren();
   const cur=sum(rows,P.cur),pm=sum(rows,P.pm),py=sum(rows,P.py),ytd=sum(rows,P.ytd),pytd=sum(rows,P.pytd);
   const T=[
-    ['당월 누계 ('+st.m+'/1~'+st.m+'/'+P.cd+')',won(cur),P.cd+'일치 · 원'],
-    ['전월 동기간 대비',rate(cur,pm),P.pmLabel+' 1~'+Math.min(P.cd,31)+'일 '+short(pm)+'원 → '+short(cur)+'원'],
-    ['전년 동월 동기간 대비',rate(cur,py),PY+'년 '+st.m+'월 1~'+P.cd+'일 '+short(py)+'원 → '+short(cur)+'원'],
-    ['연 누계 (1/1~'+st.m+'/'+P.cd+')',won(ytd),'전년 같은 기간 '+short(pytd)+'원 · '+rate(ytd,pytd)],
+    ['이번 달 ('+st.m+'/1~'+st.m+'/'+P.cd+')',won(cur)+'원',P.cd+'일까지 들어온 매출'],
+    ['지난달 같은 날짜까지와 비교',rate(cur,pm),P.pmLabel+' 1~'+Math.min(P.cd,31)+'일 '+short(pm)+'원 → '+short(cur)+'원'],
+    ['작년 같은 달 같은 날짜까지와 비교',rate(cur,py),PY+'년 '+st.m+'월 1~'+P.cd+'일 '+short(py)+'원 → '+short(cur)+'원'],
+    ['올해 누계 (1/1~'+st.m+'/'+P.cd+')',won(ytd)+'원','작년 같은 기간 '+short(pytd)+'원 대비 '+rate(ytd,pytd)],
   ];
   for(const [k,v,s] of T){const t=el('div','tile');t.append(el('div','k',k),el('div','v',v),el('div','s',s));host.appendChild(t)}
   const pmf=sum(rows,P.pmFull);
-  $('tileNote').textContent=st.m===LASTM
-    ? '당월은 '+P.cd+'일까지만 들어 있습니다. '+P.pmLabel+' 전체('+short(pmf)+'원)와 견주면 '+rate(cur,pmf)+'로 보이지만, 같은 날짜까지 자른 '+P.pmLabel+'과는 '+rate(cur,pm)+'입니다. 비교는 항상 동기간으로 합니다.'
-    : '전월 · 전년 비교는 모두 같은 날짜까지 자른 동기간입니다. 증감률 옆에 원래 값 두 개를 같이 둡니다.';
+  $('tileNote').textContent=P.cd<dim(Y,st.m)
+    ? '이번 달은 '+P.cd+'일까지만 들어 있습니다. '+P.pmLabel+' 한 달 전체('+short(pmf)+'원)와 견주면 '+rate(cur,pmf)+'로 보이지만, '+P.pmLabel+'도 '+P.cd+'일까지만 자르면 '+rate(cur,pm)+'입니다. 이 화면의 비교는 전부 같은 날짜까지 자른 값입니다.'
+    : '이 화면의 비교는 전부 같은 날짜까지 자른 값입니다. 증감률 옆에 원래 금액 두 개를 같이 적었습니다.';
 }
 
-/* 월별 추이 — 임원 */
+/* 월별 — 올해와 작년 */
 function niceStep(v){if(v<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(v))),f=v/p;return (f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*p}
 /* 눈금 n칸에 맞춰 위쪽을 깔끔한 수로 올린다 → {max, n} */
 function ticks(v,n){const st=niceStep(Math.max(v,1)/n),k=Math.max(1,Math.ceil(Math.max(v,1)/st));return {max:st*k,n:k}}
@@ -543,51 +530,41 @@ function renderDaily(rows,P){
   t.appendChild(tb);tw.appendChild(t);dh.appendChild(tw);
 }
 
-/* 피벗 — 보직장 · 품목 담당. 행을 누르면 그 값으로 걸러지고 한 단계 아래로 내려간다 */
+/* 나눠 보기 — 줄을 누르면 그 값으로 걸러지고 한 단계 안으로 들어간다 */
 function group(rows,k){const g=new Map();for(const r of rows){const key=r[DIM[k].i];if(!g.has(key))g.set(key,[]);g.get(key).push(r)}return g}
 function renderPivot(rows,P){
   const host=$('pivot');host.replaceChildren();
-  const k=st.dim,g=group(rows,k),ytdAll=sum(rows,P.ytd);
+  const k=st.dim,g=group(rows,k);
   const keys=[...g.keys()].sort((a,b)=>sum(g.get(b),P.ytd)-sum(g.get(a),P.ytd));
-  $('pivotHint').textContent=NEXT[k]?'행을 누르면 그 '+ro(DIM[k].n)+' 걸러지고 '+DIM[NEXT[k]].n+'별로 내려갑니다.':'모델명이 가장 아래 단계입니다.';
+  $('pivotHint').textContent=NEXT[k]?'줄을 누르면 그 '+DIM[k].n+' 안으로 들어가 '+DIM[NEXT[k]].n+'별로 보여 줍니다.':'모델이 가장 안쪽입니다. 위의 ✕를 누르면 다시 나옵니다.';
+  const cols=[['이번 달',r=>mil(sum(r,P.cur))],['지난달 대비',r=>rate(sum(r,P.cur),sum(r,P.pm))],['작년 대비',r=>rate(sum(r,P.cur),sum(r,P.py))],
+              ['올해 누계',r=>mil(sum(r,P.ytd))],['누계 작년 대비',r=>rate(sum(r,P.ytd),sum(r,P.pytd))]];
   const tw=el('div','tw'),t=el('table'),hd=el('thead'),tr=el('tr');
-  let cols;
-  if(st.mode==='cmp'){
-    cols=[['당월',r=>sum(r,P.cur),'n'],['전월 동기간',r=>sum(r,P.pm),'n'],['전월비',r=>rate(sum(r,P.cur),sum(r,P.pm)),'t'],
-          ['전년 동월',r=>sum(r,P.py),'n'],['전년비',r=>rate(sum(r,P.cur),sum(r,P.py)),'t'],
-          ['연 누계',r=>sum(r,P.ytd),'n'],['누계 전년비',r=>rate(sum(r,P.ytd),sum(r,P.pytd)),'t'],['비중',r=>sum(r,P.ytd),'b']];
-  }else{
-    cols=[];for(let m=1;m<=st.m;m++){const e=m===st.m?P.cd:dim(Y,m);cols.push([m+'월'+(m===st.m&&P.cd<dim(Y,m)?'*':''),r=>sum(r,[ymd(Y,m,1),ymd(Y,m,e)]),'n'])}
-    cols.push(['연 누계',r=>sum(r,P.ytd),'n'],['비중',r=>sum(r,P.ytd),'b']);
-  }
-  tr.appendChild(el('th',null,DIM[k].n));for(const [n,,ty] of cols)tr.appendChild(el('th',ty==='b'?'':'num',n));
+  tr.appendChild(el('th',null,DIM[k].n));for(const [n] of cols)tr.appendChild(el('th','num',n));
   hd.appendChild(tr);t.appendChild(hd);const tb=el('tbody');
-  const mxShare=Math.max(...keys.map(x=>sum(g.get(x),P.ytd)),1);
-  const cell=(ty,v)=>{if(ty==='n')return el('td','num',mil(v));if(ty==='t')return el('td','num',v);
-    const td=el('td');const sp=el('span','share');sp.style.width=(v/mxShare*80)+'px';td.append(sp,el('span',null,' '+(ytdAll?(v/ytdAll*100).toFixed(1):'0')+'%'));return td};
   for(const key of keys){const rr=g.get(key),row=el('tr',NEXT[k]?'drill':'');
-    row.appendChild(el('th',null,LK[k][key]));for(const [,f,ty] of cols)row.appendChild(cell(ty,f(rr)));
-    if(NEXT[k]){row.tabIndex=0;row.setAttribute('role','button');row.setAttribute('aria-label',ro(LK[k][key])+' 걸러서 '+DIM[NEXT[k]].n+'별로 보기');
+    row.appendChild(el('th',null,LK[k][key]+(NEXT[k]?' ›':'')));for(const [,f] of cols)row.appendChild(el('td','num',f(rr)));
+    if(NEXT[k]){row.tabIndex=0;row.setAttribute('role','button');row.setAttribute('aria-label',LK[k][key]+' 안으로 들어가기');
       const go=()=>{st[FKEY[k]]=key;st.dim=NEXT[k];render();$('sec-pivot').scrollIntoView({block:'start'})};
       row.addEventListener('click',go);row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}})}
     tb.appendChild(row)}
-  const tot=el('tr','tot');tot.appendChild(el('th',null,'합계'));for(const [,f,ty] of cols)tot.appendChild(ty==='b'?el('td',null,'100%'):cell(ty,f(rows)));tb.appendChild(tot);
+  const tot=el('tr','tot');tot.appendChild(el('th',null,'합계'));for(const [,f] of cols)tot.appendChild(el('td','num',f(rows)));tb.appendChild(tot);
   t.appendChild(tb);tw.appendChild(t);host.appendChild(tw);
-  $('pivotUnit').textContent='단위: 백만원'+(st.mode==='mon'&&P.cd<dim(Y,st.m)?' · * 표시 달은 '+P.cd+'일까지':'')+' · 비중은 연 누계 기준';
+  $('pivotUnit').textContent='금액 단위: 백만원 · 비교는 전부 '+st.m+'월 '+P.cd+'일까지 같은 날짜로 자른 값';
 }
 
 /* 왜 이렇게 됐나 — 임원. 증감을 '어디서' 났는지로 쪼갠다 */
 function renderWhy(rows,P){
   const host=$('why');host.replaceChildren();
-  const [A,Bp,lab]=st.wc==='py'?[P.cur,P.py,'전년 동월 동기간('+PY+'년 '+st.m+'월 1~'+P.cd+'일)']:st.wc==='pm'?[P.cur,P.pm,'전월 동기간('+P.pmLabel+' 1~'+Math.min(P.cd,31)+'일)']:[P.ytd,P.pytd,'전년 누계(1/1~'+st.m+'/'+P.cd+')'];
-  const k=st.wd,g=group(rows,k),items=[];
+  const A=P.cur,Bp=P.py,lab='작년 같은 달 같은 날짜까지('+PY+'년 '+st.m+'월 1~'+P.cd+'일)';
+  const k=st.acct>=0?'I':'C',g=group(rows,k),items=[];
   for(const [key,rr] of g){const a=sum(rr,A),b=sum(rr,Bp);if(a||b)items.push({key,a,b,d:a-b})}
   const tot=sum(rows,A)-sum(rows,Bp);
   items.sort((x,y)=>Math.abs(y.d)-Math.abs(x.d));
   const say=el('div','say');
   if(!items.length){say.textContent='비교할 매출이 없습니다.';host.appendChild(say);return}
-  const top=items[0],sh=tot?top.d/tot*100:0;
-  say.append(el('span',null,lab+' 대비 '),el('b',null,signed(tot)+'원 ('+rate(sum(rows,A),sum(rows,Bp))+')'),el('span',null,'. 가장 크게 움직인 '+eun(DIM[k].n)+' '),
+  const top=items.find(x=>tot&&Math.sign(x.d)===Math.sign(tot))||items[0],sh=tot?top.d/tot*100:0;
+  say.append(el('span',null,lab+' 대비 '),el('b',null,signed(tot)+'원 ('+rate(sum(rows,A),sum(rows,Bp))+')'),el('span',null,'. 가장 크게 '+(tot<0?'줄어든':'늘어난')+' '+eun(DIM[k].n)+' '),
     el('b',null,LK[k][top.key]),el('span',null,' ('+signed(top.d)+'원)'));
   if(tot!==0&&Math.sign(top.d)===Math.sign(tot)){
     say.append(el('span',null,' — '+(tot<0?'감소':'증가')+'분의 '),el('b',null,sh.toFixed(0)+'%'),el('span',null,'입니다.'));
@@ -602,13 +579,13 @@ function renderWhy(rows,P){
     tr.addEventListener('pointermove',e=>showTip(e.clientX,e.clientY,lines));tr.addEventListener('pointerleave',hideTip);
     tr.addEventListener('focus',()=>{const r=tr.getBoundingClientRect();showTip(r.left+r.width/2,r.top,lines)});tr.addEventListener('blur',hideTip);
     const sh=tot?it.d/tot*100:0;
-    grid.append(name,tr,el('div','v',signed(it.d)),el('div','c',!tot?'—':sh>=0?sh.toFixed(0)+'%':'상쇄 '+Math.abs(sh).toFixed(0)+'%'))}
+    grid.append(name,tr,el('div','v',signed(it.d)),el('div','c',!tot?'—':sh>=0?sh.toFixed(0)+'%':'상쇄'))}
   host.appendChild(grid);
-  host.appendChild(el('p','note','막대: 늘어난 쪽은 오른쪽, 줄어든 쪽은 왼쪽 · 오른쪽 숫자는 전체 증감 중 차지하는 몫. 반대 방향으로 움직여 전체를 덜어 준 것은 \'상쇄\'로 적습니다.'));
+  host.appendChild(el('p','note','파란 막대는 늘어난 곳, 빨간 막대는 줄어든 곳 · 오른쪽 %는 전체 증감 중 그곳의 몫 · 전체와 반대로 움직인 곳은 \'상쇄\'로 적습니다.'));
   // 기저효과를 볼 수 있게 — 비교 기간 쪽의 큰 건을 그대로 보여 준다
   const biggest=rows.filter(r=>inP(r,Bp)&&r[DIM[k].i]===top.key).sort((x,y)=>y[7]-x[7]).slice(0,4);
   if(top.d<0&&biggest.length){
-    host.appendChild(el('p','sub','비교 기간 쪽 '+LK[k][top.key]+'의 큰 건 — 원인이 올해가 아니라 작년 쪽에 있을 수 있습니다(기저효과).'));
+    host.appendChild(el('p','sub','작년 이 기간 '+LK[k][top.key]+'의 큰 건 — 올해가 나빠진 게 아니라 작년이 유난히 컸을 수 있습니다(기저효과).'));
     const tw=el('div','tw'),t=el('table'),hd=el('thead'),trh=el('tr');
     for(const [x,c] of [['행','num'],['매출일자',''],['수요처',''],['품목',''],['영업기회명',''],['매출금액(원)','num']])trh.appendChild(el('th',c,x));
     hd.appendChild(trh);t.appendChild(hd);const tb=el('tbody');
@@ -640,23 +617,16 @@ function renderDealer(rows,P){
     (multi.length?' ● '+eun(multi.join(', '))+' 대리점 두 곳 이상이 같이 맡고 있습니다 — 담당이 겹치는지 확인할 자리입니다.':'')));
 }
 
-function writeHash(){location.hash=new URLSearchParams({m:st.m,part:st.part,dealer:st.dealer,acct:st.acct,item:st.item,dim:st.dim,mode:st.mode,wc:st.wc,wd:st.wd}).toString()}
-function readHash(){const h=new URLSearchParams(location.hash.slice(1));
-  for(const k of ['m','part','dealer','acct','item']){if(h.has(k)){const v=+h.get(k);if(Number.isFinite(v))st[k]=v}}
-  if(st.m<1||st.m>LASTM)st.m=LASTM;
-  for(const [k,ok] of [['dim',DIM],['mode',{cmp:1,mon:1}],['wc',{py:1,pm:1,ytd:1}],['wd',DIM]])if(h.has(k)&&ok[h.get(k)])st[k]=h.get(k)}
-
 function render(){
   syncControls();
   const rows=base(),P=periods(st.m);
   renderScope(rows,P);
   const has=rows.some(r=>inP(r,P.ytd)||inP(r,P.pytd));
   $('empty').hidden=has;document.querySelectorAll('.sec').forEach(s=>s.hidden=!has);
-  if(!has){$('empty').textContent='이 조건에 맞는 매출이 없습니다. 위 조건 중 하나를 ✕로 풀면 다시 보입니다. 0을 그리면 실적이 0인 것처럼 보여서, 비워 두고 이렇게 적습니다.';writeHash();return}
+  if(!has){$('empty').textContent='이 조건에 맞는 매출이 없습니다. 위에서 조건 하나를 ✕로 풀면 다시 보입니다.';return}
   renderTiles(rows,P);renderTrend(rows,P);renderDaily(rows,P);renderPivot(rows,P);renderWhy(rows,P);renderDealer(rows,P);
-  writeHash();
 }
-setupControls();readHash();render();
+setupControls();render();
 """
 
 HTML=r"""<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -667,57 +637,50 @@ HTML=r"""<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="
 <h1>한국총괄 B2B영업 매출 대시보드</h1>
 <p class="src">자료 <span class="mono">매출데이터.csv</span> __N__행 · __FROM__ ~ __TO__ · 기준일 __TO__ · 모든 값은 가상입니다</p>
 
+<p class="how">위에서 조건을 고르면 아래 화면이 <b>전부 같이</b> 바뀝니다. 표의 줄을 누르면 그 안으로 들어가고, ✕를 누르면 다시 나옵니다.</p>
 <div class="bar-row" role="group" aria-label="조건">
 <label>기준월<select id="fm"></select></label>
 <label>파트<select id="fp"></select></label>
-<label>판매처<select id="fs"></select></label>
 <label>수요처<select id="fc"></select></label>
-<label>품목구분<select id="fi"></select></label>
-<button id="reset" type="button">전체로 되돌리기</button>
-</div>
-<div class="persona" aria-label="보는 사람별 바로가기">
-<button type="button" data-persona="exec">임원 — 전년비 · 전월비 · 왜</button>
-<button type="button" data-persona="lead">보직장 — 일 매출 · 피벗</button>
-<button type="button" data-persona="item">품목 담당 — 품목별</button>
-<button type="button" data-persona="dealer">판매처가 맡은 수요처</button>
+<label>품목<select id="fi"></select></label>
+<button id="reset" type="button">처음 화면으로</button>
 </div>
 <div class="scope" id="scope"></div>
 <div class="empty" id="empty" hidden></div>
 
-<section class="sec"><h2>한눈에 <span class="who">전원</span></h2>
+<section class="sec"><h2>1. 한눈에 <span class="who">모두</span></h2>
 <div class="tiles" id="tiles"></div><p class="note" id="tileNote"></p></section>
 
-<section class="sec" id="sec-trend"><h2>월별 매출 — 전년과 견주면 <span class="who">임원</span></h2>
-<p class="sub">달을 누르면 그 달이 기준월이 됩니다. 속이 빈 점은 덜 찬 달입니다.</p>
+<section class="sec" id="sec-trend"><h2>2. 월별 매출 — 올해와 작년 <span class="who">임원</span></h2>
+<p class="sub">달 위에 마우스를 올리면 금액이, 누르면 그 달이 기준월이 됩니다. 속이 빈 점은 아직 덜 찬 달입니다.</p>
 <div class="legend"><span class="k"><i style="border-color:var(--s1)"></i>__Y__년</span><span class="k"><i style="border-color:var(--s2);border-top-style:dashed"></i>__PY__년</span></div>
 <div id="trend"></div></section>
 
-<section class="sec" id="sec-day"><h2>일별 매출 <span class="who">보직장</span></h2>
-<p class="sub">기준월의 하루하루입니다. 막대를 누르면 그날 무엇이 팔렸는지 아래에 나옵니다.</p>
+<section class="sec" id="sec-day"><h2>3. 일별 매출 <span class="who">보직장</span></h2>
+<p class="sub">기준월의 하루하루입니다. 막대를 누르면 그날 무엇이 팔렸는지 아래 표에 나옵니다.</p>
 <div id="daily"></div><p class="note" id="dailyNote"></p><div id="dayRows"></div></section>
 
-<section class="sec" id="sec-pivot"><h2>피벗 — 쪼개 보기 <span class="who">보직장 · 품목 담당</span></h2>
-<div class="ctl"><span>기준</span><span class="seg" id="dimSeg"></span><span>열</span><span class="seg" id="modeSeg"></span></div>
+<section class="sec" id="sec-pivot"><h2>4. 나눠 보기 <span class="who">보직장 · 품목 담당</span></h2>
+<div class="ctl"><span class="seg" id="dimSeg" role="group" aria-label="무엇별로 나눌지"></span></div>
 <p class="note" id="pivotHint"></p><div id="pivot"></div><p class="note" id="pivotUnit"></p></section>
 
-<section class="sec" id="sec-why"><h2>왜 이렇게 됐나 — 어디서 났는지부터 <span class="who">임원</span></h2>
-<div class="ctl"><span>무엇과</span><span class="seg" id="wcSeg"></span><span>무엇으로 쪼개서</span><span class="seg" id="wdSeg"></span></div>
+<section class="sec" id="sec-why"><h2>5. 왜 이렇게 됐나 — 작년보다 어디서 달라졌나 <span class="who">임원</span></h2>
 <div id="why"></div>
-<p class="note">여기 나오는 것은 <b>'어디서'</b>입니다. <b>'왜'</b>는 가설로 적고 확인합니다 — 예: 작년 같은 달에 일회성 대량 납품이 있었나, 그 고객에게 공사 · 이전 같은 일이 있나.</p></section>
+<p class="note">여기서 알 수 있는 것은 <b>'어디서'</b>까지입니다. <b>'왜'</b>는 가설로 적고 영업 담당에게 확인합니다 — 예: 작년에 한 번뿐인 큰 납품이 있었나, 그 고객에게 공사 · 이전 같은 일이 있나.</p></section>
 
-<section class="sec" id="sec-dealer"><h2>판매처(대리점) 1곳이 수요처 몇 곳을 맡나 <span class="who">보직장</span></h2>
+<section class="sec" id="sec-dealer"><h2>6. 판매처(대리점) 1곳이 수요처 몇 곳을 맡나 <span class="who">보직장</span></h2>
 <div id="dealer"></div></section>
 
 <section class="sec"><h2>확인 필요</h2><div class="chk">
 <p>· 소계 대조 — 품목구분 · 주문유형 · 수요처명 · 파트명 · 판매처명 다섯 축을 <span class="mono">매출데이터_소계.csv</span>와 맞춰 봤고 <b>__SUBOK__</b>.</p>
 <p>· 이 헤더에는 <b>단가 열이 없어</b> <span class="mono">단가 × 수량 = 금액</span> 검산을 할 수 없습니다. 소계 대조가 그 자리를 대신합니다.</p>
-<p>· 데이터는 <b>__TO__까지</b>입니다. 당월 비교는 모두 같은 날짜까지 자른 동기간입니다.</p>
+<p>· 데이터는 <b>__TO__까지</b>입니다. 이번 달 비교는 모두 같은 날짜까지 자른 값입니다.</p>
 <p>· 직판주문은 헤더 설명대로 판매처 = 수요처라, 판매처별로 볼 때 '직판' 한 줄로 묶었습니다. 직판일 때 판매처 주소는 비어 있습니다.</p>
 <p>· 파트명과 주문유형이 1:1입니다(경로1파트 = 유통주문). 실제로 섞이는지 확인 필요.</p>
 <p>· 모델명은 가상입니다. 실제 조회 가능한 모델명이 들어오면 그대로 반영됩니다.</p>
 </div></section>
 
-<div class="foot">세션 2 기준본 · 걸어 둔 조건은 주소창에 남습니다 — 링크를 그대로 보내면 같은 화면이 열립니다 · 모든 수요처명 · 판매처명 · 모델명 · 금액은 가상이며 삼성전자 실제 정보와 무관합니다</div>
+<div class="foot">세션 2 기준본 · 모든 수요처명 · 판매처명 · 모델명 · 금액은 가상이며 삼성전자 실제 정보와 무관합니다</div>
 </div><div id="tip" role="status" aria-live="polite"></div>
 <script>__JS__</script></body></html>"""
 

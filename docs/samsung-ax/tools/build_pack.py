@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""배포 패키지 — 참가자 zip 2개(A판·B판) · 실습데이터 zip · 지시문 zip · 강사 zip 을 dist/ 에 만든다.
+"""배포 패키지 — 참가자 실습 파일 묶음 하나(AX_실습파일: 세션1 A·B / 세션2 / 세션3 / 세션4, 함정 데이터 제외) · 강사 zip 을 dist/ 에 만든다.
 참가자 팩에는 실습에 필요한 것만: 데이터 · 지시문 · 테스트 데이터 · 기준본 · paste · SKILL.md · 공통 문서 10개(예상 Q&A 포함) · 워크북 · 덱 PDF.
 요구조건서(00) · 시연 로그(05) · 완성판정.md · 테스트 설명(테스트_*.md) · 강사 가이드는 강사 팩에만.
 사용: python3 build_pack.py   (먼저 build_course_docs.py → design/tools/build_deck.py → PDF 순으로 만들어 둔다)"""
@@ -303,7 +303,7 @@ def instructor():
 | 진행 가이드 (큐시트 · 되묻기 · 보조강사) | `instructor_guide.md` |
 | 슬라이드쇼 (브라우저 · ← → · N 노트) | `deck/A판.html` · `deck/B판.html` (같은 폴더의 PDF는 인쇄용) |
 | 슬라이드 순서 · 발표자 노트 | `deck/*_순서.txt` · `deck/notes.json` |
-| 참가자에게 주는 것 | `dist/참가자_A판.zip` · `참가자_B판.zip` (이 폴더에는 없음 — `tools/build_pack.py`로 생성) |
+| 참가자에게 주는 것 | `dist/AX_실습파일.zip` — 세션1 A · B / 세션2 대시보드 / 세션3 데이터분석 / 세션4 제안자료. 함정 · 실패 데이터는 빠져 있고 이 강사 폴더의 각 모듈 `03_테스트/`에만 있습니다 |
 | 시연 로그 · 테스트 판정 | 각 모듈 `05_시연로그.md` · `03_테스트/테스트_*.md` |
 | 남은 확인 (삼성 몫) | `deck_audit.md` §4 · `rehearsal_checklist.md` |
 
@@ -311,8 +311,122 @@ def instructor():
 """)
     print(f"강사.zip  {len(zipfile.ZipFile(out).namelist())} files  {os.path.getsize(out)//1024} KB")
 
+# ───────── 실습 파일 — 세션 순서대로 한 묶음 (참가자 배포본) ─────────
+# 세션1 A 직판 · B 유통영업 / 세션2 대시보드 / 세션3 데이터분석 / 세션4 제안자료
+# 함정 · 실패 테스트 데이터(03_테스트)와 테스트 설명서(테스트_*.md)는 넣지 않는다 — 강사 묶음에만 있다.
+PRACTICE = "AX_실습파일"
+def _m(mod, *parts): return os.path.join(MOD, mod, *parts)
+def _files(mod, sub, keep=lambda f: True):
+    d = _m(mod, sub)
+    return [(os.path.join(d, f), f) for f in sorted(os.listdir(d))
+            if not f.startswith((".", "테스트_")) and f != "README.md" and keep(f)] if os.path.isdir(d) else []
+def practice_layout():
+    """(묶음 안 경로, 원본 경로) 목록"""
+    L = []
+    def put(dst_dir, items):
+        for src, name in items: L.append((f"{dst_dir}/{name}", src))
+    for mod, folder in [("A_sensing_b2b", "세션1_시장고객분석/A_직판"), ("B_sensing_partner", "세션1_시장고객분석/B_유통영업")]:
+        put(f"{folder}/1_프롬프트", _files(mod, "02_지시문"))
+        put(f"{folder}/2_자료", _files(mod, "01_데이터"))
+        put(f"{folder}/3_붙여넣기용", _files(mod, "06_붙여넣기"))
+        put(f"{folder}/4_기준본", _files(mod, "04_기준본"))
+        put(f"{folder}/5_스킬", _files(mod, "07_스킬"))
+        L.append((f"{folder}/모듈카드.md", _m(mod, "모듈카드.md")))
+    L.append(("세션1_시장고객분석/뉴스수집_예약_프롬프트.md", os.path.join(AX, "세션1_뉴스수집_제안", "지시문_뉴스수집.md")))
+    T = os.path.join(COMMON, "instruction_templates")
+    for f in ["dashboard_customer.md", "dashboard_customer_예시.md"]: L.append((f"세션1_시장고객분석/A_직판/6_내업무_템플릿/{f}", os.path.join(T, f)))
+    for f in ["dashboard_territory.md", "dashboard_territory_예시.md"]: L.append((f"세션1_시장고객분석/B_유통영업/6_내업무_템플릿/{f}", os.path.join(T, f)))
+    D = "D_analysis"
+    put("세션2_대시보드/1_프롬프트", [(p, f) for p, f in _files(D, "02_지시문") if "대시보드" in f])
+    put("세션2_대시보드/2_자료", _files(D, "01_데이터"))
+    put("세션2_대시보드/3_붙여넣기용", _files(D, "06_붙여넣기"))
+    put("세션2_대시보드/4_기준본", [(p, f) for p, f in _files(D, "04_기준본") if f == "대시보드.html"])
+    put("세션2_대시보드/5_스킬", _files(D, "07_스킬"))
+    L.append(("세션2_대시보드/모듈카드.md", _m(D, "모듈카드.md")))
+    for f in ["dashboard_sales.md", "dashboard_sales_예시.md"]: L.append((f"세션2_대시보드/6_내업무_템플릿/{f}", os.path.join(T, f)))
+    L.append(("세션2_대시보드/README_삼성측_요구_대조.md", os.path.join(AX, "세션2_대시보드_제안", "README.md")))
+    put("세션3_데이터분석/1_프롬프트", [(p, f) for p, f in _files(D, "02_지시문") if "분석" in f])
+    put("세션3_데이터분석/2_자료", _files(D, "01_데이터"))
+    put("세션3_데이터분석/3_붙여넣기용", _files(D, "06_붙여넣기"))
+    put("세션3_데이터분석/4_기준본", [(p, f) for p, f in _files(D, "04_기준본") if f in ("리뷰.md", "대상수요처.md", "대시보드.html")])
+    C = "C_proposal"
+    put("세션4_제안자료/1_프롬프트", _files(C, "02_지시문"))
+    put("세션4_제안자료/2_자료", _files(C, "01_데이터") + [(_m(D, "04_기준본", "대상수요처.md"), "대상수요처_세션3인계_선택.md")])
+    put("세션4_제안자료/3_붙여넣기용", _files(C, "06_붙여넣기"))
+    put("세션4_제안자료/4_기준본", _files(C, "04_기준본"))
+    put("세션4_제안자료/5_스킬", _files(C, "07_스킬"))
+    L.append(("세션4_제안자료/모듈카드.md", _m(C, "모듈카드.md")))
+    for f in ["dashboard_proposal.md", "dashboard_proposal_예시.md"]: L.append((f"세션4_제안자료/6_내업무_템플릿/{f}", os.path.join(T, f)))
+    for f in COMMON_P:
+        L.append((f"0_공통/{f}", os.path.join(AX, f) if f == "faq.md" else os.path.join(COMMON, f)))
+    for d in TEAM: L.append((f"0_공통/워크북_{d}.md", os.path.join(AX, f"workbook_{d}.md")))
+    for d in TEAM:
+        pdf = os.path.join(AX, "deck", f"{d}.pdf")
+        if os.path.exists(pdf): L.append((f"0_공통/슬라이드_{d}.pdf", pdf))
+    return L
+
+def practice_readme(L):
+    n = lambda pre: sum(1 for a, _ in L if a.startswith(pre))
+    return f"""# AX 실습 파일 · {STAMP}
+
+세션 순서대로 묶었습니다. **모든 데이터는 가상**이며 실제 고객사 · 파트너 · 매출과 무관합니다. 실습 중 실제 업무 파일은 올리지 않습니다 (`0_공통/security_rules.md`).
+
+| 폴더 | 무엇 | 결과물 |
+|---|---|---|
+| `세션1_시장고객분석/A_직판/` | B2B팀 — 담당 고객사 6곳 기사로 접근 시점 찾기 ({n('세션1_시장고객분석/A_직판/')}개) | `영업대시보드.html` |
+| `세션1_시장고객분석/B_유통영업/` | B2B유통전략팀 — 권역 신규 시설과 파트너 매칭 ({n('세션1_시장고객분석/B_유통영업/')}개) | `권역보고서.docx` |
+| `세션1_시장고객분석/뉴스수집_예약_프롬프트.md` | 세션1 마지막 10분 — 내 고객사 뉴스를 Gemini / ChatGPT에 예약 | — |
+| `세션2_대시보드/` | 매출 데이터 16열로 매출 대시보드 ({n('세션2_대시보드/')}개) | `대시보드.html` |
+| `세션3_데이터분석/` | 같은 매출 데이터로 임원용 리뷰 한 장 + 넘길 수요처 ({n('세션3_데이터분석/')}개) | `리뷰.md` · `대상수요처.md` |
+| `세션4_제안자료/` | 요구조건에 맞는 3안 + 시장가 비교 ({n('세션4_제안자료/')}개) | `제안자료.html` |
+| `0_공통/` | 보안 규칙 · 웹 환경 · 도구 경로 · 검수 기준 · FAQ · 워크북 · 슬라이드 | — |
+
+## 각 세션 폴더 안
+
+| 하위 폴더 | 무엇 | 어떻게 |
+|---|---|---|
+| `1_프롬프트/` | 지시문 | 파일 안의 **✂ 표시 사이만** 복사해 에이전트 「지침」란이나 대화창에 붙여넣습니다 |
+| `2_자료/` | 올리는 파일 | `*_소계.csv`는 검산 대조용 — 같이 올립니다 |
+| `3_붙여넣기용/` | 같은 자료의 표 | 파일 업로드가 막혔을 때 복사해 붙여넣습니다 |
+| `4_기준본/` | 기대 결과 | 내 결과와 나란히 열어 숫자를 견줍니다. 못 따라왔을 때 이 파일로 다음 세션을 시작합니다 |
+| `5_스킬/SKILL.md` | 같은 내용의 스킬 형식 | 스킬 기능이 열려 있으면 등록합니다 |
+| `6_내업무_템플릿/` | 내 업무용 빈칸 지시문 + 채운 예시 | 실습 뒤 내 데이터로 옮길 때 |
+
+지시문 · 모듈카드 안에서 부르는 폴더 이름은 원래 이름입니다 — `01_데이터/` = `2_자료/` · `06_붙여넣기/` = `3_붙여넣기용/` · `04_기준본/` = `4_기준본/` · `07_스킬/` = `5_스킬/`. 파일 이름은 같습니다.
+
+## 이어지는 고객
+
+네 세션이 **같은 가상 고객 6곳**(해솔호텔 · 대성건설 · 한울종합건설 · 미래로병원 · 세종교육재단 · 서진리테일)을 돕니다.
+세션1 기사 「미래로병원 신관 증축 설계 착수」 → 세션2 · 3 매출에서 미래로병원 급감 → 세션3에서 고른 `대상수요처.md` → 세션4 신관 회의공간 제안.
+세션4의 `2_자료/대상수요처_세션3인계_선택.md`는 세션3의 기준본입니다. 내가 만든 인계본이 있으면 그것을 쓰고, 없어도 진행됩니다.
+
+## 이 묶음에 없는 것
+
+경계 · 실패 테스트용 **함정 데이터**(일부러 틀리게 만든 파일 · 가짜 개인정보가 든 파일)는 넣지 않았습니다. 실패 테스트는 **강사가 화면으로 시연**합니다.
+경계 테스트는 파일 없이 할 수 있습니다 — 세션1 A는 파일 없이 "프로파일 만들어줘", 세션2는 소계 파일 없이 "대시보드 만들어줘", 세션4는 `고객요구조건.md`에서 예산 줄을 지우고 실행.
+"""
+
+def participant_all():
+    L = practice_layout()
+    out_dir = os.path.join(DIST, PRACTICE)
+    if os.path.exists(out_dir):
+        import shutil; shutil.rmtree(out_dir)
+    zp = os.path.join(DIST, f"{PRACTICE}.zip")
+    with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
+        for arc, src in L:
+            assert os.path.exists(src), src
+            z.write(src, f"{PRACTICE}/{arc}")
+            dst = os.path.join(out_dir, arc); os.makedirs(os.path.dirname(dst), exist_ok=True)
+            with open(src, "rb") as a, open(dst, "wb") as b: b.write(a.read())
+        rd = practice_readme(L)
+        z.writestr(f"{PRACTICE}/READ_ME_FIRST.md", rd)
+        open(os.path.join(out_dir, "READ_ME_FIRST.md"), "w", encoding="utf-8").write(rd)
+    bad = [a for a, _ in L if "/03_테스트/" in a or os.path.basename(a).startswith("테스트_") or "함정" in a or "_실패" in a or "_경계" in a]
+    assert not bad, bad
+    print(f"{PRACTICE}.zip  {len(L) + 1} files  {os.path.getsize(zp)//1024} KB · 함정 · 실패 데이터 0개")
+
 if __name__ == "__main__":
-    for d in TEAM: participant(d)
-    data_pack()
-    prompt_pack()
+    for old in ["참가자_A판.zip", "참가자_B판.zip", "실습데이터.zip", "지시문.zip"]:  # 세션 구성 묶음 하나로 바뀌었다
+        if os.path.exists(os.path.join(DIST, old)): os.remove(os.path.join(DIST, old))
+    participant_all()
     instructor()

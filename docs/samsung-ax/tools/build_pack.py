@@ -342,7 +342,7 @@ def _xname(f):
     return f[:-4] + ".xlsx" if f.endswith(".csv") else f
 def _xtext(t):
     for n in CSV_NAMES: t = t.replace(n + ".csv", n + ".xlsx")
-    return t
+    return t.replace("04_기준본/", "")
 def csv_to_xlsx(src, dst):
     import csv, re, datetime
     from openpyxl import Workbook
@@ -388,6 +388,9 @@ def practice_layout():
         for mod, f in files: L.append((f"{sess}/2_데이터/{_xname(f)}", _m(mod, "01_데이터", f)))
         L.append((f"{sess}/3_실습지시문_1.md", os.path.join(SRC, sess, "3_실습지시문_1.md")))
         L.append((f"{sess}/4_실습지시문_2.md", os.path.join(SRC, sess, "4_실습지시문_2.md")))
+    # HTML로 나오는 세션은 기대 결과 화면을 같이 준다 — 내 결과와 나란히 열어 견준다
+    for sess, mod, f in [("세션1_A_직판", "A_sensing_b2b", "영업대시보드.html"), ("세션2_대시보드", "D_analysis", "대시보드.html"), ("세션4_제안자료", "C_proposal", "제안자료.html")]:
+        L.append((f"{sess}/5_결과물_예시_{f}", _m(mod, "04_기준본", f)))
     # 세션4 프롬프트가 선택 입력으로 받는 세션3 인계본
     L.append(("세션4_제안자료/2_데이터/대상수요처.md", _m("D_analysis", "04_기준본", "대상수요처.md")))
     L.append(("뉴스수집_예약/뉴스수집_예약_프롬프트.md", os.path.join(AX, "세션1_뉴스수집_제안", "지시문_뉴스수집.md")))
@@ -413,8 +416,9 @@ def practice_readme(L):
 2. **`2_데이터/`** — 안의 파일을 **모두** 올리고 저장합니다. 그 프롬프트가 쓰는 파일만 들어 있습니다. 표 데이터는 **엑셀(.xlsx)**이라 더블클릭해도 한글이 깨지지 않습니다. 열어 보는 것은 괜찮지만 **고치거나 다른 이름으로 저장하지 마십시오** — 기대 결과가 달라집니다.
 3. **`3_실습지시문_1.md`** — 대화창에 그대로 붙여넣어 보냅니다. 결과를 봅니다.
 4. **`4_실습지시문_2.md`** — 같은 대화에 이어서 보냅니다.
+5. **`5_결과물_예시_….html`** (세션1 A · 세션2 · 세션4) — 이렇게 나와야 한다는 기대 결과 화면입니다. 더블클릭해 열고 내 결과와 나란히 견줍니다. **먼저 열어 보지 말고, 내 결과가 나온 뒤에** 봅니다.
 
-결과가 맞는지는 강사 화면의 기준본과 견줍니다. 확인할 항목과 막혔을 때 보낼 문장은 워크북 · 실습 슬라이드에 있습니다.
+세션1 B(Word 보고서)와 세션3(리뷰 글)은 강사 화면의 기준본과 견줍니다. 확인할 항목과 막혔을 때 보낼 문장은 워크북 · 실습 슬라이드에 있습니다.
 HTML로 나온 결과는 복사 → 메모장 → `이름.html`(파일 형식 **모든 파일**)로 저장해 더블클릭합니다.
 
 ## 이어지는 고객
@@ -441,7 +445,7 @@ def participant_all():
             dst = os.path.join(out_dir, arc); os.makedirs(os.path.dirname(dst), exist_ok=True)
             if src.endswith(".csv") and arc.endswith(".xlsx"):
                 csv_to_xlsx(src, dst)
-            elif src.endswith(".md"):
+            elif src.endswith((".md", ".html")):
                 open(dst, "w", encoding="utf-8").write(_xtext(open(src, encoding="utf-8").read()))
             else:
                 with open(src, "rb") as a, open(dst, "wb") as b: b.write(a.read())

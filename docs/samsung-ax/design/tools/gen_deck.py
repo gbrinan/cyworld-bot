@@ -862,7 +862,7 @@ SLIDES["DeckM11"] = shell("공통 방법론", "오늘의 완주 기준", "완성
     <div style="{BAND}">
       <div style="font-size: 22px; font-weight: 700;">뒤처져도 다음 실습은 반드시 시작합니다.</div>
       <div style="flex-grow: 1;"></div>
-      <div style="font-size: 14px; color: #c9c5bd;">앞 세션을 못 끝냈으면 강사가 나눠 주는 기준본으로 시작합니다.</div>
+      <div style="font-size: 14px; color: #c9c5bd;">앞 세션을 못 끝냈으면 세션 폴더의 5_결과물_예시(없으면 강사가 나눠 주는 기준본)로 시작합니다.</div>
     </div>""", "M · 11")
 
 

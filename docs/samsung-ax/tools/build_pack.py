@@ -304,6 +304,7 @@ def instructor():
 | 슬라이드쇼 (브라우저 · ← → · N 노트) | `deck/A판.html` · `deck/B판.html` (같은 폴더의 PDF는 인쇄용) |
 | 슬라이드 순서 · 발표자 노트 | `deck/*_순서.txt` · `deck/notes.json` |
 | 참가자에게 주는 것 | `dist/AX_실습파일.zip` — 세션1 A · B / 세션2 대시보드 / 세션3 데이터분석 / 세션4 제안자료. 함정 · 실패 데이터는 빠져 있고 이 강사 폴더의 각 모듈 `03_테스트/`에만 있습니다 |
+| 참가자 묶음의 엑셀 파일 | 각 모듈 `01_데이터/`의 CSV를 그대로 xlsx로 바꾼 것 — 한글 CSV는 엑셀에서 깨져서. 기준본 · 붙여넣기용 표는 참가자 묶음에 없으니 강사가 나눠 줍니다 |
 | 시연 로그 · 테스트 판정 | 각 모듈 `05_시연로그.md` · `03_테스트/테스트_*.md` |
 | 남은 확인 (삼성 몫) | `deck_audit.md` §4 · `rehearsal_checklist.md` |
 
@@ -335,36 +336,61 @@ DATA = {
     "세션3_데이터분석": [("D_analysis", "매출데이터.csv"), ("D_analysis", "매출데이터_소계.csv")],
     "세션4_제안자료": [("C_proposal", f) for f in ["가격가이드.csv", "시장가격.csv", "고객요구조건.md"]],
 }
-REF = {  # 참고/ — 기준본과 업로드가 막혔을 때 붙여넣는 표
-    "세션1_A_직판": ("A_sensing_b2b", ["영업대시보드.html", "고객프로파일.md"]),
-    "세션1_B_유통영업": ("B_sensing_partner", ["권역보고서.md", "기회목록.csv", "검색어.md"]),
-    "세션2_대시보드": ("D_analysis", ["대시보드.html"]),
-    "세션3_데이터분석": ("D_analysis", ["리뷰.md", "대상수요처.md"]),
-    "세션4_제안자료": ("C_proposal", ["제안자료.html"]),
-}
+CSV_NAMES = ["매출데이터_소계", "매출데이터", "기사수집", "대상고객사", "상권정보", "파트너정보", "가격가이드", "시장가격"]
+def _xname(f):
+    """참가자에게는 CSV 대신 xlsx — 한글 CSV는 엑셀에서 더블클릭하면 깨진다"""
+    return f[:-4] + ".xlsx" if f.endswith(".csv") else f
+def _xtext(t):
+    for n in CSV_NAMES: t = t.replace(n + ".csv", n + ".xlsx")
+    return t
+def csv_to_xlsx(src, dst):
+    import csv, re, datetime
+    from openpyxl import Workbook
+    from openpyxl.styles import Font, PatternFill, Alignment
+    from openpyxl.utils import get_column_letter
+    rows = list(csv.reader(open(src, encoding="utf-8-sig", newline="")))
+    head, body = rows[0], rows[1:]
+    kinds = []
+    for j in range(len(head)):
+        vals = [r[j] for r in body if j < len(r) and r[j] != ""]
+        if vals and all(re.fullmatch(r"-?\d+", v) for v in vals) and not head[j].endswith("코드"): kinds.append("int")
+        elif vals and all(re.fullmatch(r"\d{4}-\d{2}-\d{2}", v) for v in vals): kinds.append("date")
+        else: kinds.append("text")
+    wb = Workbook(); ws = wb.active; ws.title = os.path.splitext(os.path.basename(dst))[0][:31]
+    F = "맑은 고딕"
+    ws.append(head)
+    for c in ws[1]:
+        c.font = Font(name=F, bold=True, color="FFFFFF"); c.fill = PatternFill("solid", fgColor="1C3F94")
+        c.alignment = Alignment(horizontal="center", vertical="center")
+    for r in body:
+        out = []
+        for j, v in enumerate(r):
+            k = kinds[j] if j < len(kinds) else "text"
+            out.append(int(v) if k == "int" and v != "" else datetime.datetime.strptime(v, "%Y-%m-%d") if k == "date" and v != "" else v)
+        ws.append(out)
+    for j, k in enumerate(kinds, 1):
+        col = get_column_letter(j)
+        for (c,) in ws.iter_rows(min_row=2, min_col=j, max_col=j):
+            c.font = Font(name=F)
+            if k == "int": c.number_format = "#,##0"
+            if k == "date": c.number_format = "yyyy-mm-dd"
+        width = max(len(str(x)) + sum(1 for ch in str(x) if ord(ch) > 0x2E80) for x in [head[j-1]] + [r[j-1] for r in body[:300] if j-1 < len(r)])
+        ws.column_dimensions[col].width = min(max(width + 2, 8), 60)
+    ws.freeze_panes = "A2"; ws.auto_filter.ref = ws.dimensions
+    wb.save(dst)
+    return len(body)
+
 def practice_layout():
     """(묶음 안 경로, 원본 경로) 목록"""
     L = []
     for sess, files in DATA.items():
         L.append((f"{sess}/1_붙여넣을_프롬프트.md", os.path.join(SRC, sess, "1_붙여넣을_프롬프트.md")))
-        for mod, f in files: L.append((f"{sess}/2_데이터/{f}", _m(mod, "01_데이터", f)))
+        for mod, f in files: L.append((f"{sess}/2_데이터/{_xname(f)}", _m(mod, "01_데이터", f)))
         L.append((f"{sess}/3_실습지시문_1.md", os.path.join(SRC, sess, "3_실습지시문_1.md")))
         L.append((f"{sess}/4_실습지시문_2.md", os.path.join(SRC, sess, "4_실습지시문_2.md")))
     # 세션4 프롬프트가 선택 입력으로 받는 세션3 인계본
     L.append(("세션4_제안자료/2_데이터/대상수요처.md", _m("D_analysis", "04_기준본", "대상수요처.md")))
     L.append(("뉴스수집_예약/뉴스수집_예약_프롬프트.md", os.path.join(AX, "세션1_뉴스수집_제안", "지시문_뉴스수집.md")))
-    for sess, (mod, files) in REF.items():
-        for f in files: L.append((f"참고/{sess}_기준본/{f}", _m(mod, "04_기준본", f)))
-        pdir = _m(mod, "06_붙여넣기")
-        need = {os.path.splitext(f)[0] for _, f in DATA[sess]}
-        for f in sorted(os.listdir(pdir)):
-            if os.path.splitext(f)[0] in need: L.append((f"참고/{sess}_붙여넣기용/{f}", os.path.join(pdir, f)))
-    for d in TEAM: L.append((f"참고/워크북_{d}.md", os.path.join(AX, f"workbook_{d}.md")))
-    for d in TEAM:
-        pdf = os.path.join(AX, "deck", f"{d}.pdf")
-        if os.path.exists(pdf): L.append((f"참고/슬라이드_{d}.pdf", pdf))
-    for f in ["security_rules.md", "web_environment.md", "faq.md"]:
-        L.append((f"참고/{f}", os.path.join(AX, f) if f == "faq.md" else os.path.join(COMMON, f)))
     return L
 
 def practice_readme(L):
@@ -380,16 +406,15 @@ def practice_readme(L):
 | `세션3_데이터분석/` | 전원 | 리뷰 한 장 + 넘길 수요처 |
 | `세션4_제안자료/` | 전원 | `제안자료.html` |
 | `뉴스수집_예약/` | 전원 · 세션1 마지막 10분 | 내 고객사 뉴스를 Gemini / ChatGPT에 예약 |
-| `참고/` | 필요할 때 | 기준본(기대 결과) · 업로드가 막혔을 때 붙여넣는 표 · 워크북 · 슬라이드 · 보안 규칙 |
 
 ## 세션 폴더마다 하는 일 — 네 번
 
 1. **`1_붙여넣을_프롬프트.md`** — 에이전트를 만들고 「지침」란에 **파일 전체**를 붙여넣습니다.
-2. **`2_데이터/`** — 안의 파일을 **모두** 올리고 저장합니다. 그 프롬프트가 쓰는 파일만 들어 있습니다.
+2. **`2_데이터/`** — 안의 파일을 **모두** 올리고 저장합니다. 그 프롬프트가 쓰는 파일만 들어 있습니다. 표 데이터는 **엑셀(.xlsx)**이라 더블클릭해도 한글이 깨지지 않습니다. 열어 보는 것은 괜찮지만 **고치거나 다른 이름으로 저장하지 마십시오** — 기대 결과가 달라집니다.
 3. **`3_실습지시문_1.md`** — 대화창에 그대로 붙여넣어 보냅니다. 결과를 봅니다.
 4. **`4_실습지시문_2.md`** — 같은 대화에 이어서 보냅니다.
 
-결과가 맞는지는 `참고/` 안의 같은 세션 기준본과 나란히 열어 봅니다. 확인할 항목과 막혔을 때 보낼 문장은 워크북에 있습니다.
+결과가 맞는지는 강사 화면의 기준본과 견줍니다. 확인할 항목과 막혔을 때 보낼 문장은 워크북 · 실습 슬라이드에 있습니다.
 HTML로 나온 결과는 복사 → 메모장 → `이름.html`(파일 형식 **모든 파일**)로 저장해 더블클릭합니다.
 
 ## 이어지는 고객
@@ -413,12 +438,18 @@ def participant_all():
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
         for arc, src in L:
             assert os.path.exists(src), src
-            z.write(src, f"{PRACTICE}/{arc}")
             dst = os.path.join(out_dir, arc); os.makedirs(os.path.dirname(dst), exist_ok=True)
-            with open(src, "rb") as a, open(dst, "wb") as b: b.write(a.read())
+            if src.endswith(".csv") and arc.endswith(".xlsx"):
+                csv_to_xlsx(src, dst)
+            elif src.endswith(".md"):
+                open(dst, "w", encoding="utf-8").write(_xtext(open(src, encoding="utf-8").read()))
+            else:
+                with open(src, "rb") as a, open(dst, "wb") as b: b.write(a.read())
+            z.write(dst, f"{PRACTICE}/{arc}")
         rd = practice_readme(L)
         z.writestr(f"{PRACTICE}/READ_ME_FIRST.md", rd)
         open(os.path.join(out_dir, "READ_ME_FIRST.md"), "w", encoding="utf-8").write(rd)
+    assert not any(a.endswith(".csv") for a, _ in L), "참가자 묶음에 CSV가 남아 있음"
     bad = [a for a, _ in L if "/03_테스트/" in a or os.path.basename(a).startswith("테스트_") or "함정" in a or "_실패" in a or "_경계" in a]
     assert not bad, bad
     print(f"{PRACTICE}.zip  {len(L) + 1} files  {os.path.getsize(zp)//1024} KB · 함정 · 실패 데이터 0개")

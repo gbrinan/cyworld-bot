@@ -175,7 +175,7 @@ SLIDES["DeckW7"] = shell("일을 보는 법", "④ 묶으면 에이전트가 나
         <table style="border-collapse: collapse; font-size: 14px; width: 100%;">
           <tr style="color: #9a958d; font-size: 12px; letter-spacing: 0.08em;"><td style="padding: 4px 10px;">#</td><td style="padding: 4px 10px;">하는 일 (P)</td><td style="padding: 4px 10px;">내놓는 것 (O)</td><td style="padding: 4px 10px;">꼬리표</td></tr>
           {ipo_row(3, "사이트를 열어 본다", "복사한 텍스트", "outside")}
-          {ipo_row(4, "4열로 정제한다", "시장가격.csv", "repeat", True)}
+          {ipo_row(4, "4열로 정제한다", "시장가격.xlsx", "repeat", True)}
           {ipo_row("2·5", "조건을 뽑고 맞는 모델을 고른다", "후보 모델 목록", "draft")}
           {ipo_row("6·7", "비교하고 3안을 쓴다", "제안자료.html", "draft", True)}
           {ipo_row("8·9", "가격·납기를 확정해 보낸다", "확정 견적", "lock")}
@@ -396,8 +396,8 @@ SLIDES["DeckD4"] = shell("모듈 D", "입력 데이터", "실습 파일 세션2_
     <div style="{CARD} padding: 8px 6px;">
       <table style="border-collapse: collapse; width: 100%;">
         <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 4px 10px;">파일</td><td style="padding: 4px 10px;">헤더</td><td style="padding: 4px 10px; text-align: right;">행</td><td style="padding: 4px 10px;">어디서 온 것으로 가정</td></tr>
-        {frow("매출데이터.csv", "영업기회 번호 · 유형 · 그룹명 · 파트명 · 판매처코드 · 판매처명 · 판매처 주소 · 수요처코드 · 수요처명 · 영업기회명 · 매출일자 · 품목구분 · 모델명 · 주문유형 · 매출금액 · 매출수량 <span style='color: #9a958d;'>(16열)</span>", "1,093", "사내 매출 시스템 추출 2025-01-02 ~ 2026-09-24")}
-        {frow("매출데이터_소계.csv", "축 · 값 · 건수 · 합계 — 품목구분 · 주문유형 · 수요처명 · 파트명 · 판매처명 다섯 축", 27, "검산용 — 같이 올립니다")}
+        {frow("매출데이터.xlsx", "영업기회 번호 · 유형 · 그룹명 · 파트명 · 판매처코드 · 판매처명 · 판매처 주소 · 수요처코드 · 수요처명 · 영업기회명 · 매출일자 · 품목구분 · 모델명 · 주문유형 · 매출금액 · 매출수량 <span style='color: #9a958d;'>(16열)</span>", "1,093", "사내 매출 시스템 추출 2025-01-02 ~ 2026-09-24")}
+        {frow("매출데이터_소계.xlsx", "축 · 값 · 건수 · 합계 — 품목구분 · 주문유형 · 수요처명 · 파트명 · 판매처명 다섯 축", 27, "검산용 — 같이 올립니다")}
         <tr><td colspan="4" style="padding: 6px 10px 2px; font-size: 12px; color: #9a958d; letter-spacing: 0.06em; border-top: 1px solid #e4e2db;">실패 테스트용</td></tr>
         {frow("03_테스트/매출데이터_함정.csv", "같은 16열 — 일부러 어긋낸 판", "1,093", "0번 확인이 무엇을 잡는지 볼 때만", True)}
       </table>
@@ -438,13 +438,13 @@ SLIDES["DeckD7"] = shell("모듈 D", "두 갈래 경로", "내 도구에서 파�
     <div style="display: flex; gap: 14px; align-items: stretch;">
       <div style="{CARD} flex: 1 0 0; border-top: 4px solid #0f6b4f; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
         <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #0f6b4f;">코드 실행 O</span><span style="font-size: 14px; color: #6b6660;">ChatGPT 데이터 분석이 켜져 있다</span></div>
-        <div style="font-size: 16px; line-height: 1.55;"><span class="mono" style="font-size: 13px;">매출데이터.csv</span>와 <span class="mono" style="font-size: 13px;">매출데이터_소계.csv</span>를 그대로 올립니다. 1,093행을 코드로 더하므로 합계가 맞고, 대시보드 여섯 칸이 전부 나옵니다.</div>
+        <div style="font-size: 16px; line-height: 1.55;"><span class="mono" style="font-size: 13px;">매출데이터.xlsx</span>와 <span class="mono" style="font-size: 13px;">매출데이터_소계.xlsx</span>를 그대로 올립니다. 1,093행을 코드로 더하므로 합계가 맞고, 대시보드 여섯 칸이 전부 나옵니다.</div>
         <div style="flex-grow: 1;"></div>
         <div style="font-size: 14px; color: #6b6660;">올리는 파일 <strong style="font-weight: 600; color: #111821;">2개</strong> — 원본 + 소계</div>
       </div>
       <div style="{CARD} flex: 1 0 0; border-top: 4px solid #9a6408; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px;">
         <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #9a6408;">코드 실행 X</span><span style="font-size: 14px; color: #6b6660;">Gemini, 또는 업로드가 막힌 포털</span></div>
-        <div style="font-size: 16px; line-height: 1.55;">AI가 1,093행을 머릿속으로 더하면 <strong style="font-weight: 600;">산술 오류</strong>가 납니다. 원본 대신 <span class="mono" style="font-size: 13px;">참고/세션2_대시보드_붙여넣기용/</span>의 집계표를 붙여넣습니다.</div>
+        <div style="font-size: 16px; line-height: 1.55;">AI가 1,093행을 머릿속으로 더하면 <strong style="font-weight: 600;">산술 오류</strong>가 납니다. 원본 대신 강사가 나눠 주는 <strong style="font-weight: 600;">붙여넣기용 집계표</strong>를 붙여넣습니다.</div>
         <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px;">
           <div><span class="mono" style="font-size: 13px;">매출데이터.md</span> <span style="color: #6b6660;">— 월 × 품목 합계 (만원)</span></div>
           <div><span class="mono" style="font-size: 13px;">매출데이터_소계.md</span> <span style="color: #6b6660;">— 다섯 축 합계, 검산용</span></div>
@@ -653,7 +653,7 @@ SLIDES["DeckW4"] = shell("일을 보는 법", "② 단계별 IPO — 받는 것 
       <div style="display: flex; gap: 10px; flex: 1.3 0 0;">
         {ipo_card("I", "Input", "이 단계를 시작하려면 손에 무엇이 있어야 하나", "요구조건 메일<br>가격가이드 엑셀<br>화면에서 복사한 표")}
         {ipo_card("P", "Process", "그것으로 무엇을 하나", "조건 6항목을 뽑는다<br>4열로 정제한다")}
-        {ipo_card("O", "Output", "끝나면 무엇이 남나 — 파일 이름으로", "고객요구조건.md<br>시장가격.csv")}
+        {ipo_card("O", "Output", "끝나면 무엇이 남나 — 파일 이름으로", "고객요구조건.md<br>시장가격.xlsx")}
       </div>
       <div style="{CARD} flex: 1 0 0; padding: 18px 22px; display: flex; flex-direction: column; gap: 14px;">
         <div style="{LBL}">규칙 세 가지</div>
@@ -862,7 +862,7 @@ SLIDES["DeckM11"] = shell("공통 방법론", "오늘의 완주 기준", "완성
     <div style="{BAND}">
       <div style="font-size: 22px; font-weight: 700;">뒤처져도 다음 실습은 반드시 시작합니다.</div>
       <div style="flex-grow: 1;"></div>
-      <div style="font-size: 14px; color: #c9c5bd;">앞 세션을 못 끝냈으면 실습 파일 참고/의 기준본으로 시작합니다.</div>
+      <div style="font-size: 14px; color: #c9c5bd;">앞 세션을 못 끝냈으면 강사가 나눠 주는 기준본으로 시작합니다.</div>
     </div>""", "M · 11")
 
 
@@ -974,11 +974,11 @@ def inputs(label, files, extra, page, folder):
         <div style="font-size: 14px; color: #3d4650; line-height: 1.5;">회사명 · 시설명 · 파트너 · 실적 · 가격 전부. 실제 고객사 · 파트너 파일은 올리지 않습니다.</div>
       </div>
     </div>""", page)
-SLIDES["DeckA4"] = inputs("모듈 A", [("기사수집.csv", "품목 · 헤드라인 · 원본url · 키워드 (4열)", 30, "단계 1의 산출물 — 강사 시연으로 만든 것"), ("대상고객사.csv", "수요처명 · 업종 · 상장시장 · 주력공종 · 거래이력 · 담당팀", 6, "담당 고객사 목록 — 건설 2 · 호텔 · 병원 · 교육 · 유통")],
-    "30건 중 <strong style='font-weight: 600; color: #111821;'>같은 헤드라인이 다른 매체로 세 번</strong> 더 실려 있고, <strong style='font-weight: 600; color: #111821;'>14건은 회사가 특정되지 않는 업계 동향</strong>입니다. 수집 요약에 30 → 27이 나오는지, 무관 기사가 따로 세어지는지가 첫 확인입니다. 업로드가 막히면 참고/ 폴더의 붙여넣기용 표를 붙여넣습니다.", "S · 04", "세션1_A_직판/2_데이터/")
-SLIDES["DeckB4"] = inputs("모듈 B", [("뉴스수집.json", "title · originallink · link · description · pubDate", 30, "네이버 뉴스 API 응답 — 연동 가정"), ("상권정보.csv", "권역 · 행정구역 · 시설유형 · 시설명 · 상태 · 예정시기 · 규모", 18, "상권정보"), ("파트너정보.csv", "파트너사 · 담당권역 · 주력버티컬 · 최근분기실적등급 · 시공가능규모", 4, "파트너 관리 대장"), ("시장조사.md", "권역 · 지표 · 값 · 출처 · 조사시점", 8, "시장조사 자료")],
+SLIDES["DeckA4"] = inputs("모듈 A", [("기사수집.xlsx", "품목 · 헤드라인 · 원본url · 키워드 (4열)", 30, "단계 1의 산출물 — 강사 시연으로 만든 것"), ("대상고객사.xlsx", "수요처명 · 업종 · 상장시장 · 주력공종 · 거래이력 · 담당팀", 6, "담당 고객사 목록 — 건설 2 · 호텔 · 병원 · 교육 · 유통")],
+    "30건 중 <strong style='font-weight: 600; color: #111821;'>같은 헤드라인이 다른 매체로 세 번</strong> 더 실려 있고, <strong style='font-weight: 600; color: #111821;'>14건은 회사가 특정되지 않는 업계 동향</strong>입니다. 수집 요약에 30 → 27이 나오는지, 무관 기사가 따로 세어지는지가 첫 확인입니다. 업로드가 막히면 강사가 나눠 주는 붙여넣기용 표를 붙여넣습니다.", "S · 04", "세션1_A_직판/2_데이터/")
+SLIDES["DeckB4"] = inputs("모듈 B", [("뉴스수집.json", "title · originallink · link · description · pubDate", 30, "네이버 뉴스 API 응답 — 연동 가정"), ("상권정보.xlsx", "권역 · 행정구역 · 시설유형 · 시설명 · 상태 · 예정시기 · 규모", 18, "상권정보"), ("파트너정보.xlsx", "파트너사 · 담당권역 · 주력버티컬 · 최근분기실적등급 · 시공가능규모", 4, "파트너 관리 대장"), ("시장조사.md", "권역 · 지표 · 값 · 출처 · 조사시점", 8, "시장조사 자료")],
     "넷을 <strong style='font-weight: 600; color: #111821;'>다 올려야</strong> 합니다. 뉴스만 올리면 규모를 못 걸러 카페가 기회 목록에 오르고, 파트너 파일이 없으면 매칭이 안 됩니다. 파트너 파일에 <strong style='font-weight: 600; color: #111821;'>계약단가 · 마진율</strong>이 있으면 올리지 않습니다 — 실패 테스트가 그것입니다.", "S · 04", "세션1_B_유통영업/2_데이터/")
-SLIDES["DeckC4"] = inputs("모듈 C", [("가격가이드.csv", "모델명 · 제품군 · 화면크기 · 해상도 · 밝기 · 주요기능 · 설치방식 · 가이드공급가 · 최소수량", 13, "사내 B2B 마케팅 / 가격가이드"), ("시장가격.csv", "수요처명 · 모델명 · 온라인가격 · 제품spec.", 10, "단계 ⓪의 산출물 — 강사 시연으로 만든 것"), ("고객요구조건.md", "요구조건 6항목 — 화면크기 · 사용목적 · 주요기능 · 설치환경 · 수량 · 예산", 1, "고객 메일")],
+SLIDES["DeckC4"] = inputs("모듈 C", [("가격가이드.xlsx", "모델명 · 제품군 · 화면크기 · 해상도 · 밝기 · 주요기능 · 설치방식 · 가이드공급가 · 최소수량", 13, "사내 B2B 마케팅 / 가격가이드"), ("시장가격.xlsx", "수요처명 · 모델명 · 온라인가격 · 제품spec.", 10, "단계 ⓪의 산출물 — 강사 시연으로 만든 것"), ("고객요구조건.md", "요구조건 6항목 — 화면크기 · 사용목적 · 주요기능 · 설치환경 · 수량 · 예산", 1, "고객 메일")],
     "요구조건은 <strong style='font-weight: 600; color: #111821;'>늘 반쯤 빠진 채로</strong> 옵니다. 경계 테스트 파일은 예산 줄이 지워져 있습니다. 크롤 표의 스펙은 <strong style='font-weight: 600; color: #111821;'>판매자가 쓴 글</strong>이라 경쟁사 평가 근거로 쓸 때 출처를 밝힙니다.", "C · 04", "세션4_제안자료/2_데이터/")
 
 # ───────────── A5 신호를 읽는 법 ─────────────
@@ -1083,7 +1083,7 @@ SLIDES["DeckB7"] = shell("모듈 B", "검색어는 곱셈입니다", "권역 × 
 # ───────────── 도구와 클릭 경로 (A · B) ─────────────
 SLIDES["DeckA8"] = shell("모듈 A", "도구와 클릭 경로", "주 도구 Gemini 에이전트 · 예약은 ChatGPT로 시연", f"""
     <div style="display: flex; gap: 14px; align-items: stretch; flex-grow: 1;">
-      {path("Gemini 에이전트 — 단계 2 · 3", "수동으로 빌드", ["[에이전트] → [+ 새 에이전트] → &quot;이 단계를 건너뛰고 수동으로 빌드&quot;", "지침에 <span class='mono' style='font-size: 13px;'>지시문_3_분석.md</span> ✂ 사이", "참조 파일 <span class='mono' style='font-size: 13px;'>기사수집.csv</span> · <span class='mono' style='font-size: 13px;'>대상고객사.csv</span>", "저장 → 첫 메시지에 기준일 2026-09-01", "HTML은 메모장에 <span class='mono' style='font-size: 13px;'>영업대시보드.html</span>로"], "#0f6b4f")}
+      {path("Gemini 에이전트 — 단계 2 · 3", "수동으로 빌드", ["[에이전트] → [+ 새 에이전트] → &quot;이 단계를 건너뛰고 수동으로 빌드&quot;", "지침에 <span class='mono' style='font-size: 13px;'>지시문_3_분석.md</span> ✂ 사이", "참조 파일 <span class='mono' style='font-size: 13px;'>기사수집.xlsx</span> · <span class='mono' style='font-size: 13px;'>대상고객사.xlsx</span>", "저장 → 첫 메시지에 기준일 2026-09-01", "HTML은 메모장에 <span class='mono' style='font-size: 13px;'>영업대시보드.html</span>로"], "#0f6b4f")}
       {path("ChatGPT [예약] — 단계 1 시연", "매주 같은 일은 주기가 돌립니다", ["사이드바 <strong style='font-weight: 600;'>[예약]</strong> → [만들기]", "실행할 내용에 <span class='mono' style='font-size: 13px;'>지시문_1_수집.md</span> ✂ 사이", "주기 매주 월요일 08:00 · 결과는 대화로", "스킬로 저장해 두면 예약에는 &quot;무엇을 언제&quot;만 남습니다", "<strong style='font-weight: 600;'>첫 실행을 수동으로 한 번</strong> — 건너뛰면 한 주를 버립니다"])}
     </div>
     <div style="{WARN} display: flex; gap: 20px; align-items: center;"><div style="font-size: 16px; font-weight: 600; color: #9a2c2c; white-space: nowrap;">예약 메뉴가 없으면</div><div style="font-size: 14px; color: #3d4650; line-height: 1.5;">강사가 3분 시연만 하고, 참가자는 에이전트에서 수동으로 1회 실행합니다. 배우는 것은 같습니다 — 매주 같은 일은 절차로 떼어 두고, 그 절차가 스킬입니다.</div></div>""", "S · 08")
@@ -1144,7 +1144,7 @@ SLIDES["DeckC5"] = shell("모듈 C", "밖의 데이터를 가져오는 법", "�
       {ARROW}
       {step_card(2, "정제 지시문 + 붙여넣기", "채팅창에 정제 지시문을 먼저 쓰고 그 아래에 붙여넣습니다. 스펙 열에는 제조사 공식 정보만, 판매자 글이면 &quot;판매자기재&quot;")}
       {ARROW}
-      {step_card(3, "4열 표 → 저장", "&quot;쉼표로 구분된 표로 출력해줘&quot; → 메모장 → <span class='mono' style='font-size: 13px; color: #111821;'>시장가격.csv</span>", last=True)}
+      {step_card(3, "4열 표 → 저장", "표를 복사해 엑셀에 붙여넣기 → <span class='mono' style='font-size: 13px; color: #111821;'>시장가격.xlsx</span>", last=True)}
     </div>
     <div style="display: flex; gap: 14px; align-items: stretch;">
       <div style="{CARD} flex: 1 0 0; padding: 14px 20px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">표가 복잡해 뒤섞이면 — 화면 캡처</strong> 브라우저 확장프로그램(Awesome Screenshot 등)으로 표 영역을 캡처해 이미지로 올립니다. 숫자는 OCR이라 <strong style="font-weight: 600; color: #111821;">가격은 복사로, 설명은 캡처로</strong>. PlayMCP(네이버 검색 API)는 응답에 가격이 없어 실습에서 쓰지 않습니다.</div>
@@ -1303,7 +1303,7 @@ SLIDES["DeckZ1"] = shell("클로징", "내 업무로 옮기려면", "설계 6단
         <table style="border-collapse: collapse; width: 100%; height: 100%;">
           <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">바꿀 것 — 다섯</td><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">오늘 (배포 데이터)</td><td style="padding: 8px 14px; border-bottom: 2px solid #111821;">내 업무</td></tr>
           <tr><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">팀 프로필</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">team_profile.md</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
-          <tr style="background: #f7f6f2;"><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">입력 데이터 — 파일 · 컬럼</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">매출데이터.csv 16열</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
+          <tr style="background: #f7f6f2;"><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">입력 데이터 — 파일 · 컬럼</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">매출데이터.xlsx 16열</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
           <tr><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">출력 서식</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">대시보드 6칸</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
           <tr style="background: #f7f6f2;"><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">STOP 조건</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">소계 불일치 · 필수 열 없음</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>
           <tr><td style="padding: 8px 14px; font-size: 16px; font-weight: 600;">승인자</td><td class="mono" style="padding: 8px 14px; font-size: 13px; color: #3d4650;">{{담당자}}</td><td style="padding: 8px 14px; color: #d9d7d0;">________</td></tr>

@@ -124,7 +124,7 @@ G = lambda t: f'<span style="color: #9a958d;">{t}</span>'
 CHIP = lambda t: f'<span class="mono" style="font-size: 14px; background: #f2f1ec; padding: 1px 6px;">{html.escape(t)}</span>'
 TOOL_FALLBACK = f'[에이전트] 메뉴가 없으면 {B("프로젝트")}로, 그것도 없으면 {B("새 대화에 지시문 붙여넣기")}로'
 HAND = f'그래도 안 되면 {B("손을 듭니다.")} 도구 문제로 실습을 놓치는 일은 없습니다'
-ANSWER = lambda f: f'시간이 모자라면 {B("실습 파일 참고/")}의 {mono(f)}를 열고 다음으로 넘어갑니다'
+ANSWER = lambda f: f'시간이 모자라면 강사가 띄운 {B("기준본")} {mono(f)}를 보고 다음으로 넘어갑니다'
 
 SLIDES = {
 # ───────────────────────────── D ─────────────────────────────

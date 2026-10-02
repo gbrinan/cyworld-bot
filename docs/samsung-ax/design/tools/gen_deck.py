@@ -890,7 +890,7 @@ STD_C = [(20, "방법론 + 분해표", "talk"), (15, "시연", "talk"), (30, "�
 
 SLIDES["DeckA1"] = cover("모듈 A · 세션1-1 · B2B팀", "직판 Sensing Agent", "담당 고객사 6곳 — 짓는 회사와 쓰는 회사 — 의 기사를 봅니다. 매주 쌓이는 기사에서 <strong style='color: #fbfaf7; font-weight: 600;'>언제 접근해야 하는지</strong>를 꺼냅니다.", "수집 → 프로파일 → 기회 분석. 에이전트는 하나, 단계가 셋입니다.", STD, "실습 70분 · 방법론 4장은 실습 2와 3 사이", "S · 01")
 SLIDES["DeckB1"] = cover("모듈 B · 세션1-2 · B2B유통전략팀", "경로 Sensing Agent", "권역의 작은 시설 여럿을 넓게 봅니다. 한 건씩은 작아서 의미가 없고, <strong style='color: #fbfaf7; font-weight: 600;'>모아 놓고 봐야</strong> 흐름이 보입니다.", "키워드 → 추출 · 매칭 → 보고서. 수주는 파트너가 하므로 파트너와 무엇을 논의할지까지 정리해야 끝납니다.", STD, "실습 70분 · 방법론 4장은 실습 2와 3 사이", "S · 01")
-SLIDES["DeckC1"] = cover("모듈 C · 세션3 · 전원 공통", "제안자료 작성 Agent", "고객은 모델명이 아니라 요구조건을 보냅니다. 조건에 맞는 <strong style='color: #fbfaf7; font-weight: 600;'>3안</strong>을 만들고 시장가와 비교합니다.", "⓪ 수집 정제 → ① 스펙 추출 → ② 3안 제안. 마지막 모듈이라 Skill과 클로징이 이 안에 있습니다.", STD_C, "실습 70분 · 전환 · 버퍼 자리에 Skill 6장 + 클로징 3장", "C · 01")
+SLIDES["DeckC1"] = cover("모듈 C · 세션3 · 전원 공통", "제안자료 작성 Agent", "고객은 모델명이 아니라 요구조건을 보냅니다. 조건에 맞는 <strong style='color: #fbfaf7; font-weight: 600;'>3안</strong>을 만들고 시장가와 비교합니다.", "제안 대상은 두 팀 모두 세션2가 넘긴 <strong style='color: #fbfaf7; font-weight: 600;'>미래로병원</strong>입니다. ⓪ 수집 정제 → ① 스펙 추출 → ② 3안 제안, 끝에 Skill과 클로징.", STD_C, "실습 70분 · 전환 · 버퍼 자리에 Skill 6장 + 클로징 3장", "C · 01")
 
 # ───────────── 분해표 (A · B · C) ─────────────
 def decomp(label, title, now, rows, note1, note2, page, legend_lock="사람만 — 에이전트 밖", cols=("내가 하는 일", "꼬리표", "어디로")):
@@ -1332,7 +1332,7 @@ SLIDES["DeckZ3"] = shell("클로징", "7일 계획", "워크북 마지막 장 �
 
 # ───────────── D1 모듈 표지 ─────────────
 STD_D = [(20, "분해표 + 입력", "talk"), (15, "시연", "talk"), (30, "실습 1", "hands"), (5, "설명", "talk"), (40, "실습 2·3", "hands"), (5, "전환", "talk"), (5, "버퍼", "buf")]
-SLIDES["DeckD1"] = cover("모듈 D · 세션2 · 대시보드 → 데이터 분석 (한 대화)", "데이터 분석 Agent", "매출 데이터 16개 열로 보직장 · 임원 · 품목 담당이 매일 여는 <strong style='color: #fbfaf7; font-weight: 600;'>매출 대시보드</strong>를 만들고, 임원용 리뷰 한 장을 씁니다.", "숫자 확인 → 대시보드 → 리뷰. 에이전트는 하나, 지시문이 둘입니다. 세션1에서 기사로 본 고객 6곳의 매출입니다.", STD_D, "세션2 = 실습 1 · 세션3 = 실습 2·3", "D · 01", steps=2)
+SLIDES["DeckD1"] = cover("모듈 D · 세션2 · 대시보드 → 데이터 분석 (한 대화)", "데이터 분석 Agent", "매출 데이터 16개 열로 보직장 · 임원 · 품목 담당이 매일 여는 <strong style='color: #fbfaf7; font-weight: 600;'>매출 대시보드</strong>를 만들고, 임원용 리뷰 한 장을 씁니다.", "1-1 · 1-2 <strong style='color: #fbfaf7; font-weight: 600;'>두 팀이 여기서 합류</strong>해 같은 매출 파일 하나(직판 + 경로)로 실습합니다. 숫자 확인 → 대시보드 → 리뷰, 에이전트 하나에 지시문 둘.", STD_D, "세션2-1 = 실습 1 · 세션2-2 = 실습 2·3 (같은 대화)", "D · 01", steps=2)
 
 if __name__ == "__main__":
     import re as _re

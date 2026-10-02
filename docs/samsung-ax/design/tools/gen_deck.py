@@ -997,8 +997,8 @@ def tl(rank, who, done, approach, gap, hot=False):
 </div>"""
 SLIDES["DeckA5"] = shell("모듈 A", "신호를 읽는 법 — 준공 −6개월 = 접근 시점", "규모가 아니라 시점으로 정렬합니다", f"""
     <div style="display: flex; flex-direction: column; gap: 8px; justify-content: space-evenly;">
-      {tl(1, "한울종합건설 · 해솔호텔 리뉴얼", "2027-03", "2026-09 = 지금", "기준일 2026-09-01", True)}
-      {tl(2, "미래로병원 신관 증축", "2027-07", "2027-01", "4개월 뒤 — 기존 거래 고객")}
+      {tl(1, "미래로병원 신관", "2027-03", "2026-09 = 지금", "기존 거래 고객 · 기준일 2026-09-01", True)}
+      {tl(2, "한울종합건설 · 해솔호텔 리뉴얼", "2027-07", "2027-01", "4개월 뒤")}
       {tl(3, "대성건설 오피스동 · 수주 1.2조", "2028-06", "2027-12", "15개월 뒤 — 규모는 크지만 시점이 멉니다")}
     </div>
     <div style="display: flex; gap: 14px; align-items: stretch; flex-grow: 1;">
@@ -1013,10 +1013,10 @@ SLIDES["DeckA5"] = shell("모듈 A", "신호를 읽는 법 — 준공 −6개월
       </div>
       <div style="{CARD} flex: 1 0 0; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px;">
         <div style="{LBL}">1순위에는 시나리오 2~3갈래</div>
-        <div style="font-size: 14px; line-height: 1.55; color: #3d4650;">발주가 예정대로 / 늦어질 때 / 쓰는 회사(해솔호텔 — 기존 거래)에 직접 — 갈래마다 접점과 들고 갈 것이 다릅니다. 아는 사람이 있는 문이 가장 빠릅니다. 접점이 없으면 <strong style="font-weight: 600; color: #111821;">"접점 확보"가 첫 행동</strong>입니다.</div>
+        <div style="font-size: 14px; line-height: 1.55; color: #3d4650;">발주가 예정대로 / 늦어질 때 / 짓는 회사(시공사)를 통할 때 — 갈래마다 접점과 들고 갈 것이 다릅니다. 기존 거래 고객이면 아는 사람이 있는 문이 가장 빠릅니다. 접점이 없으면 <strong style="font-weight: 600; color: #111821;">"접점 확보"가 첫 행동</strong>입니다.</div>
       </div>
     </div>
-    <div style="{BAND}"><div style="font-size: 22px; font-weight: 700;">1.2조 수주가 3순위, 재개관 2027-03 호텔이 1순위입니다.</div><div style="flex-grow: 1;"></div><div style="font-size: 14px; color: #c9c5bd;">규모로 정렬한 대시보드는 지시문을 다시 읽게 합니다.</div></div>""", "S · 05")
+    <div style="{BAND}"><div style="font-size: 22px; font-weight: 700;">1.2조 수주가 3순위, 준공 2027-03 병원 신관이 1순위입니다.</div><div style="flex-grow: 1;"></div><div style="font-size: 14px; color: #c9c5bd;">규모로 정렬한 대시보드는 지시문을 다시 읽게 합니다.</div></div>""", "S · 05")
 
 # ───────────── B5 작은 건은 모아야 보입니다 ─────────────
 SLIDES["DeckB5"] = shell("모듈 B", "작은 건은 모아야 보입니다", "규모 기준으로 두 갈래", f"""
@@ -1024,7 +1024,7 @@ SLIDES["DeckB5"] = shell("모듈 B", "작은 건은 모아야 보입니다", "�
       <div style="{CARD} flex: 1 0 0; border-top: 4px solid #0f6b4f; padding: 18px 22px; display: flex; flex-direction: column; gap: 10px;">
         <div style="display: flex; align-items: baseline; gap: 10px;"><span style="font-size: 22px; font-weight: 700; color: #0f6b4f;">기준 이상 → 기회 목록</span><span style="font-size: 14px; color: #6b6660;">파트너가 쓸 수 있는 크기</span></div>
         <div style="font-size: 16px; line-height: 1.55;">객실 <strong style="font-weight: 600;">50실</strong> · 연면적 <strong style="font-weight: 600;">3,000㎡</strong> · 병상 <strong style="font-weight: 600;">50</strong> — 셋 중 하나라도 넘으면 기회. 단위가 다르면 <strong style="font-weight: 600;">환산하지 않고</strong> 불충족으로 봅니다.</div>
-        <div style="{CARD} background: #f7f6f2; padding: 10px 14px; font-size: 14px; line-height: 1.6;">1 해솔호텔 객실 200실 → 남해정보통신<br>2 마린그랜드호텔 객실 150실 → 남해정보통신<br>3 해운대제일고 연면적 8,400㎡ → <strong style="font-weight: 600; color: #9a2c2c;">해당 파트너 없음</strong></div>
+        <div style="{CARD} background: #f7f6f2; padding: 10px 14px; font-size: 14px; line-height: 1.6;">1 마린그랜드호텔 객실 150실 → 남해정보통신<br>2 해솔호텔 객실 200실 → 남해정보통신<br>3 해운대제일고 연면적 8,400㎡ → 해당 파트너 없음</div>
         <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">1 · 2순위 합계 350실이 파트너 시공가능 200실을 넘습니다 — 논의사항에 올립니다.</div>
       </div>
       <div style="{CARD} flex: 1 0 0; border-top: 4px solid #9a6408; padding: 18px 22px; display: flex; flex-direction: column; gap: 10px;">
@@ -1107,7 +1107,7 @@ def transfer(label, question, skill, agent, handoff, page, skill_name):
       <div style="{CARD} flex: 1 0 0; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px;"><div style="{LBL}">에이전트에 둘 것 — 우리 팀 것</div><div style="font-size: 14px; line-height: 1.55; color: #3d4650;">{agent}</div></div>
       <div style="{CARD} border-left: 3px solid #1c3f94; width: 300px; flex-shrink: 0; padding: 14px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">다음 모듈로</strong> — {handoff}</div>
     </div>""", page)
-SLIDES["DeckA12"] = transfer("모듈 A", "내가 매주 훑는 자료는 무엇이고, 그 검색어를 파일로 적어 둔 적이 있는가?", "수집 · 정제 절차, 프로파일 질문 목록, 준공 −6개월 역산 규칙, 대시보드 양식, 검수 기준.", "담당 고객사 목록, 검색어 파일, 우리 팀 용어, 실행 주기. 담당이 바뀌면 참조 파일만 바꿉니다 — <strong style='font-weight: 600; color: #111821;'>인수인계가 파일 한 개</strong>가 됩니다.", "세션2에서 같은 고객 6곳의 매출을 봅니다. 기사로 본 신호를 매출 흐름과 맞춰 보십시오 — 미래로병원 신관 증축처럼.", "S · 12", "sensing-customer-signals")
+SLIDES["DeckA12"] = transfer("모듈 A", "내가 매주 훑는 자료는 무엇이고, 그 검색어를 파일로 적어 둔 적이 있는가?", "수집 · 정제 절차, 프로파일 질문 목록, 준공 −6개월 역산 규칙, 대시보드 양식, 검수 기준.", "담당 고객사 목록, 검색어 파일, 우리 팀 용어, 실행 주기. 담당이 바뀌면 참조 파일만 바꿉니다 — <strong style='font-weight: 600; color: #111821;'>인수인계가 파일 한 개</strong>가 됩니다.", "세션2에서 같은 고객 6곳의 매출을 봅니다. 기사로 본 신호를 매출 흐름과 맞춰 보십시오 — 미래로병원 신관 준공처럼.", "S · 12", "sensing-customer-signals")
 SLIDES["DeckB12"] = transfer("모듈 B", "내 권역에서 '작아서 안 세던 것' 중, 모으면 의미가 있는 건 무엇인가?", "키워드 조합 규칙, 추출 항목, 규모 기준과 두 갈래 규칙, 파트너 매칭 규칙, 보고서 5절 양식, 검수 기준.", "담당 권역, 파트너 목록, 상권정보 파일, 규모 하한선 값. 권역이 바뀌면 참조 파일과 권역 값만 바꿉니다.", "기회 목록을 <span class='mono' style='font-size: 13px;'>기회목록.csv</span>로 저장하면 D 모듈의 대상 수요처로 넘길 수 있습니다 (선택).", "S · 12", "sensing-district-openings-for-partners")
 
 # ───────────── C3 오늘 만들 결과물 ─────────────

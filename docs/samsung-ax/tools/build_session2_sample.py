@@ -61,7 +61,7 @@ def item_weights(vert, day):
 
 def acct_weight(name, day):
     w=ACCOUNTS[name]["w"]
-    # 심어 둔 흐름 ② 미래로병원은 2026-05부터 구매가 확 준다 (신관 증축 공사 중 — 세션1 기사와 이어진다)
+    # 심어 둔 흐름 ② 미래로병원은 2026-05부터 구매가 확 준다 (신관 준공을 앞두고 — 세션1 기사와 이어진다)
     if name=="미래로병원" and day>=dt.date(2026,5,1): w*=0.45
     return w
 

@@ -94,10 +94,10 @@ Agent를 팀마다 따로 만들지 않고, 같은 지시문에 다른 팩을 �
 | `instruction_templates/agent02_sensing.md` | ② 시장·고객 분석 Agent 지시문 (`{{ }}`만 교체) |
 | `instruction_templates/agent03_action.md` | ③ 제안자료 작성 Agent 지시문 |
 | `instruction_templates/agent04_analysis.md` | ④ 데이터 분석 Agent 지시문 |
-| `instruction_templates/dashboard_sales.md` | **영업 현황 대시보드** (1교시 D에서) — 실적을 축별로 쪼갠 현황 한 장 |
-| `instruction_templates/dashboard_customer.md` | **고객사 동향 대시보드** (2교시 A에서) — 담당 고객사를 접근 시점 순으로 |
-| `instruction_templates/dashboard_territory.md` | **담당 구역 기회 대시보드** (2교시 B에서) — 구역 기회와 담당 배정 |
-| `instruction_templates/dashboard_proposal.md` | **제안 비교 대시보드** (3교시 C에서) — 요구조건 대조표와 안 3개 |
+| `instruction_templates/dashboard_sales.md` | **영업 현황 대시보드** (세션2 D에서) — 실적을 축별로 쪼갠 현황 한 장 |
+| `instruction_templates/dashboard_customer.md` | **고객사 동향 대시보드** (세션1-1 A에서) — 담당 고객사를 접근 시점 순으로 |
+| `instruction_templates/dashboard_territory.md` | **담당 구역 기회 대시보드** (세션1-2 B에서) — 구역 기회와 담당 배정 |
+| `instruction_templates/dashboard_proposal.md` | **제안 비교 대시보드** (세션4 C에서) — 요구조건 대조표와 안 3개 |
 | `instruction_templates/dashboard_*_예시.md` | 위 넷을 실습 데이터로 채운 참고본. 수치가 그대로 재현됩니다 |
 | `proposal_structure.md` | 제안서 공통 순서 (회사소개→제안내용→제품소개→유지보수, 삼성 확정) |
 | `review_criteria.md` | 5분 검수 체크리스트와 등급 |

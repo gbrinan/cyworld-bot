@@ -998,7 +998,8 @@ def tl(rank, who, done, approach, gap, hot=False):
 SLIDES["DeckA5"] = shell("모듈 A", "신호를 읽는 법 — 준공 −6개월 = 접근 시점", "규모가 아니라 시점으로 정렬합니다", f"""
     <div style="display: flex; flex-direction: column; gap: 8px; justify-content: space-evenly;">
       {tl(1, "한울종합건설 · 해솔호텔 리뉴얼", "2027-03", "2026-09 = 지금", "기준일 2026-09-01", True)}
-      {tl(2, "대성건설 오피스동 · 수주 1.2조", "2028-06", "2027-12", "15개월 뒤 — 규모는 크지만 시점이 멉니다")}
+      {tl(2, "미래로병원 신관 증축", "2027-07", "2027-01", "4개월 뒤 — 기존 거래 고객")}
+      {tl(3, "대성건설 오피스동 · 수주 1.2조", "2028-06", "2027-12", "15개월 뒤 — 규모는 크지만 시점이 멉니다")}
     </div>
     <div style="display: flex; gap: 14px; align-items: stretch; flex-grow: 1;">
       <div style="{CARD} flex: 1.2 0 0; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px;">
@@ -1015,7 +1016,7 @@ SLIDES["DeckA5"] = shell("모듈 A", "신호를 읽는 법 — 준공 −6개월
         <div style="font-size: 14px; line-height: 1.55; color: #3d4650;">발주가 예정대로 / 늦어질 때 / 쓰는 회사(해솔호텔 — 기존 거래)에 직접 — 갈래마다 접점과 들고 갈 것이 다릅니다. 아는 사람이 있는 문이 가장 빠릅니다. 접점이 없으면 <strong style="font-weight: 600; color: #111821;">"접점 확보"가 첫 행동</strong>입니다.</div>
       </div>
     </div>
-    <div style="{BAND}"><div style="font-size: 22px; font-weight: 700;">1.2조 수주가 2순위, 재개관 2027-03 호텔이 1순위입니다.</div><div style="flex-grow: 1;"></div><div style="font-size: 14px; color: #c9c5bd;">규모로 정렬한 대시보드는 지시문을 다시 읽게 합니다.</div></div>""", "S · 05")
+    <div style="{BAND}"><div style="font-size: 22px; font-weight: 700;">1.2조 수주가 3순위, 재개관 2027-03 호텔이 1순위입니다.</div><div style="flex-grow: 1;"></div><div style="font-size: 14px; color: #c9c5bd;">규모로 정렬한 대시보드는 지시문을 다시 읽게 합니다.</div></div>""", "S · 05")
 
 # ───────────── B5 작은 건은 모아야 보입니다 ─────────────
 SLIDES["DeckB5"] = shell("모듈 B", "작은 건은 모아야 보입니다", "규모 기준으로 두 갈래", f"""

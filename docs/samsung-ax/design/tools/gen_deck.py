@@ -104,19 +104,19 @@ SLIDES["DeckO2"] = shell("오프닝", "오늘 에이전트 4개를 만듭니다"
       {ARROW}
       <div style="display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
         <div style="{LBL}">데이터 분석 — 공통</div>
-        {agent_card("D", "데이터 분석", "세션2 대시보드 · 세션3 분석 · 전원", "building-sales-dashboard", "대시보드.html", "#9a6408")}
+        {agent_card("D", "데이터 분석", "세션2 · 대시보드 → 분석 · 한 대화 · 전원", "building-sales-dashboard", "대시보드.html", "#9a6408")}
       </div>
       {ARROW}
       <div style="display: flex; flex-direction: column; gap: 10px; flex: 1 0 0;">
         <div style="{LBL}">제안자료 작성 — 공통</div>
-        {agent_card("C", "제안자료 작성", "세션4 · 전원 · 요구조건에 맞는 3안", "drafting-display-proposals-from-requirements", "제안자료.html")}
+        {agent_card("C", "제안자료 작성", "세션3 · 전원 · 요구조건에 맞는 3안", "drafting-display-proposals-from-requirements", "제안자료.html")}
       </div>
     </div>
     <div style="{BAND}">
       <div style="font-size: 22px; font-weight: 700;">에이전트는 넷, 모듈당 하나.</div>
       <div style="font-size: 16px; color: #c9c5bd;">모듈 안에 단계가 셋이어도 에이전트는 하나입니다.</div>
       <div style="flex-grow: 1;"></div>
-      <div style="font-size: 14px; color: #c9c5bd; text-align: right; line-height: 1.5;">수업 순서 <strong style="color: #fbfaf7;">세션1 A 또는 B → 세션2 · 3 D → 세션4 C</strong><br>한 고객이 네 세션을 이어서 돕니다</div>
+      <div style="font-size: 14px; color: #c9c5bd; text-align: right; line-height: 1.5;">수업 순서 <strong style="color: #fbfaf7;">세션1 A 또는 B → 세션2 D → 세션3 C</strong><br>한 고객이 세 세션을 이어서 돕니다</div>
     </div>""", "O · 02")
 
 # ───────────── O4 시작 전 준비 ─────────────
@@ -392,7 +392,7 @@ SLIDES["DeckD2"] = shell("모듈 D", "지금은 이렇게 일합니다 — 그�
 def frow(f, hdr, n, src, alt=False):
     c = "color: #6b6660;" if alt else ""
     return f'<tr style="{c}"><td class="mono" style="padding: 8px 10px; font-size: 13px; white-space: nowrap;">{f}</td><td style="padding: 8px 10px; font-size: 14px; line-height: 1.45;">{hdr}</td><td style="padding: 8px 10px; text-align: right; font-size: 14px;">{n}</td><td style="padding: 8px 10px; font-size: 14px;">{src}</td></tr>'
-SLIDES["DeckD4"] = shell("모듈 D", "입력 데이터", "실습 파일 세션2_대시보드/2_데이터/", f"""
+SLIDES["DeckD4"] = shell("모듈 D", "입력 데이터", "실습 파일 세션2_대시보드_데이터분석/2_데이터/", f"""
     <div style="{CARD} padding: 8px 6px;">
       <table style="border-collapse: collapse; width: 100%;">
         <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 4px 10px;">파일</td><td style="padding: 4px 10px;">헤더</td><td style="padding: 4px 10px; text-align: right;">행</td><td style="padding: 4px 10px;">어디서 온 것으로 가정</td></tr>
@@ -499,7 +499,7 @@ SLIDES["DeckD12"] = shell("모듈 D", "내 업무로 전환", "5분 — 워크�
           <div style="font-size: 14px; line-height: 1.55; color: #3d4650;">확인 절차 · 같은 날짜까지 비교 규칙 · 대시보드 양식 · 기저효과 점검 · 검수 기준 — 누가 써도 같은 것. <span class="mono" style="font-size: 13px; color: #111821;">building-sales-dashboard</span></div>
           <div style="font-size: 14px; line-height: 1.55; color: #3d4650;">매출 파일 · 파트 · 수요처 명칭 · 기준일 — 우리 팀 것. 에이전트에 남깁니다.</div>
         </div>
-        <div style="{CARD} border-left: 3px solid #1c3f94; padding: 12px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">다음 모듈로</strong> — 리뷰에서 고른 한 곳을 <span class="mono" style="font-size: 13px;">대상수요처.md</span>로 저장하면 세션4 C 모듈의 고객 배경이 됩니다 (선택).</div>
+        <div style="{CARD} border-left: 3px solid #1c3f94; padding: 12px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">다음 모듈로</strong> — 응답 맨 아래 인계본을 <span class="mono" style="font-size: 13px;">대상수요처.md</span>로 저장합니다. 세션3 C 모듈의 <strong style="font-weight: 600; color: #111821;">필수 입력</strong>입니다.</div>
       </div>
     </div>""", "D · 12")
 
@@ -522,8 +522,8 @@ SLIDES["DeckO3"] = shell("오프닝", "오늘의 흐름", "세션0 오프닝 + �
     <div style="display: flex; flex-direction: column; gap: 8px; justify-content: space-evenly;">
       {session(0, "오프닝 · 일 보는 법", "전원", [(10,"오프닝","common"),(30,"일 보는 법 + 분해표","common"),(20,"방법론 5장","common")], "60 · 일정표 확정 후 조정")}
       {session("세션1", "A 또는 B 시장·고객 분석", "B2B팀은 A(1-1) · 유통전략팀은 B(1-2)", [(20,"분해표 + 입력","talk"),(15,"시연","talk"),(30,"실습 1","hands"),(25,"실습 2","hands"),(5,"방법론","common"),(15,"실습 3","hands"),(5,"전환","talk"),(5,"버퍼","buf")], "실습 70")}
-      {session("세션2 · 3", "D 대시보드 → 데이터 분석", "전원 · 세션1의 고객 6곳 매출", [(20,"분해표 + 입력","talk"),(15,"시연","talk"),(30,"실습 1","hands"),(5,"설명","talk"),(40,"실습 2·3","hands"),(5,"전환","talk"),(5,"버퍼","buf")], "실습 70")}
-      {session(4, "C 제안자료 작성", "전원 · 세션3에서 고른 한 곳", [(20,"방법론 2장 + 분해표","common"),(15,"시연","talk"),(30,"실습 1","hands"),(40,"실습 2·3","hands"),(15,"Skill + 클로징","common")], "실습 70")}
+      {session("세션2", "D 대시보드 → 데이터 분석", "전원 · 한 대화로 이어서", [(20,"분해표 + 입력","talk"),(15,"시연","talk"),(30,"실습 1","hands"),(5,"설명","talk"),(40,"실습 2·3","hands"),(5,"전환","talk"),(5,"버퍼","buf")], "실습 70")}
+      {session(3, "C 제안자료 작성", "전원 · 세션2가 넘긴 대상수요처.md", [(20,"방법론 2장 + 분해표","common"),(15,"시연","talk"),(30,"실습 1","hands"),(40,"실습 2·3","hands"),(15,"Skill + 클로징","common")], "실습 70")}
     </div>
     <div style="display: flex; gap: 18px; align-items: center; font-size: 12px; color: #6b6660; padding: 0 4px;">
       <span><span style="display: inline-block; width: 12px; height: 12px; background: #0e2560; vertical-align: -1px;"></span> 공통 설명</span><span><span style="display: inline-block; width: 12px; height: 12px; background: #1c3f94; vertical-align: -1px;"></span> 모듈 설명 · 시연</span><span><span style="display: inline-block; width: 12px; height: 12px; background: #9a6408; vertical-align: -1px;"></span> 핸즈온</span><span><span style="display: inline-block; width: 12px; height: 12px; background: #8fa4d8; vertical-align: -1px;"></span> 버퍼</span>
@@ -890,7 +890,7 @@ STD_C = [(20, "방법론 + 분해표", "talk"), (15, "시연", "talk"), (30, "�
 
 SLIDES["DeckA1"] = cover("모듈 A · 세션1-1 · B2B팀", "직판 Sensing Agent", "담당 고객사 6곳 — 짓는 회사와 쓰는 회사 — 의 기사를 봅니다. 매주 쌓이는 기사에서 <strong style='color: #fbfaf7; font-weight: 600;'>언제 접근해야 하는지</strong>를 꺼냅니다.", "수집 → 프로파일 → 기회 분석. 에이전트는 하나, 단계가 셋입니다.", STD, "실습 70분 · 방법론 4장은 실습 2와 3 사이", "S · 01")
 SLIDES["DeckB1"] = cover("모듈 B · 세션1-2 · B2B유통전략팀", "경로 Sensing Agent", "권역의 작은 시설 여럿을 넓게 봅니다. 한 건씩은 작아서 의미가 없고, <strong style='color: #fbfaf7; font-weight: 600;'>모아 놓고 봐야</strong> 흐름이 보입니다.", "키워드 → 추출 · 매칭 → 보고서. 수주는 파트너가 하므로 파트너와 무엇을 논의할지까지 정리해야 끝납니다.", STD, "실습 70분 · 방법론 4장은 실습 2와 3 사이", "S · 01")
-SLIDES["DeckC1"] = cover("모듈 C · 세션4 · 전원 공통", "제안자료 작성 Agent", "고객은 모델명이 아니라 요구조건을 보냅니다. 조건에 맞는 <strong style='color: #fbfaf7; font-weight: 600;'>3안</strong>을 만들고 시장가와 비교합니다.", "⓪ 수집 정제 → ① 스펙 추출 → ② 3안 제안. 마지막 모듈이라 Skill과 클로징이 이 안에 있습니다.", STD_C, "실습 70분 · 전환 · 버퍼 자리에 Skill 6장 + 클로징 3장", "C · 01")
+SLIDES["DeckC1"] = cover("모듈 C · 세션3 · 전원 공통", "제안자료 작성 Agent", "고객은 모델명이 아니라 요구조건을 보냅니다. 조건에 맞는 <strong style='color: #fbfaf7; font-weight: 600;'>3안</strong>을 만들고 시장가와 비교합니다.", "⓪ 수집 정제 → ① 스펙 추출 → ② 3안 제안. 마지막 모듈이라 Skill과 클로징이 이 안에 있습니다.", STD_C, "실습 70분 · 전환 · 버퍼 자리에 Skill 6장 + 클로징 3장", "C · 01")
 
 # ───────────── 분해표 (A · B · C) ─────────────
 def decomp(label, title, now, rows, note1, note2, page, legend_lock="사람만 — 에이전트 밖", cols=("내가 하는 일", "꼬리표", "어디로")):
@@ -978,8 +978,8 @@ SLIDES["DeckA4"] = inputs("모듈 A", [("기사수집.xlsx", "품목 · 헤드�
     "30건 중 <strong style='font-weight: 600; color: #111821;'>같은 헤드라인이 다른 매체로 세 번</strong> 더 실려 있고, <strong style='font-weight: 600; color: #111821;'>14건은 회사가 특정되지 않는 업계 동향</strong>입니다. 수집 요약에 30 → 27이 나오는지, 무관 기사가 따로 세어지는지가 첫 확인입니다. 업로드가 막히면 강사가 나눠 주는 붙여넣기용 표를 붙여넣습니다.", "S · 04", "세션1_A_직판/2_데이터/")
 SLIDES["DeckB4"] = inputs("모듈 B", [("뉴스수집.json", "title · originallink · link · description · pubDate", 30, "네이버 뉴스 API 응답 — 연동 가정"), ("상권정보.xlsx", "권역 · 행정구역 · 시설유형 · 시설명 · 상태 · 예정시기 · 규모", 18, "상권정보"), ("파트너정보.xlsx", "파트너사 · 담당권역 · 주력버티컬 · 최근분기실적등급 · 시공가능규모", 4, "파트너 관리 대장"), ("시장조사.md", "권역 · 지표 · 값 · 출처 · 조사시점", 8, "시장조사 자료")],
     "넷을 <strong style='font-weight: 600; color: #111821;'>다 올려야</strong> 합니다. 뉴스만 올리면 규모를 못 걸러 카페가 기회 목록에 오르고, 파트너 파일이 없으면 매칭이 안 됩니다. 파트너 파일에 <strong style='font-weight: 600; color: #111821;'>계약단가 · 마진율</strong>이 있으면 올리지 않습니다 — 실패 테스트가 그것입니다.", "S · 04", "세션1_B_유통영업/2_데이터/")
-SLIDES["DeckC4"] = inputs("모듈 C", [("가격가이드.xlsx", "모델명 · 제품군 · 화면크기 · 해상도 · 밝기 · 주요기능 · 설치방식 · 가이드공급가 · 최소수량", 13, "사내 B2B 마케팅 / 가격가이드"), ("시장가격.xlsx", "수요처명 · 모델명 · 온라인가격 · 제품spec.", 10, "단계 ⓪의 산출물 — 강사 시연으로 만든 것"), ("고객요구조건.md", "요구조건 6항목 — 화면크기 · 사용목적 · 주요기능 · 설치환경 · 수량 · 예산", 1, "고객 메일")],
-    "요구조건은 <strong style='font-weight: 600; color: #111821;'>늘 반쯤 빠진 채로</strong> 옵니다. 경계 테스트 파일은 예산 줄이 지워져 있습니다. 크롤 표의 스펙은 <strong style='font-weight: 600; color: #111821;'>판매자가 쓴 글</strong>이라 경쟁사 평가 근거로 쓸 때 출처를 밝힙니다.", "C · 04", "세션4_제안자료/2_데이터/")
+SLIDES["DeckC4"] = inputs("모듈 C", [("대상수요처.md", "수요처코드 · 매출 흐름 · 고른 이유 · 확인할 가설", 1, "세션2 인계본 — 필수. 없으면 에이전트가 물어서 채움"), ("가격가이드.xlsx", "모델명 · 제품군 · 화면크기 · 해상도 · 밝기 · 주요기능 · 설치방식 · 가이드공급가 · 최소수량", 13, "사내 B2B 마케팅 / 가격가이드"), ("시장가격.xlsx", "수요처명 · 모델명 · 온라인가격 · 제품spec.", 10, "단계 ⓪의 산출물 — 강사 시연으로 만든 것"), ("고객요구조건.md", "요구조건 6항목 — 화면크기 · 사용목적 · 주요기능 · 설치환경 · 수량 · 예산", 1, "고객 메일")],
+    "요구조건은 <strong style='font-weight: 600; color: #111821;'>늘 반쯤 빠진 채로</strong> 옵니다. 경계 테스트 파일은 예산 줄이 지워져 있습니다. 크롤 표의 스펙은 <strong style='font-weight: 600; color: #111821;'>판매자가 쓴 글</strong>이라 경쟁사 평가 근거로 쓸 때 출처를 밝힙니다. 인계본의 매출 숫자로 수량 · 예산을 정하지 않습니다.", "C · 04", "세션3_제안자료/2_데이터/ + 내 대상수요처.md")
 
 # ───────────── A5 신호를 읽는 법 ─────────────
 def tl(rank, who, done, approach, gap, hot=False):
@@ -1332,7 +1332,7 @@ SLIDES["DeckZ3"] = shell("클로징", "7일 계획", "워크북 마지막 장 �
 
 # ───────────── D1 모듈 표지 ─────────────
 STD_D = [(20, "분해표 + 입력", "talk"), (15, "시연", "talk"), (30, "실습 1", "hands"), (5, "설명", "talk"), (40, "실습 2·3", "hands"), (5, "전환", "talk"), (5, "버퍼", "buf")]
-SLIDES["DeckD1"] = cover("모듈 D · 세션2 대시보드 · 세션3 데이터 분석", "데이터 분석 Agent", "매출 데이터 16개 열로 보직장 · 임원 · 품목 담당이 매일 여는 <strong style='color: #fbfaf7; font-weight: 600;'>매출 대시보드</strong>를 만들고, 임원용 리뷰 한 장을 씁니다.", "숫자 확인 → 대시보드 → 리뷰. 에이전트는 하나, 지시문이 둘입니다. 세션1에서 기사로 본 고객 6곳의 매출입니다.", STD_D, "세션2 = 실습 1 · 세션3 = 실습 2·3", "D · 01", steps=2)
+SLIDES["DeckD1"] = cover("모듈 D · 세션2 · 대시보드 → 데이터 분석 (한 대화)", "데이터 분석 Agent", "매출 데이터 16개 열로 보직장 · 임원 · 품목 담당이 매일 여는 <strong style='color: #fbfaf7; font-weight: 600;'>매출 대시보드</strong>를 만들고, 임원용 리뷰 한 장을 씁니다.", "숫자 확인 → 대시보드 → 리뷰. 에이전트는 하나, 지시문이 둘입니다. 세션1에서 기사로 본 고객 6곳의 매출입니다.", STD_D, "세션2 = 실습 1 · 세션3 = 실습 2·3", "D · 01", steps=2)
 
 if __name__ == "__main__":
     import re as _re

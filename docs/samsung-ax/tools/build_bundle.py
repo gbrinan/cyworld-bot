@@ -134,7 +134,7 @@ copy_tree(os.path.join(AX, "tools"), os.path.join(OUT, "06_도구"))
 def row(href, label, note=""): return f'<tr><td><a href="{href}">{H.escape(label)}</a></td><td>{note}</td></tr>'
 def table(rows): return '<table class="files"><tbody>' + "".join(rows) + "</tbody></table>"
 mods = [("A_sensing_b2b", "A 직판 Sensing", "세션1-1 · B2B팀", "영업대시보드.html"), ("B_sensing_partner", "B 경로 Sensing", "세션1-2 · 유통전략팀", "권역보고서.docx"),
-        ("D_analysis", "D 대시보드 · 데이터 분석", "세션2 · 3 · 전원", "대시보드.html · 리뷰.md"), ("C_proposal", "C 제안자료 작성", "세션4 · 전원", "제안자료.html")]
+        ("D_analysis", "D 대시보드 · 데이터 분석", "세션2 · 전원 · 한 대화", "대시보드.html · 리뷰.md · 대상수요처.md"), ("C_proposal", "C 제안자료 작성", "세션3 · 전원", "제안자료.html")]
 mod_rows = "".join(f'<tr><td><a href="04_모듈/{m}/모듈카드.html">{n}</a></td><td>{w}</td><td><a href="04_모듈/{m}/index.html">폴더</a> · <a href="04_모듈/{m}/00_요구조건서.html">요구조건서</a> · <a href="04_모듈/{m}/01_데이터/index.html">01_데이터</a> · <a href="04_모듈/{m}/02_지시문/index.html">02_지시문</a> · <a href="04_모듈/{m}/03_테스트/index.html">03_테스트</a> · <a href="04_모듈/{m}/04_기준본/index.html">04_기준본</a> · <a href="04_모듈/{m}/07_스킬/SKILL.html">SKILL.md</a></td><td class="mono">{o}</td></tr>' for m, n, w, o in mods)
 common = [("security_rules", "업로드 금지 목록 · 실습 대체 규칙"), ("web_environment", "웹 환경 — 결과 저장 · HTML 열기 · Word 만들기 · 붙여넣기 경로"), ("tool_paths", "도구 클릭 경로 — 에이전트 만들기 · 막혔을 때 3단"),
           ("task_decomposition", "일을 보는 법 — 설계 6단계 (과정의 첫 시간)"), ("agent_and_skill_split", "에이전트와 스킬 나누기"), ("methodology", "IPO · 7블록 · 테스트 3종 · 사람 승인"),
@@ -190,8 +190,8 @@ section{{margin-top:36px}}
 <div class="day">
 <div><b>세션0</b><strong>오프닝</strong><small>전원 · 일 보는 법 + 방법론 5장</small><span class="mono">—</span></div>
 <div><b>세션1</b><strong>A 또는 B Sensing</strong><small>B2B팀은 A(1-1 직판) · 유통전략팀은 B(1-2 경로) · 방법론 4장이 실습 2와 3 사이</small><span class="mono">영업대시보드.html / 권역보고서.docx</span></div>
-<div><b>세션2 · 3</b><strong>D 대시보드 → 데이터 분석</strong><small>전원 · 세션1의 고객 6곳 매출</small><span class="mono">대시보드.html · 리뷰.md</span></div>
-<div><b>세션4</b><strong>C 제안자료 작성</strong><small>전원 · 방법론 2장이 앞에 · Skill + 클로징이 뒤에</small><span class="mono">제안자료.html</span></div>
+<div><b>세션2</b><strong>D 대시보드 → 데이터 분석</strong><small>전원 · 한 대화로 이어서 · 세션1의 고객 6곳 매출</small><span class="mono">대시보드.html · 리뷰.md · 대상수요처.md</span></div>
+<div><b>세션3</b><strong>C 제안자료 작성</strong><small>전원 · 대상수요처.md 필수 · 방법론 2장이 앞에 · Skill + 클로징이 뒤에</small><span class="mono">제안자료.html</span></div>
 </div>
 <div class="note warn">모든 데이터 · 고객사 · 파트너 · 모델명 · 가격은 <strong>가상</strong>입니다. 실습 중 실제 업무 파일은 올리지 않습니다.</div>
 <div class="note">이 페이지가 <strong>온라인(artifact)</strong>이면 덱 · 강사 문서 · 참가자 워크북 · 모듈 A~D · 공통 문서만 열립니다. 디자인 원본(05) · 템플릿 · E 예제 · 도구(06) · zip은 <strong>AX_전체.zip</strong>(폴더판)에 있습니다. 폴더판에서는 전부 열립니다.</div>
@@ -220,7 +220,7 @@ section{{margin-top:36px}}
 <section><h2>03 · 참가자 자료</h2>
 {table([row("03_참가자/workbook_A판.html", "workbook_A판", "B2B팀 워크북 — 실습 슬라이드와 같은 파일 이름 · 신호 · 막혔을 때"),
         row("03_참가자/workbook_B판.html", "workbook_B판", "유통전략팀 워크북"),
-        row("03_참가자/AX_실습파일.zip", "AX_실습파일.zip", "배포용 — 세션1 A · B / 세션2 대시보드 / 세션3 데이터분석 / 세션4 제안자료. 프롬프트 · 자료 · 붙여넣기 · 기준본 · 스킬 · 템플릿 · 공통 문서 · 워크북 · PDF. 함정 · 실패 데이터는 빠짐 (zip은 폴더판에만)")])}
+        row("03_참가자/AX_실습파일.zip", "AX_실습파일.zip", "배포용 — 세션1 A · B / 세션2 대시보드 → 데이터분석(한 대화) / 세션3 제안자료. 프롬프트 · 자료 · 붙여넣기 · 기준본 · 스킬 · 템플릿 · 공통 문서 · 워크북 · PDF. 함정 · 실패 데이터는 빠짐 (zip은 폴더판에만)")])}
 </section>
 
 <section><h2>04 · 모듈 팩 — 에이전트 하나 = 폴더 하나</h2>

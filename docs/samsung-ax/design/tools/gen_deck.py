@@ -392,7 +392,7 @@ SLIDES["DeckD2"] = shell("모듈 D", "지금은 이렇게 일합니다 — 그�
 def frow(f, hdr, n, src, alt=False):
     c = "color: #6b6660;" if alt else ""
     return f'<tr style="{c}"><td class="mono" style="padding: 8px 10px; font-size: 13px; white-space: nowrap;">{f}</td><td style="padding: 8px 10px; font-size: 14px; line-height: 1.45;">{hdr}</td><td style="padding: 8px 10px; text-align: right; font-size: 14px;">{n}</td><td style="padding: 8px 10px; font-size: 14px;">{src}</td></tr>'
-SLIDES["DeckD4"] = shell("모듈 D", "입력 데이터", "실습 파일 세션2_대시보드_데이터분석/2_데이터/", f"""
+SLIDES["DeckD4"] = shell("모듈 D", "입력 데이터", "실습 파일 세션2-1_대시보드/2_데이터/ — 2-2는 같은 대화라 다시 올리지 않음", f"""
     <div style="{CARD} padding: 8px 6px;">
       <table style="border-collapse: collapse; width: 100%;">
         <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 4px 10px;">파일</td><td style="padding: 4px 10px;">헤더</td><td style="padding: 4px 10px; text-align: right;">행</td><td style="padding: 4px 10px;">어디서 온 것으로 가정</td></tr>
@@ -404,8 +404,8 @@ SLIDES["DeckD4"] = shell("모듈 D", "입력 데이터", "실습 파일 세션2_
     </div>
     <div style="display: flex; gap: 14px; align-items: stretch;">
       <div style="{CARD} flex: 1 0 0; padding: 14px 20px; display: flex; flex-direction: column; gap: 8px;">
-        <div style="{LBL}">수요처 6곳 — 세션1에서 기사로 본 그 회사들</div>
-        <div style="font-size: 16px; line-height: 1.6;">해솔호텔 · 대성건설 · 한울종합건설 · 미래로병원 · 세종교육재단 · 서진리테일</div>
+        <div style="{LBL}">세션1과 같은 이름들</div>
+        <div style="font-size: 16px; line-height: 1.6;"><strong style="font-weight: 600;">수요처 6곳</strong> — 해솔호텔 · 대성건설 · 한울종합건설 · 미래로병원 · 세종교육재단 · 서진리테일 <span style="color: #6b6660; font-size: 14px;">(1-1 담당 고객사)</span><br><strong style="font-weight: 600;">판매처 3곳</strong> — 남해정보통신 · 동백시스템 · 가야네트웍스 <span style="color: #6b6660; font-size: 14px;">(1-2 파트너사)</span></div>
         <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">열 이름은 공유해 주신 헤더 그대로입니다. <strong style="font-weight: 600; color: #111821;">단가 열이 없어</strong> 소계 파일이 검산을 대신합니다.</div>
       </div>
       <div style="{WARN} width: 400px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; gap: 4px;">
@@ -1108,7 +1108,7 @@ def transfer(label, question, skill, agent, handoff, page, skill_name):
       <div style="{CARD} border-left: 3px solid #1c3f94; width: 300px; flex-shrink: 0; padding: 14px 18px; font-size: 14px; line-height: 1.55; color: #3d4650;"><strong style="font-weight: 600; color: #111821;">다음 모듈로</strong> — {handoff}</div>
     </div>""", page)
 SLIDES["DeckA12"] = transfer("모듈 A", "내가 매주 훑는 자료는 무엇이고, 그 검색어를 파일로 적어 둔 적이 있는가?", "수집 · 정제 절차, 프로파일 질문 목록, 준공 −6개월 역산 규칙, 대시보드 양식, 검수 기준.", "담당 고객사 목록, 검색어 파일, 우리 팀 용어, 실행 주기. 담당이 바뀌면 참조 파일만 바꿉니다 — <strong style='font-weight: 600; color: #111821;'>인수인계가 파일 한 개</strong>가 됩니다.", "세션2에서 같은 고객 6곳의 매출을 봅니다. 기사로 본 신호를 매출 흐름과 맞춰 보십시오 — 미래로병원 신관 준공처럼.", "S · 12", "sensing-customer-signals")
-SLIDES["DeckB12"] = transfer("모듈 B", "내 권역에서 '작아서 안 세던 것' 중, 모으면 의미가 있는 건 무엇인가?", "키워드 조합 규칙, 추출 항목, 규모 기준과 두 갈래 규칙, 파트너 매칭 규칙, 보고서 5절 양식, 검수 기준.", "담당 권역, 파트너 목록, 상권정보 파일, 규모 하한선 값. 권역이 바뀌면 참조 파일과 권역 값만 바꿉니다.", "기회 목록을 <span class='mono' style='font-size: 13px;'>기회목록.csv</span>로 저장하면 D 모듈의 대상 수요처로 넘길 수 있습니다 (선택).", "S · 12", "sensing-district-openings-for-partners")
+SLIDES["DeckB12"] = transfer("모듈 B", "내 권역에서 '작아서 안 세던 것' 중, 모으면 의미가 있는 건 무엇인가?", "키워드 조합 규칙, 추출 항목, 규모 기준과 두 갈래 규칙, 파트너 매칭 규칙, 보고서 5절 양식, 검수 기준.", "담당 권역, 파트너 목록, 상권정보 파일, 규모 하한선 값. 권역이 바뀌면 참조 파일과 권역 값만 바꿉니다.", "세션2 매출 데이터에 오늘 본 파트너 셋이 <strong style='font-weight: 600; color: #111821;'>판매처</strong>로, 해솔호텔이 수요처로 나옵니다. 파트너가 맡은 고객의 매출 흐름을 거기서 봅니다.", "S · 12", "sensing-district-openings-for-partners")
 
 # ───────────── C3 오늘 만들 결과물 ─────────────
 SLIDES["DeckC3"] = shell("모듈 C", "오늘 만들 결과물", "제안자료.html — 브라우저에서 열리는 제안 자료 1개", f"""

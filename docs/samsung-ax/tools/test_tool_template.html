@@ -90,6 +90,11 @@ function autoCheck(step,resp){
     const hit=r.includes(t)||plain.includes(t.replace(/,/g,''));return {tok:t,neg,ok:neg?!hit:hit}});
 }
 const V={ok:'통과',part:'부분',bad:'실패',man:'수동 확인'};
+const GUIDE='<span class="hint">응답을 붙여넣으면 기대 숫자 · 문구가 들어 있는지 자동으로 봅니다.</span>';
+function checkView(s,resp){if(!(resp||'').trim())return {chips:GUIDE,sug:''};const ac=autoCheck(s,resp);
+  return {chips:ac.map(c=>`<span class="chip ${c.ok?'ok':'bad'}">${c.neg?'없어야 함: ':''}${esc(c.tok)} ${c.ok?'✓':'✗'}</span>`).join(''),
+    sug:ac.every(c=>c.ok)?'ok':ac.some(c=>c.ok)?'part':'bad'}}
+const sugHtml=k=>k?`(자동 제안: ${V[k]})`:'';
 function verdictOf(n){return (st[n]||{}).v||''}
 function renderSum(){const c={ok:0,part:0,bad:0,man:0,none:0};DATA.steps.forEach(s=>c[verdictOf(s.n)||'none']++);
   document.getElementById('sum').innerHTML=Object.entries(V).map(([k,l])=>`<span class="chip ${k}">${l} ${c[k]}</span>`).join('')+`<span class="chip none">남음 ${c.none}</span>`}
@@ -100,9 +105,7 @@ function renderStep(){
     const act=k==='첨부'?`<button class="b" data-dl="${esc(f)}">내려받기</button>`:`<button class="b pri" data-cp="${esc(f)}">복사</button><button class="b" data-show="${esc(f)}">보기</button>`;
     const how={지침:'에이전트 「지침」란에 전체 붙여넣기',첨부:'대화창에 첨부',보내기:'대화창에 붙여넣어 보내기'}[k];
     return `<div class="item"><span class="kind">${k}</span><span class="fname">${esc(base)}<br><span class="hint">${how}</span></span>${act}</div><pre hidden data-pre="${esc(f)}">${esc(F.text||'')}</pre>`}).join('');
-  const ac=my.resp?autoCheck(s,my.resp):null;
-  const chips=ac?ac.map(c=>`<span class="chip ${c.ok?'ok':'bad'}">${c.neg?'없어야 함: ':''}${esc(c.tok)} ${c.ok?'✓':'✗'}</span>`).join(''):'<span class="hint">응답을 붙여넣으면 기대 숫자 · 문구가 들어 있는지 자동으로 봅니다.</span>';
-  const sug=ac?(ac.every(c=>c.ok)?'ok':ac.some(c=>c.ok)?'part':'bad'):'';
+  const {chips,sug}=checkView(s,my.resp);
   document.getElementById('step').innerHTML=`<section class="card">
    <div class="where">${s.n} / ${DATA.steps.length} · 어디서: <b>${esc(s.where)}</b>${s.manual?' · <span class="chip man">사람이 화면에서 확인</span>':''}</div>
    <h2>${esc(s.title)}</h2>
@@ -111,7 +114,7 @@ function renderStep(){
    <label for="resp"><b>GPT 응답 붙여넣기</b> <span class="hint">(${s.manual?'선택 — 화면에서 본 숫자를 적어도 됩니다':'응답 전체'})</span></label>
    <textarea id="resp" placeholder="여기에 GPT 응답을 붙여넣으세요">${esc(my.resp||'')}</textarea>
    <div class="checks">${chips}</div>
-   <div class="verdict">판정 ${sug?`<span class="hint">(자동 제안: ${V[sug]})</span>`:''}
+   <div class="verdict">판정 <span class="hint" id="sug">${sugHtml(sug)}</span>
      ${Object.entries(V).map(([k,l])=>`<button class="b ${k}" data-v="${k}" aria-pressed="${my.v===k}">${l}</button>`).join('')}
      <input class="memo" id="memo" placeholder="메모 — 다른 점 · 고칠 곳" value="${esc(my.memo||'')}">
    </div>
@@ -153,7 +156,7 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
   else if(b.dataset.v&&b.classList.contains('b')){const n=cur;st[n]=Object.assign(st[n]||{},{v:b.dataset.v});save();renderSum();renderNav();renderStep();renderReport()}
   else if(b.classList.contains('tab')){document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t===b));['steps','gpt','report'].forEach(v=>document.getElementById('v-'+v).hidden=v!==b.dataset.v);if(b.dataset.v==='report')renderReport()}});
 document.addEventListener('input',e=>{if(e.target.id==='resp'){st[cur]=Object.assign(st[cur]||{},{resp:e.target.value});save();
-    const s=DATA.steps.find(x=>x.n===cur),ac=autoCheck(s,e.target.value);document.querySelector('.checks').innerHTML=ac.map(c=>`<span class="chip ${c.ok?'ok':'bad'}">${c.neg?'없어야 함: ':''}${esc(c.tok)} ${c.ok?'✓':'✗'}</span>`).join('')}
+    const v=checkView(DATA.steps.find(x=>x.n===cur),e.target.value);document.querySelector('.checks').innerHTML=v.chips;document.getElementById('sug').textContent=sugHtml(v.sug)}
   if(e.target.id==='memo'){st[cur]=Object.assign(st[cur]||{},{memo:e.target.value});save()}});
 all();
 </script>

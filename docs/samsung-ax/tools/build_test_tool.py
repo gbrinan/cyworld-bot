@@ -60,7 +60,11 @@ STEPS = [
  ("IT 법령 변화", "새 대화 · 웹 검색 켜기", [("보내기", f"{C}/7_IT법령변화_실습프롬프트.md")],
   "항목마다 출처 URL, 없으면 '확인 필요', 단정 없음", ["http", "확인 필요"], False),
 ]
-steps = [dict(n=i + 1, title=t, where=w, items=it, expect=e, checks=c, manual=m) for i, (t, w, it, e, c, m) in enumerate(STEPS)]
+def signed(expect, checks):
+    """기대 결과에 음수로 나오는 숫자 · 비율은 검사값에도 '-'를 붙인다 (− 와 - 는 같은 부호)"""
+    e = expect.replace("−", "-")
+    return [c if c.startswith(("!", "-")) or ("-" + c) not in e else "-" + c for c in checks]
+steps = [dict(n=i + 1, title=t, where=w, items=it, expect=e, checks=signed(e, c), manual=m) for i, (t, w, it, e, c, m) in enumerate(STEPS)]
 for s in steps:
     for _, f in s["items"]: assert f in files, f
 

@@ -691,3 +691,7 @@ page=(HTML.replace("__CSS__",CSS).replace("__JS__",js).replace("__N__",f"{len(RO
           .replace("__SUBOK__","전부 일치합니다" if SUB_OK else "어긋나는 곳이 있습니다"))
 open(os.path.join(D4,"대시보드.html"),"w",encoding="utf-8").write(page)
 print(f"04_기준본/대시보드.html  {os.path.getsize(os.path.join(D4,'대시보드.html'))//1024}KB · 소계 대조 {'일치' if SUB_OK else '불일치'}")
+
+# 목표 시트 · 시뮬레이션 샘플값을 다시 만들고 기준본에 7 · 8번을 붙인다 (매출데이터가 바뀌면 목표도 따라 바뀐다)
+import subprocess, sys
+subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "build_targets.py")], check=True)

@@ -620,7 +620,7 @@ SLIDES["DeckW3"] = shell("일을 보는 법", "① As-Is 프로세스 — 지금
           <tr style="font-size: 12px; color: #9a958d; letter-spacing: 0.06em;"><td style="padding: 4px 10px;">#</td><td style="padding: 4px 10px;">단계 — 동사 하나</td><td style="padding: 4px 10px;">누가</td><td style="padding: 4px 10px; text-align: right;">시간</td><td style="padding: 4px 10px;">막히는 곳</td></tr>
           {arow(1, "고객 요구조건 메일을 읽는다", "나", "10분", "")}
           {arow(2, "조건을 표로 정리한다", "나", "20분", "메일마다 형식이 다름")}
-          {arow(3, "외부 포털에서 시장가 · 경쟁 제품을 찾는다", "나", "90분", "여기가 절반", True)}
+          {arow(3, "외부 포털에서 시장가 · 타사 제품을 찾는다", "나", "90분", "여기가 절반", True)}
           {arow(4, "찾은 화면을 표로 옮긴다", "나", "40분", "옮겨 적기")}
           {arow(5, "가격가이드에서 맞는 모델을 추린다", "나", "40분", "라인업이 많음")}
           {arow(6, "스펙 · 가격을 비교한다", "나", "30분", "")}
@@ -922,8 +922,8 @@ SLIDES["DeckB2"] = decomp("모듈 B", "지금은 이렇게 일합니다 — 그�
     "<strong style='font-weight: 600; color: #111821;'>1~9번 사이에 사람만이 없습니다.</strong> 그래서 에이전트는 하나이고 단계가 셋입니다. 3번은 밖에서 가져오는 입력이라 에이전트 앞에 놓입니다.",
     "삼성 양식이 요구한 <strong style='font-weight: 600; color: #111821;'>「제공 프롬프트 3종」이 곧 이 셋</strong>입니다.", "S · 02")
 SLIDES["DeckC2"] = decomp("모듈 C", "지금은 이렇게 일합니다 — 그리고 이렇게 쪼갰습니다",
-    "가격가이드를 열어 조건에 맞는 모델을 찾고, 외부 포털에서 시장가와 경쟁 제품을 찾아 비교합니다. 라인업이 많고 가격을 일일이 검색해야 해서 <strong style='font-weight: 600; color: #111821;'>한 건에 반나절</strong>이 갑니다.",
-    [(1,"요구조건 메일을 읽는다 · 10분","draft","단계 ①","agent",False),(2,"조건을 표로 정리한다 · 20분","draft","단계 ①","agent",False),(3,"외부 포털에서 시장가 · 경쟁 제품을 찾는다 · <strong style='font-weight: 700; color: #9a2c2c;'>90분</strong>","outside","입력",None,False),(4,"찾은 화면을 표로 옮긴다 · 40분","repeat","단계 ⓪","agent",False),(5,"가격가이드에서 맞는 모델을 추린다 · 40분","repeat","단계 ①","agent",False),(6,"스펙 · 가격을 비교한다 · 30분","draft","단계 ②","agent",False),(7,"3안과 비교표를 만든다 · 40분","draft","단계 ②","agent",False),(8,"가격 · 납기를 확정한다 · 30분","lock","경계","lock",False),(9,"승인받아 고객에게 보낸다","lock","경계","lock",False)],
+    "가격가이드를 열어 조건에 맞는 모델을 찾고, 외부 포털에서 시장가와 타사 제품을 찾아 비교합니다. 라인업이 많고 가격을 일일이 검색해야 해서 <strong style='font-weight: 600; color: #111821;'>한 건에 반나절</strong>이 갑니다.",
+    [(1,"요구조건 메일을 읽는다 · 10분","draft","단계 ①","agent",False),(2,"조건을 표로 정리한다 · 20분","draft","단계 ①","agent",False),(3,"외부 포털에서 시장가 · 타사 제품을 찾는다 · <strong style='font-weight: 700; color: #9a2c2c;'>90분</strong>","outside","입력",None,False),(4,"찾은 화면을 표로 옮긴다 · 40분","repeat","단계 ⓪","agent",False),(5,"가격가이드에서 맞는 모델을 추린다 · 40분","repeat","단계 ①","agent",False),(6,"스펙 · 가격을 비교한다 · 30분","draft","단계 ②","agent",False),(7,"3안과 비교표를 만든다 · 40분","draft","단계 ②","agent",False),(8,"가격 · 납기를 확정한다 · 30분","lock","경계","lock",False),(9,"승인받아 고객에게 보낸다","lock","경계","lock",False)],
     "<strong style='font-weight: 600; color: #111821;'>1~7번 사이에 사람만이 없습니다.</strong> 에이전트는 하나, 단계가 셋. 8 · 9번이 사람만이라 거기서 잘립니다.",
     "가장 오래 걸리는 3번(90분)은 <strong style='font-weight: 600; color: #111821;'>밖에서 가져오는 일이라 에이전트가 못 됩니다.</strong> 대신 그 다음 4번이 단계 ⓪이 됐습니다.", "C · 02")
 
@@ -979,7 +979,7 @@ SLIDES["DeckA4"] = inputs("모듈 A", [("기사수집.xlsx", "품목 · 헤드�
 SLIDES["DeckB4"] = inputs("모듈 B", [("뉴스수집.json", "title · originallink · link · description · pubDate", 30, "네이버 뉴스 API 응답 — 연동 가정"), ("상권정보.xlsx", "권역 · 행정구역 · 시설유형 · 시설명 · 상태 · 예정시기 · 규모", 18, "상권정보"), ("파트너정보.xlsx", "파트너사 · 담당권역 · 주력버티컬 · 최근분기실적등급 · 시공가능규모", 4, "파트너 관리 대장"), ("시장조사.md", "권역 · 지표 · 값 · 출처 · 조사시점", 8, "시장조사 자료")],
     "넷을 <strong style='font-weight: 600; color: #111821;'>다 올려야</strong> 합니다. 뉴스만 올리면 규모를 못 걸러 카페가 기회 목록에 오르고, 파트너 파일이 없으면 매칭이 안 됩니다. 파트너 파일에 <strong style='font-weight: 600; color: #111821;'>계약단가 · 마진율</strong>이 있으면 올리지 않습니다 — 실패 테스트가 그것입니다.", "S · 04", "세션1_B_유통영업/2_데이터/")
 SLIDES["DeckC4"] = inputs("모듈 C", [("대상수요처.md", "수요처코드 · 매출 흐름 · 고른 이유 · 확인할 가설", 1, "세션2 인계본 — 필수. 없으면 에이전트가 물어서 채움"), ("가격가이드.xlsx", "모델명 · 제품군 · 화면크기 · 해상도 · 밝기 · 주요기능 · 설치방식 · 가이드공급가 · 최소수량", 13, "사내 B2B 마케팅 / 가격가이드"), ("시장가격.xlsx", "수요처명 · 모델명 · 온라인가격 · 제품spec.", 10, "단계 ⓪의 산출물 — 강사 시연으로 만든 것"), ("고객요구조건.md", "요구조건 6항목 — 화면크기 · 사용목적 · 주요기능 · 설치환경 · 수량 · 예산", 1, "고객 메일")],
-    "요구조건은 <strong style='font-weight: 600; color: #111821;'>늘 반쯤 빠진 채로</strong> 옵니다. 경계 테스트 파일은 예산 줄이 지워져 있습니다. 크롤 표의 스펙은 <strong style='font-weight: 600; color: #111821;'>판매자가 쓴 글</strong>이라 경쟁사 평가 근거로 쓸 때 출처를 밝힙니다. 인계본의 매출 숫자로 수량 · 예산을 정하지 않습니다.", "C · 04", "세션3_제안자료/2_데이터/ + 내 대상수요처.md")
+    "요구조건은 <strong style='font-weight: 600; color: #111821;'>늘 반쯤 빠진 채로</strong> 옵니다. 경계 테스트 파일은 예산 줄이 지워져 있습니다. 크롤 표의 스펙은 <strong style='font-weight: 600; color: #111821;'>판매자가 쓴 글</strong>이라 타사 평가 근거로 쓸 때 출처를 밝힙니다. 인계본의 매출 숫자로 수량 · 예산을 정하지 않습니다.", "C · 04", "세션3_제안자료/2_데이터/ + 내 대상수요처.md")
 
 # ───────────── A5 신호를 읽는 법 ─────────────
 def tl(rank, who, done, approach, gap, hot=False):
@@ -1045,7 +1045,7 @@ SLIDES["DeckA6"] = traps("모듈 A", [("가장 큰 수주가 1순위가 아닙�
     "넷 다 사람이 기사 스크랩에서 실제로 빠지는 함정입니다.", "실습 1의 수집 요약(30 → 27)과 실습 2의 우선순위 표에서 확인합니다.", "S · 06")
 SLIDES["DeckB6"] = traps("모듈 B", [("작은 시설 6건이 섞여 있습니다", "카페 3 · 의원 2 · 학원 1. 기회 목록에 올리면 파트너가 못 씁니다. 다 버리면 상권 흐름이 사라집니다."), ("타 권역 기사가 12건입니다", "권역 필터를 안 걸면 대구 · 광주 건이 섞이고 파트너 매칭이 뒤섞입니다."), ("3순위에 맞는 파트너가 없습니다", "부산 · 경남 파트너 중 교육시설 주력이 없습니다. 억지로 붙이면 안 됩니다 — 없다고 씁니다."), ("1 · 2순위 합계가 시공가능규모를 넘습니다", "350실 대 200실. 매칭만 하고 끝내면 놓칩니다. 논의사항에 올라야 합니다.")],
     "넷 다 파트너에게 보고서를 보낸 뒤에 터지는 함정입니다.", "실습 2의 기회 목록과 보고서 5절에서 확인합니다.", "S · 06")
-SLIDES["DeckC8"] = traps("모듈 C", [("경쟁사가 75만원 싸 보입니다", "밝기가 350nit로 요구조건 500nit에 미달합니다. 가격만 보면 놓칩니다. 싼 줄에 미달 항목이 같이 있어야 합니다."), ("당사 온라인가가 가이드공급가보다 높습니다", "MX-85P 온라인가 +8.0%. 온라인가를 제안가 기준으로 삼으면 안 됩니다."), ("2안도 요구조건을 전부 충족합니다", "1안과 110만원 차이, 대회의실 5인치 차이뿐. 무엇을 기준으로 고를지가 판단입니다."), ("크롤 표의 스펙은 판매자가 쓴 글입니다", "경쟁사 평가 근거로 쓸 때 출처를 밝힙니다. 무선공유 표기 없음은 없음이 아니라 확인불가입니다.")],
+SLIDES["DeckC8"] = traps("모듈 C", [("타사가 75만원 싸 보입니다", "밝기가 350nit로 요구조건 500nit에 미달합니다. 가격만 보면 놓칩니다. 싼 줄에 미달 항목이 같이 있어야 합니다."), ("당사 온라인가가 가이드공급가보다 높습니다", "MX-85P 온라인가 +8.0%. 온라인가를 제안가 기준으로 삼으면 안 됩니다."), ("2안도 요구조건을 전부 충족합니다", "1안과 110만원 차이, 대회의실 5인치 차이뿐. 무엇을 기준으로 고를지가 판단입니다."), ("크롤 표의 스펙은 판매자가 쓴 글입니다", "타사 평가 근거로 쓸 때 출처를 밝힙니다. 무선공유 표기 없음은 없음이 아니라 확인불가입니다.")],
     "넷 다 제안서를 보낸 뒤에 뒤집히는 함정입니다.", "실습 2의 3안 표와 시장가격 비교 표에서 확인합니다.", "C · 08")
 
 # ───────────── A7 묻는 것이 기능인 단계 ─────────────
@@ -1118,7 +1118,7 @@ SLIDES["DeckC3"] = shell("모듈 C", "오늘 만들 결과물", "제안자료.ht
         {sec(1, "요구조건 요약", "6항목 · 필수 / 희망 구분")}
         {sec(2, "제안 3가지", "1안 · 2안 · 3안 — 구역 · 모델 · 수량 · 소계 · 예산 대비")}
         {sec(3, "상호 비교", "요구조건별 O / X · 총액 · 판정")}
-        {sec(4, "시장가격 비교", "가이드공급가 vs 온라인가 · 경쟁사 · 미달 항목")}
+        {sec(4, "시장가격 비교", "가이드공급가 vs 온라인가 · 타사 · 미달 항목")}
         {sec(5, "확인 필요 사항", "가격 · 납기 · 조회 시점 — 사람이 확정")}
       </div>
       <div style="flex: 1 0 0; display: flex; flex-direction: column; gap: 12px;">
@@ -1126,7 +1126,7 @@ SLIDES["DeckC3"] = shell("모듈 C", "오늘 만들 결과물", "제안자료.ht
           <div style="font-size: 12px; letter-spacing: 0.16em; color: #0f6b4f; font-weight: 600;">반드시 같아야 하는 것 — 셋</div>
           <div style="font-size: 16px; line-height: 1.5;">1안 <strong style="font-weight: 600;">15,920,000</strong> · 2안 <strong style="font-weight: 600;">14,820,000</strong> — <strong style="font-weight: 600;">둘 다</strong> 요구조건 충족</div>
           <div style="font-size: 16px; line-height: 1.5;">3안 <strong style="font-weight: 600;">10,100,000</strong>에 포기 항목이 항목별로</div>
-          <div style="font-size: 16px; line-height: 1.5;">경쟁사가 <strong style="font-weight: 600;">756,000원 싼</strong> 줄에 밝기 350nit 미달이 같이</div>
+          <div style="font-size: 16px; line-height: 1.5;">타사가 <strong style="font-weight: 600;">756,000원 싼</strong> 줄에 밝기 350nit 미달이 같이</div>
         </div>
         <div style="{CARD} padding: 14px 20px; display: flex; flex-direction: column; gap: 8px;">
           <div style="{LBL}">달라도 되는 것</div>
@@ -1157,7 +1157,7 @@ SLIDES["DeckC6"] = shell("모듈 C", "어디서 무엇을 가져오나", "역할
     <div style="display: flex; gap: 12px; align-items: stretch; flex-grow: 1;">
       <div style="{CARD} flex: 1 0 0; border-top: 4px solid #1c3f94; padding: 18px 22px; display: flex; flex-direction: column; gap: 10px;">
         <div style="font-size: 22px; font-weight: 700; color: #1c3f94;">스펙의 근거</div>
-        <div style="font-size: 16px; line-height: 1.6;"><strong style="font-weight: 600;">삼성닷컴 비즈니스</strong> — 자사 모델 스펙의 정본. 스펙 표가 글자라 복사<br><strong style="font-weight: 600;">경쟁사 공식 사이트</strong><br><strong style="font-weight: 600;">사내 가격가이드</strong> — 가이드공급가</div>
+        <div style="font-size: 16px; line-height: 1.6;"><strong style="font-weight: 600;">삼성닷컴 비즈니스</strong> — 자사 모델 스펙의 정본. 스펙 표가 글자라 복사<br><strong style="font-weight: 600;">타사 공식 사이트</strong><br><strong style="font-weight: 600;">사내 가격가이드</strong> — 가이드공급가</div>
         <div style="font-size: 14px; color: #6b6660; line-height: 1.5;">B2B 제품은 가격이 &quot;문의&quot;인 경우가 많습니다. 여기서 가격을 찾지 않습니다.</div>
       </div>
       <div style="width: 120px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center;">

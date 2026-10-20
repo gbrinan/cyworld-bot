@@ -23,7 +23,7 @@
 
 사무서비스 업종의 문의가 9월 278건으로 8개 업종 중 가장 많습니다. 3개월 연속 늘고 있습니다(193 → 225 → 278). 관심 품목은 IT제품이고 평균구매액은 217만원입니다. *(근거: segment_profile.md 1순위)*
 
-경쟁사 IT제품 중 **파트너몰에서 판매되는 건은 1건이고 프로모션이 붙어 있지 않습니다.** *(근거: competitor_lineup.csv C019)*
+타사 IT제품 중 **파트너몰에서 판매되는 건은 1건이고 프로모션이 붙어 있지 않습니다.** *(근거: competitor_lineup.csv C019)*
 
 ### 2.2 해결 방향
 
@@ -71,7 +71,7 @@
 | 사무서비스 9월 278건 | segment_profile.md → smb_demand.csv | D0609 |
 | 3개월 연속 증가 | segment_profile.md → smb_demand.csv | D0607, D0608, D0609 |
 | 평균구매액 217만원 | smb_demand.csv | D0609 |
-| 경쟁사 IT제품 파트너몰 1건·프로모션 없음 | competitor_lineup.csv | C019 |
+| 타사 IT제품 파트너몰 1건·프로모션 없음 | competitor_lineup.csv | C019 |
 | 제품 사양·구성 | product_catalog.csv | S-IT-01·02, S-DMFP-01·02 |
 | DMFP 구독 포함 범위 | service_terms.md | 1장 |
 | 파트너 중심 영업 구조 | team_profile.md | 1장 |

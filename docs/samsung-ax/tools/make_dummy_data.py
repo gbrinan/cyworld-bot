@@ -227,13 +227,13 @@ def build_partner():
       ["출처ID", "기준월", "업종", "지역", "문의건수", "관심품목군", "평균구매액(원)", "전월대비"],
       demand)
 
-    # --- ② Sensing: 경쟁사 라인업·가격·프로모션 ---
+    # --- ② Sensing: 타사 라인업·가격·프로모션 ---
     comp = []
     for i in range(32):
         comp.append([
             f"C{i+1:03d}",
             date(2026, 9, rnd.randint(1, 3)).isoformat(),
-            rnd.choice(["경쟁사 X", "경쟁사 Y", "경쟁사 Z"]),
+            rnd.choice(["타사 X", "타사 Y", "타사 Z"]),
             rnd.choice(PARTNER_ITEMS),
             f"모델-{rnd.randint(100, 999)}",
             rnd.randint(45, 320) * 10_000,
@@ -241,7 +241,7 @@ def build_partner():
             rnd.choice(["온라인몰", "파트너몰", "직영"]),
         ])
     w("team_partner/agent02_sensing/data/competitor_lineup.csv",
-      ["출처ID", "조사일", "경쟁사", "품목군", "모델명", "표시가(원)", "프로모션", "채널"],
+      ["출처ID", "조사일", "타사", "품목군", "모델명", "표시가(원)", "프로모션", "채널"],
       comp)
 
     # --- ③ Action: 사업자몰 라인업 ---
